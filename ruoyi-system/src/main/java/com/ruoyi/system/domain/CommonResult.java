@@ -1,6 +1,5 @@
 package com.ruoyi.system.domain;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 
 /**
@@ -11,10 +10,7 @@ import lombok.Data;
 @Data
 public class CommonResult {
 
-    // 定义jackson对象
-    private static final ObjectMapper MAPPER = new ObjectMapper();
-
-    // 响应业务状态
+    // 响应业务状态 默认0：失败 200：成功
     private Integer status;
 
     // 响应消息
@@ -48,6 +44,7 @@ public class CommonResult {
 
     /**
      * 基础成功对象
+     *
      * @return CommonResult
      */
     public static CommonResult ok() {
@@ -56,6 +53,7 @@ public class CommonResult {
 
     /**
      * 基础失败对象
+     *
      * @return CommonResult
      */
     public static CommonResult fail() {
@@ -64,6 +62,7 @@ public class CommonResult {
 
     /**
      * 根据Boolean判断是否操作成功
+     *
      * @param reason -- 操作状态
      * @return CommonResult
      */
