@@ -46,14 +46,27 @@ public class CommonResult {
         return this;
     }
 
+    /**
+     * 基础成功对象
+     * @return CommonResult
+     */
     public static CommonResult ok() {
         return new CommonResult().setStatus(200).setMsg("ok");
     }
 
+    /**
+     * 基础失败对象
+     * @return CommonResult
+     */
     public static CommonResult fail() {
         return new CommonResult().setStatus(0).setMsg("fail");
     }
 
+    /**
+     * 根据Boolean判断是否操作成功
+     * @param reason -- 操作状态
+     * @return CommonResult
+     */
     public static CommonResult okOrFail(boolean reason) {
         if (!reason) {
             return CommonResult.fail();
