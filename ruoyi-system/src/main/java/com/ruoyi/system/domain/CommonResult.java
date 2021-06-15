@@ -1,25 +1,28 @@
 package com.ruoyi.system.domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
  * 自定义响应结构
  *
- * @author taozi - 2020/11/28 - 17:31
+ * @author cyt - 2020/11/28 - 17:31
  */
 @Data
+@ApiModel("通用响应对象")
 public class CommonResult {
 
-    // 响应业务状态 默认0：失败 200：成功
+    @ApiModelProperty(value = "响应业务状态")
     private Integer status;
 
-    // 响应消息
+    @ApiModelProperty(value = "响应消息")
     private String msg;
 
-    // 响应中的数据
+    @ApiModelProperty(value = "响应中的数据")
     private Object data;
 
-    //响应的条数
+    @ApiModelProperty(value = "响应的条数")
     private long total;
 
     public CommonResult setStatus(Integer status) {
