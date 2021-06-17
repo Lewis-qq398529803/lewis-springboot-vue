@@ -72,6 +72,9 @@ public class SysUser extends BaseEntity
     @Excel(name = "最后登录IP", type = Type.EXPORT)
     private String loginIp;
 
+    @Excel(name = "用户类型")
+    private String userType;
+
     /** 最后登录时间 */
     @Excel(name = "最后登录时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Type.EXPORT)
     private Date loginDate;
@@ -111,6 +114,8 @@ public class SysUser extends BaseEntity
     {
         this.userId = userId;
     }
+
+
 
     public boolean isAdmin()
     {
@@ -165,6 +170,14 @@ public class SysUser extends BaseEntity
     public void setEmail(String email)
     {
         this.email = email;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     @Size(min = 0, max = 11, message = "手机号码长度不能超过11个字符")
@@ -306,6 +319,7 @@ public class SysUser extends BaseEntity
             .append("userId", getUserId())
             .append("deptId", getDeptId())
             .append("userName", getUserName())
+            .append("userType", getUserType())
             .append("nickName", getNickName())
             .append("email", getEmail())
             .append("phonenumber", getPhonenumber())
