@@ -10,6 +10,7 @@ import com.ruoyi.common.utils.AliSendSmsUtils;
 import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.framework.web.service.TokenService;
+import com.ruoyi.system.domain.TokenAndSysUserInfo;
 import com.ruoyi.system.service.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -94,9 +95,12 @@ public class SysLoginWithPhoneController {
             //实体封装
             LoginUser loginUser = new LoginUser();
             loginUser.setUser(sysUser1);
-            loginUser.setPermissions(getPermissionsSet());
+            loginUser.setPermissions(getPermissions());
             //获取token
-            return CommonResult.ok().setData(tokenService.createToken(loginUser));
+            TokenAndSysUserInfo tokenAndSysUserInfo = new TokenAndSysUserInfo();
+            tokenAndSysUserInfo.setToken(tokenService.createToken(loginUser));
+            tokenAndSysUserInfo.setSysUser(sysUser1);
+            return CommonResult.ok().setData(tokenAndSysUserInfo);
         } else {
             //不存在，注册，后返回token
             SysUser sysUser1 = new SysUser();
@@ -113,14 +117,17 @@ public class SysLoginWithPhoneController {
             //实体封装
             LoginUser loginUser = new LoginUser();
             loginUser.setUser(sysUser1);
-            loginUser.setPermissions(getPermissionsSet());
+            loginUser.setPermissions(getPermissions());
             //获取token
-            return CommonResult.ok().setData(tokenService.createToken(loginUser));
+            TokenAndSysUserInfo tokenAndSysUserInfo = new TokenAndSysUserInfo();
+            tokenAndSysUserInfo.setToken(tokenService.createToken(loginUser));
+            tokenAndSysUserInfo.setSysUser(sysUser1);
+            return CommonResult.ok().setData(tokenAndSysUserInfo);
         }
     }
 
-    //获取权限列表
-    public Set<String> getPermissionsSet() {
+    //获取权限集合
+    public Set<String> getPermissions() {
         Set<String> permissions = new HashSet<>();
         permissions.add("block:manager:list");
         permissions.add("block:manager:add");
