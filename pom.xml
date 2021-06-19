@@ -35,6 +35,8 @@
         <jwt.version>0.9.1</jwt.version>
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
         <aliyun-java-sdk-core.version>4.1.0</aliyun-java-sdk-core.version>
+        <jdom2.version>2.0.6</jdom2.version>
+        <dom4j.version>1.6.1</dom4j.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -229,6 +231,18 @@
                 <groupId>com.ruoyi</groupId>
                 <artifactId>ruoyi-common</artifactId>
                 <version>${ruoyi.version}</version>
+            </dependency>
+
+            <!--xmlUtils需要的依赖包-->
+            <dependency>
+                <groupId>org.jdom</groupId>
+                <artifactId>jdom2</artifactId>
+                <version>${jdom2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
             </dependency>
 
         </dependencies>

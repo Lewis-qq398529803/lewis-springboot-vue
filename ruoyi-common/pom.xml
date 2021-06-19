@@ -145,6 +145,16 @@
             <scope>compile</scope>
         </dependency>
 
+        <!--xmlUtils需要的依赖包-->
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
