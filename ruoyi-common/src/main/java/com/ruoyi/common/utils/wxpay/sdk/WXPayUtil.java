@@ -14,10 +14,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
+import java.io.*;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.*;
@@ -273,8 +270,7 @@ public class WXPayUtil {
      * @return
      */
     public static Logger getLogger() {
-        Logger logger = LoggerFactory.getLogger("wxpay java sdk");
-        return logger;
+        return LoggerFactory.getLogger("wxpay java sdk");
     }
 
     /**
@@ -294,15 +290,22 @@ public class WXPayUtil {
     }
 
     /**
-     *
-     * @param inputStream
+     * 获取请求的流信息(这里是微信发的xml格式所有只能使用流来读)
+     * @param is
      * @return
      * @throws IOException
      */
-    public static String InputStream2String(InputStream inputStream) throws IOException {
-        byte[] bytes;
-        bytes = new byte[inputStream.available()];
-        inputStream.read(bytes);
-        return new String(bytes);
+    public static String InputStream2String(InputStream is) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = -1;
+        while ((len = is.read(buffer)) != -1) {
+            baos.write(buffer, 0, len);
+        }
+        baos.close();
+        is.close();
+        byte[] lens = baos.toByteArray();
+        //内容乱码处理
+        return new String(lens,"UTF-8");
     }
 }
