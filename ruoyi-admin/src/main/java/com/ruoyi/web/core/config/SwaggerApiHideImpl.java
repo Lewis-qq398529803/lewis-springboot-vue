@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
  */
 @Component
 @Order
-public class ApiHideImpl implements ParameterBuilderPlugin {
+public class SwaggerApiHideImpl implements ParameterBuilderPlugin {
 
     @Autowired
     private TypeResolver typeResolver;
@@ -43,7 +43,7 @@ public class ApiHideImpl implements ParameterBuilderPlugin {
         Class originClass = parameterContext.resolvedMethodParameter().getParameterType().getErasedType();
 
 
-        Optional<ApiHide> optional = methodParameter.findAnnotation(ApiHide.class);
+        Optional<SwaggerApiHide> optional = methodParameter.findAnnotation(SwaggerApiHide.class);
         if (optional.isPresent()) {
             Random random = new Random();
             String name = originClass.getSimpleName() + "Model" + random.nextInt(100);  //model 名称

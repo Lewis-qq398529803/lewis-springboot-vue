@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.PARAMETER,ElementType.FIELD,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ApiHide {
+public @interface SwaggerApiHide {
     String[] value();
 }
