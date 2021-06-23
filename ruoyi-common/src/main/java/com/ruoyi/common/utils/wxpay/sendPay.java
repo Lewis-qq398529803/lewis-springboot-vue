@@ -27,12 +27,11 @@ public class sendPay {
 	@RequestMapping(value = "/orders")
 	public @ResponseBody Map<String, String> orders(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			 
-			String openId = "用户的openid";
+			String openId = request.getParameter("openId");//用户的openid
 
-			// 拼接统一下单地址参数
-			Map<String, String> paraMap = new HashMap<String, String>();
-			// 获取请求ip地址
+			/*
+				获取请求ip地址
+			 */
 			String ip = request.getHeader("x-forwarded-for");
 			if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
 				ip = request.getHeader("Proxy-Client-IP");
@@ -48,24 +47,27 @@ public class sendPay {
 				ip = ips[0].trim();
 			}
 
+			/*
+				拼接统一下单地址参数
+			 */
+			Map<String, String> paraMap = new HashMap<String, String>();
 			paraMap.put("appid", AuthUtil.APPID); // 商家平台ID
 			paraMap.put("body", "纯情小店铺-薯条"); // 商家名称-销售商品类目、String(128)
 			paraMap.put("mch_id", AuthUtil.MCHID); // 商户ID
 			paraMap.put("nonce_str", WXPayUtil.generateNonceStr()); // UUID
-			paraMap.put("openid", openId);
+			paraMap.put("openid", openId);//付款者的openid
 			paraMap.put("out_trade_no", UUID.randomUUID().toString().replaceAll("-", ""));// 订单号,每次都不同
-			paraMap.put("spbill_create_ip", ip);
+			paraMap.put("spbill_create_ip", ip);//请求ip地址
 			paraMap.put("total_fee", "1"); // 支付金额，单位分
 			paraMap.put("trade_type", "JSAPI"); // 支付类型
-			paraMap.put("notify_url", "用户支付完成后，你想微信调你的哪个接口");// 此路径是微信服务器调用支付结果通知路径随意写
-			String sign = WXPayUtil.generateSignature(paraMap, AuthUtil.PATERNERKEY);
-			paraMap.put("sign", sign);
+			paraMap.put("notify_url", "");// 用户支付完成后，你想微信调你的哪个接口：此路径是微信服务器调用支付结果通知路径随意写
+			paraMap.put("sign", WXPayUtil.generateSignature(paraMap, AuthUtil.PATERNERKEY));//生成签名
 			String xml = WXPayUtil.mapToXml(paraMap);// 将所有参数(map)转xml格式
+
+			System.out.println("xml为：" + xml);
 
 			// 统一下单 https://api.mch.weixin.qq.com/pay/unifiedorder
 			String unifiedorder_url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
-
-			System.out.println("xml为：" + xml);
 
 			// String xmlStr = HttpRequest.sendPost(unifiedorder_url,
 			// xml);//发送post请求"统一下单接口"返回预支付id:prepay_id
@@ -83,12 +85,11 @@ public class sendPay {
 
 			Map<String, String> payMap = new HashMap<String, String>();
 			payMap.put("appId", AuthUtil.APPID);
-			payMap.put("timeStamp", WXPayUtil.getCurrentTimestamp() + "");
+			payMap.put("timeStamp", WXPayUtil.getCurrentTimestamp() + "");//时间戳
 			payMap.put("nonceStr", WXPayUtil.generateNonceStr());
 			payMap.put("signType", "MD5");
 			payMap.put("package", "prepay_id=" + prepay_id);
-			String paySign = WXPayUtil.generateSignature(payMap, AuthUtil.PATERNERKEY);
-			payMap.put("paySign", paySign);
+			payMap.put("paySign", WXPayUtil.generateSignature(payMap, AuthUtil.PATERNERKEY));//支付签名
 			//将这个6个参数传给前端
 			return payMap;
 		} catch (Exception e) {

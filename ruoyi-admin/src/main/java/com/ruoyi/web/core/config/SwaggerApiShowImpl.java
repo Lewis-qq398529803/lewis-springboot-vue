@@ -27,12 +27,11 @@ import java.util.stream.Collectors;
 
 /**
  * swagger配置：
- *  示例：在入参前加入@SwaggerApiHide({"userName"}) == 隐藏userName这个参数
- *       在入参前加入@SwaggerApiHide({"*"}) == 隐藏所有
+ *  示例：在入参前加入@SwaggerApiHide({"userName"}) == 只显示userName这个参数
  */
 @Component
 @Order
-public class SwaggerApiHideImpl implements ParameterBuilderPlugin {
+public class SwaggerApiShowImpl implements ParameterBuilderPlugin {
 
     @Autowired
     private TypeResolver typeResolver;
@@ -42,35 +41,31 @@ public class SwaggerApiHideImpl implements ParameterBuilderPlugin {
         ResolvedMethodParameter methodParameter = parameterContext.resolvedMethodParameter();
         Class originClass = parameterContext.resolvedMethodParameter().getParameterType().getErasedType();
 
-
-        Optional<SwaggerApiHide> optional = methodParameter.findAnnotation(SwaggerApiHide.class);
+        Optional<SwaggerApiShow> optional = methodParameter.findAnnotation(SwaggerApiShow.class);
         if (optional.isPresent()) {
             Random random = new Random();
-            String name = originClass.getSimpleName() + "Model" + random.nextInt(100);  //model 名称
+            String name = originClass.getSimpleName()/* + "Model" + random.nextInt(100)*/;  //model 名称
             List<String> properties = Arrays.asList(optional.get().value());
-
-            if (properties.size() == 1 && properties.get(0).equals("*")) {
-                properties= new ArrayList<>();
-                Field[] fields = originClass.getDeclaredFields();
-                for (int i = 0; i < fields.length; i++) {
-                    properties.add(fields[i].getName());
-                }
+            List<Field> fields = Arrays.asList(originClass.getDeclaredFields());
+            List<String> finalProperties = properties;
+            List<Field> fieldssss = fields.stream().filter(field -> !finalProperties.contains(field.getName()) ).collect(Collectors.toList());
+            properties = new ArrayList<>();
+            for (Field field : fieldssss) {
+                properties.add(field.getName());
             }
             try {
                 parameterContext.getDocumentationContext()
                         .getAdditionalModels()
-                        .add(typeResolver.resolve(createRefModelIgp(properties.toArray(new String[properties.size()]) , originClass.getPackage() + "." + name, originClass)));  //像documentContext的Models中添加我们新生成的Class
+                        .add(typeResolver.resolve(createRefModelIgp(properties.toArray(new String[properties.size()]), originClass.getPackage() + "." + name, originClass)));  //像documentContext的Models中添加我们新生成的Class
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             parameterContext.parameterBuilder()  //修改Map参数的ModelRef为我们动态生成的class
                     .parameterType("body")
                     .modelRef(new ModelRef(name))
-                    .description("此行不用管")
+//                    .description("此行不用管")
                     .name(name);
         }
-
     }
 
     private Class createRefModelIgp(String[] propertys, String name, Class origin) throws NotFoundException {
