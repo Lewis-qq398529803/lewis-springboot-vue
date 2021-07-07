@@ -6,7 +6,7 @@ import com.ruoyi.quartz.domain.SysJobLog;
 /**
  * 定时任务调度日志信息信息 服务层
  * 
- * @author ruoyi
+ * @author taozi
  */
 public interface ISysJobLogService
 {

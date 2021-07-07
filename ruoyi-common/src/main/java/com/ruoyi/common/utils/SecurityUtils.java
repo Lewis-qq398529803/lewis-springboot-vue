@@ -10,7 +10,7 @@ import com.ruoyi.common.exception.CustomException;
 /**
  * 安全服务工具类
  * 
- * @author ruoyi
+ * @author taozi
  */
 public class SecurityUtils
 {

@@ -7,7 +7,7 @@ import com.ruoyi.common.constant.Constants;
 /**
  * VelocityEngine工厂
  * 
- * @author ruoyi
+ * @author taozi
  */
 public class VelocityInitializer
 {

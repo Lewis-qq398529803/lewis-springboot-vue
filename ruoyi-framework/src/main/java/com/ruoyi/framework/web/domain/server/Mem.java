@@ -5,7 +5,7 @@ import com.ruoyi.common.utils.Arith;
 /**
  * 內存相关信息
  * 
- * @author ruoyi
+ * @author taozi
  */
 public class Mem
 {

@@ -16,7 +16,7 @@ import com.ruoyi.common.utils.uuid.IdUtils;
 /**
  * 文件上传工具类
  *
- * @author ruoyi
+ * @author taozi
  */
 public class FileUploadUtils
 {

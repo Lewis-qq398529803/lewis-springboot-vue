@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 /**
  * 通知公告表 sys_notice
  * 
- * @author ruoyi
+ * @author taozi
  */
 public class SysNotice extends BaseEntity
 {
