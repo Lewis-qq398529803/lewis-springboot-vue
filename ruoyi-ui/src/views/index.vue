@@ -88,7 +88,8 @@
               <i class="el-icon-s-promotion"></i> 官网：<el-link
                 href="https://gitee.com/taozi945/ruo-yi-vue"
                 target="_blank"
-                >https://gitee.com/taozi945/ruo-yi-vue</el-link
+                >https://gitee.com/taozi945/ruo-yi-vue
+                </el-link
               >
             </p>
             <p>
