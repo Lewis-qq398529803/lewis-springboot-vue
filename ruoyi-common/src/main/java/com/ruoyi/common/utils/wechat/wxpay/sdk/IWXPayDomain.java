@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.wxpay.sdk;
+package com.ruoyi.common.utils.wechat.wxpay.sdk;
 
 /**
  * 域名管理，实现主备域名自动切换

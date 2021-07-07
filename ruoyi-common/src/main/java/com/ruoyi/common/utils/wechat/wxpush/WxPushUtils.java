@@ -1,8 +1,8 @@
-package com.ruoyi.common.utils.wxpush;
+package com.ruoyi.common.utils.wechat.wxpush;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ruoyi.common.utils.http.HttpUtils;
-import com.ruoyi.common.utils.wxpush.vo.WxPushVo;
+import com.ruoyi.common.utils.wechat.wxpush.vo.WxPushVo;
 
 /**
  * 微信公众号推送utils

@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.wxpay;
+package com.ruoyi.common.utils.wechat.wxpay;
 
 import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;

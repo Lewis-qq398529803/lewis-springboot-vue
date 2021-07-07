@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.wxpush.vo;
+package com.ruoyi.common.utils.wechat.wxpush.vo;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.Data;

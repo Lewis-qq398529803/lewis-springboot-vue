@@ -1,6 +1,6 @@
-package com.ruoyi.common.utils.wxpay.sdk;
+package com.ruoyi.common.utils.wechat.wxpay.sdk;
 
-import com.ruoyi.common.utils.wxpay.sdk.WXPayConstants.SignType;
+import com.ruoyi.common.utils.wechat.wxpay.sdk.WXPayConstants.SignType;
 
 import java.util.HashMap;
 import java.util.Map;

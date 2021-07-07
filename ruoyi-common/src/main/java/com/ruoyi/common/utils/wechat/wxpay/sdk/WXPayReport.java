@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.wxpay.sdk;
+package com.ruoyi.common.utils.wechat.wxpay.sdk;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

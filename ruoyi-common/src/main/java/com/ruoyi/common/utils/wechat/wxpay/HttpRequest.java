@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.wxpay;
+package com.ruoyi.common.utils.wechat.wxpay;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;

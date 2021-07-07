@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.wxpay.sdk;
+package com.ruoyi.common.utils.wechat.wxpay.sdk;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,7 +24,7 @@ import java.net.UnknownHostException;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 
-import static com.ruoyi.common.utils.wxpay.sdk.WXPayConstants.USER_AGENT;
+import static com.ruoyi.common.utils.wechat.wxpay.sdk.WXPayConstants.USER_AGENT;
 
 public class WXPayRequest {
 

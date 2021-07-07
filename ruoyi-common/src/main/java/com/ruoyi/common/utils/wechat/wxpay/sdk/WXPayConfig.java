@@ -1,4 +1,4 @@
-package com.ruoyi.common.utils.wxpay.sdk;
+package com.ruoyi.common.utils.wechat.wxpay.sdk;
 
 import java.io.InputStream;
 
