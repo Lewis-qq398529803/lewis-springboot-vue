@@ -35,7 +35,7 @@
             size="mini"
             icon="el-icon-cloudy"
             plain
-            @click="goTarget('https://gitee.com/taozi945/ruo-yi-vue')"
+            @click="goTarget('https://gitee.com/taozi945/taozi-ruo-yi-vue')"
             >访问码云</el-button
           >
         </p>
@@ -86,9 +86,9 @@
           <div class="body">
             <p>
               <i class="el-icon-s-promotion"></i> 官网：<el-link
-                href="https://gitee.com/taozi945/ruo-yi-vue"
+                href="https://gitee.com/taozi945/taozi-ruo-yi-vue"
                 target="_blank"
-                >https://gitee.com/taozi945/ruo-yi-vue
+                >https://gitee.com/taozi945/taozi-ruo-yi-vue
                 </el-link
               >
             </p>
