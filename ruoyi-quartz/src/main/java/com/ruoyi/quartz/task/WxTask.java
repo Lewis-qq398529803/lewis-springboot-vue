@@ -21,7 +21,8 @@ public class WxTask {
     private RedisCache redisCache;
 
     /**
-     * 获取微信的access_token，并存入redis中
+     * 每两小时获取微信的access_token，并存入redis中
+     * 0 0 0/2 * * ?  -- 从 0 小时开始,每 2 小时执行一次
      */
     public void getAccessToken(){
         String params = "grant_type=client_credential&appid=" + WxConfig.APPID + "&secret=" + WxConfig.APPSECRET;
