@@ -1,5 +1,7 @@
-package com.taozi.common.utils.wechat.wxpay;
+package com.taozi.web.controller.tool.wechat;
 
+import com.taozi.common.utils.wechat.wxpay.AuthUtil;
+import com.taozi.common.utils.wechat.wxpay.HttpRequest;
 import com.taozi.common.utils.wechat.wxpay.sdk.WXPayUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/wxPay")
-public class sendPay {
+public class WeChatPayController {
 
 	/**
 	 * 微信浏览器内微信支付/公众号支付(JSAPI)
