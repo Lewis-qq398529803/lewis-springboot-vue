@@ -19,6 +19,7 @@
         <module>taozi-quartz</module>
         <module>taozi-generator</module>
         <module>taozi-common</module>
+        <module>taozi-websocket</module>
     </modules>
     <packaging>pom</packaging>
 
