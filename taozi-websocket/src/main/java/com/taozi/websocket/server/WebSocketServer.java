@@ -1,4 +1,4 @@
-package com.taozi.websocket.controller;
+package com.taozi.websocket.server;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

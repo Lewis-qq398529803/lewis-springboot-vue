@@ -54,6 +54,7 @@
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+
             <!-- mybatis-plus -->
             <dependency>
                 <groupId>com.baomidou</groupId>

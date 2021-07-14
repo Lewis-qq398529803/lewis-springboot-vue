@@ -1,7 +1,8 @@
 package com.taozi.websocket.controller;
 
-//import com.taozi.websocket.controller.WebSocketServer;
+//import com.taozi.websocket.server.WebSocketServer;
 
+import com.taozi.websocket.server.WebSocketServer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
