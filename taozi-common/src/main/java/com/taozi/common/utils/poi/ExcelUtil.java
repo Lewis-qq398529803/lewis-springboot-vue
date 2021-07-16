@@ -47,7 +47,7 @@ import com.taozi.common.annotation.Excel;
 import com.taozi.common.annotation.Excel.ColumnType;
 import com.taozi.common.annotation.Excel.Type;
 import com.taozi.common.annotation.Excels;
-import com.taozi.common.config.RuoYiConfig;
+import com.taozi.common.config.TaoZiConfig;
 import com.taozi.common.core.domain.AjaxResult;
 import com.taozi.common.core.text.Convert;
 import com.taozi.common.exception.CustomException;
@@ -892,7 +892,7 @@ public class ExcelUtil<T>
      */
     public String getAbsoluteFile(String filename)
     {
-        String downloadPath = RuoYiConfig.getDownloadPath() + filename;
+        String downloadPath = TaoZiConfig.getDownloadPath() + filename;
         File desc = new File(downloadPath);
         if (!desc.getParentFile().exists())
         {

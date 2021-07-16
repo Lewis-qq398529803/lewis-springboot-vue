@@ -3,7 +3,7 @@ package com.taozi.common.utils.ip;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
-import com.taozi.common.config.RuoYiConfig;
+import com.taozi.common.config.TaoZiConfig;
 import com.taozi.common.constant.Constants;
 import com.taozi.common.utils.StringUtils;
 import com.taozi.common.utils.http.HttpUtils;
@@ -31,7 +31,7 @@ public class AddressUtils
         {
             return "内网IP";
         }
-        if (RuoYiConfig.isAddressEnabled())
+        if (TaoZiConfig.isAddressEnabled())
         {
             try
             {

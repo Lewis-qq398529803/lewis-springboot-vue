@@ -1,5 +1,5 @@
 # 项目相关配置
-ruoyi:
+taozi:
   # 名称
   name: taozi
   # 版本
@@ -8,7 +8,7 @@ ruoyi:
   copyrightYear: 2021
   # 实例演示开关
   demoEnabled: true
-  # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
+  # 文件路径 示例（ Windows配置D:/taozi/uploadPath，Linux配置 /home/taozi/uploadPath）
   profile: D:/taozi/uploadPath
   # 获取ip地址开关
   addressEnabled: false
@@ -81,18 +81,18 @@ spring:
   # websocket配置
   http:
     encoding:UTF-8
-    freemarker:
-      request-context-attribute: request
-      # prefix: /templates/
-      suffix: .html
-      content-type: text/html
-      enabled: true
-      cache: false
-      charset: UTF-8
-      allow-request-override: false
-      expose-request-attributes: true
-      expose-session-attributes: true
-      expose-spring-macro-helpers: true
+  freemarker:
+    request-context-attribute: request
+    # prefix: /templates/
+    suffix: .html
+    content-type: text/html
+    enabled: true
+    cache: false
+    charset: UTF-8
+    allow-request-override: false
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
 
 # token配置
 token:
