@@ -10,7 +10,7 @@
 
     <name>taozi</name>
     <url>http://www.taozi.vip</url>
-    <description>若依管理系统</description>
+    <description>桃子管理系统</description>
 
     <modules>
         <module>taozi-admin</module>
@@ -25,6 +25,7 @@
 
     <properties>
         <taozi.version>3.5.0</taozi.version>
+        <spring-boot.version>2.2.13.RELEASE</spring-boot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -49,11 +50,33 @@
         <jdom2.version>2.0.6</jdom2.version>
         <dom4j.version>1.6.1</dom4j.version>
         <json-lib.version>2.4</json-lib.version>
+        <junit.version>4.12</junit.version>
+        <thumbnailator.version>0.4.8</thumbnailator.version>
     </properties>
 
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>net.coobird</groupId>
+                <artifactId>thumbnailator</artifactId>
+                <version>${thumbnailator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <scope>test</scope>
+                <version>${junit.version}</version>
+            </dependency>
 
             <!-- mybatis-plus -->
             <dependency>
@@ -243,6 +266,13 @@
             <dependency>
                 <groupId>com.taozi</groupId>
                 <artifactId>taozi-common</artifactId>
+                <version>${taozi.version}</version>
+            </dependency>
+
+            <!-- websocket-->
+            <dependency>
+                <groupId>com.taozi</groupId>
+                <artifactId>taozi-websocket</artifactId>
                 <version>${taozi.version}</version>
             </dependency>
 

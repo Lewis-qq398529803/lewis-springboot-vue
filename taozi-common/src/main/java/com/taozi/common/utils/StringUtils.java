@@ -456,4 +456,13 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
     {
         return (T) obj;
     }
+
+    /**
+     * byte数组转string -- 不设定编码方式
+     * @param bytes 待转换的byte数组
+     * @return string
+     */
+    public static String byteToString(byte[] bytes) {
+        return new String(bytes);
+    }
 }
