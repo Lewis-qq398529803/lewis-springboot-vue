@@ -1,11 +1,11 @@
-package com.taozi.web.controller.test;
+package com.taozi.test.sysuser;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.taozi.web.controller.test.entity.UserEntity;
+import com.taozi.test.sysuser.entity.UserEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +24,8 @@ import com.taozi.common.utils.StringUtils;
  */
 @RestController
 @RequestMapping("/test/user")
-public class SysUserTestController extends BaseController {
+public class SysUserTest extends BaseController {
+
     private final static Map<Integer, UserEntity> users = new LinkedHashMap<Integer, UserEntity>();
 
     {

@@ -1,4 +1,4 @@
-package com.taozi.web.controller.test.entity;
+package com.taozi.test.sysuser.entity;
 
 import lombok.Data;
 
