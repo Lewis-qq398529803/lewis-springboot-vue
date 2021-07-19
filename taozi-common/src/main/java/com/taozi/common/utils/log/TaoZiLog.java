@@ -32,6 +32,10 @@ public class TaoZiLog {
         logger.info("第" + row + "行 - " + msg);
     }
 
+    public static void info(String format, Object arg) {
+        logger.info(format, arg);
+    }
+
     public static void warn(String msg) {
         logger.warn("第" + row + "行 - " + msg);
     }
@@ -40,4 +44,7 @@ public class TaoZiLog {
         logger.error("第" + row + "行 - " + msg);
     }
 
+    public static void error(String msg, Throwable t) {
+        logger.error(msg, t);
+    }
 }

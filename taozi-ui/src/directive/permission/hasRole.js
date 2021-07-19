@@ -1,8 +1,8 @@
  /**
  * 角色权限处理
- * Copyright (c) 2019 ruoyi
+ * Copyright (c) 2021 taozi
  */
- 
+
 import store from '@/store'
 
 export default {
