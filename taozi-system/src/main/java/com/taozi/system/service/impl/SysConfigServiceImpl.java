@@ -1,11 +1,5 @@
 package com.taozi.system.service.impl;
 
-import java.util.Collection;
-import java.util.List;
-import javax.annotation.PostConstruct;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.taozi.common.annotation.DataSource;
 import com.taozi.common.constant.Constants;
 import com.taozi.common.constant.UserConstants;
@@ -17,6 +11,12 @@ import com.taozi.common.utils.StringUtils;
 import com.taozi.system.domain.SysConfig;
 import com.taozi.system.mapper.SysConfigMapper;
 import com.taozi.system.service.ISysConfigService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * 参数配置 服务层实现
@@ -141,7 +141,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
         for (Long configId : configIds) {
             SysConfig config = selectConfigById(configId);
             if (StringUtils.equals(UserConstants.YES, config.getConfigType())) {
-                throw new CustomException(String.format("内置参数【%1$s】不能删除 ", config.getConfigKey()));
+                throw new CustomException(String.format("内置参数【%1$s】不能删除 " , config.getConfigKey()));
             }
             configMapper.deleteConfigById(configId);
             redisCache.deleteObject(getCacheKey(config.getConfigKey()));

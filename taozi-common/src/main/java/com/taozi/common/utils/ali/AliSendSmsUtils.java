@@ -36,20 +36,20 @@ public class AliSendSmsUtils {
      * 不同的内容发送给不同的手机号，最多十个手机号码
      */
     public static void SendBatchSmsMessage() {
-        DefaultProfile profile = DefaultProfile.getProfile("default", ACCESS_KEY_ID, ACCESS_KEY_SECRET);
+        DefaultProfile profile = DefaultProfile.getProfile("default" , ACCESS_KEY_ID, ACCESS_KEY_SECRET);
         IAcsClient client = new DefaultAcsClient(profile);
         CommonRequest request = new CommonRequest();
         request.setMethod(MethodType.POST);
         request.setDomain("dysmsapi.aliyuncs.com");
         request.setVersion("2017-05-25");
         request.setAction("SendBatchSms");
-        request.putQueryParameter("RegionId", "default");//默认就行，他自己会分配
+        request.putQueryParameter("RegionId" , "default");//默认就行，他自己会分配
         //要发送给谁  最多十个手机号码  例子：["15900000000","13500000000"]   为数组和SignNameJson通过下标对应
-        request.putQueryParameter("PhoneNumberJson", "[\"15900000000\",\"13500000000\"]");
-        request.putQueryParameter("SignNameJson", "签名名称");
-        request.putQueryParameter("TemplateCode", "模板code");
+        request.putQueryParameter("PhoneNumberJson" , "[\"15900000000\",\"13500000000\"]");
+        request.putQueryParameter("SignNameJson" , "签名名称");
+        request.putQueryParameter("TemplateCode" , "模板code");
         //模板的参数值，key要和模板中一致，然后会将内容进行替换     为数组和SignNameJson通过下标对应
-        request.putQueryParameter("TemplateParamJson", "[{\"code\":123},{\"code\":123}]");
+        request.putQueryParameter("TemplateParamJson" , "[{\"code\":123},{\"code\":123}]");
         try {
             CommonResponse response = client.getCommonResponse(request);
             System.out.println(response.getData());
@@ -63,22 +63,22 @@ public class AliSendSmsUtils {
      */
     public static boolean sendSmsMessage(AliSendSmsConfig aliSendSmsConfig) {
 
-        DefaultProfile profile = DefaultProfile.getProfile("default", ACCESS_KEY_ID, ACCESS_KEY_SECRET);
+        DefaultProfile profile = DefaultProfile.getProfile("default" , ACCESS_KEY_ID, ACCESS_KEY_SECRET);
         IAcsClient client = new DefaultAcsClient(profile);
         CommonRequest request = new CommonRequest();
         request.setMethod(MethodType.POST);
         request.setDomain(DOMAIN);
         request.setVersion(VERSION);
         request.setAction("SendSms");
-        request.putQueryParameter("RegionId", "default");//默认就行，他自己会分配
+        request.putQueryParameter("RegionId" , "default");//默认就行，他自己会分配
         //要发送给谁  最多十个
-        request.putQueryParameter("PhoneNumbers", aliSendSmsConfig.getPhoneNumbers());
+        request.putQueryParameter("PhoneNumbers" , aliSendSmsConfig.getPhoneNumbers());
         //签名名称
-        request.putQueryParameter("SignName", SIGN_NAME);
+        request.putQueryParameter("SignName" , SIGN_NAME);
         //模板code
-        request.putQueryParameter("TemplateCode", aliSendSmsConfig.getTemplateCode());
+        request.putQueryParameter("TemplateCode" , aliSendSmsConfig.getTemplateCode());
         //key要和模板中一致  然后会将内容进行替换
-        request.putQueryParameter("TemplateParam", aliSendSmsConfig.getTemplateParam());
+        request.putQueryParameter("TemplateParam" , aliSendSmsConfig.getTemplateParam());
         try {
             CommonResponse response = client.getCommonResponse(request);
             String data = response.getData();

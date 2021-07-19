@@ -1,21 +1,15 @@
 package com.taozi.test.sysuser;
 
+import com.taozi.common.core.controller.BaseController;
+import com.taozi.common.core.domain.AjaxResult;
+import com.taozi.common.utils.StringUtils;
+import com.taozi.test.sysuser.entity.UserEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.taozi.test.sysuser.entity.UserEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.taozi.common.core.controller.BaseController;
-import com.taozi.common.core.domain.AjaxResult;
-import com.taozi.common.utils.StringUtils;
 
 /**
  * swagger 用户测试方法
@@ -29,8 +23,8 @@ public class SysUserTest extends BaseController {
     private final static Map<Integer, UserEntity> users = new LinkedHashMap<Integer, UserEntity>();
 
     {
-        users.put(1, new UserEntity(1, "admin", "admin123", "15888888888"));
-        users.put(2, new UserEntity(2, "ry", "admin123", "15666666666"));
+        users.put(1, new UserEntity(1, "admin" , "admin123" , "15888888888"));
+        users.put(2, new UserEntity(2, "ry" , "admin123" , "15666666666"));
     }
 
     /**

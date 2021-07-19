@@ -72,8 +72,8 @@ public class WXPayRequest {
 
             connManager = new BasicHttpClientConnectionManager(
                     RegistryBuilder.<ConnectionSocketFactory>create()
-                            .register("http", PlainConnectionSocketFactory.getSocketFactory())
-                            .register("https", sslConnectionSocketFactory)
+                            .register("http" , PlainConnectionSocketFactory.getSocketFactory())
+                            .register("https" , sslConnectionSocketFactory)
                             .build(),
                     null,
                     null,
@@ -82,8 +82,8 @@ public class WXPayRequest {
         } else {
             connManager = new BasicHttpClientConnectionManager(
                     RegistryBuilder.<ConnectionSocketFactory>create()
-                            .register("http", PlainConnectionSocketFactory.getSocketFactory())
-                            .register("https", SSLConnectionSocketFactory.getSocketFactory())
+                            .register("http" , PlainConnectionSocketFactory.getSocketFactory())
+                            .register("https" , SSLConnectionSocketFactory.getSocketFactory())
                             .build(),
                     null,
                     null,
@@ -102,8 +102,8 @@ public class WXPayRequest {
         httpPost.setConfig(requestConfig);
 
         StringEntity postEntity = new StringEntity(data, "UTF-8");
-        httpPost.addHeader("Content-Type", "text/xml");
-        httpPost.addHeader("User-Agent", USER_AGENT + " " + config.getMchID());
+        httpPost.addHeader("Content-Type" , "text/xml");
+        httpPost.addHeader("User-Agent" , USER_AGENT + " " + config.getMchID());
         httpPost.setEntity(postEntity);
 
         HttpResponse httpResponse = httpClient.execute(httpPost);
@@ -143,7 +143,7 @@ public class WXPayRequest {
             exception = ex;
             firstHasDnsErr = true;
             elapsedTimeMillis = WXPayUtil.getCurrentTimestampMs() - startTimestampMs;
-            WXPayUtil.getLogger().warn("UnknownHostException for domainInfo {}", domainInfo);
+            WXPayUtil.getLogger().warn("UnknownHostException for domainInfo {}" , domainInfo);
             WXPayReport.getInstance(config).report(
                     uuid,
                     elapsedTimeMillis,
@@ -159,7 +159,7 @@ public class WXPayRequest {
             exception = ex;
             firstHasConnectTimeout = true;
             elapsedTimeMillis = WXPayUtil.getCurrentTimestampMs() - startTimestampMs;
-            WXPayUtil.getLogger().warn("connect timeout happened for domainInfo {}", domainInfo);
+            WXPayUtil.getLogger().warn("connect timeout happened for domainInfo {}" , domainInfo);
             WXPayReport.getInstance(config).report(
                     uuid,
                     elapsedTimeMillis,
@@ -175,7 +175,7 @@ public class WXPayRequest {
             exception = ex;
             firstHasReadTimeout = true;
             elapsedTimeMillis = WXPayUtil.getCurrentTimestampMs() - startTimestampMs;
-            WXPayUtil.getLogger().warn("timeout happened for domainInfo {}", domainInfo);
+            WXPayUtil.getLogger().warn("timeout happened for domainInfo {}" , domainInfo);
             WXPayReport.getInstance(config).report(
                     uuid,
                     elapsedTimeMillis,

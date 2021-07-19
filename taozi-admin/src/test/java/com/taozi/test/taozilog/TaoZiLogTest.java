@@ -2,9 +2,6 @@ package com.taozi.test.taozilog;
 
 import com.taozi.common.utils.log.TaoZiLog;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * 全局日志类测试
@@ -16,24 +13,24 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TaoZiLogTest {
 
     @Test
-    public void a(){
+    public void a() {
         TaoZiLog.debug("debug");
     }
 
     @Test
-    public void b(){
+    public void b() {
         TaoZiLog.info("info");
     }
 
     @Test
-    public void c(){
+    public void c() {
         TaoZiLog.warn("warn");
         TaoZiLog.warn("warn");
         TaoZiLog.warn("warn");
     }
 
     @Test
-    public void d(){
+    public void d() {
         TaoZiLog.error("error");
     }
 

@@ -17,15 +17,16 @@ public class Base64Utils {
      * @return 编码字符串
      */
     public static String encode(String str) {
-        return Base64.encodeBase64String(str.getBytes(StandardCharsets.UTF_8)).replaceAll("\r\n", "");
+        return Base64.encodeBase64String(str.getBytes(StandardCharsets.UTF_8)).replaceAll("\r\n" , "");
     }
 
     /**
-      * base64解码
-      *
-      * @param base64Str 待解码字符串
-      * @return 解码字符串
-      */
+     *  * base64解码
+     * <p>
+     *  * @param base64Str 待解码字符串
+     *  * @return 解码字符串
+     *  
+     */
     public static String decode(String base64Str) {
         return new String(Base64.decodeBase64(base64Str), StandardCharsets.UTF_8);
     }

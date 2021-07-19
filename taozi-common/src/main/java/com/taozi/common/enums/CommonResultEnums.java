@@ -7,7 +7,7 @@ package com.taozi.common.enums;
  */
 public enum CommonResultEnums {
 
-    OK(200, "success", null, 0), FAIL(0, "fail", null, 0);
+    OK(200, "success" , null, 0), FAIL(0, "fail" , null, 0);
 
     private final Integer status;
 

@@ -2,12 +2,10 @@ package com.taozi.common.enums;
 
 /**
  * 操作状态
- * 
- * @author taozi
  *
+ * @author taozi
  */
-public enum BusinessStatus
-{
+public enum BusinessStatus {
     /**
      * 成功
      */

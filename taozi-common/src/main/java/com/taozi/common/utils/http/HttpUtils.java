@@ -1,24 +1,15 @@
 package com.taozi.common.utils.http;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import com.taozi.common.constant.Constants;
+import com.taozi.common.utils.log.TaoZiLog;
+
+import javax.net.ssl.*;
+import java.io.*;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.cert.X509Certificate;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import com.taozi.common.constant.Constants;
-import com.taozi.common.utils.log.TaoZiLog;
 
 /**
  * 通用http发送方法
@@ -51,19 +42,19 @@ public class HttpUtils {
         BufferedReader in = null;
         try {
             String urlNameString = url + "?" + param;
-            TaoZiLog.info("sendGet - {}", urlNameString);
+            TaoZiLog.info("sendGet - {}" , urlNameString);
             URL realUrl = new URL(urlNameString);
             URLConnection connection = realUrl.openConnection();
-            connection.setRequestProperty("accept", "*/*");
-            connection.setRequestProperty("connection", "Keep-Alive");
-            connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+            connection.setRequestProperty("accept" , "*/*");
+            connection.setRequestProperty("connection" , "Keep-Alive");
+            connection.setRequestProperty("user-agent" , "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             connection.connect();
             in = new BufferedReader(new InputStreamReader(connection.getInputStream(), contentType));
             String line;
             while ((line = in.readLine()) != null) {
                 result.append(line);
             }
-            TaoZiLog.info("recv - {}", result);
+            TaoZiLog.info("recv - {}" , result);
         } catch (ConnectException e) {
             TaoZiLog.error("调用HttpUtils.sendGet ConnectException, url=" + url + ",param=" + param, e);
         } catch (SocketTimeoutException e) {
@@ -97,14 +88,14 @@ public class HttpUtils {
         StringBuilder result = new StringBuilder();
         try {
             String urlNameString = url;
-            TaoZiLog.info("sendPost - {}", urlNameString);
+            TaoZiLog.info("sendPost - {}" , urlNameString);
             URL realUrl = new URL(urlNameString);
             URLConnection conn = realUrl.openConnection();
-            conn.setRequestProperty("accept", "*/*");
-            conn.setRequestProperty("connection", "Keep-Alive");
-            conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-            conn.setRequestProperty("Accept-Charset", "utf-8");
-            conn.setRequestProperty("contentType", "utf-8");
+            conn.setRequestProperty("accept" , "*/*");
+            conn.setRequestProperty("connection" , "Keep-Alive");
+            conn.setRequestProperty("user-agent" , "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+            conn.setRequestProperty("Accept-Charset" , "utf-8");
+            conn.setRequestProperty("contentType" , "utf-8");
             conn.setDoOutput(true);
             conn.setDoInput(true);
             out = new PrintWriter(conn.getOutputStream());
@@ -115,7 +106,7 @@ public class HttpUtils {
             while ((line = in.readLine()) != null) {
                 result.append(line);
             }
-            TaoZiLog.info("recv - {}", result);
+            TaoZiLog.info("recv - {}" , result);
         } catch (ConnectException e) {
             TaoZiLog.error("调用HttpUtils.sendPost ConnectException, url=" + url + ",param=" + param, e);
         } catch (SocketTimeoutException e) {
@@ -143,16 +134,16 @@ public class HttpUtils {
         StringBuilder result = new StringBuilder();
         String urlNameString = url + "?" + param;
         try {
-            TaoZiLog.info("sendSSLPost - {}", urlNameString);
+            TaoZiLog.info("sendSSLPost - {}" , urlNameString);
             SSLContext sc = SSLContext.getInstance("SSL");
             sc.init(null, new TrustManager[]{new TrustAnyTrustManager()}, new java.security.SecureRandom());
             URL console = new URL(urlNameString);
             HttpsURLConnection conn = (HttpsURLConnection) console.openConnection();
-            conn.setRequestProperty("accept", "*/*");
-            conn.setRequestProperty("connection", "Keep-Alive");
-            conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-            conn.setRequestProperty("Accept-Charset", "utf-8");
-            conn.setRequestProperty("contentType", "utf-8");
+            conn.setRequestProperty("accept" , "*/*");
+            conn.setRequestProperty("connection" , "Keep-Alive");
+            conn.setRequestProperty("user-agent" , "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+            conn.setRequestProperty("Accept-Charset" , "utf-8");
+            conn.setRequestProperty("contentType" , "utf-8");
             conn.setDoOutput(true);
             conn.setDoInput(true);
 
@@ -167,7 +158,7 @@ public class HttpUtils {
                     result.append(new String(ret.getBytes("ISO-8859-1"), "utf-8"));
                 }
             }
-            TaoZiLog.info("recv - {}", result);
+            TaoZiLog.info("recv - {}" , result);
             conn.disconnect();
             br.close();
         } catch (ConnectException e) {

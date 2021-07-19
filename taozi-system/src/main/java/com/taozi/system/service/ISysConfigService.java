@@ -1,8 +1,8 @@
 package com.taozi.system.service;
 
-import java.util.List;
-
 import com.taozi.system.domain.SysConfig;
+
+import java.util.List;
 
 /**
  * 参数配置 服务层

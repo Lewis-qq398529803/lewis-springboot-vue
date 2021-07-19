@@ -1,24 +1,24 @@
 package com.taozi.web.controller.common;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-import javax.annotation.Resource;
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletResponse;
-
-import com.taozi.system.service.ISysConfigService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.util.FastByteArrayOutputStream;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.google.code.kaptcha.Producer;
 import com.taozi.common.constant.Constants;
 import com.taozi.common.core.domain.AjaxResult;
 import com.taozi.common.core.redis.RedisCache;
 import com.taozi.common.utils.sign.Base64;
 import com.taozi.common.utils.uuid.IdUtils;
+import com.taozi.system.service.ISysConfigService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.FastByteArrayOutputStream;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 验证码操作处理
@@ -50,7 +50,7 @@ public class CaptchaController {
     public AjaxResult getCode(HttpServletResponse response) throws IOException {
         AjaxResult ajax = AjaxResult.success();
         boolean captchaOnOff = configService.selectCaptchaOnOff();
-        ajax.put("captchaOnOff", captchaOnOff);
+        ajax.put("captchaOnOff" , captchaOnOff);
         if (!captchaOnOff) {
             return ajax;
         }
@@ -77,13 +77,13 @@ public class CaptchaController {
         // 转换流信息写出
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
         try {
-            ImageIO.write(image, "jpg", os);
+            ImageIO.write(image, "jpg" , os);
         } catch (IOException e) {
             return AjaxResult.error(e.getMessage());
         }
 
-        ajax.put("uuid", uuid);
-        ajax.put("img", Base64.encode(os.toByteArray()));
+        ajax.put("uuid" , uuid);
+        ajax.put("img" , Base64.encode(os.toByteArray()));
         return ajax;
     }
 }

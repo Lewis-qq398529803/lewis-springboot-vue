@@ -27,8 +27,8 @@ import java.util.stream.Collectors;
 
 /**
  * swagger配置：
- *  示例：在入参前加入@SwaggerApiHide({"userName"}) == 隐藏userName这个参数
- *       在入参前加入@SwaggerApiHide({"*"}) == 隐藏所有
+ * 示例：在入参前加入@SwaggerApiHide({"userName"}) == 隐藏userName这个参数
+ * 在入参前加入@SwaggerApiHide({"*"}) == 隐藏所有
  */
 @Component
 @Order
@@ -50,7 +50,7 @@ public class SwaggerApiHideImpl implements ParameterBuilderPlugin {
             List<String> properties = Arrays.asList(optional.get().value());
 
             if (properties.size() == 1 && properties.get(0).equals("*")) {
-                properties= new ArrayList<>();
+                properties = new ArrayList<>();
                 Field[] fields = originClass.getDeclaredFields();
                 for (int i = 0; i < fields.length; i++) {
                     properties.add(fields[i].getName());
@@ -59,7 +59,7 @@ public class SwaggerApiHideImpl implements ParameterBuilderPlugin {
             try {
                 parameterContext.getDocumentationContext()
                         .getAdditionalModels()
-                        .add(typeResolver.resolve(createRefModelIgp(properties.toArray(new String[properties.size()]) , originClass.getPackage() + "." + name, originClass)));  //像documentContext的Models中添加我们新生成的Class
+                        .add(typeResolver.resolve(createRefModelIgp(properties.toArray(new String[properties.size()]), originClass.getPackage() + "." + name, originClass)));  //像documentContext的Models中添加我们新生成的Class
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -90,7 +90,7 @@ public class SwaggerApiHideImpl implements ParameterBuilderPlugin {
                     ConstPool constPool = ctClass.getClassFile().getConstPool();
                     AnnotationsAttribute attr = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
                     Annotation ann = new Annotation(ApiModelProperty.class.getName(), constPool);
-                    ann.addMemberValue("value", new StringMemberValue(attributes, constPool));
+                    ann.addMemberValue("value" , new StringMemberValue(attributes, constPool));
                     attr.addAnnotation(ann);
                     ctField.getFieldInfo().addAttribute(attr);
                 }

@@ -19,10 +19,10 @@ public class WxPushUtils {
      */
     public static boolean sendWxMsg2User(WxPushVo wxPushVo) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("touser", wxPushVo.getOpenid());
-        jsonObject.put("template_id", wxPushVo.getTemplate_id());
-        jsonObject.put("url", wxPushVo.getToUrl());
-        jsonObject.put("data", wxPushVo.getData());
+        jsonObject.put("touser" , wxPushVo.getOpenid());
+        jsonObject.put("template_id" , wxPushVo.getTemplate_id());
+        jsonObject.put("url" , wxPushVo.getToUrl());
+        jsonObject.put("data" , wxPushVo.getData());
         String sendPostResultT = HttpUtils.sendPost(wxPushVo.getUrl(), jsonObject.toJSONString());
         JSONObject sendPostResult = JSONObject.parseObject(sendPostResultT);
         return sendPostResult.getInteger("errcode") == 0;

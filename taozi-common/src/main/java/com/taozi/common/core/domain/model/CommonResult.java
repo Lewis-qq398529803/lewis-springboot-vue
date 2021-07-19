@@ -37,26 +37,6 @@ public class CommonResult {
         this.total = total;
     }
 
-    public CommonResult setStatus(Integer status) {
-        this.status = status;
-        return this;
-    }
-
-    public CommonResult setMsg(String msg) {
-        this.msg = msg;
-        return this;
-    }
-
-    public CommonResult setData(Object data) {
-        this.data = data;
-        return this;
-    }
-
-    public CommonResult setTotal(long total) {
-        this.total = total;
-        return this;
-    }
-
     /**
      * 基础成功对象
      *
@@ -88,5 +68,25 @@ public class CommonResult {
             return CommonResult.fail();
         }
         return CommonResult.ok();
+    }
+
+    public CommonResult setStatus(Integer status) {
+        this.status = status;
+        return this;
+    }
+
+    public CommonResult setMsg(String msg) {
+        this.msg = msg;
+        return this;
+    }
+
+    public CommonResult setData(Object data) {
+        this.data = data;
+        return this;
+    }
+
+    public CommonResult setTotal(long total) {
+        this.total = total;
+        return this;
     }
 }

@@ -1,14 +1,5 @@
 package com.taozi.framework.web.service;
 
-import javax.annotation.Resource;
-
-import com.taozi.system.service.ISysConfigService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
 import com.taozi.common.constant.Constants;
 import com.taozi.common.core.domain.entity.SysUser;
 import com.taozi.common.core.domain.model.LoginUser;
@@ -23,7 +14,16 @@ import com.taozi.common.utils.ServletUtils;
 import com.taozi.common.utils.ip.IpUtils;
 import com.taozi.framework.manager.AsyncManager;
 import com.taozi.framework.manager.factory.AsyncFactory;
+import com.taozi.system.service.ISysConfigService;
 import com.taozi.system.service.ISysUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * 登录校验方法

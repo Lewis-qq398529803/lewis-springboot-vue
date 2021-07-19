@@ -6,9 +6,9 @@ import com.taozi.common.core.domain.entity.SysUser;
 import com.taozi.common.core.domain.model.CommonResult;
 import com.taozi.common.core.domain.model.LoginUser;
 import com.taozi.common.core.redis.RedisCache;
-import com.taozi.common.utils.ali.AliSendSmsUtils;
 import com.taozi.common.utils.DateUtils;
 import com.taozi.common.utils.StringUtils;
+import com.taozi.common.utils.ali.AliSendSmsUtils;
 import com.taozi.framework.web.service.TokenService;
 import com.taozi.system.domain.TokenAndSysUserInfo;
 import com.taozi.system.service.ISysUserService;
@@ -67,9 +67,9 @@ public class SysLoginWithPhoneController {
     @PostMapping("/loginWithPhone")
     @ApiOperation("手机验证码登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "phone", value = "手机号", required = true),
-            @ApiImplicitParam(name = "smsCode", value = "验证码", required = true),
-            @ApiImplicitParam(name = "userType", value = "用户类型", required = true)
+            @ApiImplicitParam(name = "phone" , value = "手机号" , required = true),
+            @ApiImplicitParam(name = "smsCode" , value = "验证码" , required = true),
+            @ApiImplicitParam(name = "userType" , value = "用户类型" , required = true)
     })
     public CommonResult loginWithPhone(@RequestBody JSONObject jsonObject) {
         String phone = jsonObject.getString("phone");

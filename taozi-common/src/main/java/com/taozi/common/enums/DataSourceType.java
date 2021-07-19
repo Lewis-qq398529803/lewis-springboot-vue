@@ -2,11 +2,10 @@ package com.taozi.common.enums;
 
 /**
  * 数据源
- * 
+ *
  * @author taozi
  */
-public enum DataSourceType
-{
+public enum DataSourceType {
     /**
      * 主库
      */

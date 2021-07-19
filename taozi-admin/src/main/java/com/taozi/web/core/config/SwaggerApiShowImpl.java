@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 /**
  * swagger配置：
- *  示例：在入参前加入@SwaggerApiHide({"userName"}) == 只显示userName这个参数
+ * 示例：在入参前加入@SwaggerApiHide({"userName"}) == 只显示userName这个参数
  */
 @Component
 @Order
@@ -48,7 +48,7 @@ public class SwaggerApiShowImpl implements ParameterBuilderPlugin {
             List<String> properties = Arrays.asList(optional.get().value());
             List<Field> fields = Arrays.asList(originClass.getDeclaredFields());
             List<String> finalProperties = properties;
-            List<Field> fieldssss = fields.stream().filter(field -> !finalProperties.contains(field.getName()) ).collect(Collectors.toList());
+            List<Field> fieldssss = fields.stream().filter(field -> !finalProperties.contains(field.getName())).collect(Collectors.toList());
             properties = new ArrayList<>();
             for (Field field : fieldssss) {
                 properties.add(field.getName());
@@ -85,7 +85,7 @@ public class SwaggerApiShowImpl implements ParameterBuilderPlugin {
                     ConstPool constPool = ctClass.getClassFile().getConstPool();
                     AnnotationsAttribute attr = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
                     Annotation ann = new Annotation(ApiModelProperty.class.getName(), constPool);
-                    ann.addMemberValue("value", new StringMemberValue(attributes, constPool));
+                    ann.addMemberValue("value" , new StringMemberValue(attributes, constPool));
                     attr.addAnnotation(ann);
                     ctField.getFieldInfo().addAttribute(attr);
                 }

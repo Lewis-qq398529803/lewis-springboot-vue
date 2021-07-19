@@ -24,6 +24,156 @@ import java.util.concurrent.ThreadFactory;
  */
 public class WXPayReport {
 
+    private static final String REPORT_URL = "http://report.mch.weixin.qq.com/wxpay/report/default";
+    private static final int DEFAULT_CONNECT_TIMEOUT_MS = 6 * 1000;
+    // private static final String REPORT_URL = "http://127.0.0.1:5000/test";
+    private static final int DEFAULT_READ_TIMEOUT_MS = 8 * 1000;
+    private volatile static WXPayReport INSTANCE;
+    private LinkedBlockingQueue<String> reportMsgQueue = null;
+    private WXPayConfig config;
+    private ExecutorService executorService;
+
+    private WXPayReport(final WXPayConfig config) {
+        this.config = config;
+        reportMsgQueue = new LinkedBlockingQueue<String>(config.getReportQueueMaxSize());
+
+        // 添加处理线程
+        executorService = Executors.newFixedThreadPool(config.getReportWorkerNum(), new ThreadFactory() {
+            public Thread newThread(Runnable r) {
+                Thread t = Executors.defaultThreadFactory().newThread(r);
+                t.setDaemon(true);
+                return t;
+            }
+        });
+
+        if (config.shouldAutoReport()) {
+            WXPayUtil.getLogger().info("report worker num: {}" , config.getReportWorkerNum());
+            for (int i = 0; i < config.getReportWorkerNum(); ++i) {
+                executorService.execute(new Runnable() {
+                    public void run() {
+                        while (true) {
+                            // 先用 take 获取数据
+                            try {
+                                StringBuffer sb = new StringBuffer();
+                                String firstMsg = reportMsgQueue.take();
+                                WXPayUtil.getLogger().info("get first report msg: {}" , firstMsg);
+                                String msg = null;
+                                sb.append(firstMsg); //会阻塞至有消息
+                                int remainNum = config.getReportBatchSize() - 1;
+                                for (int j = 0; j < remainNum; ++j) {
+                                    WXPayUtil.getLogger().info("try get remain report msg");
+                                    // msg = reportMsgQueue.poll();  // 不阻塞了
+                                    msg = reportMsgQueue.take();
+                                    WXPayUtil.getLogger().info("get remain report msg: {}" , msg);
+                                    if (msg == null) {
+                                        break;
+                                    } else {
+                                        sb.append("\n");
+                                        sb.append(msg);
+                                    }
+                                }
+                                // 上报
+                                WXPayReport.httpRequest(sb.toString(), DEFAULT_CONNECT_TIMEOUT_MS, DEFAULT_READ_TIMEOUT_MS);
+                            } catch (Exception ex) {
+                                WXPayUtil.getLogger().warn("report fail. reason: {}" , ex.getMessage());
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+    }
+
+    /**
+     * 单例，双重校验，请在 JDK 1.5及更高版本中使用
+     *
+     * @param config
+     * @return
+     */
+    public static WXPayReport getInstance(WXPayConfig config) {
+        if (INSTANCE == null) {
+            synchronized (WXPayReport.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new WXPayReport(config);
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    /**
+     * http 请求
+     *
+     * @param data
+     * @param connectTimeoutMs
+     * @param readTimeoutMs
+     * @return
+     * @throws Exception
+     */
+    private static String httpRequest(String data, int connectTimeoutMs, int readTimeoutMs) throws Exception {
+        BasicHttpClientConnectionManager connManager;
+        connManager = new BasicHttpClientConnectionManager(
+                RegistryBuilder.<ConnectionSocketFactory>create()
+                        .register("http" , PlainConnectionSocketFactory.getSocketFactory())
+                        .register("https" , SSLConnectionSocketFactory.getSocketFactory())
+                        .build(),
+                null,
+                null,
+                null
+        );
+        HttpClient httpClient = HttpClientBuilder.create()
+                .setConnectionManager(connManager)
+                .build();
+
+        HttpPost httpPost = new HttpPost(REPORT_URL);
+
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(readTimeoutMs).setConnectTimeout(connectTimeoutMs).build();
+        httpPost.setConfig(requestConfig);
+
+        StringEntity postEntity = new StringEntity(data, "UTF-8");
+        httpPost.addHeader("Content-Type" , "text/xml");
+        httpPost.addHeader("User-Agent" , WXPayConstants.USER_AGENT);
+        httpPost.setEntity(postEntity);
+
+        HttpResponse httpResponse = httpClient.execute(httpPost);
+        HttpEntity httpEntity = httpResponse.getEntity();
+        return EntityUtils.toString(httpEntity, "UTF-8");
+    }
+
+    public void report(String uuid, long elapsedTimeMillis,
+                       String firstDomain, boolean primaryDomain, int firstConnectTimeoutMillis, int firstReadTimeoutMillis,
+                       boolean firstHasDnsError, boolean firstHasConnectTimeout, boolean firstHasReadTimeout) {
+        long currentTimestamp = WXPayUtil.getCurrentTimestamp();
+        ReportInfo reportInfo = new ReportInfo(uuid, currentTimestamp, elapsedTimeMillis,
+                firstDomain, primaryDomain, firstConnectTimeoutMillis, firstReadTimeoutMillis,
+                firstHasDnsError, firstHasConnectTimeout, firstHasReadTimeout);
+        String data = reportInfo.toLineString(config.getKey());
+        WXPayUtil.getLogger().info("report {}" , data);
+        if (data != null) {
+            reportMsgQueue.offer(data);
+        }
+    }
+
+
+    @Deprecated
+    private void reportSync(final String data) throws Exception {
+        httpRequest(data, DEFAULT_CONNECT_TIMEOUT_MS, DEFAULT_READ_TIMEOUT_MS);
+    }
+
+    @Deprecated
+    private void reportAsync(final String data) throws Exception {
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    httpRequest(data, DEFAULT_CONNECT_TIMEOUT_MS, DEFAULT_READ_TIMEOUT_MS);
+                } catch (Exception ex) {
+                    WXPayUtil.getLogger().warn("report fail. reason: {}" , ex.getMessage());
+                }
+            }
+        }).start();
+    }
+
     public static class ReportInfo {
 
         /**
@@ -54,10 +204,10 @@ public class WXPayReport {
             this.primaryDomain = primaryDomain;
             this.firstConnectTimeoutMillis = firstConnectTimeoutMillis;
             this.firstReadTimeoutMillis = firstReadTimeoutMillis;
-            this.firstHasDnsError = firstHasDnsError?1:0;
-            this.firstHasConnectTimeout = firstHasConnectTimeout?1:0;
-            this.firstHasReadTimeout = firstHasReadTimeout?1:0;
-         }
+            this.firstHasDnsError = firstHasDnsError ? 1 : 0;
+            this.firstHasConnectTimeout = firstHasConnectTimeout ? 1 : 0;
+            this.firstHasReadTimeout = firstHasReadTimeout ? 1 : 0;
+        }
 
         @Override
         public String toString() {
@@ -84,182 +234,25 @@ public class WXPayReport {
          */
         public String toLineString(String key) {
             String separator = ",";
-            Object[] objects = new Object[] {
-                version, sdk, uuid, timestamp, elapsedTimeMillis,
+            Object[] objects = new Object[]{
+                    version, sdk, uuid, timestamp, elapsedTimeMillis,
                     firstDomain, primaryDomain, firstConnectTimeoutMillis, firstReadTimeoutMillis,
                     firstHasDnsError, firstHasConnectTimeout, firstHasReadTimeout
             };
             StringBuffer sb = new StringBuffer();
-            for(Object obj: objects) {
+            for (Object obj : objects) {
                 sb.append(obj).append(separator);
             }
             try {
                 String sign = WXPayUtil.HMACSHA256(sb.toString(), key);
                 sb.append(sign);
                 return sb.toString();
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 return null;
             }
 
         }
 
-    }
-
-    private static final String REPORT_URL = "http://report.mch.weixin.qq.com/wxpay/report/default";
-    // private static final String REPORT_URL = "http://127.0.0.1:5000/test";
-
-
-    private static final int DEFAULT_CONNECT_TIMEOUT_MS = 6*1000;
-    private static final int DEFAULT_READ_TIMEOUT_MS = 8*1000;
-
-    private LinkedBlockingQueue<String> reportMsgQueue = null;
-    private WXPayConfig config;
-    private ExecutorService executorService;
-
-    private volatile static WXPayReport INSTANCE;
-
-    private WXPayReport(final WXPayConfig config) {
-        this.config = config;
-        reportMsgQueue = new LinkedBlockingQueue<String>(config.getReportQueueMaxSize());
-
-        // 添加处理线程
-        executorService = Executors.newFixedThreadPool(config.getReportWorkerNum(), new ThreadFactory() {
-            public Thread newThread(Runnable r) {
-                Thread t = Executors.defaultThreadFactory().newThread(r);
-                t.setDaemon(true);
-                return t;
-            }
-        });
-
-        if (config.shouldAutoReport()) {
-            WXPayUtil.getLogger().info("report worker num: {}", config.getReportWorkerNum());
-            for (int i = 0; i < config.getReportWorkerNum(); ++i) {
-                executorService.execute(new Runnable() {
-                    public void run() {
-                        while (true) {
-                            // 先用 take 获取数据
-                            try {
-                                StringBuffer sb = new StringBuffer();
-                                String firstMsg = reportMsgQueue.take();
-                                WXPayUtil.getLogger().info("get first report msg: {}", firstMsg);
-                                String msg = null;
-                                sb.append(firstMsg); //会阻塞至有消息
-                                int remainNum = config.getReportBatchSize() - 1;
-                                for (int j=0; j<remainNum; ++j) {
-                                    WXPayUtil.getLogger().info("try get remain report msg");
-                                    // msg = reportMsgQueue.poll();  // 不阻塞了
-                                    msg = reportMsgQueue.take();
-                                    WXPayUtil.getLogger().info("get remain report msg: {}", msg);
-                                    if (msg == null) {
-                                        break;
-                                    }
-                                    else {
-                                        sb.append("\n");
-                                        sb.append(msg);
-                                    }
-                                }
-                                // 上报
-                                WXPayReport.httpRequest(sb.toString(), DEFAULT_CONNECT_TIMEOUT_MS, DEFAULT_READ_TIMEOUT_MS);
-                            }
-                            catch (Exception ex) {
-                                WXPayUtil.getLogger().warn("report fail. reason: {}", ex.getMessage());
-                            }
-                        }
-                    }
-                });
-            }
-        }
-
-    }
-
-    /**
-     * 单例，双重校验，请在 JDK 1.5及更高版本中使用
-     *
-     * @param config
-     * @return
-     */
-    public static WXPayReport getInstance(WXPayConfig config) {
-        if (INSTANCE == null) {
-            synchronized (WXPayReport.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new WXPayReport(config);
-                }
-            }
-        }
-        return INSTANCE;
-    }
-
-    public void report(String uuid, long elapsedTimeMillis,
-                       String firstDomain, boolean primaryDomain, int firstConnectTimeoutMillis, int firstReadTimeoutMillis,
-                       boolean firstHasDnsError, boolean firstHasConnectTimeout, boolean firstHasReadTimeout) {
-        long currentTimestamp = WXPayUtil.getCurrentTimestamp();
-        ReportInfo reportInfo = new ReportInfo(uuid, currentTimestamp, elapsedTimeMillis,
-                firstDomain, primaryDomain, firstConnectTimeoutMillis, firstReadTimeoutMillis,
-                firstHasDnsError, firstHasConnectTimeout, firstHasReadTimeout);
-        String data = reportInfo.toLineString(config.getKey());
-        WXPayUtil.getLogger().info("report {}", data);
-        if (data != null) {
-            reportMsgQueue.offer(data);
-        }
-    }
-
-
-    @Deprecated
-    private void reportSync(final String data) throws Exception {
-        httpRequest(data, DEFAULT_CONNECT_TIMEOUT_MS, DEFAULT_READ_TIMEOUT_MS);
-    }
-
-    @Deprecated
-    private void reportAsync(final String data) throws Exception {
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    httpRequest(data, DEFAULT_CONNECT_TIMEOUT_MS, DEFAULT_READ_TIMEOUT_MS);
-                }
-                catch (Exception ex) {
-                    WXPayUtil.getLogger().warn("report fail. reason: {}", ex.getMessage());
-                }
-            }
-        }).start();
-    }
-
-    /**
-     * http 请求
-     * @param data
-     * @param connectTimeoutMs
-     * @param readTimeoutMs
-     * @return
-     * @throws Exception
-     */
-    private static String httpRequest(String data, int connectTimeoutMs, int readTimeoutMs) throws Exception{
-        BasicHttpClientConnectionManager connManager;
-        connManager = new BasicHttpClientConnectionManager(
-                RegistryBuilder.<ConnectionSocketFactory>create()
-                        .register("http", PlainConnectionSocketFactory.getSocketFactory())
-                        .register("https", SSLConnectionSocketFactory.getSocketFactory())
-                        .build(),
-                null,
-                null,
-                null
-        );
-        HttpClient httpClient = HttpClientBuilder.create()
-                .setConnectionManager(connManager)
-                .build();
-
-        HttpPost httpPost = new HttpPost(REPORT_URL);
-
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(readTimeoutMs).setConnectTimeout(connectTimeoutMs).build();
-        httpPost.setConfig(requestConfig);
-
-        StringEntity postEntity = new StringEntity(data, "UTF-8");
-        httpPost.addHeader("Content-Type", "text/xml");
-        httpPost.addHeader("User-Agent", WXPayConstants.USER_AGENT);
-        httpPost.setEntity(postEntity);
-
-        HttpResponse httpResponse = httpClient.execute(httpPost);
-        HttpEntity httpEntity = httpResponse.getEntity();
-        return EntityUtils.toString(httpEntity, "UTF-8");
     }
 
 }

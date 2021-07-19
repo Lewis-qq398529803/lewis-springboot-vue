@@ -1,6 +1,6 @@
-import { isArray } from 'util'
-import { exportDefault, titleCase } from '@/utils/index'
-import { trigger } from './config'
+import {isArray} from 'util'
+import {exportDefault, titleCase} from '@/utils/index'
+import {trigger} from './config'
 
 const units = {
   KB: '1024',
@@ -77,7 +77,8 @@ function buildAttributes(el, dataList, ruleList, optionsList, methodList, propsL
 }
 
 function mixinMethod(type) {
-  const list = []; const
+  const list = [];
+  const
     minxins = {
       file: confGlobal.formBtns ? {
         submitForm: `submitForm() {
@@ -151,7 +152,9 @@ function buildRules(conf, ruleList) {
 
 function buildOptions(conf, optionsList) {
   if (conf.vModel === undefined) return
-  if (conf.dataType === 'dynamic') { conf.options = [] }
+  if (conf.dataType === 'dynamic') {
+    conf.options = []
+  }
   const str = `${conf.vModel}Options: ${JSON.stringify(conf.options)},`
   optionsList.push(str)
 }
@@ -167,7 +170,10 @@ function buildProps(conf, propsList) {
 }
 
 function buildBeforeUpload(conf) {
-  const unitNum = units[conf.sizeUnit]; let rightSizeCode = ''; let acceptCode = ''; const
+  const unitNum = units[conf.sizeUnit];
+  let rightSizeCode = '';
+  let acceptCode = '';
+  const
     returnList = []
   if (conf.fileSize) {
     rightSizeCode = `let isRightSize = file.size / ${unitNum} < ${conf.fileSize}
