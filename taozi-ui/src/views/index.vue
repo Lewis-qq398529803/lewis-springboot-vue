@@ -4,10 +4,10 @@
       <el-col :sm="24" :lg="24">
         <blockquote class="text-warning" style="font-size: 14px">
           <el-link
-            href="https://gitee.com/taozi945/taozi-ruo-yi-vue"
+            href="https://gitee.com/taozi945/taozi-vue"
             type="primary"
             target="_blank"
-            >https://gitee.com/taozi945/taozi-ruo-yi-vue</el-link
+            >https://gitee.com/taozi945/taozi-vue</el-link
           >
           <br />
           <h4 class="text-danger">
@@ -35,7 +35,7 @@
             size="mini"
             icon="el-icon-cloudy"
             plain
-            @click="goTarget('https://gitee.com/taozi945/taozi-ruo-yi-vue')"
+            @click="goTarget('https://gitee.com/taozi945/taozi-vue')"
             >访问码云</el-button
           >
         </p>
@@ -86,9 +86,9 @@
           <div class="body">
             <p>
               <i class="el-icon-s-promotion"></i> 官网：<el-link
-                href="https://gitee.com/taozi945/taozi-ruo-yi-vue"
+                href="https://gitee.com/taozi945/taozi-vue"
                 target="_blank"
-                >https://gitee.com/taozi945/taozi-ruo-yi-vue
+                >https://gitee.com/taozi945/taozi-vue
                 </el-link
               >
             </p>
@@ -137,12 +137,12 @@
           </div>
           <div class="body">
             <img
-              src="https://oscimg.oschina.net/oscnet/up-d6695f82666e5018f715c41cb7ee60d3b73.png"
+              src="../assets/images/donation.png"
               alt="donate"
               width="100%"
             />
             <span style="display: inline-block; height: 30px; line-height: 30px"
-              >你可以请作者喝杯咖啡表示鼓励</span
+              >你可以请桃子喝杯奶茶表示鼓励</span
             >
           </div>
         </el-card>

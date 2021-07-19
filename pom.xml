@@ -6,7 +6,7 @@
 
     <groupId>com.taozi</groupId>
     <artifactId>taozi</artifactId>
-    <version>3.5.0</version>
+    <version>1.0.0</version>
 
     <name>taozi</name>
     <url>http://www.taozi.vip</url>
@@ -24,7 +24,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <taozi.version>3.5.0</taozi.version>
+        <taozi.version>1.0.0</taozi.version>
         <spring-boot.version>2.2.13.RELEASE</spring-boot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
