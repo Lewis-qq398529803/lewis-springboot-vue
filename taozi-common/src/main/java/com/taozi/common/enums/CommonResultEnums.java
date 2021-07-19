@@ -15,7 +15,7 @@ public enum CommonResultEnums {
 
     private final Object data;
 
-    private final long total;
+    private final Long total;
 
     CommonResultEnums(Integer status, String msg, Object data, long total) {
         this.status = status;
@@ -36,7 +36,7 @@ public enum CommonResultEnums {
         return data;
     }
 
-    public long getTotal() {
+    public Long getTotal() {
         return total;
     }
 }

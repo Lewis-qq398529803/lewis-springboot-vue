@@ -24,7 +24,18 @@ public class CommonResult {
     private Object data;
 
     @ApiModelProperty(value = "响应的条数")
-    private long total;
+    private Long total;
+
+    public CommonResult() {
+
+    }
+
+    public CommonResult(Integer status, String msg, Object data, Long total) {
+        this.status = status;
+        this.msg = msg;
+        this.data = data;
+        this.total = total;
+    }
 
     public CommonResult setStatus(Integer status) {
         this.status = status;
@@ -52,11 +63,8 @@ public class CommonResult {
      * @return CommonResult
      */
     public static CommonResult ok() {
-        return CommonResult.ok(CommonResultEnums.OK.getStatus(), CommonResultEnums.OK.getMsg(), CommonResultEnums.OK.getData(), CommonResultEnums.OK.getTotal());
-    }
-
-    public static CommonResult ok(Integer status, String msg, Object data, long total) {
-        return new CommonResult().setStatus(status).setMsg(msg).setData(data).setTotal(total);
+        CommonResultEnums ok = CommonResultEnums.OK;
+        return new CommonResult(ok.getStatus(), ok.getMsg(), ok.getData(), ok.getTotal());
     }
 
     /**
@@ -65,11 +73,8 @@ public class CommonResult {
      * @return CommonResult
      */
     public static CommonResult fail() {
-        return CommonResult.fail(CommonResultEnums.FAIL.getStatus(), CommonResultEnums.FAIL.getMsg(), CommonResultEnums.FAIL.getData(), CommonResultEnums.FAIL.getTotal());
-    }
-
-    public static CommonResult fail(Integer status, String msg, Object data, long total) {
-        return new CommonResult().setStatus(status).setMsg(msg).setData(data).setTotal(total);
+        CommonResultEnums fail = CommonResultEnums.FAIL;
+        return new CommonResult(fail.getStatus(), fail.getMsg(), fail.getData(), fail.getTotal());
     }
 
     /**
