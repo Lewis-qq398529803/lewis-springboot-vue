@@ -136,8 +136,6 @@ public class WebSocketServer {
 
     /**
      * 获得当前连接数
-     *
-     * @return
      */
     public static synchronized int getOnlineCount() {
         return onlineCount;

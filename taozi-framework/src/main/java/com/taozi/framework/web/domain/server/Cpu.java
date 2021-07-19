@@ -1,6 +1,6 @@
 package com.taozi.framework.web.domain.server;
 
-import com.taozi.common.utils.Arith;
+import com.taozi.common.utils.math.Arith;
 
 /**
  * CPU相关信息

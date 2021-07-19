@@ -6,7 +6,7 @@ import com.taozi.common.core.domain.entity.SysUser;
 import com.taozi.common.core.domain.model.CommonResult;
 import com.taozi.common.core.domain.model.LoginUser;
 import com.taozi.common.core.redis.RedisCache;
-import com.taozi.common.utils.AliSendSmsUtils;
+import com.taozi.common.utils.ali.AliSendSmsUtils;
 import com.taozi.common.utils.DateUtils;
 import com.taozi.common.utils.StringUtils;
 import com.taozi.framework.web.service.TokenService;

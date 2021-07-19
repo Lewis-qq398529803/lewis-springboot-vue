@@ -1,4 +1,4 @@
-package com.taozi.common.utils;
+package com.taozi.common.utils.math;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

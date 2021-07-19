@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
+ * 全局日志类测试
  *
  * @author taozi - 2021年7月16日, 016 - 16:17:43
  */

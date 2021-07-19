@@ -1,7 +1,7 @@
 package com.taozi.framework.web.domain.server;
 
 import java.lang.management.ManagementFactory;
-import com.taozi.common.utils.Arith;
+import com.taozi.common.utils.math.Arith;
 import com.taozi.common.utils.DateUtils;
 
 /**

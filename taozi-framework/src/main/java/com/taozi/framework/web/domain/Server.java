@@ -4,7 +4,7 @@ import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import com.taozi.common.utils.Arith;
+import com.taozi.common.utils.math.Arith;
 import com.taozi.common.utils.ip.IpUtils;
 import com.taozi.framework.web.domain.server.Cpu;
 import com.taozi.framework.web.domain.server.Jvm;

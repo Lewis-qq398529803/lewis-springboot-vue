@@ -1,4 +1,4 @@
-package com.taozi.common.utils;
+package com.taozi.common.utils.log;
 
 /**
  * 处理并记录日志文件

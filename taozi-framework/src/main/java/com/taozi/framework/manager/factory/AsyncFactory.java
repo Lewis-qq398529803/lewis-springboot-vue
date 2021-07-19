@@ -4,7 +4,7 @@ import java.util.TimerTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.taozi.common.constant.Constants;
-import com.taozi.common.utils.LogUtils;
+import com.taozi.common.utils.log.LogUtils;
 import com.taozi.common.utils.ServletUtils;
 import com.taozi.common.utils.ip.AddressUtils;
 import com.taozi.common.utils.ip.IpUtils;
