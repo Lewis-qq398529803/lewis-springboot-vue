@@ -1,13 +1,14 @@
 package com.taozi.common.core.domain.model;
 
+import com.taozi.common.enums.CommonResultEnums;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * 自定义响应结构
+ * 自定义链式响应结构
  *
- * @author cyt - 2020/11/28 - 17:31
+ * @author taozi - 2020/11/28 - 17:31
  */
 @Data
 @ApiModel("通用响应对象")
@@ -51,7 +52,11 @@ public class CommonResult {
      * @return CommonResult
      */
     public static CommonResult ok() {
-        return new CommonResult().setStatus(200).setMsg("ok");
+        return CommonResult.ok(CommonResultEnums.OK.getStatus(), CommonResultEnums.OK.getMsg(), CommonResultEnums.OK.getData(), CommonResultEnums.OK.getTotal());
+    }
+
+    public static CommonResult ok(Integer status, String msg, Object data, long total) {
+        return new CommonResult().setStatus(status).setMsg(msg).setData(data).setTotal(total);
     }
 
     /**
@@ -60,7 +65,11 @@ public class CommonResult {
      * @return CommonResult
      */
     public static CommonResult fail() {
-        return new CommonResult().setStatus(0).setMsg("fail");
+        return CommonResult.fail(CommonResultEnums.FAIL.getStatus(), CommonResultEnums.FAIL.getMsg(), CommonResultEnums.FAIL.getData(), CommonResultEnums.FAIL.getTotal());
+    }
+
+    public static CommonResult fail(Integer status, String msg, Object data, long total) {
+        return new CommonResult().setStatus(status).setMsg(msg).setData(data).setTotal(total);
     }
 
     /**
