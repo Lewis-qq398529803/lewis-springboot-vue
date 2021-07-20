@@ -11,6 +11,7 @@ import javax.validation.constraints.NotBlank;
  * @author taozi
  */
 public class GenTableColumn extends BaseEntity {
+
     private static final long serialVersionUID = 1L;
 
     /**
