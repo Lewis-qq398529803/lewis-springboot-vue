@@ -53,11 +53,19 @@
         <json-lib.version>2.4</json-lib.version>
         <junit.version>4.12</junit.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
+        <mp3spi.version>1.9.5.4</mp3spi.version>
     </properties>
 
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+
+            <!-- mp3音频依赖 -->
+            <dependency>
+                <groupId>com.googlecode.soundlibs</groupId>
+                <artifactId>mp3spi</artifactId>
+                <version>${mp3spi.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>net.coobird</groupId>
