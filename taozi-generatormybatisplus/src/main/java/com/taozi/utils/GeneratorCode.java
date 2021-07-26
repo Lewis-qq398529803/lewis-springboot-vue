@@ -9,12 +9,14 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.taozi.common.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 自动生成mybatisplus的相关代码
+ * @author TAOZI
  */
 public class GeneratorCode {
 

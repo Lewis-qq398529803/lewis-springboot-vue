@@ -18,6 +18,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.taozi</groupId>
+            <artifactId>taozi-common</artifactId>
+        </dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.38</version>
