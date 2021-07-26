@@ -80,10 +80,10 @@
         </dependency>
 
         <!-- websocket -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.taozi</groupId>
             <artifactId>taozi-websocket</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
