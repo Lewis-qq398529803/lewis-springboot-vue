@@ -1,5 +1,5 @@
 import {getInfo, login, logout} from '@/api/login'
-import {getToken, removeToken, setToken} from '@/utils/auth'
+import {getToken, removeToken, setToken} from '@/com.taozi.utils/auth'
 
 const user = {
   state: {

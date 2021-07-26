@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { isExternal } from '@/utils/validate'
+import { isExternal } from '@/com.taozi.utils/validate'
 
 export default {
   name: 'SvgIcon',

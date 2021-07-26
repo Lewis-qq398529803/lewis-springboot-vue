@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {getToken} from '@/utils/auth'
+import {getToken} from '@/com.taozi.utils/auth'
 
 const mimeMap = {
   xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',

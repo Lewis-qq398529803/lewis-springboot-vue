@@ -1,6 +1,6 @@
 <script>
 import draggable from 'vuedraggable'
-import render from '@/utils/generator/render'
+import render from '@/com.taozi.utils/generator/render'
 
 const components = {
   itemBtns(h, element, index, parent) {

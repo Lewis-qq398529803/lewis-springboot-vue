@@ -17,7 +17,7 @@ import com.taozi.common.core.domain.AjaxResult;
 import com.taozi.common.enums.BusinessType;
 import ${packageName}.domain.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
-import com.taozi.common.utils.poi.ExcelUtil;
+import com.taozi.common.com.taozi.utils.poi.ExcelUtil;
 #if($table.crud || $table.sub)
 import com.taozi.common.core.page.TableDataInfo;
 #elseif($table.tree)

@@ -1,5 +1,5 @@
-import request from '@/utils/request'
-import {praseStrEmpty} from "@/utils/ruoyi";
+import request from '@/com.taozi.utils/request'
+import {praseStrEmpty} from "@/com.taozi.utils/ruoyi";
 
 // 查询用户列表
 export function listUser(query) {

@@ -1,4 +1,4 @@
-import {debounce} from '@/utils'
+import {debounce} from '@/com.taozi.utils'
 
 export default {
   data() {
