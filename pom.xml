@@ -20,7 +20,7 @@
         <module>taozi-generator</module>
         <module>taozi-common</module>
         <module>taozi-websocket</module>
-        <module>taozi-mybatisplusgenerator</module>
+        <module>taozi-generatormybatisplus</module>
     </modules>
     <packaging>pom</packaging>
 
