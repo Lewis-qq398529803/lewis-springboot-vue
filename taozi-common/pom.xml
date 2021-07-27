@@ -70,11 +70,6 @@
             <artifactId>freemarker</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-
         <!-- mp3音频依赖 -->
         <dependency>
             <groupId>com.googlecode.soundlibs</groupId>
