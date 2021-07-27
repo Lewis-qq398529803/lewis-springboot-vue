@@ -9,7 +9,7 @@ public enum CommonResultEnums {
 
     OK(200, "success" , null, 0), FAIL(0, "fail" , null, 0);
 
-    private final Integer status;
+    private final Integer code;
 
     private final String msg;
 
@@ -18,14 +18,14 @@ public enum CommonResultEnums {
     private final Long total;
 
     CommonResultEnums(Integer status, String msg, Object data, long total) {
-        this.status = status;
+        this.code = status;
         this.msg = msg;
         this.data = data;
         this.total = total;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getCode() {
+        return code;
     }
 
     public String getMsg() {

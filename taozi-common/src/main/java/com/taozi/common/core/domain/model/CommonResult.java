@@ -15,7 +15,7 @@ import lombok.Data;
 public class CommonResult {
 
     @ApiModelProperty(value = "响应业务状态")
-    private Integer status;
+    private Integer code;
 
     @ApiModelProperty(value = "响应消息")
     private String msg;
@@ -30,8 +30,8 @@ public class CommonResult {
 
     }
 
-    public CommonResult(Integer status, String msg, Object data, Long total) {
-        this.status = status;
+    public CommonResult(Integer code, String msg, Object data, Long total) {
+        this.code = code;
         this.msg = msg;
         this.data = data;
         this.total = total;
@@ -44,7 +44,7 @@ public class CommonResult {
      */
     public static CommonResult ok() {
         CommonResultEnums ok = CommonResultEnums.OK;
-        return new CommonResult(ok.getStatus(), ok.getMsg(), ok.getData(), ok.getTotal());
+        return new CommonResult(ok.getCode(), ok.getMsg(), ok.getData(), ok.getTotal());
     }
 
     /**
@@ -54,7 +54,7 @@ public class CommonResult {
      */
     public static CommonResult fail() {
         CommonResultEnums fail = CommonResultEnums.FAIL;
-        return new CommonResult(fail.getStatus(), fail.getMsg(), fail.getData(), fail.getTotal());
+        return new CommonResult(fail.getCode(), fail.getMsg(), fail.getData(), fail.getTotal());
     }
 
     /**
@@ -70,8 +70,8 @@ public class CommonResult {
         return CommonResult.ok();
     }
 
-    public CommonResult setStatus(Integer status) {
-        this.status = status;
+    public CommonResult setCode(Integer code) {
+        this.code = code;
         return this;
     }
 

@@ -1,4 +1,4 @@
-package com.taozi.common.utils.ali;
+package com.taozi.common.utils.alibaba;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.CommonRequest;
