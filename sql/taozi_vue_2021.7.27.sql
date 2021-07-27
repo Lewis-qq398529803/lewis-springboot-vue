@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 26/07/2021 14:11:19
+ Date: 27/07/2021 16:39:43
 */
 
 SET NAMES utf8mb4;
@@ -219,8 +219,8 @@ CREATE TABLE `qrtz_locks`  (
 -- ----------------------------
 -- Records of qrtz_locks
 -- ----------------------------
-INSERT INTO `qrtz_locks` VALUES ('TaoziScheduler', 'STATE_ACCESS');
-INSERT INTO `qrtz_locks` VALUES ('TaoziScheduler', 'TRIGGER_ACCESS');
+INSERT INTO `qrtz_locks` VALUES ('RuoyiScheduler', 'STATE_ACCESS');
+INSERT INTO `qrtz_locks` VALUES ('RuoyiScheduler', 'TRIGGER_ACCESS');
 INSERT INTO `qrtz_locks` VALUES ('TaoziScheduler', 'STATE_ACCESS');
 INSERT INTO `qrtz_locks` VALUES ('TaoziScheduler', 'TRIGGER_ACCESS');
 
@@ -253,8 +253,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('TaoziScheduler', 'TAOZI-SHENZHOU1627261553666', 1627264603807, 15000);
-INSERT INTO `qrtz_scheduler_state` VALUES ('TaoziScheduler', 'TAOZI-SHENZHOU1627264626407', 1627265904380, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('TaoziScheduler', 'TAOZI-SHENZHOU1627373149106', 1627373151635, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -331,9 +330,9 @@ CREATE TABLE `qrtz_triggers`  (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1627264630000, -1, 5, 'PAUSED', 'CRON', 1627264626000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1627264635000, -1, 5, 'PAUSED', 'CRON', 1627264626000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1627264640000, -1, 5, 'PAUSED', 'CRON', 1627264626000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1627373150000, -1, 5, 'PAUSED', 'CRON', 1627373149000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1627373160000, -1, 5, 'PAUSED', 'CRON', 1627373149000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1627373160000, -1, 5, 'PAUSED', 'CRON', 1627373149000, 0, NULL, 2, '');
 
 -- ----------------------------
 -- Table structure for sys_config
