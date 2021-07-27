@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 微信接口定时任务
  *
- * @author chenyitao - 2021年6月29日, 029 - 11:04:57
+ * @author taozi - 2021年6月29日, 029 - 11:04:57
  */
 @Component("WxTask")
 public class WxTask {

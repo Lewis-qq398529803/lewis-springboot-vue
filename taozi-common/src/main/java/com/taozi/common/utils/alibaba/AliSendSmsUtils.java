@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 阿里云短信验证码工具类
  *
- * @author chenyitao - 2021年6月15日, 015 - 17:00:07
+ * @author taozi - 2021年6月15日, 015 - 17:00:07
  */
 public class AliSendSmsUtils {
 

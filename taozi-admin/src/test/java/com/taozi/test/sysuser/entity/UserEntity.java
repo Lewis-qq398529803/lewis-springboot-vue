@@ -3,7 +3,7 @@ package com.taozi.test.sysuser.entity;
 import lombok.Data;
 
 /**
- * @author chenyitao - 2021年6月22日, 022 - 16:55:04
+ * @author taozi - 2021年6月22日, 022 - 16:55:04
  */
 @Data
 public class UserEntity {

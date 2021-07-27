@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 手机验证码登录controller
  *
- * @author chenyitao - 2021年6月17日, 017 - 14:14:21
+ * @author taozi - 2021年6月17日, 017 - 14:14:21
  */
 @Api(tags = "手机验证码登录")
 @RestController
