@@ -54,11 +54,77 @@
         <junit.version>4.12</junit.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
         <mp3spi.version>1.9.5.4</mp3spi.version>
+        <freemarker.version>2.3.23</freemarker.version>
+        <xdocreport.version>2.0.2</xdocreport.version>
+        <jxls.version>2.6.0</jxls.version>
     </properties>
 
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+
+            <!-- word相关-->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <!-- excel工具 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jxls</groupId>
+                <artifactId>jxls</artifactId>
+                <version>${jxls.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>fr.opensagres.xdocreport</groupId>
+                <artifactId>fr.opensagres.xdocreport.core</artifactId>
+                <version>${xdocreport.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>fr.opensagres.xdocreport</groupId>
+                <artifactId>fr.opensagres.xdocreport.document</artifactId>
+                <version>${xdocreport.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>fr.opensagres.xdocreport</groupId>
+                <artifactId>fr.opensagres.xdocreport.template</artifactId>
+                <version>${xdocreport.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>fr.opensagres.xdocreport</groupId>
+                <artifactId>fr.opensagres.xdocreport.document.docx</artifactId>
+                <version>${xdocreport.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>fr.opensagres.xdocreport</groupId>
+                <artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
+                <version>${xdocreport.version}</version>
+            </dependency>
+
+            <!-- freemarker模板 -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
 
             <!-- mp3音频依赖 -->
             <dependency>
@@ -188,12 +254,7 @@
                 <version>${commons.fileupload.version}</version>
             </dependency>
 
-            <!-- excel工具 -->
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi-ooxml</artifactId>
-                <version>${poi.version}</version>
-            </dependency>
+
 
             <!--velocity代码生成使用模板 -->
             <dependency>

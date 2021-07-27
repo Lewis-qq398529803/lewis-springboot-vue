@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/tool/swagger")
 public class SwaggerController extends BaseController {
-    @PreAuthorize("@ss.hasPermi('tool:swagger:view')")
-    @GetMapping()
-    public String index() {
-        return redirect("/swagger-ui.html");
-    }
+	@PreAuthorize("@ss.hasPermi('tool:swagger:view')")
+	@GetMapping()
+	public String index() {
+		return redirect("/swagger-ui.html");
+	}
 }
