@@ -56,7 +56,7 @@
 <script>
 import { getCodeImg } from "@/api/login";
 import Cookies from "js-cookie";
-import { encrypt, decrypt } from '@/com.taozi.utils/jsencrypt'
+import { encrypt, decrypt } from '@/utils/jsencrypt'
 
 export default {
   name: "Login",

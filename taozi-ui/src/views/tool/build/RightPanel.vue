@@ -574,13 +574,13 @@
 <script>
 import { isArray } from 'util'
 import TreeNodeDialog from './TreeNodeDialog'
-import { isNumberStr } from '@/com.taozi.utils/index'
+import { isNumberStr } from '@/utils/index'
 import IconsDialog from './IconsDialog'
 import {
   inputComponents,
   selectComponents,
   layoutComponents
-} from '@/com.taozi.utils/generator/config'
+} from '@/utils/generator/config'
 
 const dateTimeFormat = {
   date: 'yyyy-MM-dd',

@@ -1,4 +1,4 @@
-import request from '@/com.taozi.utils/request'
+import request from '@/utils/request'
 
 // 查询公告列表
 export function listNotice(query) {

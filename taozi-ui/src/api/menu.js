@@ -1,4 +1,4 @@
-import request from '@/com.taozi.utils/request'
+import request from '@/utils/request'
 
 // 获取路由
 export const getRouters = () => {

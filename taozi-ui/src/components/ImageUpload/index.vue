@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { getToken } from "@/com.taozi.utils/auth";
+import { getToken } from "@/utils/auth";
 
 export default {
   data() {
