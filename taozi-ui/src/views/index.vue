@@ -101,6 +101,12 @@
               >
             </p>
             <p>
+              <i class="el-icon-chat-dot-round"></i> QQ：<a
+                href="https://qm.qq.com/cgi-bin/qm/qr?k=nh1Na88Ead5K7jSWzgXa2XH1lja_IRNB&noverify=0"
+                >398529803</a
+              >
+            </p>
+            <p>
               <i class="el-icon-chat-dot-round"></i> 微信：<a
                 href="javascript:;"
                 >cytltyc</a
@@ -231,3 +237,4 @@ export default {
   }
 }
 </style>
+
