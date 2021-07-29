@@ -199,12 +199,15 @@ public final class CookieUtils {
                 cookieValue = URLEncoder.encode(cookieValue, "utf-8");
             }
             Cookie cookie = new Cookie(cookieName, cookieValue);
-            if (cookieMaxage > 0)
+            if (cookieMaxage > 0) {
                 cookie.setMaxAge(cookieMaxage);
-            if (null != request) {// 设置域名的cookie
+            }
+            // 设置域名的cookie
+            if (null != request) {
                 String domainName = getDomainName(request);
                 TaoZiLog.info("========== domainName: {} ==========" + domainName);
-                if (!"localhost".equals(domainName)) {
+                String localhost = "localhost";
+                if (!localhost.equals(domainName)) {
                     cookie.setDomain(domainName);
                 }
             }
@@ -234,12 +237,15 @@ public final class CookieUtils {
                 cookieValue = URLEncoder.encode(cookieValue, encodeString);
             }
             Cookie cookie = new Cookie(cookieName, cookieValue);
-            if (cookieMaxage > 0)
+            if (cookieMaxage > 0) {
                 cookie.setMaxAge(cookieMaxage);
-            if (null != request) {// 设置域名的cookie
+            }
+            // 设置域名的cookie
+            if (null != request) {
                 String domainName = getDomainName(request);
                 TaoZiLog.info("========== domainName: {} ==========" + domainName);
-                if (!"localhost".equals(domainName)) {
+                String localhost = "localhost";
+                if (!localhost.equals(domainName)) {
                     cookie.setDomain(domainName);
                 }
             }
@@ -260,24 +266,26 @@ public final class CookieUtils {
         String domainName = null;
 
         String serverName = request.getRequestURL().toString();
-        if (serverName == null || serverName.equals("")) {
+        if (serverName == null || "".equals(serverName)) {
             domainName = "";
         } else {
             serverName = serverName.toLowerCase();
             serverName = serverName.substring(7);
             final int end = serverName.indexOf("/");
             serverName = serverName.substring(0, end);
-            if (serverName.indexOf(":") > 0) {
+            String index = ":";
+            if (serverName.indexOf(index) > 0) {
                 String[] ary = serverName.split("\\:");
                 serverName = ary[0];
             }
 
             final String[] domains = serverName.split("\\.");
             int len = domains.length;
-            if (len > 3 && !isIp(serverName)) {
+            int lenCompare = 3;
+            if (len > lenCompare && !isIp(serverName)) {
                 // www.xxx.com.cn
                 domainName = "." + domains[len - 3] + "." + domains[len - 2] + "." + domains[len - 1];
-            } else if (len <= 3 && len > 1) {
+            } else if (len <= lenCompare && len > 1) {
                 // xxx.com or xxx.cn
                 domainName = "." + domains[len - 2] + "." + domains[len - 1];
             } else {
@@ -290,35 +298,40 @@ public final class CookieUtils {
     /**
      * 去掉IP字符串前后所有的空格
      *
-     * @param IP
+     * @param ip
      * @return String IP字符串
      */
-    public static String trimSpaces(String IP) {
-        while (IP.startsWith(" ")) {
-            IP = IP.substring(1, IP.length()).trim();
+    public static String trimSpaces(String ip) {
+        String space = " ";
+        while (ip.startsWith(space)) {
+            ip = ip.substring(1, ip.length()).trim();
         }
-        while (IP.endsWith(" ")) {
-            IP = IP.substring(0, IP.length() - 1).trim();
+        while (ip.endsWith(space)) {
+            ip = ip.substring(0, ip.length() - 1).trim();
         }
-        return IP;
+        return ip;
     }
 
     /**
      * 判断是否是一个IP
      *
-     * @param IP
+     * @param ip
      * @return boolean
      */
-    public static boolean isIp(String IP) {
+    public static boolean isIp(String ip) {
         boolean b = false;
-        IP = trimSpaces(IP);
-        if (IP.matches("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}")) {
-            String s[] = IP.split("\\.");
-            if (Integer.parseInt(s[0]) < 255)
-                if (Integer.parseInt(s[1]) < 255)
-                    if (Integer.parseInt(s[2]) < 255)
-                        if (Integer.parseInt(s[3]) < 255)
+        ip = trimSpaces(ip);
+        if (ip.matches("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}")) {
+            String[] s = ip.split("\\.");
+            if (Integer.parseInt(s[0]) < 255) {
+                if (Integer.parseInt(s[1]) < 255) {
+                    if (Integer.parseInt(s[2]) < 255) {
+                        if (Integer.parseInt(s[3]) < 255) {
                             b = true;
+                        }
+                    }
+                }
+            }
         }
         return b;
     }
