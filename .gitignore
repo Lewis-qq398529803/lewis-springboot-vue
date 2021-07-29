@@ -9,3 +9,10 @@
 /taozi.iml
 /.idea/
 /taozi-generatormybatisplus/taozi-generatormybatisplus.iml
+/taozi-admin/target/
+/taozi-system/target/
+/taozi-quartz/target/
+/taozi-generatormybatisplus/target/
+/taozi-generator/target/
+/taozi-framework/target/
+/taozi-common/target/

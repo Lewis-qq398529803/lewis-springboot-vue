@@ -22,17 +22,17 @@ public class GeneratorCode {
 
     /**
      * 自动生成代码
-     * @param addressAndPort --格式：114.114.114.114:3306
-     * @param databaseName --表名
-     * @param username  --用户名
-     * @param password  --用户密码
+     * @param addressAndPort    --格式：114.114.114.114:3306
+     * @param databaseName      --表名
+     * @param username          --用户名
+     * @param password          --用户密码
      */
     public static void generatorStart(String addressAndPort, String databaseName, String username, String password, String parentPath, String tablesSelected, String moduleName, String prefix) {
 
-        /* ============================================== 代码生成器 ====================================================*/
+        //代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
-        /* ============================================== 全局配置 ====================================================*/
+        //全局配置
         String projectPath = System.getProperty("user.dir");//获取当前工程路径
         GlobalConfig globalConfig = new GlobalConfig();
 
@@ -54,7 +54,7 @@ public class GeneratorCode {
 
         mpg.setGlobalConfig(globalConfig);
 
-        /* ============================================== 数据源配置 ====================================================*/
+        //数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
 
         dsc.setUrl("jdbc:mysql://" + addressAndPort + "/" + databaseName + "?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8")
@@ -78,10 +78,10 @@ public class GeneratorCode {
         }
         mpg.setPackageInfo(pc);
 
-        /* ============================================== 配置模板 ====================================================*/
+        //配置模板
         mpg.setTemplate(new TemplateConfig().setXml(null));// 关闭默认 xml 生成，调整生成 至 根目录
 
-        /* ============================================== 策略配置 ====================================================*/
+        //策略配置
         StrategyConfig strategy = new StrategyConfig();
 
         strategy.setNaming(NamingStrategy.underline_to_camel)//设置字段和表名的是否把下划线完成驼峰命名规则
@@ -143,7 +143,7 @@ public class GeneratorCode {
         //4、用户密码 [password]
         String password = "";
         //5、父包路径 [com.taozi.parent]
-        String parentPath = "com.ruoyi.system";
+        String parentPath = "com.taozi.system";
         //6、表名，多个英文逗号分割 不填默认生成所有表
         String tablesSelected = "" +
                 "qn_bill" +
