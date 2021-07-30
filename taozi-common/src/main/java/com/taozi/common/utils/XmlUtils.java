@@ -52,11 +52,11 @@ public class XmlUtils {
      */
     public static String setXmlHeader(String needToJoin) {
         StringBuffer sb = new StringBuffer("<?xml version=\"1.0\"?>");
-        if (!xmlHeaderCustom.equals("")) {
+        if (!"".equals(xmlHeaderCustom)) {
             sb.append("<" + xmlHeaderCustom + ">");
         }
         sb.append(needToJoin);
-        if (!xmlHeaderCustom.equals("")) {
+        if (!"".equals(xmlHeaderCustom)) {
             sb.append("</" + xmlHeaderCustom + ">");
         }
 //		sb.append("</xml>");

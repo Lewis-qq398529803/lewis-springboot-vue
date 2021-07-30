@@ -1,4 +1,4 @@
-package com.taozi.web.controller.tool.wechat;
+package com.taozi.web.controller.wechat;
 
 import com.taozi.common.utils.wechat.wxpay.AuthUtil;
 import com.taozi.common.utils.wechat.wxpay.HttpRequest;
@@ -119,10 +119,15 @@ public class WeChatPayController {
 
             System.out.println("微信返回给回调函数的信息为：" + xml);
 
-            if (notifyMap.get("result_code").equals("SUCCESS")) {
-                String ordersSn = notifyMap.get("out_trade_no");// 商户订单号
-                String amountpaid = notifyMap.get("total_fee");// 实际支付的订单金额:单位 分
-                BigDecimal amountPay = (new BigDecimal(amountpaid).divide(new BigDecimal("100"))).setScale(2);// 将分转换成元-实际支付金额:元
+            String success = "SUCCESS";
+            String resultCode = "result_code";
+            if (success.equals(notifyMap.get(resultCode))) {
+                // 商户订单号
+                String ordersSn = notifyMap.get("out_trade_no");
+                // 实际支付的订单金额:单位 分
+                String amountpaid = notifyMap.get("total_fee");
+                // 将分转换成元-实际支付金额:元
+                BigDecimal amountPay = (new BigDecimal(amountpaid).divide(new BigDecimal("100"))).setScale(2);
 
                 /*
                  * 以下是自己的业务处理------仅做参考 更新order对应字段/已支付金额/状态码

@@ -272,14 +272,18 @@ public class WXPay {
                 try {
                     lastResult = this.microPay(reqData, connectTimeoutMs, readTimeoutMs);
                     String returnCode = lastResult.get("return_code");
-                    if (returnCode.equals("SUCCESS")) {
+                    String success = "SUCCESS";
+                    if (returnCode.equals(success)) {
                         String resultCode = lastResult.get("result_code");
                         String errCode = lastResult.get("err_code");
-                        if (resultCode.equals("SUCCESS")) {
+                        if (resultCode.equals(success)) {
                             break;
                         } else {
                             // 看错误码，若支付结果未知，则重试提交刷卡支付
-                            if (errCode.equals("SYSTEMERROR") || errCode.equals("BANKERROR") || errCode.equals("USERPAYING")) {
+                            String systemError = "SYSTEMERROR";
+                            String bankError = "BANKERROR";
+                            String userPaying = "USERPAYING";
+                            if (errCode.equals(systemError) || errCode.equals(bankError) || errCode.equals(userPaying)) {
                                 remainingTimeMs = remainingTimeMs - (int) (WXPayUtil.getCurrentTimestampMs() - startTimestampMs);
                                 if (remainingTimeMs <= 100) {
                                     break;

@@ -1,4 +1,4 @@
-package com.taozi.web.controller.tool.wechat;
+package com.taozi.web.controller.wechat;
 
 
 import com.taozi.common.core.domain.model.CommonResult;

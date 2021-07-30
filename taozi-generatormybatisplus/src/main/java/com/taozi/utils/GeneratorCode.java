@@ -73,7 +73,7 @@ public class GeneratorCode {
                 .setService("service")
                 .setServiceImpl("service.impl")
                 .setController("controller");
-        if (!moduleName.equals("")) {
+        if (!"".equals(moduleName)) {
             pc.setModuleName(moduleName);
         }
         mpg.setPackageInfo(pc);
@@ -119,7 +119,7 @@ public class GeneratorCode {
         cfg.setFileOutConfigList(fileOutConfigList);
         mpg.setCfg(cfg);//将自定义配置放入自动生成工具类中
 
-        if (!tablesSelected.equals("")) {//要设置生成哪些表 如果不设置就是生成所有的表
+        if (!"".equals(tablesSelected)) {//要设置生成哪些表 如果不设置就是生成所有的表
             //处理字符串成string[]
             String[] split = StringUtils.split(tablesSelected, ",");
             strategy.setInclude(split)

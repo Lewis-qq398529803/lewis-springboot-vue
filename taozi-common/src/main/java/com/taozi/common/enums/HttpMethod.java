@@ -11,6 +11,7 @@ import java.util.Map;
  * @author taozi
  */
 public enum HttpMethod {
+
     GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE;
 
     private static final Map<String, HttpMethod> mappings = new HashMap<>(16);

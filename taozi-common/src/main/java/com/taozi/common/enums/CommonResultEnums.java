@@ -7,14 +7,29 @@ package com.taozi.common.enums;
  */
 public enum CommonResultEnums {
 
-    OK(200, "success" , null, 0), FAIL(0, "fail" , null, 0);
+    // 成功
+    OK(200, "success" , null, 0),
+    // 失败
+    FAIL(0, "fail" , null, 0);
 
+    /**
+     * 状态码
+     */
     private final Integer code;
 
+    /**
+     * 返回信息
+     */
     private final String msg;
 
+    /**
+     * 返回数据对象
+     */
     private final Object data;
 
+    /**
+     * 返回条数
+     */
     private final Long total;
 
     CommonResultEnums(Integer status, String msg, Object data, long total) {

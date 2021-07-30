@@ -6,21 +6,31 @@ package com.taozi.common.enums;
  * @author taozi
  */
 public enum UserStatus {
-    OK("0" , "正常"), DISABLE("1" , "停用"), DELETED("2" , "删除");
 
-    private final String code;
-    private final String info;
+	OK("0", "正常"),
+	DISABLE("1", "停用"),
+	DELETED("2", "删除");
 
-    UserStatus(String code, String info) {
-        this.code = code;
-        this.info = info;
-    }
+	/**
+	 * 状态码
+	 */
+	private final String code;
 
-    public String getCode() {
-        return code;
-    }
+	/**
+	 * 信息
+	 */
+	private final String info;
 
-    public String getInfo() {
-        return info;
-    }
+	UserStatus(String code, String info) {
+		this.code = code;
+		this.info = info;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public String getInfo() {
+		return info;
+	}
 }

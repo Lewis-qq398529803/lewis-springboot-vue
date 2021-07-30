@@ -20,7 +20,7 @@ public class ExportWord {
 		String templatePaht = "/wordTemplates/" + templatePathNum + ".docx";
 		String outPutPathT = exportWordVO.getOutPutPath();
 		String outPutPath = "";
-		if (outPutPathT == null || outPutPathT.equals("")) {
+		if (outPutPathT == null || "".equals(outPutPathT)) {
 			outPutPath = "D:\\Workspace\\Mine\\exportworddemo\\src\\main\\resources\\wordDownload\\导出完成.docx";
 		} else {
 			outPutPath = outPutPathT;

@@ -49,7 +49,8 @@ public class SwaggerApiHideImpl implements ParameterBuilderPlugin {
             String name = originClass.getSimpleName() + "Model" + random.nextInt(100);  //model 名称
             List<String> properties = Arrays.asList(optional.get().value());
 
-            if (properties.size() == 1 && properties.get(0).equals("*")) {
+            String propertiesCompare = "*";
+            if (properties.size() == 1 && propertiesCompare.equals(properties.get(0))) {
                 properties = new ArrayList<>();
                 Field[] fields = originClass.getDeclaredFields();
                 for (int i = 0; i < fields.length; i++) {
