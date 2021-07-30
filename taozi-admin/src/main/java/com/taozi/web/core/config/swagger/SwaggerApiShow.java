@@ -1,4 +1,4 @@
-package com.taozi.web.core.config;
+package com.taozi.web.core.config.swagger;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
