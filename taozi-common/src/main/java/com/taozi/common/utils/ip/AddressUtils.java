@@ -20,7 +20,7 @@ public class AddressUtils {
     public static final String UNKNOWN = "XX XX";
     private static final Logger log = LoggerFactory.getLogger(AddressUtils.class);
 
-    public static String getRealAddressByIP(String ip) {
+    public static String getRealAddressByIp(String ip) {
         String address = UNKNOWN;
         // 内网不查询
         if (IpUtils.internalIp(ip)) {

@@ -2,7 +2,7 @@ package com.taozi.common.utils.wechat.wxpay.sdk;
 
 import java.io.InputStream;
 
-public abstract class WXPayConfig {
+public abstract class BaseWXPayConfig {
 
 
     /**

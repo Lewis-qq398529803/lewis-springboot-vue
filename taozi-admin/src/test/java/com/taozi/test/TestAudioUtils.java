@@ -14,12 +14,12 @@ public class TestAudioUtils {
     @Test
     public void testPaly() throws Exception {
         AudioUtils utils = AudioUtils.getInstance();
-        utils.playMP3("D:/xx.mp3");
+        utils.playMp3("D:/xx.mp3");
     }
 
     @Test
     public void testConvert() throws Exception {
         AudioUtils utils = AudioUtils.getInstance();
-        utils.convertMP32Pcm("D:/xx.mp3", "D:/xx.pcm");
+        utils.convertMp32Pcm("D:/xx.mp3", "D:/xx.pcm");
     }
 }

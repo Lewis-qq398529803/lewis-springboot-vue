@@ -88,7 +88,7 @@ public class TokenService {
      * @return 令牌
      */
     public String createToken(LoginUser loginUser) {
-        String token = IdUtils.fastUUID();
+        String token = IdUtils.fastUuid();
         loginUser.setToken(token);
         setUserAgent(loginUser);
         refreshToken(loginUser);
@@ -134,7 +134,7 @@ public class TokenService {
         UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
         String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
         loginUser.setIpaddr(ip);
-        loginUser.setLoginLocation(AddressUtils.getRealAddressByIP(ip));
+        loginUser.setLoginLocation(AddressUtils.getRealAddressByIp(ip));
         loginUser.setBrowser(userAgent.getBrowser().getName());
         loginUser.setOs(userAgent.getOperatingSystem().getName());
     }

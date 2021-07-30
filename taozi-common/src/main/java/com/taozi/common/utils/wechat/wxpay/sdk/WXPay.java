@@ -7,35 +7,35 @@ import java.util.Map;
 
 public class WXPay {
 
-    private WXPayConfig config;
+    private BaseWXPayConfig config;
     private SignType signType;
     private boolean autoReport;
     private boolean useSandbox;
     private String notifyUrl;
     private WXPayRequest wxPayRequest;
 
-    public WXPay(final WXPayConfig config) throws Exception {
+    public WXPay(final BaseWXPayConfig config) throws Exception {
         this(config, null, true, false);
     }
 
-    public WXPay(final WXPayConfig config, final boolean autoReport) throws Exception {
+    public WXPay(final BaseWXPayConfig config, final boolean autoReport) throws Exception {
         this(config, null, autoReport, false);
     }
 
 
-    public WXPay(final WXPayConfig config, final boolean autoReport, final boolean useSandbox) throws Exception {
+    public WXPay(final BaseWXPayConfig config, final boolean autoReport, final boolean useSandbox) throws Exception {
         this(config, null, autoReport, useSandbox);
     }
 
-    public WXPay(final WXPayConfig config, final String notifyUrl) throws Exception {
+    public WXPay(final BaseWXPayConfig config, final String notifyUrl) throws Exception {
         this(config, notifyUrl, true, false);
     }
 
-    public WXPay(final WXPayConfig config, final String notifyUrl, final boolean autoReport) throws Exception {
+    public WXPay(final BaseWXPayConfig config, final String notifyUrl, final boolean autoReport) throws Exception {
         this(config, notifyUrl, autoReport, false);
     }
 
-    public WXPay(final WXPayConfig config, final String notifyUrl, final boolean autoReport, final boolean useSandbox) throws Exception {
+    public WXPay(final BaseWXPayConfig config, final String notifyUrl, final boolean autoReport, final boolean useSandbox) throws Exception {
         this.config = config;
         this.notifyUrl = notifyUrl;
         this.autoReport = autoReport;

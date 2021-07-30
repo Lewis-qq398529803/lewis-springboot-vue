@@ -11,11 +11,11 @@ import com.taozi.common.utils.http.HttpUtils;
  */
 public class AccessTokenUtils {
 
-    public static String getAccessToken(String CODE) {
-        String APPID = WxConfig.APPID;
-        String SECRET = WxConfig.APPSECRET;
+    public static String getAccessToken(String code) {
+        String appid = WxConfig.APPID;
+        String secret = WxConfig.APPSECRET;
         String url = "https://api.weixin.qq.com/sns/oauth2/access_token";
-        String param = "appid=" + APPID + "&secret=" + SECRET + "&code=" + CODE + "&grant_type=authorization_code";
+        String param = "appid=" + appid + "&secret=" + secret + "&code=" + code + "&grant_type=authorization_code";
         String dataT = HttpUtils.sendGet(url, param);
         JSONObject jsonObject = JSONObject.parseObject(dataT);
         if (jsonObject == null) {

@@ -32,7 +32,7 @@ public class AliSendSmsUtils {
     /**
      * 不同的内容发送给不同的手机号，最多十个手机号码
      */
-    public static void SendBatchSmsMessage() {
+    public static void sendBatchSmsMessage() {
         DefaultProfile profile = DefaultProfile.getProfile("default" , ACCESS_KEY_ID, ACCESS_KEY_SECRET);
         IAcsClient client = new DefaultAcsClient(profile);
         CommonRequest request = new CommonRequest();
@@ -40,7 +40,8 @@ public class AliSendSmsUtils {
         request.setDomain("dysmsapi.aliyuncs.com");
         request.setVersion("2017-05-25");
         request.setAction("SendBatchSms");
-        request.putQueryParameter("RegionId" , "default");//默认就行，他自己会分配
+        //默认就行，他自己会分配
+        request.putQueryParameter("RegionId" , "default");
         //要发送给谁  最多十个手机号码  例子：["15900000000","13500000000"]   为数组和SignNameJson通过下标对应
         request.putQueryParameter("PhoneNumberJson" , "[\"15900000000\",\"13500000000\"]");
         request.putQueryParameter("SignNameJson" , "签名名称");
@@ -67,7 +68,8 @@ public class AliSendSmsUtils {
         request.setDomain(DOMAIN);
         request.setVersion(VERSION);
         request.setAction("SendSms");
-        request.putQueryParameter("RegionId" , "default");//默认就行，他自己会分配
+        //默认就行，他自己会分配
+        request.putQueryParameter("RegionId" , "default");
         //要发送给谁  最多十个
         request.putQueryParameter("PhoneNumbers" , aliSendSmsConfig.getPhoneNumbers());
         //签名名称

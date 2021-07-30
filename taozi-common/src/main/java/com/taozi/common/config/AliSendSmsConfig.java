@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class AliSendSmsConfig {
 
-    private String PhoneNumbers;
+    private String phoneNumbers;
 
     private String templateCode;
 

@@ -22,7 +22,7 @@ public abstract interface IWXPayDomain {
      * @param config 配置
      * @return 域名
      */
-    abstract DomainInfo getDomain(final WXPayConfig config);
+    abstract DomainInfo getDomain(final BaseWXPayConfig config);
 
     static class DomainInfo {
         public String domain;       //域名

@@ -28,9 +28,9 @@ import static com.taozi.common.utils.wechat.wxpay.sdk.WXPayConstants.USER_AGENT;
 
 public class WXPayRequest {
 
-    private WXPayConfig config;
+    private BaseWXPayConfig config;
 
-    public WXPayRequest(WXPayConfig config) throws Exception {
+    public WXPayRequest(BaseWXPayConfig config) throws Exception {
         this.config = config;
     }
 

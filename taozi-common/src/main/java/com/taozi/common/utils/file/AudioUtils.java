@@ -37,7 +37,7 @@ public class AudioUtils {
      * @return
      * @throws Exception
      */
-    public boolean convertMP32Pcm(String mp3filepath, String pcmfilepath) {
+    public boolean convertMp32Pcm(String mp3filepath, String pcmfilepath) {
         try {
             //获取文件的音频流，pcm的格式
             AudioInputStream audioInputStream = getPcmAudioInputStream(mp3filepath);
@@ -57,7 +57,7 @@ public class AudioUtils {
      * @param mp3filepath 文件路径
      * @throws Exception
      */
-    public void playMP3(String mp3filepath) throws Exception {
+    public void playMp3(String mp3filepath) throws Exception {
         //获取音频为pcm的格式
         AudioInputStream audioInputStream = getPcmAudioInputStream(mp3filepath);
 
