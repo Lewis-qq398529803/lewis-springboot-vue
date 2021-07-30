@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 27/07/2021 17:08:46
+ Date: 30/07/2021 14:27:50
 */
 
 SET NAMES utf8mb4;
@@ -253,7 +253,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('TaoziScheduler', 'TAOZI-SHENZHOU1627373149106', 1627373151635, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('TaoziScheduler', 'TAOZI-SHENZHOU1627623524341', 1627626467848, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -330,9 +330,9 @@ CREATE TABLE `qrtz_triggers`  (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1627373150000, -1, 5, 'PAUSED', 'CRON', 1627373149000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1627373160000, -1, 5, 'PAUSED', 'CRON', 1627373149000, 0, NULL, 2, '');
-INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1627373160000, -1, 5, 'PAUSED', 'CRON', 1627373149000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME1', 'DEFAULT', 'TASK_CLASS_NAME1', 'DEFAULT', NULL, 1627623530000, -1, 5, 'PAUSED', 'CRON', 1627623524000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME2', 'DEFAULT', 'TASK_CLASS_NAME2', 'DEFAULT', NULL, 1627623525000, -1, 5, 'PAUSED', 'CRON', 1627623524000, 0, NULL, 2, '');
+INSERT INTO `qrtz_triggers` VALUES ('TaoziScheduler', 'TASK_CLASS_NAME3', 'DEFAULT', 'TASK_CLASS_NAME3', 'DEFAULT', NULL, 1627623540000, -1, 5, 'PAUSED', 'CRON', 1627623524000, 0, NULL, 2, '');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -545,7 +545,7 @@ CREATE TABLE `sys_logininfor`  (
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 104 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -553,6 +553,7 @@ CREATE TABLE `sys_logininfor`  (
 INSERT INTO `sys_logininfor` VALUES (100, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-06-21 14:39:55');
 INSERT INTO `sys_logininfor` VALUES (101, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-06-21 16:21:17');
 INSERT INTO `sys_logininfor` VALUES (102, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-06-22 09:56:16');
+INSERT INTO `sys_logininfor` VALUES (103, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-07-30 13:43:46');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -665,24 +666,6 @@ INSERT INTO `sys_menu` VALUES (1057, '生成删除', 115, 3, '#', '', 1, 0, 'F',
 INSERT INTO `sys_menu` VALUES (1058, '导入代码', 115, 2, '#', '', 1, 0, 'F', '0', '0', 'tool:gen:import', '#', 'admin', '2021-06-21 14:37:38', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1059, '预览代码', 115, 4, '#', '', 1, 0, 'F', '0', '0', 'tool:gen:preview', '#', 'admin', '2021-06-21 14:37:38', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (1060, '生成代码', 115, 5, '#', '', 1, 0, 'F', '0', '0', 'tool:gen:code', '#', 'admin', '2021-06-21 14:37:38', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2000, '账本', 0, 88, 'book', 'money/book/index', 1, 0, 'C', '0', '0', 'money:book:list', '#', 'admin', '2021-06-21 16:31:07', 'admin', '2021-06-21 16:33:27', '账本菜单');
-INSERT INTO `sys_menu` VALUES (2001, '账本查询', 2000, 1, '#', '', 1, 0, 'F', '0', '0', 'money:book:query', '#', 'admin', '2021-06-21 16:31:07', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2002, '账本新增', 2000, 2, '#', '', 1, 0, 'F', '0', '0', 'money:book:add', '#', 'admin', '2021-06-21 16:31:07', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2003, '账本修改', 2000, 3, '#', '', 1, 0, 'F', '0', '0', 'money:book:edit', '#', 'admin', '2021-06-21 16:31:07', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2004, '账本删除', 2000, 4, '#', '', 1, 0, 'F', '0', '0', 'money:book:remove', '#', 'admin', '2021-06-21 16:31:07', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2005, '账本导出', 2000, 5, '#', '', 1, 0, 'F', '0', '0', 'money:book:export', '#', 'admin', '2021-06-21 16:31:07', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2006, '用户储蓄', 0, 89, 'savings', 'money/savings/index', 1, 0, 'C', '0', '0', 'money:savings:list', '#', 'admin', '2021-06-21 16:31:16', 'admin', '2021-06-21 16:33:42', '用户储蓄菜单');
-INSERT INTO `sys_menu` VALUES (2007, '用户储蓄查询', 2006, 1, '#', '', 1, 0, 'F', '0', '0', 'money:savings:query', '#', 'admin', '2021-06-21 16:31:16', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2008, '用户储蓄新增', 2006, 2, '#', '', 1, 0, 'F', '0', '0', 'money:savings:add', '#', 'admin', '2021-06-21 16:31:16', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2009, '用户储蓄修改', 2006, 3, '#', '', 1, 0, 'F', '0', '0', 'money:savings:edit', '#', 'admin', '2021-06-21 16:31:16', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2010, '用户储蓄删除', 2006, 4, '#', '', 1, 0, 'F', '0', '0', 'money:savings:remove', '#', 'admin', '2021-06-21 16:31:16', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2011, '用户储蓄导出', 2006, 5, '#', '', 1, 0, 'F', '0', '0', 'money:savings:export', '#', 'admin', '2021-06-21 16:31:16', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2012, '类型编码', 0, 90, 'type', 'money/type/index', 1, 0, 'C', '0', '0', 'money:type:list', '#', 'admin', '2021-06-21 16:31:26', 'admin', '2021-06-21 16:33:54', '类型编码菜单');
-INSERT INTO `sys_menu` VALUES (2013, '类型编码查询', 2012, 1, '#', '', 1, 0, 'F', '0', '0', 'money:type:query', '#', 'admin', '2021-06-21 16:31:26', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2014, '类型编码新增', 2012, 2, '#', '', 1, 0, 'F', '0', '0', 'money:type:add', '#', 'admin', '2021-06-21 16:31:26', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2015, '类型编码修改', 2012, 3, '#', '', 1, 0, 'F', '0', '0', 'money:type:edit', '#', 'admin', '2021-06-21 16:31:26', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2016, '类型编码删除', 2012, 4, '#', '', 1, 0, 'F', '0', '0', 'money:type:remove', '#', 'admin', '2021-06-21 16:31:26', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2017, '类型编码导出', 2012, 5, '#', '', 1, 0, 'F', '0', '0', 'money:type:export', '#', 'admin', '2021-06-21 16:31:26', '', NULL, '');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -730,7 +713,7 @@ CREATE TABLE `sys_oper_log`  (
   `error_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 121 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 140 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -756,6 +739,25 @@ INSERT INTO `sys_oper_log` VALUES (117, '代码生成', 8, 'com.ruoyi.generator.
 INSERT INTO `sys_oper_log` VALUES (118, '账本', 1, 'com.ruoyi.web.controller.money.BookController.add()', 'POST', 1, 'admin', NULL, '/money/book', '127.0.0.1', '内网IP', '{\"remark\":\"零花钱\",\"typeNum\":1,\"params\":{},\"moneyAccount\":123,\"id\":1}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-21 17:08:56');
 INSERT INTO `sys_oper_log` VALUES (119, '账本', 2, 'com.ruoyi.web.controller.money.BookController.edit()', 'PUT', 1, 'admin', NULL, '/money/book', '127.0.0.1', '内网IP', '{\"remark\":\"零花钱\",\"typeNum\":2,\"params\":{},\"moneyAccount\":123,\"ctime\":1624204800000,\"id\":1}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-21 17:14:07');
 INSERT INTO `sys_oper_log` VALUES (120, '账本', 1, 'com.ruoyi.web.controller.money.BookController.add()', 'POST', 1, 'admin', NULL, '/money/book', '127.0.0.1', '内网IP', '{\"remark\":\"64\",\"typeNum\":1,\"params\":{},\"moneyAccount\":321,\"id\":2}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-06-21 17:25:58');
+INSERT INTO `sys_oper_log` VALUES (121, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2000', '127.0.0.1', '内网IP', '{menuId=2000}', '{\"msg\":\"存在子菜单,不允许删除\",\"code\":500}', 0, NULL, '2021-07-28 14:01:57');
+INSERT INTO `sys_oper_log` VALUES (122, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2001', '127.0.0.1', '内网IP', '{menuId=2001}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:13');
+INSERT INTO `sys_oper_log` VALUES (123, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2002', '127.0.0.1', '内网IP', '{menuId=2002}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:15');
+INSERT INTO `sys_oper_log` VALUES (124, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2003', '127.0.0.1', '内网IP', '{menuId=2003}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:18');
+INSERT INTO `sys_oper_log` VALUES (125, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2004', '127.0.0.1', '内网IP', '{menuId=2004}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:20');
+INSERT INTO `sys_oper_log` VALUES (126, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2005', '127.0.0.1', '内网IP', '{menuId=2005}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:22');
+INSERT INTO `sys_oper_log` VALUES (127, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2000', '127.0.0.1', '内网IP', '{menuId=2000}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:24');
+INSERT INTO `sys_oper_log` VALUES (128, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2007', '127.0.0.1', '内网IP', '{menuId=2007}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:30');
+INSERT INTO `sys_oper_log` VALUES (129, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2008', '127.0.0.1', '内网IP', '{menuId=2008}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:32');
+INSERT INTO `sys_oper_log` VALUES (130, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2009', '127.0.0.1', '内网IP', '{menuId=2009}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:34');
+INSERT INTO `sys_oper_log` VALUES (131, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2010', '127.0.0.1', '内网IP', '{menuId=2010}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:36');
+INSERT INTO `sys_oper_log` VALUES (132, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2011', '127.0.0.1', '内网IP', '{menuId=2011}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:40');
+INSERT INTO `sys_oper_log` VALUES (133, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2006', '127.0.0.1', '内网IP', '{menuId=2006}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:41');
+INSERT INTO `sys_oper_log` VALUES (134, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2013', '127.0.0.1', '内网IP', '{menuId=2013}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:45');
+INSERT INTO `sys_oper_log` VALUES (135, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2014', '127.0.0.1', '内网IP', '{menuId=2014}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:47');
+INSERT INTO `sys_oper_log` VALUES (136, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2015', '127.0.0.1', '内网IP', '{menuId=2015}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:49');
+INSERT INTO `sys_oper_log` VALUES (137, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2016', '127.0.0.1', '内网IP', '{menuId=2016}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:51');
+INSERT INTO `sys_oper_log` VALUES (138, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2017', '127.0.0.1', '内网IP', '{menuId=2017}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:54');
+INSERT INTO `sys_oper_log` VALUES (139, '菜单管理', 3, 'com.taozi.web.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2012', '127.0.0.1', '内网IP', '{menuId=2012}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-07-28 14:02:56');
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -954,7 +956,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '桃子', '00', 'ry@163.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-06-22 09:56:17', 'admin', '2021-06-21 14:37:38', '', '2021-06-22 09:56:16', '管理员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '桃子', '00', 'ry@163.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-07-30 13:43:47', 'admin', '2021-06-21 14:37:38', '', '2021-07-30 13:43:46', '管理员');
 INSERT INTO `sys_user` VALUES (2, 105, 'ry', '桃子', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-06-21 14:37:38', 'admin', '2021-06-21 14:37:38', '', NULL, '测试员');
 
 -- ----------------------------
