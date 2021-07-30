@@ -7,6 +7,7 @@ import com.taozi.common.annotation.Excel.ColumnType;
 import com.taozi.common.annotation.Excel.Type;
 import com.taozi.common.annotation.Excels;
 import com.taozi.common.core.domain.BaseEntity;
+import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -22,315 +23,331 @@ import java.util.List;
  * @author taozi
  */
 public class SysUser extends BaseEntity {
-    private static final long serialVersionUID = 1L;
 
-    /**
-     * 用户ID
-     */
-    @Excel(name = "用户序号" , cellType = ColumnType.NUMERIC, prompt = "用户编号")
-    private Long userId;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 部门ID
-     */
-    @Excel(name = "部门编号" , type = Type.IMPORT)
-    private Long deptId;
+	/**
+	 * 用户ID
+	 */
+	@Excel(name = "用户序号", cellType = ColumnType.NUMERIC, prompt = "用户编号")
+	private Long userId;
 
-    /**
-     * 用户账号
-     */
-    @Excel(name = "登录名称")
-    private String userName;
+	/**
+	 * 用户类型
+	 */
+	@Excel(name = "用户类型", type = Type.IMPORT)
+	private String userType;
 
-    /**
-     * 用户昵称
-     */
-    @Excel(name = "用户名称")
-    private String nickName;
+	/**
+	 * 部门ID
+	 */
+	@Excel(name = "部门编号", type = Type.IMPORT)
+	private Long deptId;
 
-    /**
-     * 用户邮箱
-     */
-    @Excel(name = "用户邮箱")
-    private String email;
+	/**
+	 * 用户账号
+	 */
+	@Excel(name = "登录名称")
+	private String userName;
 
-    /**
-     * 手机号码
-     */
-    @Excel(name = "手机号码")
-    private String phonenumber;
+	/**
+	 * 用户昵称
+	 */
+	@Excel(name = "用户名称")
+	private String nickName;
 
-    /**
-     * 用户性别
-     */
-    @Excel(name = "用户性别" , readConverterExp = "0=男,1=女,2=未知")
-    private String sex;
+	/**
+	 * 用户邮箱
+	 */
+	@Excel(name = "用户邮箱")
+	private String email;
 
-    /**
-     * 用户头像
-     */
-    private String avatar;
+	/**
+	 * 手机号码
+	 */
+	@Excel(name = "手机号码")
+	private String phonenumber;
 
-    /**
-     * 密码
-     */
-    private String password;
+	/**
+	 * 用户性别
+	 */
+	@Excel(name = "用户性别", readConverterExp = "0=男,1=女,2=未知")
+	private String sex;
 
-    /**
-     * 盐加密
-     */
-    private String salt;
+	/**
+	 * 用户头像
+	 */
+	private String avatar;
 
-    /**
-     * 帐号状态（0正常 1停用）
-     */
-    @Excel(name = "帐号状态" , readConverterExp = "0=正常,1=停用")
-    private String status;
+	/**
+	 * 密码
+	 */
+	private String password;
 
-    /**
-     * 删除标志（0代表存在 2代表删除）
-     */
-    private String delFlag;
+	/**
+	 * 盐加密
+	 */
+	private String salt;
 
-    /**
-     * 最后登录IP
-     */
-    @Excel(name = "最后登录IP" , type = Type.EXPORT)
-    private String loginIp;
+	/**
+	 * 帐号状态（0正常 1停用）
+	 */
+	@Excel(name = "帐号状态", readConverterExp = "0=正常,1=停用")
+	private String status;
 
-    @Excel(name = "用户类型")
-    private String userType;
+	/**
+	 * 删除标志（0代表存在 2代表删除）
+	 */
+	private String delFlag;
 
-    /**
-     * 最后登录时间
-     */
-    @Excel(name = "最后登录时间" , width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss" , type = Type.EXPORT)
-    private Date loginDate;
+	/**
+	 * 最后登录IP
+	 */
+	@Excel(name = "最后登录IP", type = Type.EXPORT)
+	private String loginIp;
 
-    /**
-     * 部门对象
-     */
-    @Excels({
-            @Excel(name = "部门名称" , targetAttr = "deptName" , type = Type.EXPORT),
-            @Excel(name = "部门负责人" , targetAttr = "leader" , type = Type.EXPORT)
-    })
-    private SysDept dept;
+	/**
+	 * 最后登录时间
+	 */
+	@Excel(name = "最后登录时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Type.EXPORT)
+	private Date loginDate;
 
-    /**
-     * 角色对象
-     */
-    private List<SysRole> roles;
+	/**
+	 * 部门对象
+	 */
+	@Excels({
+			@Excel(name = "部门名称", targetAttr = "deptName", type = Type.EXPORT),
+			@Excel(name = "部门负责人", targetAttr = "leader", type = Type.EXPORT)
+	})
+	private SysDept dept;
 
-    /**
-     * 角色组
-     */
-    private Long[] roleIds;
+	/**
+	 * 角色对象
+	 */
+	private List<SysRole> roles;
 
-    /**
-     * 岗位组
-     */
-    private Long[] postIds;
+	/**
+	 * 角色组
+	 */
+	private Long[] roleIds;
 
-    public SysUser() {
+	/**
+	 * 岗位组
+	 */
+	private Long[] postIds;
 
-    }
+	/**
+	 * 角色ID
+	 */
+	private Long roleId;
 
-    public SysUser(Long userId) {
-        this.userId = userId;
-    }
+	public SysUser() {
 
-    public static boolean isAdmin(Long userId) {
-        return userId != null && 1L == userId;
-    }
+	}
 
-    public Long getUserId() {
-        return userId;
-    }
+	public SysUser(Long userId) {
+		this.userId = userId;
+	}
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+	public Long getUserId() {
+		return userId;
+	}
 
-    public boolean isAdmin() {
-        return isAdmin(this.userId);
-    }
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
-    public Long getDeptId() {
-        return deptId;
-    }
+	public boolean isAdmin() {
+		return isAdmin(this.userId);
+	}
 
-    public void setDeptId(Long deptId) {
-        this.deptId = deptId;
-    }
+	public static boolean isAdmin(Long userId) {
+		return userId != null && 1L == userId;
+	}
 
-    @Size(min = 0, max = 30, message = "用户昵称长度不能超过30个字符")
-    public String getNickName() {
-        return nickName;
-    }
+	public Long getDeptId() {
+		return deptId;
+	}
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
+	public void setDeptId(Long deptId) {
+		this.deptId = deptId;
+	}
 
-    @NotBlank(message = "用户账号不能为空")
-    @Size(min = 0, max = 30, message = "用户账号长度不能超过30个字符")
-    public String getUserName() {
-        return userName;
-    }
+	@Size(min = 0, max = 30, message = "用户昵称长度不能超过30个字符")
+	public String getNickName() {
+		return nickName;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 
-    @Email(message = "邮箱格式不正确")
-    @Size(min = 0, max = 50, message = "邮箱长度不能超过50个字符")
-    public String getEmail() {
-        return email;
-    }
+	@NotBlank(message = "用户账号不能为空")
+	@Size(min = 0, max = 30, message = "用户账号长度不能超过30个字符")
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public String getUserType() {
-        return userType;
-    }
+	@Email(message = "邮箱格式不正确")
+	@Size(min = 0, max = 50, message = "邮箱长度不能超过50个字符")
+	public String getEmail() {
+		return email;
+	}
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    @Size(min = 0, max = 11, message = "手机号码长度不能超过11个字符")
-    public String getPhonenumber() {
-        return phonenumber;
-    }
+	@Size(min = 0, max = 11, message = "手机号码长度不能超过11个字符")
+	public String getPhonenumber() {
+		return phonenumber;
+	}
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
-    }
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
 
-    public String getSex() {
-        return sex;
-    }
+	public String getUserType() {
+		return userType;
+	}
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 
-    public String getAvatar() {
-        return avatar;
-    }
+	public String getSex() {
+		return sex;
+	}
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 
-    @JsonIgnore
-    @JsonProperty
-    public String getPassword() {
-        return password;
-    }
+	public String getAvatar() {
+		return avatar;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 
-    public String getSalt() {
-        return salt;
-    }
+	@JsonIgnore
+	@JsonProperty
+	public String getPassword() {
+		return password;
+	}
 
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public String getSalt() {
+		return salt;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 
-    public String getDelFlag() {
-        return delFlag;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public void setDelFlag(String delFlag) {
-        this.delFlag = delFlag;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public String getLoginIp() {
-        return loginIp;
-    }
+	public String getDelFlag() {
+		return delFlag;
+	}
 
-    public void setLoginIp(String loginIp) {
-        this.loginIp = loginIp;
-    }
+	public void setDelFlag(String delFlag) {
+		this.delFlag = delFlag;
+	}
 
-    public Date getLoginDate() {
-        return loginDate;
-    }
+	public String getLoginIp() {
+		return loginIp;
+	}
 
-    public void setLoginDate(Date loginDate) {
-        this.loginDate = loginDate;
-    }
+	public void setLoginIp(String loginIp) {
+		this.loginIp = loginIp;
+	}
 
-    public SysDept getDept() {
-        return dept;
-    }
+	public Date getLoginDate() {
+		return loginDate;
+	}
 
-    public void setDept(SysDept dept) {
-        this.dept = dept;
-    }
+	public void setLoginDate(Date loginDate) {
+		this.loginDate = loginDate;
+	}
 
-    public List<SysRole> getRoles() {
-        return roles;
-    }
+	public SysDept getDept() {
+		return dept;
+	}
 
-    public void setRoles(List<SysRole> roles) {
-        this.roles = roles;
-    }
+	public void setDept(SysDept dept) {
+		this.dept = dept;
+	}
 
-    public Long[] getRoleIds() {
-        return roleIds;
-    }
+	public List<SysRole> getRoles() {
+		return roles;
+	}
 
-    public void setRoleIds(Long[] roleIds) {
-        this.roleIds = roleIds;
-    }
+	public void setRoles(List<SysRole> roles) {
+		this.roles = roles;
+	}
 
-    public Long[] getPostIds() {
-        return postIds;
-    }
+	public Long[] getRoleIds() {
+		return roleIds;
+	}
 
-    public void setPostIds(Long[] postIds) {
-        this.postIds = postIds;
-    }
+	public void setRoleIds(Long[] roleIds) {
+		this.roleIds = roleIds;
+	}
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("userId" , getUserId())
-                .append("deptId" , getDeptId())
-                .append("userName" , getUserName())
-                .append("userType" , getUserType())
-                .append("nickName" , getNickName())
-                .append("email" , getEmail())
-                .append("phonenumber" , getPhonenumber())
-                .append("sex" , getSex())
-                .append("avatar" , getAvatar())
-                .append("password" , getPassword())
-                .append("salt" , getSalt())
-                .append("status" , getStatus())
-                .append("delFlag" , getDelFlag())
-                .append("loginIp" , getLoginIp())
-                .append("loginDate" , getLoginDate())
-                .append("createBy" , getCreateBy())
-                .append("createTime" , getCreateTime())
-                .append("updateBy" , getUpdateBy())
-                .append("updateTime" , getUpdateTime())
-                .append("remark" , getRemark())
-                .append("dept" , getDept())
-                .toString();
-    }
+	public Long[] getPostIds() {
+		return postIds;
+	}
+
+	public void setPostIds(Long[] postIds) {
+		this.postIds = postIds;
+	}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+				.append("userId", getUserId())
+				.append("deptId", getDeptId())
+				.append("userName", getUserName())
+				.append("nickName", getNickName())
+				.append("email", getEmail())
+				.append("phonenumber", getPhonenumber())
+				.append("sex", getSex())
+				.append("avatar", getAvatar())
+				.append("password", getPassword())
+				.append("salt", getSalt())
+				.append("status", getStatus())
+				.append("delFlag", getDelFlag())
+				.append("loginIp", getLoginIp())
+				.append("loginDate", getLoginDate())
+				.append("createBy", getCreateBy())
+				.append("createTime", getCreateTime())
+				.append("updateBy", getUpdateBy())
+				.append("updateTime", getUpdateTime())
+				.append("remark", getRemark())
+				.append("dept", getDept())
+				.toString();
+	}
 }
