@@ -56,8 +56,11 @@ export default {
     },
   },
   methods: {
-    removeImage() {
-      this.$emit("input", "");
+    // 删除图片
+    handleRemove(file, fileList) {
+      const findex = this.fileList.map(f => f.name).indexOf(file.name);
+      this.fileList.splice(findex, 1);
+      this.$emit("input", this.listToString(this.fileList));
     },
     handleUploadSuccess(res) {
       this.$emit("input", res.url);
