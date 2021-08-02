@@ -75,7 +75,7 @@ service.interceptors.response.use(res => {
       Notification.error({
         title: msg
       })
-      return Promise.reject('error')
+      return Promise.reject()
     } else {
       return res.data
     }
