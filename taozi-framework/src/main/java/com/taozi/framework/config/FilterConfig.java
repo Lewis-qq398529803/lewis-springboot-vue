@@ -4,6 +4,7 @@ import com.taozi.common.filter.RepeatableFilter;
 import com.taozi.common.filter.XssFilter;
 import com.taozi.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,9 +19,8 @@ import java.util.Map;
  * @author taozi
  */
 @Configuration
+@ConditionalOnProperty(value = "xss.enabled", havingValue = "true")
 public class FilterConfig {
-    @Value("${xss.enabled}")
-    private String enabled;
 
     @Value("${xss.excludes}")
     private String excludes;
@@ -39,7 +39,6 @@ public class FilterConfig {
         registration.setOrder(FilterRegistrationBean.HIGHEST_PRECEDENCE);
         Map<String, String> initParameters = new HashMap<String, String>();
         initParameters.put("excludes" , excludes);
-        initParameters.put("enabled" , enabled);
         registration.setInitParameters(initParameters);
         return registration;
     }
