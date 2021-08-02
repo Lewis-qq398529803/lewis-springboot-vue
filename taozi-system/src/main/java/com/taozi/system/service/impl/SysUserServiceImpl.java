@@ -29,6 +29,7 @@ import java.util.List;
  */
 @Service
 public class SysUserServiceImpl implements ISysUserService {
+
 	private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
 
 	@Autowired
@@ -48,6 +49,16 @@ public class SysUserServiceImpl implements ISysUserService {
 
 	@Autowired
 	private ISysConfigService configService;
+
+	/**
+	 * 注册用户信息
+	 *
+	 * @param user 用户信息
+	 * @return 结果
+	 */
+	public boolean registerUser(SysUser user) {
+		return userMapper.insertUser(user) > 0;
+	}
 
 	/**
 	 * 根据条件分页查询用户列表

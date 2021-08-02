@@ -95,7 +95,7 @@ public class Constants
     /**
      * 用户名称
      */
-    public static final String JWT_USERNAME = "sub";
+    public static final String JWT_USERNAME = "Claims.SUBJECT";
 
     /**
      * 用户头像
@@ -131,4 +131,9 @@ public class Constants
      * RMI 远程方法调用
      */
     public static final String LOOKUP_RMI = "rmi://";
+
+    /**
+     * 注册
+     */
+    public static final String REGISTER = "Register";
 }
