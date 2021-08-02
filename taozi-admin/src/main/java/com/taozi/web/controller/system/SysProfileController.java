@@ -28,6 +28,7 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/system/user/profile")
 public class SysProfileController extends BaseController {
+
     @Autowired
     private ISysUserService userService;
 
@@ -61,8 +62,11 @@ public class SysProfileController extends BaseController {
                 && UserConstants.NOT_UNIQUE.equals(userService.checkEmailUnique(user))) {
             return AjaxResult.error("修改用户'" + user.getUserName() + "'失败，邮箱账号已存在");
         }
+        LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
+        SysUser sysUser = loginUser.getUser();
+        user.setUserId(sysUser.getUserId());
+        user.setPassword(null);
         if (userService.updateUserProfile(user) > 0) {
-            LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
             // 更新缓存用户信息
             loginUser.getUser().setNickName(user.getNickName());
             loginUser.getUser().setPhonenumber(user.getPhonenumber());
