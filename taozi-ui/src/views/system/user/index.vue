@@ -256,10 +256,7 @@
                 v-hasPermi="['system:user:remove']"
                 >删除</el-button
               >
-              <el-dropdown
-                size="mini"
-                @command="(command) => handleCommand(command, scope.row)"
-              >
+              <el-dropdown size="mini" @command="(command) => handleCommand(command, scope.row)" v-hasPermi="['system:user:resetPwd', 'system:user:edit']">
                 <span class="el-dropdown-link">
                   <i class="el-icon-d-arrow-right el-icon--right"></i>更多
                 </span>
