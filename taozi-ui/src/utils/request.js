@@ -63,7 +63,8 @@ service.interceptors.response.use(res => {
         store.dispatch('LogOut').then(() => {
           location.href = '/index';
         })
-      })
+      }).catch(() => {});
+      return Promise.reject('error')
     } else if (code === 500) {
       Message({
         message: msg,
