@@ -33,7 +33,7 @@ server:
 # 日志配置
 logging:
   level:
-    com.taozi: debug
+    com.taozi: trace
     org.springframework: warn
 
 # Spring配置
@@ -104,13 +104,25 @@ token:
   expireTime: 30
 
 # MyBatis配置
-mybatis:
+mybatis-plus:
   # 搜索指定包别名
-  typeAliasesPackage: com.taozi.**.domain
+  type-aliases-package: com.taozi.**.domain
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
-  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
   # 加载全局的配置文件
-  configLocation: classpath:mybatis/mybatis-config.xml
+  config-location: classpath:mybatis/mybatis-config.xml
+  # 以下配置均有默认值,可以不设置
+  global-config:
+    db-config:
+      # 主键类型  auto:"数据库ID自增"
+      id-type: auto
+  configuration:
+    # 是否开启自动驼峰命名规则映射:从数据库列名到Java属性驼峰命名的类似映射
+    map-underscore-to-camel-case: true
+    # 如果查询结果中包含空值的列，则 MyBatis 在映射的时候，不会映射这个字段
+    call-setters-on-nulls: true
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # PageHelper分页插件
 pagehelper:

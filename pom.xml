@@ -46,7 +46,7 @@
         <poi.version>4.1.2</poi.version>
         <velocity.version>1.7</velocity.version>
         <jwt.version>0.9.1</jwt.version>
-        <mybatis-plus.version>3.2.0</mybatis-plus.version>
+        <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <aliyun-java-sdk-core.version>4.1.0</aliyun-java-sdk-core.version>
         <jdom2.version>2.0.6</jdom2.version>
         <dom4j.version>1.6.1</dom4j.version>

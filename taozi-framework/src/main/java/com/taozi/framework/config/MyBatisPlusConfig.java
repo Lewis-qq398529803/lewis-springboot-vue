@@ -30,8 +30,10 @@ import java.util.List;
  * @author taozi
  */
 @Configuration
-public class MyBatisConfig {
+public class MyBatisPlusConfig {
+
     static final String DEFAULT_RESOURCE_PATTERN = "**/*.class";
+
     @Autowired
     private Environment env;
 
@@ -92,9 +94,9 @@ public class MyBatisConfig {
 
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-        String typeAliasesPackage = env.getProperty("mybatis.type-aliases-package");
-        String mapperLocations = env.getProperty("mybatis.mapper-locations");
-        String configLocation = env.getProperty("mybatis.config-location");
+        String typeAliasesPackage = env.getProperty("mybatis-plus.type-aliases-package");
+        String mapperLocations = env.getProperty("mybatis-plus.mapper-locations");
+        String configLocation = env.getProperty("mybatis-plus.config-location");
         typeAliasesPackage = setTypeAliasesPackage(typeAliasesPackage);
         VFS.addImplClass(SpringBootVFS.class);
 
