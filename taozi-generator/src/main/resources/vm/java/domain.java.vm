@@ -25,14 +25,14 @@ public class ${ClassName} extends ${Entity}{
 
     #foreach ($column in $columns)
     #if(!$table.isSuperColumn($column.javaField))
-    /** $column.columnComment */
-    #if($column.list)
-    #set($parentheseIndex=$column.columnComment.indexOf("（"))
-    #if($parentheseIndex != -1)
-    #set($comment=$column.columnComment.substring(0, $parentheseIndex))
-    #else
-    #set($comment=$column.columnComment)
-    #end
+/** $column.columnComment */
+#if($column.list)
+#set($parentheseIndex=$column.columnComment.indexOf("（"))
+#if($parentheseIndex != -1)
+#set($comment=$column.columnComment.substring(0, $parentheseIndex))
+#else
+#set($comment=$column.columnComment)
+#end
     #if($parentheseIndex != -1)
     @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
     #elseif($column.javaType == 'Date')
@@ -41,12 +41,12 @@ public class ${ClassName} extends ${Entity}{
     #else
     @Excel(name = "${comment}")
     #end
-    #end
+#end
     private $column.javaType $column.javaField;
     #end
     #end
     #if($table.sub)
-    /** $table.subTable.functionName信息 */
+/** $table.subTable.functionName信息 */
     private List<${subClassName}> ${subclassName}List;
 
     #end
