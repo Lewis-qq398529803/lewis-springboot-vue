@@ -25,6 +25,7 @@ import java.util.List;
  * @author taozi
  */
 public class BaseController {
+
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**

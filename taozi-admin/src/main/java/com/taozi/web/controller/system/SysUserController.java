@@ -17,6 +17,8 @@ import com.taozi.framework.web.service.TokenService;
 import com.taozi.system.service.ISysPostService;
 import com.taozi.system.service.ISysRoleService;
 import com.taozi.system.service.ISysUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -31,9 +33,11 @@ import java.util.stream.Collectors;
  *
  * @author taozi
  */
+@Api(tags = "用户信息")
 @RestController
 @RequestMapping("/system/user")
 public class SysUserController extends BaseController {
+
     @Autowired
     private ISysUserService userService;
 
@@ -46,9 +50,7 @@ public class SysUserController extends BaseController {
     @Autowired
     private TokenService tokenService;
 
-    /**
-     * 获取用户列表
-     */
+    @ApiOperation(value = "获取用户列表", notes = "用户分页列表")
     @PreAuthorize("@ss.hasPermi('system:user:list')")
     @GetMapping("/list")
     public TableDataInfo list(SysUser user) {
@@ -57,6 +59,7 @@ public class SysUserController extends BaseController {
         return getDataTable(list);
     }
 
+    @ApiOperation(value = "导出用户列表", notes = "导出用户列表")
     @Log(title = "用户管理" , businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:user:export')")
     @GetMapping("/export")
@@ -66,6 +69,7 @@ public class SysUserController extends BaseController {
         return util.exportExcel(list, "用户数据");
     }
 
+    @ApiOperation(value = "导入用户列表", notes = "导入用户列表")
     @Log(title = "用户管理" , businessType = BusinessType.IMPORT)
     @PreAuthorize("@ss.hasPermi('system:user:import')")
     @PostMapping("/importData")
@@ -78,15 +82,14 @@ public class SysUserController extends BaseController {
         return AjaxResult.success(message);
     }
 
+    @ApiOperation(value = "导入模板", notes = "导入模板")
     @GetMapping("/importTemplate")
     public AjaxResult importTemplate() {
         ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
         return util.importTemplateExcel("用户数据");
     }
 
-    /**
-     * 根据用户编号获取详细信息
-     */
+    @ApiOperation(value = "根据用户编号获取详细信息", notes = "根据用户编号获取详细信息")
     @PreAuthorize("@ss.hasPermi('system:user:query')")
     @GetMapping(value = {"/" , "/{userId}"})
     public AjaxResult getInfo(@PathVariable(value = "userId" , required = false) Long userId) {
@@ -102,9 +105,7 @@ public class SysUserController extends BaseController {
         return ajax;
     }
 
-    /**
-     * 新增用户
-     */
+    @ApiOperation(value = "新增用户", notes = "新增用户")
     @PreAuthorize("@ss.hasPermi('system:user:add')")
     @Log(title = "用户管理" , businessType = BusinessType.INSERT)
     @PostMapping
@@ -123,9 +124,7 @@ public class SysUserController extends BaseController {
         return toAjax(userService.insertUser(user));
     }
 
-    /**
-     * 修改用户
-     */
+    @ApiOperation(value = "修改用户", notes = "修改用户")
     @PreAuthorize("@ss.hasPermi('system:user:edit')")
     @Log(title = "用户管理" , businessType = BusinessType.UPDATE)
     @PutMapping
@@ -142,9 +141,7 @@ public class SysUserController extends BaseController {
         return toAjax(userService.updateUser(user));
     }
 
-    /**
-     * 删除用户
-     */
+    @ApiOperation(value = "删除用户", notes = "删除用户")
     @PreAuthorize("@ss.hasPermi('system:user:remove')")
     @Log(title = "用户管理" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{userIds}")
@@ -152,9 +149,7 @@ public class SysUserController extends BaseController {
         return toAjax(userService.deleteUserByIds(userIds));
     }
 
-    /**
-     * 重置密码
-     */
+    @ApiOperation(value = "重置密码", notes = "重置密码")
     @PreAuthorize("@ss.hasPermi('system:user:resetPwd')")
     @Log(title = "用户管理" , businessType = BusinessType.UPDATE)
     @PutMapping("/resetPwd")
@@ -165,9 +160,7 @@ public class SysUserController extends BaseController {
         return toAjax(userService.resetPwd(user));
     }
 
-    /**
-     * 状态修改
-     */
+    @ApiOperation(value = "状态修改", notes = "状态修改")
     @PreAuthorize("@ss.hasPermi('system:user:edit')")
     @Log(title = "用户管理" , businessType = BusinessType.UPDATE)
     @PutMapping("/changeStatus")

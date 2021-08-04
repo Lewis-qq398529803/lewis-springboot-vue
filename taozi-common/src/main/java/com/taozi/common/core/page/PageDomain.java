@@ -1,31 +1,27 @@
 package com.taozi.common.core.page;
 
 import com.taozi.common.utils.StringUtils;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 分页数据
  *
  * @author taozi
  */
+@ApiModel("分页数据vo")
 public class PageDomain {
-	/**
-	 * 当前记录起始索引
-	 */
+
+	@ApiModelProperty(value = "当前记录起始索引")
 	private Integer pageNum;
 
-	/**
-	 * 每页显示记录数
-	 */
+	@ApiModelProperty(value = "每页显示记录数")
 	private Integer pageSize;
 
-	/**
-	 * 排序列
-	 */
+	@ApiModelProperty(value = "排序列")
 	private String orderByColumn;
 
-	/**
-	 * 排序的方向desc或者asc
-	 */
+	@ApiModelProperty(value = "排序的方向desc或者asc")
 	private String isAsc = "asc";
 
 	public String getOrderBy() {
