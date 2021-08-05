@@ -50,7 +50,7 @@ public class SysUserController extends BaseController {
     @Autowired
     private TokenService tokenService;
 
-    @ApiOperation(value = "获取用户列表", notes = "用户分页列表")
+    @ApiOperation(value = "获取用户列表", notes = "获取用户列表")
     @PreAuthorize("@ss.hasPermi('system:user:list')")
     @GetMapping("/list")
     public TableDataInfo list(SysUser user) {

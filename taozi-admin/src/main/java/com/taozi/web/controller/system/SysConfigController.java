@@ -11,6 +11,8 @@ import com.taozi.common.utils.SecurityUtils;
 import com.taozi.common.utils.poi.ExcelUtil;
 import com.taozi.system.domain.SysConfig;
 import com.taozi.system.service.ISysConfigService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -23,15 +25,15 @@ import java.util.List;
  *
  * @author taozi
  */
+@Api(tags = "参数配置")
 @RestController
 @RequestMapping("/system/config")
 public class SysConfigController extends BaseController {
+
     @Autowired
     private ISysConfigService configService;
 
-    /**
-     * 获取参数配置列表
-     */
+    @ApiOperation(value = "获取参数配置列表", notes = "获取参数配置列表")
     @PreAuthorize("@ss.hasPermi('system:config:list')")
     @GetMapping("/list")
     public TableDataInfo list(SysConfig config) {
@@ -40,6 +42,7 @@ public class SysConfigController extends BaseController {
         return getDataTable(list);
     }
 
+    @ApiOperation(value = "导出参数配置列表", notes = "导出参数配置列表")
     @Log(title = "参数管理" , businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:config:export')")
     @GetMapping("/export")
@@ -49,26 +52,20 @@ public class SysConfigController extends BaseController {
         return util.exportExcel(list, "参数数据");
     }
 
-    /**
-     * 根据参数编号获取详细信息
-     */
+    @ApiOperation(value = "根据参数编号获取详细信息", notes = "根据参数编号获取详细信息")
     @PreAuthorize("@ss.hasPermi('system:config:query')")
     @GetMapping(value = "/{configId}")
     public AjaxResult getInfo(@PathVariable Long configId) {
         return AjaxResult.success(configService.selectConfigById(configId));
     }
 
-    /**
-     * 根据参数键名查询参数值
-     */
+    @ApiOperation(value = "根据参数键名查询参数值", notes = "根据参数键名查询参数值")
     @GetMapping(value = "/configKey/{configKey}")
     public AjaxResult getConfigKey(@PathVariable String configKey) {
         return AjaxResult.success(configService.selectConfigByKey(configKey));
     }
 
-    /**
-     * 新增参数配置
-     */
+    @ApiOperation(value = "新增参数配置", notes = "新增参数配置")
     @PreAuthorize("@ss.hasPermi('system:config:add')")
     @Log(title = "参数管理" , businessType = BusinessType.INSERT)
     @PostMapping
@@ -81,9 +78,7 @@ public class SysConfigController extends BaseController {
         return toAjax(configService.insertConfig(config));
     }
 
-    /**
-     * 修改参数配置
-     */
+    @ApiOperation(value = "修改参数配置", notes = "修改参数配置")
     @PreAuthorize("@ss.hasPermi('system:config:edit')")
     @Log(title = "参数管理" , businessType = BusinessType.UPDATE)
     @PutMapping
@@ -95,9 +90,7 @@ public class SysConfigController extends BaseController {
         return toAjax(configService.updateConfig(config));
     }
 
-    /**
-     * 删除参数配置
-     */
+    @ApiOperation(value = "删除参数配置", notes = "删除参数配置")
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
     @Log(title = "参数管理" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{configIds}")
@@ -106,9 +99,7 @@ public class SysConfigController extends BaseController {
         return success();
     }
 
-    /**
-     * 刷新参数缓存
-     */
+    @ApiOperation(value = "刷新参数缓存", notes = "刷新参数缓存")
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
     @Log(title = "参数管理" , businessType = BusinessType.CLEAN)
     @DeleteMapping("/refreshCache")

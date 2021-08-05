@@ -9,6 +9,8 @@ import com.taozi.common.enums.BusinessType;
 import com.taozi.common.utils.SecurityUtils;
 import com.taozi.common.utils.StringUtils;
 import com.taozi.system.service.ISysDeptService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,15 +25,15 @@ import java.util.List;
  *
  * @author taozi
  */
+@Api(tags = "部门信息")
 @RestController
 @RequestMapping("/system/dept")
 public class SysDeptController extends BaseController {
+
     @Autowired
     private ISysDeptService deptService;
 
-    /**
-     * 获取部门列表
-     */
+    @ApiOperation(value = "获取部门列表", notes = "获取部门列表")
     @PreAuthorize("@ss.hasPermi('system:dept:list')")
     @GetMapping("/list")
     public AjaxResult list(SysDept dept) {
@@ -39,9 +41,7 @@ public class SysDeptController extends BaseController {
         return AjaxResult.success(depts);
     }
 
-    /**
-     * 查询部门列表（排除节点）
-     */
+    @ApiOperation(value = "查询部门列表（排除节点）", notes = "查询部门列表（排除节点）")
     @PreAuthorize("@ss.hasPermi('system:dept:list')")
     @GetMapping("/list/exclude/{deptId}")
     public AjaxResult excludeChild(@PathVariable(value = "deptId" , required = false) Long deptId) {
@@ -57,27 +57,21 @@ public class SysDeptController extends BaseController {
         return AjaxResult.success(depts);
     }
 
-    /**
-     * 根据部门编号获取详细信息
-     */
+    @ApiOperation(value = "根据部门编号获取详细信息", notes = "根据部门编号获取详细信息")
     @PreAuthorize("@ss.hasPermi('system:dept:query')")
     @GetMapping(value = "/{deptId}")
     public AjaxResult getInfo(@PathVariable Long deptId) {
         return AjaxResult.success(deptService.selectDeptById(deptId));
     }
 
-    /**
-     * 获取部门下拉树列表
-     */
+    @ApiOperation(value = "获取部门下拉树列表", notes = "获取部门下拉树列表")
     @GetMapping("/treeselect")
     public AjaxResult treeselect(SysDept dept) {
         List<SysDept> depts = deptService.selectDeptList(dept);
         return AjaxResult.success(deptService.buildDeptTreeSelect(depts));
     }
 
-    /**
-     * 加载对应角色部门列表树
-     */
+    @ApiOperation(value = "加载对应角色部门列表树", notes = "加载对应角色部门列表树")
     @GetMapping(value = "/roleDeptTreeselect/{roleId}")
     public AjaxResult roleDeptTreeselect(@PathVariable("roleId") Long roleId) {
         List<SysDept> depts = deptService.selectDeptList(new SysDept());
@@ -87,9 +81,7 @@ public class SysDeptController extends BaseController {
         return ajax;
     }
 
-    /**
-     * 新增部门
-     */
+    @ApiOperation(value = "新增部门", notes = "新增部门")
     @PreAuthorize("@ss.hasPermi('system:dept:add')")
     @Log(title = "部门管理" , businessType = BusinessType.INSERT)
     @PostMapping
@@ -101,9 +93,7 @@ public class SysDeptController extends BaseController {
         return toAjax(deptService.insertDept(dept));
     }
 
-    /**
-     * 修改部门
-     */
+    @ApiOperation(value = "修改部门", notes = "修改部门")
     @PreAuthorize("@ss.hasPermi('system:dept:edit')")
     @Log(title = "部门管理" , businessType = BusinessType.UPDATE)
     @PutMapping
@@ -120,9 +110,7 @@ public class SysDeptController extends BaseController {
         return toAjax(deptService.updateDept(dept));
     }
 
-    /**
-     * 删除部门
-     */
+    @ApiOperation(value = "删除部门", notes = "删除部门")
     @PreAuthorize("@ss.hasPermi('system:dept:remove')")
     @Log(title = "部门管理" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{deptId}")

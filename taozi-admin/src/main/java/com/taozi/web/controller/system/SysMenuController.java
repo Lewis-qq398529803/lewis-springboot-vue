@@ -12,6 +12,8 @@ import com.taozi.common.utils.ServletUtils;
 import com.taozi.common.utils.StringUtils;
 import com.taozi.framework.web.service.TokenService;
 import com.taozi.system.service.ISysMenuService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -24,6 +26,7 @@ import java.util.List;
  *
  * @author taozi
  */
+@Api(tags = "登录验证")
 @RestController
 @RequestMapping("/system/menu")
 public class SysMenuController extends BaseController {
@@ -34,9 +37,7 @@ public class SysMenuController extends BaseController {
     @Autowired
     private TokenService tokenService;
 
-    /**
-     * 获取菜单列表
-     */
+    @ApiOperation(value = "获取菜单列表", notes = "获取菜单列表")
     @PreAuthorize("@ss.hasPermi('system:menu:list')")
     @GetMapping("/list")
     public AjaxResult list(SysMenu menu) {
@@ -46,18 +47,14 @@ public class SysMenuController extends BaseController {
         return AjaxResult.success(menus);
     }
 
-    /**
-     * 根据菜单编号获取详细信息
-     */
+    @ApiOperation(value = "根据菜单编号获取详细信息", notes = "根据菜单编号获取详细信息")
     @PreAuthorize("@ss.hasPermi('system:menu:query')")
     @GetMapping(value = "/{menuId}")
     public AjaxResult getInfo(@PathVariable Long menuId) {
         return AjaxResult.success(menuService.selectMenuById(menuId));
     }
 
-    /**
-     * 获取菜单下拉树列表
-     */
+    @ApiOperation(value = "获取菜单下拉树列表", notes = "获取菜单下拉树列表")
     @GetMapping("/treeselect")
     public AjaxResult treeselect(SysMenu menu) {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
@@ -66,9 +63,7 @@ public class SysMenuController extends BaseController {
         return AjaxResult.success(menuService.buildMenuTreeSelect(menus));
     }
 
-    /**
-     * 加载对应角色菜单列表树
-     */
+    @ApiOperation(value = "加载对应角色菜单列表树", notes = "加载对应角色菜单列表树")
     @GetMapping(value = "/roleMenuTreeselect/{roleId}")
     public AjaxResult roleMenuTreeselect(@PathVariable("roleId") Long roleId) {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
@@ -79,9 +74,7 @@ public class SysMenuController extends BaseController {
         return ajax;
     }
 
-    /**
-     * 新增菜单
-     */
+    @ApiOperation(value = "新增菜单", notes = "新增菜单")
     @PreAuthorize("@ss.hasPermi('system:menu:add')")
     @Log(title = "菜单管理" , businessType = BusinessType.INSERT)
     @PostMapping
@@ -95,9 +88,7 @@ public class SysMenuController extends BaseController {
         return toAjax(menuService.insertMenu(menu));
     }
 
-    /**
-     * 修改菜单
-     */
+    @ApiOperation(value = "修改菜单", notes = "修改菜单")
     @PreAuthorize("@ss.hasPermi('system:menu:edit')")
     @Log(title = "菜单管理" , businessType = BusinessType.UPDATE)
     @PutMapping
@@ -113,9 +104,7 @@ public class SysMenuController extends BaseController {
         return toAjax(menuService.updateMenu(menu));
     }
 
-    /**
-     * 删除菜单
-     */
+    @ApiOperation(value = "删除菜单", notes = "删除菜单")
     @PreAuthorize("@ss.hasPermi('system:menu:remove')")
     @Log(title = "菜单管理" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{menuId}")

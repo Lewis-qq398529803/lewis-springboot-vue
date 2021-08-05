@@ -10,6 +10,8 @@ import com.taozi.common.utils.SecurityUtils;
 import com.taozi.common.utils.poi.ExcelUtil;
 import com.taozi.system.domain.SysPost;
 import com.taozi.system.service.ISysPostService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -22,15 +24,15 @@ import java.util.List;
  *
  * @author taozi
  */
+@Api(tags = "岗位信息操作处理")
 @RestController
 @RequestMapping("/system/post")
 public class SysPostController extends BaseController {
+
     @Autowired
     private ISysPostService postService;
 
-    /**
-     * 获取岗位列表
-     */
+    @ApiOperation(value = "获取岗位列表", notes = "获取岗位列表")
     @PreAuthorize("@ss.hasPermi('system:post:list')")
     @GetMapping("/list")
     public TableDataInfo list(SysPost post) {
@@ -39,6 +41,7 @@ public class SysPostController extends BaseController {
         return getDataTable(list);
     }
 
+    @ApiOperation(value = "导出岗位列表", notes = "导出岗位列表")
     @Log(title = "岗位管理" , businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:post:export')")
     @GetMapping("/export")
@@ -48,18 +51,14 @@ public class SysPostController extends BaseController {
         return util.exportExcel(list, "岗位数据");
     }
 
-    /**
-     * 根据岗位编号获取详细信息
-     */
+    @ApiOperation(value = "根据岗位编号获取详细信息", notes = "根据岗位编号获取详细信息")
     @PreAuthorize("@ss.hasPermi('system:post:query')")
     @GetMapping(value = "/{postId}")
     public AjaxResult getInfo(@PathVariable Long postId) {
         return AjaxResult.success(postService.selectPostById(postId));
     }
 
-    /**
-     * 新增岗位
-     */
+    @ApiOperation(value = "新增岗位", notes = "新增岗位")
     @PreAuthorize("@ss.hasPermi('system:post:add')")
     @Log(title = "岗位管理" , businessType = BusinessType.INSERT)
     @PostMapping
@@ -73,9 +72,7 @@ public class SysPostController extends BaseController {
         return toAjax(postService.insertPost(post));
     }
 
-    /**
-     * 修改岗位
-     */
+    @ApiOperation(value = "修改岗位", notes = "修改岗位")
     @PreAuthorize("@ss.hasPermi('system:post:edit')")
     @Log(title = "岗位管理" , businessType = BusinessType.UPDATE)
     @PutMapping
@@ -89,9 +86,7 @@ public class SysPostController extends BaseController {
         return toAjax(postService.updatePost(post));
     }
 
-    /**
-     * 删除岗位
-     */
+    @ApiOperation(value = "删除岗位", notes = "删除岗位")
     @PreAuthorize("@ss.hasPermi('system:post:remove')")
     @Log(title = "岗位管理" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{postIds}")
@@ -99,9 +94,7 @@ public class SysPostController extends BaseController {
         return toAjax(postService.deletePostByIds(postIds));
     }
 
-    /**
-     * 获取岗位选择框列表
-     */
+    @ApiOperation(value = "获取岗位选择框列表", notes = "获取岗位选择框列表")
     @GetMapping("/optionselect")
     public AjaxResult optionselect() {
         List<SysPost> posts = postService.selectPostAll();
