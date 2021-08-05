@@ -27,12 +27,12 @@ public class WeChatPushController {
 	@ApiOperation(value = "微信公众号推送", notes = "必要参数： openid、templateid、code、data")
 	public CommonResult sendMessage2OpenId(@RequestBody WxPushVo wxPushVo) {
 		if (wxPushVo.getOpenid() == null || wxPushVo.getTemplate_id() == null || wxPushVo.getCode() == null) {
-			return CommonResult.fail().setMsg("参数缺失，请仔细检查，并且对比接口文档确认是否有必要参数未传入！");
+			return CommonResult.ok().setCode(400001);
 		}
 
 		String accessToken = AccessTokenUtils.getAccessToken(wxPushVo.getCode());
 		if (StringUtils.equals(accessToken, "获取access_token失败") || StringUtils.equals(accessToken, "获取access_token出现异常")) {
-			return CommonResult.fail().setMsg("access_token获取失败，请检查参数例如code的正确性！");
+			return CommonResult.ok().setCode(400000);
 		}
 		wxPushVo.setACCESS_TOKEN(accessToken);
 

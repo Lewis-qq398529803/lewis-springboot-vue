@@ -1,6 +1,6 @@
 package com.taozi.common.core.domain.model;
 
-import com.taozi.common.enums.CommonResultEnums;
+import com.taozi.common.utils.CodeUtils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,79 +14,89 @@ import lombok.Data;
 @ApiModel("通用响应对象")
 public class CommonResult {
 
-    @ApiModelProperty(value = "响应业务状态")
-    private Integer code;
+	@ApiModelProperty(value = "成败情况")
+	private Boolean success;
 
-    @ApiModelProperty(value = "响应消息")
-    private String msg;
+	@ApiModelProperty(value = "响应业务状态")
+	private Integer code;
 
-    @ApiModelProperty(value = "响应中的数据")
-    private Object data;
+	@ApiModelProperty(value = "响应消息")
+	private String msg;
 
-    @ApiModelProperty(value = "响应的条数")
-    private Long total;
+	@ApiModelProperty(value = "响应中的数据")
+	private Object data;
 
-    public CommonResult() {
+	public CommonResult(Boolean success) {
+		this.success = success;
+	}
 
-    }
+	/**
+	 * 基础成功方法
+	 *
+	 * @return CommonResult
+	 */
+	public static CommonResult ok() {
+		return new CommonResult(true).setCode(200000);
+	}
 
-    public CommonResult(Integer code, String msg, Object data, Long total) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
-        this.total = total;
-    }
+	/**
+	 * 基础错误方法
+	 *
+	 * @return CommonResult
+	 */
+	public static CommonResult error() {
+		return new CommonResult(false).setCode(500000);
+	}
 
-    /**
-     * 基础成功对象
-     *
-     * @return CommonResult
-     */
-    public static CommonResult ok() {
-        CommonResultEnums ok = CommonResultEnums.OK;
-        return new CommonResult(ok.getCode(), ok.getMsg(), ok.getData(), ok.getTotal());
-    }
+	/**
+	 * 基础失败方法
+	 *
+	 * @return CommonResult
+	 */
+	public static CommonResult fail() {
+		return new CommonResult(false);
+	}
 
-    /**
-     * 基础失败对象
-     *
-     * @return CommonResult
-     */
-    public static CommonResult fail() {
-        CommonResultEnums fail = CommonResultEnums.FAIL;
-        return new CommonResult(fail.getCode(), fail.getMsg(), fail.getData(), fail.getTotal());
-    }
+	/**
+	 * 通过判断reason确定返回ok or fail
+	 *
+	 * @param reason boolean值
+	 * @return CommonResult
+	 */
+	public static CommonResult okOrFail(Boolean reason) {
+		return reason ? ok() : fail();
+	}
 
-    /**
-     * 根据Boolean判断是否操作成功
-     *
-     * @param reason -- 操作状态
-     * @return CommonResult
-     */
-    public static CommonResult okOrFail(boolean reason) {
-        if (!reason) {
-            return CommonResult.fail();
-        }
-        return CommonResult.ok();
-    }
+	/**
+	 * 设置code同时设置提示信息
+	 *
+	 * @param code 状态码
+	 * @return CommonResult
+	 */
+	public CommonResult setCode(Integer code) {
+		this.code = code;
+		this.msg += CodeUtils.getMessage(code, null);
+		return this;
+	}
 
-    public CommonResult setCode(Integer code) {
-        this.code = code;
-        return this;
-    }
+	public CommonResult setMsg(String msg) {
+		this.msg = msg;
+		return this;
+	}
 
-    public CommonResult setMsg(String msg) {
-        this.msg = msg;
-        return this;
-    }
+	/**
+	 * 设置msg尾部新增参数
+	 *
+	 * @param params 尾部新增参数
+	 * @return CommonResult
+	 */
+	public CommonResult addMsgParams(String params) {
+		this.msg += params;
+		return this;
+	}
 
-    public CommonResult setData(Object data) {
-        this.data = data;
-        return this;
-    }
-
-    public CommonResult setTotal(long total) {
-        this.total = total;
-        return this;
-    }
+	public CommonResult setData(Object data) {
+		this.data = data;
+		return this;
+	}
 }
