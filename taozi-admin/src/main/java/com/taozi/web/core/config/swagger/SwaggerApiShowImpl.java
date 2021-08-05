@@ -28,6 +28,8 @@ import java.util.stream.Collectors;
 /**
  * swagger配置：
  * 示例：在入参前加入@SwaggerApiHide({"userName"}) == 只显示userName这个参数
+ *
+ * @author TAOZI
  */
 @Component
 @Order
@@ -43,8 +45,8 @@ public class SwaggerApiShowImpl implements ParameterBuilderPlugin {
 
         Optional<SwaggerApiShow> optional = methodParameter.findAnnotation(SwaggerApiShow.class);
         if (optional.isPresent()) {
-            Random random = new Random();
-            String name = originClass.getSimpleName()/* + "Model" + random.nextInt(100)*/;  //model 名称
+            //model 名称
+            String name = originClass.getSimpleName();
             List<String> properties = Arrays.asList(optional.get().value());
             List<Field> fields = Arrays.asList(originClass.getDeclaredFields());
             List<String> finalProperties = properties;
@@ -56,11 +58,13 @@ public class SwaggerApiShowImpl implements ParameterBuilderPlugin {
             try {
                 parameterContext.getDocumentationContext()
                         .getAdditionalModels()
-                        .add(typeResolver.resolve(createRefModelIgp(properties.toArray(new String[properties.size()]), originClass.getPackage() + "." + name, originClass)));  //像documentContext的Models中添加我们新生成的Class
+                        //像documentContext的Models中添加我们新生成的Class
+                        .add(typeResolver.resolve(createRefModelIgp(properties.toArray(new String[properties.size()]), originClass.getPackage() + "." + name, originClass)));
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            parameterContext.parameterBuilder()  //修改Map参数的ModelRef为我们动态生成的class
+            //修改Map参数的ModelRef为我们动态生成的class
+            parameterContext.parameterBuilder()
                     .parameterType("body")
                     .modelRef(new ModelRef(name))
 //                    .description("此行不用管")
@@ -81,7 +85,8 @@ public class SwaggerApiShowImpl implements ParameterBuilderPlugin {
                 ctField.setModifiers(Modifier.PUBLIC);
                 ApiModelProperty ampAnno = origin.getDeclaredField(field.getName()).getAnnotation(ApiModelProperty.class);
                 String attributes = java.util.Optional.ofNullable(ampAnno).map(s -> s.value()).orElse("");
-                if (StringUtils.isNotBlank(attributes)) { //添加model属性说明
+                //添加model属性说明
+                if (StringUtils.isNotBlank(attributes)) {
                     ConstPool constPool = ctClass.getClassFile().getConstPool();
                     AnnotationsAttribute attr = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
                     Annotation ann = new Annotation(ApiModelProperty.class.getName(), constPool);
