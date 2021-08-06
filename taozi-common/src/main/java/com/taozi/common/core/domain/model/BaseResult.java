@@ -1,6 +1,7 @@
 package com.taozi.common.core.domain.model;
 
 import com.taozi.common.utils.CodeUtils;
+import com.taozi.common.utils.StringUtils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -58,16 +59,6 @@ public class BaseResult {
 	}
 
 	/**
-	 * 通过判断reason确定返回ok or fail
-	 *
-	 * @param reason boolean值
-	 * @return CommonResult
-	 */
-	public static BaseResult okOrFail(Boolean reason) {
-		return reason ? ok() : fail();
-	}
-
-	/**
 	 * 设置code同时设置提示信息
 	 *
 	 * @param code 状态码
@@ -75,7 +66,11 @@ public class BaseResult {
 	 */
 	public BaseResult setCode(Integer code) {
 		this.code = code;
-		this.msg += CodeUtils.getMessage(code, null);
+		if (StringUtils.isNotNull(this.msg)) {
+			this.msg += CodeUtils.getMessage(code, null);
+		} else {
+			this.msg = CodeUtils.getMessage(code, null);
+		}
 		return this;
 	}
 
@@ -91,7 +86,11 @@ public class BaseResult {
 	 * @return CommonResult
 	 */
 	public BaseResult addMsgParams(String params) {
-		this.msg += params;
+		if (StringUtils.isNotNull(this.msg)) {
+			this.msg += params;
+		} else {
+			this.msg = params;
+		}
 		return this;
 	}
 

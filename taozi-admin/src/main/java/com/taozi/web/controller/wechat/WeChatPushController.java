@@ -36,7 +36,7 @@ public class WeChatPushController {
 		}
 		wxPushVo.setACCESS_TOKEN(accessToken);
 
-		return BaseResult.okOrFail(WxPushUtils.sendWxMsg2User(wxPushVo));
+		return WxPushUtils.sendWxMsg2User(wxPushVo) ? BaseResult.ok() : BaseResult.fail();
 	}
 
 }
