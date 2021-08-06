@@ -17,6 +17,17 @@
 
     <dependencies>
 
+        <!-- 讯飞语音转文字相关 -->
+        <dependency>
+            <groupId>org.java-websocket</groupId>
+            <artifactId>Java-WebSocket</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+
         <!-- word相关-->
         <dependency>
             <groupId>org.apache.poi</groupId>
