@@ -3,7 +3,7 @@ package com.taozi.web.controller.system;
 import com.alibaba.fastjson.JSONObject;
 import com.taozi.common.config.AliSendSmsConfig;
 import com.taozi.common.core.domain.entity.SysUser;
-import com.taozi.common.core.domain.model.CommonResult;
+import com.taozi.common.core.domain.model.BaseResult;
 import com.taozi.common.core.domain.model.LoginUser;
 import com.taozi.common.core.redis.RedisCache;
 import com.taozi.common.utils.DateUtils;
@@ -48,7 +48,7 @@ public class SysLoginWithPhoneController {
 
     @GetMapping("/getSmsCode")
     @ApiOperation("获取手机验证码")
-    public CommonResult getSmsCode(String phone) {
+    public BaseResult getSmsCode(String phone) {
         //随机生成六位数验证码
         int smsCode = (int) (Math.random() * 1000000);
         //redis缓存
@@ -61,7 +61,7 @@ public class SysLoginWithPhoneController {
         //发送验证码
         AliSendSmsUtils.sendSmsMessage(aliSendSmsConfig);
         //返回验证码
-        return CommonResult.ok().setData(redisCache.getCacheObject("smsCode:" + phone));
+        return BaseResult.ok().setData(redisCache.getCacheObject("smsCode:" + phone));
     }
 
     @PostMapping("/loginWithPhone")
@@ -71,7 +71,7 @@ public class SysLoginWithPhoneController {
             @ApiImplicitParam(name = "smsCode" , value = "验证码" , required = true),
             @ApiImplicitParam(name = "userType" , value = "用户类型" , required = true)
     })
-    public CommonResult loginWithPhone(@RequestBody JSONObject jsonObject) {
+    public BaseResult loginWithPhone(@RequestBody JSONObject jsonObject) {
         String phone = jsonObject.getString("phone");
         String smsCode = jsonObject.getString("smsCode");
         //用户类型
@@ -79,7 +79,7 @@ public class SysLoginWithPhoneController {
         Integer smsCode_t = redisCache.getCacheObject("smsCode:" + phone);
         //验证码验证
         if (!StringUtils.equals(smsCode, smsCode_t + "")) {
-            return CommonResult.fail().setMsg("验证码错误");
+            return BaseResult.fail().setMsg("验证码错误");
         }
         //根据手机号以及用户类型查询账号密码
         SysUser sysUser = new SysUser();
@@ -88,7 +88,7 @@ public class SysLoginWithPhoneController {
         List<SysUser> sysUsers = sysUserService.selectUserList(sysUser);
         //手机号唯一验证
         if (sysUsers.size() > 1) {
-            return CommonResult.fail().setMsg("该手机号存在异常");
+            return BaseResult.fail().setMsg("该手机号存在异常");
         } else if (sysUsers.size() == 1) {
             //存在用户，直接返回token
             SysUser sysUser1 = sysUsers.get(0);
@@ -100,7 +100,7 @@ public class SysLoginWithPhoneController {
             TokenAndSysUserInfo tokenAndSysUserInfo = new TokenAndSysUserInfo();
             tokenAndSysUserInfo.setToken(tokenService.createToken(loginUser));
             tokenAndSysUserInfo.setSysUser(sysUser1);
-            return CommonResult.ok().setData(tokenAndSysUserInfo);
+            return BaseResult.ok().setData(tokenAndSysUserInfo);
         } else {
             //不存在，注册，后返回token
             SysUser sysUser1 = new SysUser();
@@ -112,7 +112,7 @@ public class SysLoginWithPhoneController {
             sysUser1.setRemark("用户手机验证码注册");
             sysUser1.setUserType(userType);
             if (userService.insertUser(sysUser1) != 1) {
-                CommonResult.fail().setMsg("用户未创建成功");
+                BaseResult.fail().setMsg("用户未创建成功");
             }
             //实体封装
             LoginUser loginUser = new LoginUser();
@@ -122,7 +122,7 @@ public class SysLoginWithPhoneController {
             TokenAndSysUserInfo tokenAndSysUserInfo = new TokenAndSysUserInfo();
             tokenAndSysUserInfo.setToken(tokenService.createToken(loginUser));
             tokenAndSysUserInfo.setSysUser(sysUser1);
-            return CommonResult.ok().setData(tokenAndSysUserInfo);
+            return BaseResult.ok().setData(tokenAndSysUserInfo);
         }
     }
 
