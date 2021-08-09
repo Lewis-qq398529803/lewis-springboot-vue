@@ -1,4 +1,4 @@
-package com.taozi.common.utils.wechat.wxpay.sdk;
+package com.taozi.common.utils.wechat.wxpay.jsapi.sdk;
 
 /**
  * 域名管理，实现主备域名自动切换

@@ -1,4 +1,4 @@
-package com.taozi.common.utils.wechat.wxpay.sdk;
+package com.taozi.common.utils.wechat.wxpay.jsapi.sdk;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

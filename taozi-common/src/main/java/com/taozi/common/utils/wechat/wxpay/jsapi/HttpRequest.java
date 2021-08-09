@@ -1,4 +1,4 @@
-package com.taozi.common.utils.wechat.wxpay;
+package com.taozi.common.utils.wechat.wxpay.jsapi;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;

@@ -1,4 +1,4 @@
-package com.taozi.common.utils.wechat.wxpay;
+package com.taozi.common.utils.wechat.wxpay.jsapi;
 
 /**
  * 微信支付配置实体

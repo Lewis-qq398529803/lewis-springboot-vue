@@ -1,8 +1,8 @@
 package com.taozi.web.controller.wechat;
 
-import com.taozi.common.utils.wechat.wxpay.WxJsApiConfig;
-import com.taozi.common.utils.wechat.wxpay.HttpRequest;
-import com.taozi.common.utils.wechat.wxpay.sdk.WXPayUtil;
+import com.taozi.common.utils.wechat.wxpay.jsapi.WxJsApiConfig;
+import com.taozi.common.utils.wechat.wxpay.jsapi.HttpRequest;
+import com.taozi.common.utils.wechat.wxpay.jsapi.sdk.WXPayUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

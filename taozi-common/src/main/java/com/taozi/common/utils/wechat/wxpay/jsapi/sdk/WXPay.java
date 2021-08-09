@@ -1,6 +1,6 @@
-package com.taozi.common.utils.wechat.wxpay.sdk;
+package com.taozi.common.utils.wechat.wxpay.jsapi.sdk;
 
-import com.taozi.common.utils.wechat.wxpay.sdk.WXPayConstants.SignType;
+import com.taozi.common.utils.wechat.wxpay.jsapi.sdk.WXPayConstants.SignType;
 
 import java.util.HashMap;
 import java.util.Map;
