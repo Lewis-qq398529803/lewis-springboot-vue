@@ -36,7 +36,9 @@ public class DingUtils {
 		request.setAppsecret(Ding.APP_SECREY);
 		request.setHttpMethod("GET");
 		OapiGettokenResponse response = client.execute(request);
-		return response.getBody();
+		String body = response.getBody();
+		System.out.println(body);
+		return body;
 	}
 
 	/**
@@ -50,7 +52,9 @@ public class DingUtils {
 		OapiGetJsapiTicketRequest req = new OapiGetJsapiTicketRequest();
 		req.setHttpMethod("GET");
 		OapiGetJsapiTicketResponse rsp = client.execute(req, accessToken);
-		return rsp.getBody();
+		String body = rsp.getBody();
+		System.out.println(body);
+		return body;
 	}
 
 	/**
@@ -59,14 +63,16 @@ public class DingUtils {
 	 * @return sign
 	 * @throws Exception
 	 */
-	public static String getSignature(@RequestBody SignVO data) throws Exception {
+	public static String getSign(@RequestBody SignVO data) throws Exception {
 		String plain = "jsapi_ticket=" + data.getJsTicket() + "&noncestr=" + data.getNonceStr() + "&timestamp=" + String.valueOf(data.getTimeStamp())+ "&url=" + decodeUrl(data.getUrl());
 
 		try {
 			MessageDigest sha1 = MessageDigest.getInstance("SHA-256");
 			sha1.reset();
 			sha1.update(plain.getBytes("UTF-8"));
-			return byteToHex(sha1.digest());
+			String sign = byteToHex(sha1.digest());
+			System.out.println(sign);
+			return sign;
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

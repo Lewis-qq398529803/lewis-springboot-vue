@@ -23,7 +23,7 @@ public class DingController {
 	 * @throws ApiException
 	 */
 	@ApiOperation("获取access_token")
-	@GetMapping("/accessToken")
+	@GetMapping("/getAccessToken")
 	public String getAccessToken() throws ApiException {
 		return DingUtils.getAccessToken();
 	}
@@ -36,7 +36,7 @@ public class DingController {
 	 * @throws ApiException
 	 */
 	@ApiOperation("获取ticket")
-	@GetMapping("/ticket")
+	@GetMapping("/getTicket")
 	public String getTicket(String accessToken) throws ApiException {
 		return DingUtils.getTicket(accessToken);
 	}
@@ -49,9 +49,9 @@ public class DingController {
 	 * @throws Exception
 	 */
 	@ApiOperation("获取签名")
-	@PostMapping(value = "/sign", produces = "text/html;charset=UTF-8")
+	@PostMapping(value = "/getSign", produces = "text/html;charset=UTF-8")
 	@ResponseBody
-	public String getSignature(@RequestBody SignVO data) throws Exception {
-		return DingUtils.getSignature(data);
+	public String getSign(@RequestBody SignVO data) throws Exception {
+		return DingUtils.getSign(data);
 	}
 }
