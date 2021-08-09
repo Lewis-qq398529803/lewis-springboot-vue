@@ -5,7 +5,7 @@ package com.taozi.common.utils.dingding.entity;
  *
  * @author taozi - 2021年8月9日, 009 - 11:14:21
  */
-public class Ding {
+public class DingConfig {
 
 	public static final String APP_KEY = "APP_KEY";
 

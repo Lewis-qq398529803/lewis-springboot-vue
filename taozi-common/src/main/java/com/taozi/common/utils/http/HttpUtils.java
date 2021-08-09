@@ -1,7 +1,7 @@
 package com.taozi.common.utils.http;
 
 import com.taozi.common.constant.Constants;
-import com.taozi.common.utils.log.TaoZiLog;
+import com.taozi.common.utils.log.BaseLog;
 
 import javax.net.ssl.*;
 import java.io.*;
@@ -42,7 +42,7 @@ public class HttpUtils {
         BufferedReader in = null;
         try {
             String urlNameString = url + "?" + param;
-            TaoZiLog.info("sendGet - {}" , urlNameString);
+            BaseLog.info("sendGet - {}" , urlNameString);
             URL realUrl = new URL(urlNameString);
             URLConnection connection = realUrl.openConnection();
             connection.setRequestProperty("accept" , "*/*");
@@ -54,22 +54,22 @@ public class HttpUtils {
             while ((line = in.readLine()) != null) {
                 result.append(line);
             }
-            TaoZiLog.info("recv - {}" , result);
+            BaseLog.info("recv - {}" , result);
         } catch (ConnectException e) {
-            TaoZiLog.error("调用HttpUtils.sendGet ConnectException, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpUtils.sendGet ConnectException, url=" + url + ",param=" + param, e);
         } catch (SocketTimeoutException e) {
-            TaoZiLog.error("调用HttpUtils.sendGet SocketTimeoutException, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpUtils.sendGet SocketTimeoutException, url=" + url + ",param=" + param, e);
         } catch (IOException e) {
-            TaoZiLog.error("调用HttpUtils.sendGet IOException, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpUtils.sendGet IOException, url=" + url + ",param=" + param, e);
         } catch (Exception e) {
-            TaoZiLog.error("调用HttpsUtil.sendGet Exception, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpsUtil.sendGet Exception, url=" + url + ",param=" + param, e);
         } finally {
             try {
                 if (in != null) {
                     in.close();
                 }
             } catch (Exception ex) {
-                TaoZiLog.error("调用in.close Exception, url=" + url + ",param=" + param, ex);
+                BaseLog.error("调用in.close Exception, url=" + url + ",param=" + param, ex);
             }
         }
         return result.toString();
@@ -88,7 +88,7 @@ public class HttpUtils {
         StringBuilder result = new StringBuilder();
         try {
             String urlNameString = url;
-            TaoZiLog.info("sendPost - {}" , urlNameString);
+            BaseLog.info("sendPost - {}" , urlNameString);
             URL realUrl = new URL(urlNameString);
             URLConnection conn = realUrl.openConnection();
             conn.setRequestProperty("accept" , "*/*");
@@ -106,15 +106,15 @@ public class HttpUtils {
             while ((line = in.readLine()) != null) {
                 result.append(line);
             }
-            TaoZiLog.info("recv - {}" , result);
+            BaseLog.info("recv - {}" , result);
         } catch (ConnectException e) {
-            TaoZiLog.error("调用HttpUtils.sendPost ConnectException, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpUtils.sendPost ConnectException, url=" + url + ",param=" + param, e);
         } catch (SocketTimeoutException e) {
-            TaoZiLog.error("调用HttpUtils.sendPost SocketTimeoutException, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpUtils.sendPost SocketTimeoutException, url=" + url + ",param=" + param, e);
         } catch (IOException e) {
-            TaoZiLog.error("调用HttpUtils.sendPost IOException, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpUtils.sendPost IOException, url=" + url + ",param=" + param, e);
         } catch (Exception e) {
-            TaoZiLog.error("调用HttpsUtil.sendPost Exception, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpsUtil.sendPost Exception, url=" + url + ",param=" + param, e);
         } finally {
             try {
                 if (out != null) {
@@ -124,7 +124,7 @@ public class HttpUtils {
                     in.close();
                 }
             } catch (IOException ex) {
-                TaoZiLog.error("调用in.close Exception, url=" + url + ",param=" + param, ex);
+                BaseLog.error("调用in.close Exception, url=" + url + ",param=" + param, ex);
             }
         }
         return result.toString();
@@ -134,7 +134,7 @@ public class HttpUtils {
         StringBuilder result = new StringBuilder();
         String urlNameString = url + "?" + param;
         try {
-            TaoZiLog.info("sendSSLPost - {}" , urlNameString);
+            BaseLog.info("sendSSLPost - {}" , urlNameString);
             SSLContext sc = SSLContext.getInstance("SSL");
             sc.init(null, new TrustManager[]{new TrustAnyTrustManager()}, new java.security.SecureRandom());
             URL console = new URL(urlNameString);
@@ -158,17 +158,17 @@ public class HttpUtils {
                     result.append(new String(ret.getBytes("ISO-8859-1"), "utf-8"));
                 }
             }
-            TaoZiLog.info("recv - {}" , result);
+            BaseLog.info("recv - {}" , result);
             conn.disconnect();
             br.close();
         } catch (ConnectException e) {
-            TaoZiLog.error("调用HttpUtils.sendSSLPost ConnectException, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpUtils.sendSSLPost ConnectException, url=" + url + ",param=" + param, e);
         } catch (SocketTimeoutException e) {
-            TaoZiLog.error("调用HttpUtils.sendSSLPost SocketTimeoutException, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpUtils.sendSSLPost SocketTimeoutException, url=" + url + ",param=" + param, e);
         } catch (IOException e) {
-            TaoZiLog.error("调用HttpUtils.sendSSLPost IOException, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpUtils.sendSSLPost IOException, url=" + url + ",param=" + param, e);
         } catch (Exception e) {
-            TaoZiLog.error("调用HttpsUtil.sendSSLPost Exception, url=" + url + ",param=" + param, e);
+            BaseLog.error("调用HttpsUtil.sendSSLPost Exception, url=" + url + ",param=" + param, e);
         }
         return result.toString();
     }

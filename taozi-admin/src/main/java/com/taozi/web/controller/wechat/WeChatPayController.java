@@ -1,6 +1,6 @@
 package com.taozi.web.controller.wechat;
 
-import com.taozi.common.utils.wechat.wxpay.AuthUtil;
+import com.taozi.common.utils.wechat.wxpay.WxJsApiConfig;
 import com.taozi.common.utils.wechat.wxpay.HttpRequest;
 import com.taozi.common.utils.wechat.wxpay.sdk.WXPayUtil;
 import org.springframework.stereotype.Controller;
@@ -52,9 +52,9 @@ public class WeChatPayController {
                 ip = ips[0].trim();
             }
 
-            paraMap.put("appid" , AuthUtil.APPID); // 商家平台ID
+            paraMap.put("appid" , WxJsApiConfig.APPID); // 商家平台ID
             paraMap.put("body" , "纯情小店铺-薯条"); // 商家名称-销售商品类目、String(128)
-            paraMap.put("mch_id" , AuthUtil.MCHID); // 商户ID
+            paraMap.put("mch_id" , WxJsApiConfig.MCHID); // 商户ID
             paraMap.put("nonce_str" , WXPayUtil.generateNonceStr()); // UUID
             paraMap.put("openid" , openId);
             paraMap.put("out_trade_no" , UUID.randomUUID().toString().replaceAll("-" , ""));// 订单号,每次都不同
@@ -62,7 +62,7 @@ public class WeChatPayController {
             paraMap.put("total_fee" , "1"); // 支付金额，单位分
             paraMap.put("trade_type" , "JSAPI"); // 支付类型
             paraMap.put("notify_url" , "用户支付完成后，你想微信调你的哪个接口");// 此路径是微信服务器调用支付结果通知路径随意写
-            String sign = WXPayUtil.generateSignature(paraMap, AuthUtil.PATERNERKEY);
+            String sign = WXPayUtil.generateSignature(paraMap, WxJsApiConfig.PATERNERKEY);
             paraMap.put("sign" , sign);
             String xml = WXPayUtil.mapToXml(paraMap);// 将所有参数(map)转xml格式
 
@@ -86,12 +86,12 @@ public class WeChatPayController {
             }
 
             Map<String, String> payMap = new HashMap<String, String>();
-            payMap.put("appId" , AuthUtil.APPID);
+            payMap.put("appId" , WxJsApiConfig.APPID);
             payMap.put("timeStamp" , WXPayUtil.getCurrentTimestamp() + "");
             payMap.put("nonceStr" , WXPayUtil.generateNonceStr());
             payMap.put("signType" , "MD5");
             payMap.put("package" , "prepay_id=" + prepay_id);
-            String paySign = WXPayUtil.generateSignature(payMap, AuthUtil.PATERNERKEY);
+            String paySign = WXPayUtil.generateSignature(payMap, WxJsApiConfig.PATERNERKEY);
             payMap.put("paySign" , paySign);
             //将这个6个参数传给前端
             return payMap;

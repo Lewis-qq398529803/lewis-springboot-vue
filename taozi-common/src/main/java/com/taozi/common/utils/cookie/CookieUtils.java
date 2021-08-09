@@ -1,6 +1,6 @@
 package com.taozi.common.utils.cookie;
 
-import com.taozi.common.utils.log.TaoZiLog;
+import com.taozi.common.utils.log.BaseLog;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -205,7 +205,7 @@ public final class CookieUtils {
             // 设置域名的cookie
             if (null != request) {
                 String domainName = getDomainName(request);
-                TaoZiLog.info("========== domainName: {} ==========" + domainName);
+                BaseLog.info("========== domainName: {} ==========" + domainName);
                 String localhost = "localhost";
                 if (!localhost.equals(domainName)) {
                     cookie.setDomain(domainName);
@@ -243,7 +243,7 @@ public final class CookieUtils {
             // 设置域名的cookie
             if (null != request) {
                 String domainName = getDomainName(request);
-                TaoZiLog.info("========== domainName: {} ==========" + domainName);
+                BaseLog.info("========== domainName: {} ==========" + domainName);
                 String localhost = "localhost";
                 if (!localhost.equals(domainName)) {
                     cookie.setDomain(domainName);

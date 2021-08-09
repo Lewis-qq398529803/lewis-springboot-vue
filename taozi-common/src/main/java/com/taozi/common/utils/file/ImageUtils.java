@@ -4,7 +4,7 @@ import com.taozi.common.config.TaoZiConfig;
 import com.taozi.common.constant.Constants;
 import com.taozi.common.utils.DateUtils;
 import com.taozi.common.utils.StringUtils;
-import com.taozi.common.utils.log.TaoZiLog;
+import com.taozi.common.utils.log.BaseLog;
 import com.taozi.common.utils.uuid.UUID;
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.poi.util.IOUtils;
@@ -32,7 +32,7 @@ public class ImageUtils {
         try {
             return IOUtils.toByteArray(is);
         } catch (Exception e) {
-            TaoZiLog.error("图片加载异常 {}" + e);
+            BaseLog.error("图片加载异常 {}" + e);
             return null;
         } finally {
             IOUtils.closeQuietly(is);
@@ -48,7 +48,7 @@ public class ImageUtils {
             result = Arrays.copyOf(result, result.length);
             return new ByteArrayInputStream(result);
         } catch (Exception e) {
-            TaoZiLog.error("获取图片异常 {}" + e);
+            BaseLog.error("获取图片异常 {}" + e);
         }
         return null;
     }
@@ -80,7 +80,7 @@ public class ImageUtils {
             }
             return IOUtils.toByteArray(in);
         } catch (Exception e) {
-            TaoZiLog.error("获取文件路径异常 {}" + e);
+            BaseLog.error("获取文件路径异常 {}" + e);
             return null;
         } finally {
             IOUtils.closeQuietly(baos);
@@ -112,9 +112,9 @@ public class ImageUtils {
                         .toOutputStream(outputStream);
                 imageBytes = outputStream.toByteArray();
             }
-            TaoZiLog.info("【图片压缩】 | 图片原大小 == " + srcSize / 1024 + "kb | 压缩后大小 == " + imageBytes.length / 1024 + "kb");
+            BaseLog.info("【图片压缩】 | 图片原大小 == " + srcSize / 1024 + "kb | 压缩后大小 == " + imageBytes.length / 1024 + "kb");
         } catch (Exception e) {
-            TaoZiLog.error("【图片压缩】msg == 图片压缩失败!" + e);
+            BaseLog.error("【图片压缩】msg == 图片压缩失败!" + e);
         }
         return imageBytes;
     }
@@ -261,7 +261,7 @@ public class ImageUtils {
     public static long getFileSize(String filePath) {
         File file = new File(filePath);
         if (!file.exists() || !file.isFile()) {
-            TaoZiLog.error(filePath + ": 文件不存在");
+            BaseLog.error(filePath + ": 文件不存在");
             return -1;
         }
         return file.length();
@@ -347,7 +347,7 @@ public class ImageUtils {
         }
         //生成保存文件
         File uploadFile = new File(localPath + "/" + DateUtils.getDate() + "/" + dFileName);
-        TaoZiLog.info("完整上传路径为： " + uploadFile);
+        BaseLog.info("完整上传路径为： " + uploadFile);
         //将上传文件保存到路径
         try {
             file.transferTo(uploadFile);

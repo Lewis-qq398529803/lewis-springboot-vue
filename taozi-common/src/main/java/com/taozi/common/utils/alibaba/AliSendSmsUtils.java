@@ -10,7 +10,7 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.taozi.common.config.AliSendSmsConfig;
 import com.taozi.common.utils.StringUtils;
-import com.taozi.common.utils.log.TaoZiLog;
+import com.taozi.common.utils.log.BaseLog;
 
 /**
  * 阿里云短信验证码工具类
@@ -83,7 +83,7 @@ public class AliSendSmsUtils {
             String data = response.getData();
             JSONObject jsonObject = JSONObject.parseObject(data);
             String code = jsonObject.getString("Code");
-            TaoZiLog.info(data);
+            BaseLog.info(data);
             return StringUtils.equals(code, "OK");
         } catch (ClientException e) {
             e.printStackTrace();

@@ -1,6 +1,6 @@
 package com.taozi.test.taozilog;
 
-import com.taozi.common.utils.log.TaoZiLog;
+import com.taozi.common.utils.log.BaseLog;
 import org.junit.Test;
 
 /**
@@ -14,24 +14,24 @@ public class TaoZiLogTest {
 
     @Test
     public void a() {
-        TaoZiLog.debug("debug");
+        BaseLog.debug("debug");
     }
 
     @Test
     public void b() {
-        TaoZiLog.info("info");
+        BaseLog.info("info");
     }
 
     @Test
     public void c() {
-        TaoZiLog.warn("warn");
-        TaoZiLog.warn("warn");
-        TaoZiLog.warn("warn");
+        BaseLog.warn("warn");
+        BaseLog.warn("warn");
+        BaseLog.warn("warn");
     }
 
     @Test
     public void d() {
-        TaoZiLog.error("error");
+        BaseLog.error("error");
     }
 
 }

@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author taozi - 2021年7月16日, 016 - 16:07:26
  */
-public class TaoZiLog {
+public class BaseLog {
 
     private static Logger logger = null;
 
@@ -17,7 +17,7 @@ public class TaoZiLog {
     static {
         StackTraceElement[] stackTraceElements = new Throwable().getStackTrace();
         for (StackTraceElement stackTraceElement : stackTraceElements) {
-            if (!TaoZiLog.class.getName().equals(stackTraceElement.getClassName())) {
+            if (!BaseLog.class.getName().equals(stackTraceElement.getClassName())) {
                 logger = LoggerFactory.getLogger(stackTraceElement.getClassName());
                 row = stackTraceElement.getLineNumber();
             }

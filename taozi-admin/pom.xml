@@ -101,6 +101,11 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.taobao.api</groupId>
+            <artifactId>taobao-sdk</artifactId>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 

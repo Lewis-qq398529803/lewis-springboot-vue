@@ -7,7 +7,7 @@ import com.dingtalk.api.request.OapiGettokenRequest;
 import com.dingtalk.api.response.OapiGetJsapiTicketResponse;
 import com.dingtalk.api.response.OapiGettokenResponse;
 import com.taobao.api.ApiException;
-import com.taozi.common.utils.dingding.entity.Ding;
+import com.taozi.common.utils.dingding.entity.DingConfig;
 import com.taozi.common.utils.dingding.entity.SignVO;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -32,8 +32,8 @@ public class DingUtils {
 	public static String getAccessToken() throws ApiException {
 		DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/gettoken");
 		OapiGettokenRequest request = new OapiGettokenRequest();
-		request.setAppkey(Ding.APP_KEY);
-		request.setAppsecret(Ding.APP_SECREY);
+		request.setAppkey(DingConfig.APP_KEY);
+		request.setAppsecret(DingConfig.APP_SECREY);
 		request.setHttpMethod("GET");
 		OapiGettokenResponse response = client.execute(request);
 		String body = response.getBody();
