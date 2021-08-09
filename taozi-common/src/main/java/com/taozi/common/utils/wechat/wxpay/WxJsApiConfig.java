@@ -9,17 +9,17 @@ public class WxJsApiConfig {
     /**
      * 平台ID
      */
-    public static final String APPID = "wx651a9a8f752e6b0b";
+    public static final String APPID = "APPID";
     /**
      * 平台密钥
      */
-    public static final String APPSECRET = "9f993b62405d68d032331aaa88d8792f";
+    public static final String APPSECRET = "APPSECRET";
     /**
      * 商家ID || 微信支付商户号
      */
-    public static final String MCHID = "1612599852";
+    public static final String MCHID = "MCHID";
     /**
      * 商家密钥
      */
-    public static final String PATERNERKEY = "abcdefgabcdefgabcdefgabcdefg1234";
+    public static final String PATERNERKEY = "PATERNERKEY";
 }
