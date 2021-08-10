@@ -1,9 +1,9 @@
-package com.taozi.common.utils.xunfei;
+package com.taozi.common.utils.xunfei.audio;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.taozi.common.utils.xunfei.util.EncryptUtil;
+import com.taozi.common.utils.xunfei.audio.util.EncryptUtil;
 import org.java_websocket.WebSocket.READYSTATE;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;

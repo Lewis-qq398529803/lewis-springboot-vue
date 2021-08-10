@@ -1,4 +1,4 @@
-package com.taozi.common.utils.xunfei.util;
+package com.taozi.common.utils.xunfei.audio.util;
 
 import org.apache.commons.codec.binary.Base64;
 
