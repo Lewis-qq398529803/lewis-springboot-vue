@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * 对接钉钉接口
+ * 钉钉鉴权接口
  *
  * @author TAOZI
  */
