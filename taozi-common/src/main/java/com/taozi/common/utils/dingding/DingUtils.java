@@ -1,5 +1,6 @@
 package com.taozi.common.utils.dingding;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.OapiGetJsapiTicketRequest;
@@ -7,7 +8,9 @@ import com.dingtalk.api.request.OapiGettokenRequest;
 import com.dingtalk.api.response.OapiGetJsapiTicketResponse;
 import com.dingtalk.api.response.OapiGettokenResponse;
 import com.taobao.api.ApiException;
+import com.taozi.common.utils.DateUtils;
 import com.taozi.common.utils.dingding.entity.DingConfig;
+import com.taozi.common.utils.dingding.entity.SignResultVO;
 import com.taozi.common.utils.dingding.entity.SignVO;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -38,7 +41,10 @@ public class DingUtils {
 		OapiGettokenResponse response = client.execute(request);
 		String body = response.getBody();
 		System.out.println(body);
-		return body;
+		JSONObject jsonObject = JSONObject.parseObject(new String(body));
+		String accessToken = jsonObject.getString("access_token");
+		System.out.println("access_token： " + accessToken);
+		return accessToken;
 	}
 
 	/**
@@ -63,7 +69,7 @@ public class DingUtils {
 	 * @return sign
 	 * @throws Exception
 	 */
-	public static String getSign(@RequestBody SignVO data) throws Exception {
+	public static SignResultVO getSign(@RequestBody SignVO data) throws Exception {
 		String plain = "jsapi_ticket=" + data.getJsTicket() + "&noncestr=" + data.getNonceStr() + "&timestamp=" + String.valueOf(data.getTimeStamp())+ "&url=" + decodeUrl(data.getUrl());
 
 		try {
@@ -72,7 +78,14 @@ public class DingUtils {
 			sha1.update(plain.getBytes("UTF-8"));
 			String sign = byteToHex(sha1.digest());
 			System.out.println(sign);
-			return sign;
+			// 拷贝vo
+			SignResultVO signResultVO = new SignResultVO();
+			signResultVO.setAgentId(DingConfig.AGENT_ID);
+			signResultVO.setCorpId(DingConfig.CORP_ID);
+			signResultVO.setNonceStr(data.getNonceStr());
+			signResultVO.setTimeStamp(data.getTimeStamp());
+			signResultVO.setSignature(sign);
+			return signResultVO;
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

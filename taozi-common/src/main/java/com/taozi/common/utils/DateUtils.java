@@ -13,6 +13,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
  * @author taozi
  */
 public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
+
     public static String YYYY = "yyyy";
 
     public static String YYYY_MM = "yyyy-MM";
@@ -27,6 +28,14 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
             "yyyy-MM-dd" , "yyyy-MM-dd HH:mm:ss" , "yyyy-MM-dd HH:mm" , "yyyy-MM" ,
             "yyyy/MM/dd" , "yyyy/MM/dd HH:mm:ss" , "yyyy/MM/dd HH:mm" , "yyyy/MM" ,
             "yyyy.MM.dd" , "yyyy.MM.dd HH:mm:ss" , "yyyy.MM.dd HH:mm" , "yyyy.MM"};
+
+    /**
+     * 获取当前时间戳
+     * @return 时间戳
+     */
+    public static long current() {
+        return System.currentTimeMillis();
+    }
 
     /**
      * 获取当前Date型日期
