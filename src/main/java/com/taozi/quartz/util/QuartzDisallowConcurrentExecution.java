@@ -1,6 +1,6 @@
 package com.taozi.quartz.util;
 
-import com.taozi.quartz.domain.SysJob;
+import com.taozi.quartz.entity.SysJob;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
 

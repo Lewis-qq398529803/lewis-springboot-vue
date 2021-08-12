@@ -8,7 +8,7 @@ import com.taozi.common.core.page.TableDataInfo;
 import com.taozi.common.enums.BusinessType;
 import com.taozi.common.utils.SecurityUtils;
 import com.taozi.common.utils.poi.ExcelUtil;
-import com.taozi.app.system.domain.SysPost;
+import com.taozi.app.system.entity.SysPost;
 import com.taozi.app.system.service.ISysPostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

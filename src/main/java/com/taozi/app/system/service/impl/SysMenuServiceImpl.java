@@ -1,7 +1,7 @@
 package com.taozi.app.system.service.impl;
 
-import com.taozi.app.system.domain.vo.MetaVo;
-import com.taozi.app.system.domain.vo.RouterVo;
+import com.taozi.app.system.entity.vo.MetaVo;
+import com.taozi.app.system.entity.vo.RouterVo;
 import com.taozi.common.constant.Constants;
 import com.taozi.common.constant.UserConstants;
 import com.taozi.common.core.domain.TreeSelect;

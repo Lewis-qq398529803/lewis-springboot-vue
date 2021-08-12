@@ -1,6 +1,6 @@
 package com.taozi.app.system.mapper;
 
-import com.taozi.app.system.domain.SysOperLog;
+import com.taozi.app.system.entity.SysOperLog;
 
 import java.util.List;
 

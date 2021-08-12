@@ -1,4 +1,4 @@
-package com.taozi.app.system.domain;
+package com.taozi.app.system.entity;
 
 import com.taozi.common.annotation.Excel;
 import com.taozi.common.annotation.Excel.ColumnType;

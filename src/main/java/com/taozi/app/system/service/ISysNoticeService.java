@@ -1,6 +1,6 @@
 package com.taozi.app.system.service;
 
-import com.taozi.app.system.domain.SysNotice;
+import com.taozi.app.system.entity.SysNotice;
 
 import java.util.List;
 

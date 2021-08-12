@@ -1,6 +1,6 @@
 package com.taozi.app.system.service;
 
-import com.taozi.app.system.domain.vo.RouterVo;
+import com.taozi.app.system.entity.vo.RouterVo;
 import com.taozi.common.core.domain.TreeSelect;
 import com.taozi.common.core.domain.entity.SysMenu;
 

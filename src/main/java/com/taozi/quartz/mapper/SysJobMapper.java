@@ -1,6 +1,6 @@
 package com.taozi.quartz.mapper;
 
-import com.taozi.quartz.domain.SysJob;
+import com.taozi.quartz.entity.SysJob;
 
 import java.util.List;
 

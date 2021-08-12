@@ -1,4 +1,4 @@
-package com.taozi.app.system.domain;
+package com.taozi.app.system.entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

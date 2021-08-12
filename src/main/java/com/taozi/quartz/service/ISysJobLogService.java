@@ -1,6 +1,6 @@
 package com.taozi.quartz.service;
 
-import com.taozi.quartz.domain.SysJobLog;
+import com.taozi.quartz.entity.SysJobLog;
 
 import java.util.List;
 

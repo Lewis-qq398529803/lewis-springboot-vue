@@ -2,7 +2,7 @@ package com.taozi.quartz.util;
 
 import com.taozi.common.utils.StringUtils;
 import com.taozi.common.utils.spring.SpringUtils;
-import com.taozi.quartz.domain.SysJob;
+import com.taozi.quartz.entity.SysJob;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

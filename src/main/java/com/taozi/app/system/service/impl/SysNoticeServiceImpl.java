@@ -1,6 +1,6 @@
 package com.taozi.app.system.service.impl;
 
-import com.taozi.app.system.domain.SysNotice;
+import com.taozi.app.system.entity.SysNotice;
 import com.taozi.app.system.mapper.SysNoticeMapper;
 import com.taozi.app.system.service.ISysNoticeService;
 import org.springframework.beans.factory.annotation.Autowired;

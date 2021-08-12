@@ -1,6 +1,6 @@
 package com.taozi.app.system.service;
 
-import com.taozi.app.system.domain.SysLogininfor;
+import com.taozi.app.system.entity.SysLogininfor;
 
 import java.util.List;
 

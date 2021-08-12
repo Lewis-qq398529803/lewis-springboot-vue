@@ -10,7 +10,7 @@ import com.taozi.common.exception.job.TaskException;
 import com.taozi.common.utils.SecurityUtils;
 import com.taozi.common.utils.StringUtils;
 import com.taozi.common.utils.poi.ExcelUtil;
-import com.taozi.quartz.domain.SysJob;
+import com.taozi.quartz.entity.SysJob;
 import com.taozi.quartz.service.ISysJobService;
 import com.taozi.quartz.util.CronUtils;
 import org.quartz.SchedulerException;

@@ -1,8 +1,8 @@
 package com.taozi.app.system.service.impl;
 
-import com.taozi.app.system.domain.SysRoleDept;
-import com.taozi.app.system.domain.SysRoleMenu;
-import com.taozi.app.system.domain.SysUserRole;
+import com.taozi.app.system.entity.SysRoleDept;
+import com.taozi.app.system.entity.SysRoleMenu;
+import com.taozi.app.system.entity.SysUserRole;
 import com.taozi.common.annotation.DataScope;
 import com.taozi.common.constant.UserConstants;
 import com.taozi.common.core.domain.entity.SysRole;

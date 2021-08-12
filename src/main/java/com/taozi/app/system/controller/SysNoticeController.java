@@ -6,7 +6,7 @@ import com.taozi.common.core.domain.AjaxResult;
 import com.taozi.common.core.page.TableDataInfo;
 import com.taozi.common.enums.BusinessType;
 import com.taozi.common.utils.SecurityUtils;
-import com.taozi.app.system.domain.SysNotice;
+import com.taozi.app.system.entity.SysNotice;
 import com.taozi.app.system.service.ISysNoticeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

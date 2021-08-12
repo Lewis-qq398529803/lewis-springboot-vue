@@ -1,6 +1,6 @@
 package com.taozi.app.system.service.impl;
 
-import com.taozi.app.system.domain.SysOperLog;
+import com.taozi.app.system.entity.SysOperLog;
 import com.taozi.app.system.mapper.SysOperLogMapper;
 import com.taozi.app.system.service.ISysOperLogService;
 import org.springframework.beans.factory.annotation.Autowired;

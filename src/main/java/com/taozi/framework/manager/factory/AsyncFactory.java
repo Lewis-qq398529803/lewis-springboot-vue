@@ -1,7 +1,7 @@
 package com.taozi.framework.manager.factory;
 
-import com.taozi.app.system.domain.SysLogininfor;
-import com.taozi.app.system.domain.SysOperLog;
+import com.taozi.app.system.entity.SysLogininfor;
+import com.taozi.app.system.entity.SysOperLog;
 import com.taozi.app.system.service.ISysLogininforService;
 import com.taozi.app.system.service.ISysOperLogService;
 import com.taozi.common.constant.Constants;

@@ -1,6 +1,6 @@
 package com.taozi.app.system.service.impl;
 
-import com.taozi.app.system.domain.SysLogininfor;
+import com.taozi.app.system.entity.SysLogininfor;
 import com.taozi.app.system.mapper.SysLogininforMapper;
 import com.taozi.app.system.service.ISysLogininforService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,7 +3,7 @@ package com.taozi.app.system.service.impl;
 import com.taozi.common.constant.UserConstants;
 import com.taozi.common.exception.CustomException;
 import com.taozi.common.utils.StringUtils;
-import com.taozi.app.system.domain.SysPost;
+import com.taozi.app.system.entity.SysPost;
 import com.taozi.app.system.mapper.SysPostMapper;
 import com.taozi.app.system.mapper.SysUserPostMapper;
 import com.taozi.app.system.service.ISysPostService;

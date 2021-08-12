@@ -9,7 +9,7 @@ import com.taozi.common.core.page.TableDataInfo;
 import com.taozi.common.core.redis.RedisCache;
 import com.taozi.common.enums.BusinessType;
 import com.taozi.common.utils.StringUtils;
-import com.taozi.app.system.domain.SysUserOnline;
+import com.taozi.app.system.entity.SysUserOnline;
 import com.taozi.app.system.service.ISysUserOnlineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

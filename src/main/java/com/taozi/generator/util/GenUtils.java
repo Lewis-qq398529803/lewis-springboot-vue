@@ -3,8 +3,8 @@ package com.taozi.generator.util;
 import com.taozi.common.constant.GenConstants;
 import com.taozi.common.utils.StringUtils;
 import com.taozi.generator.config.GenConfig;
-import com.taozi.generator.domain.GenTable;
-import com.taozi.generator.domain.GenTableColumn;
+import com.taozi.generator.entity.GenTable;
+import com.taozi.generator.entity.GenTableColumn;
 import org.apache.commons.lang3.RegExUtils;
 
 import java.util.Arrays;

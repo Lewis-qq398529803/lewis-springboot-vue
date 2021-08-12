@@ -1,4 +1,4 @@
-package com.taozi.app.system.domain;
+package com.taozi.app.system.entity;
 
 /**
  * 当前在线会话

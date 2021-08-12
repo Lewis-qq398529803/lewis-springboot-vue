@@ -1,6 +1,6 @@
 package com.taozi.app.system.service;
 
-import com.taozi.app.system.domain.SysConfig;
+import com.taozi.app.system.entity.SysConfig;
 
 import java.util.List;
 

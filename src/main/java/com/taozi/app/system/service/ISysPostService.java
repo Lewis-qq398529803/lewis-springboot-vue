@@ -1,6 +1,6 @@
 package com.taozi.app.system.service;
 
-import com.taozi.app.system.domain.SysPost;
+import com.taozi.app.system.entity.SysPost;
 
 import java.util.List;
 

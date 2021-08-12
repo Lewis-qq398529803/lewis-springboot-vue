@@ -2,7 +2,7 @@ package com.taozi.quartz.service.impl;
 
 import com.taozi.common.constant.ScheduleConstants;
 import com.taozi.common.exception.job.TaskException;
-import com.taozi.quartz.domain.SysJob;
+import com.taozi.quartz.entity.SysJob;
 import com.taozi.quartz.mapper.SysJobMapper;
 import com.taozi.quartz.service.ISysJobService;
 import com.taozi.quartz.util.CronUtils;

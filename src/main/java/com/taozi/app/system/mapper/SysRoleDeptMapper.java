@@ -1,6 +1,6 @@
 package com.taozi.app.system.mapper;
 
-import com.taozi.app.system.domain.SysRoleDept;
+import com.taozi.app.system.entity.SysRoleDept;
 
 import java.util.List;
 

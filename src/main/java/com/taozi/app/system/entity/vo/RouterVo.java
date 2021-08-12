@@ -1,4 +1,4 @@
-package com.taozi.app.system.domain.vo;
+package com.taozi.app.system.entity.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

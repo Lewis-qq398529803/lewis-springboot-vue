@@ -1,6 +1,6 @@
 package com.taozi.app.system.service.impl;
 
-import com.taozi.app.system.domain.SysConfig;
+import com.taozi.app.system.entity.SysConfig;
 import com.taozi.common.annotation.DataSource;
 import com.taozi.common.constant.Constants;
 import com.taozi.common.constant.UserConstants;

@@ -1,6 +1,6 @@
 package com.taozi.generator.service;
 
-import com.taozi.generator.domain.GenTableColumn;
+import com.taozi.generator.entity.GenTableColumn;
 
 import java.util.List;
 

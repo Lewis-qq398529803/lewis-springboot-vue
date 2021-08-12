@@ -1,4 +1,4 @@
-package com.taozi.quartz.domain;
+package com.taozi.quartz.entity;
 
 import com.taozi.common.annotation.Excel;
 import com.taozi.common.core.domain.BaseEntity;

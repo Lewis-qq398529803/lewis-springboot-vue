@@ -1,7 +1,7 @@
 package com.taozi.quartz.service;
 
 import com.taozi.common.exception.job.TaskException;
-import com.taozi.quartz.domain.SysJob;
+import com.taozi.quartz.entity.SysJob;
 import org.quartz.SchedulerException;
 
 import java.util.List;

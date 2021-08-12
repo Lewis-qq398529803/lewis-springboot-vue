@@ -1,6 +1,6 @@
 package com.taozi.app.system.mapper;
 
-import com.taozi.app.system.domain.SysUserPost;
+import com.taozi.app.system.entity.SysUserPost;
 
 import java.util.List;
 

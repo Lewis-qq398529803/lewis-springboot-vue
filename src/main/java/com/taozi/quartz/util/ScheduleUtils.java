@@ -3,7 +3,7 @@ package com.taozi.quartz.util;
 import com.taozi.common.constant.ScheduleConstants;
 import com.taozi.common.exception.job.TaskException;
 import com.taozi.common.exception.job.TaskException.Code;
-import com.taozi.quartz.domain.SysJob;
+import com.taozi.quartz.entity.SysJob;
 import org.quartz.*;
 
 /**

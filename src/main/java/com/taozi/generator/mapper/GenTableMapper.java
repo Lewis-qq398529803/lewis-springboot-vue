@@ -1,6 +1,6 @@
 package com.taozi.generator.mapper;
 
-import com.taozi.generator.domain.GenTable;
+import com.taozi.generator.entity.GenTable;
 
 import java.util.List;
 

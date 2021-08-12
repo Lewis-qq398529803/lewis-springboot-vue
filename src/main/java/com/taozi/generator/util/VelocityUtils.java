@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.taozi.common.constant.GenConstants;
 import com.taozi.common.utils.DateUtils;
 import com.taozi.common.utils.StringUtils;
-import com.taozi.generator.domain.GenTable;
-import com.taozi.generator.domain.GenTableColumn;
+import com.taozi.generator.entity.GenTable;
+import com.taozi.generator.entity.GenTableColumn;
 import org.apache.velocity.VelocityContext;
 
 import java.util.ArrayList;

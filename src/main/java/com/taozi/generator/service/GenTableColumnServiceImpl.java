@@ -1,7 +1,7 @@
 package com.taozi.generator.service;
 
 import com.taozi.common.core.text.Convert;
-import com.taozi.generator.domain.GenTableColumn;
+import com.taozi.generator.entity.GenTableColumn;
 import com.taozi.generator.mapper.GenTableColumnMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

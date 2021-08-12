@@ -1,6 +1,6 @@
 package com.taozi.app.system.mapper;
 
-import com.taozi.app.system.domain.SysUserRole;
+import com.taozi.app.system.entity.SysUserRole;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

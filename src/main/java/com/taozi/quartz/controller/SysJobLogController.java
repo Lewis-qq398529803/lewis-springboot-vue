@@ -6,7 +6,7 @@ import com.taozi.common.core.domain.AjaxResult;
 import com.taozi.common.core.page.TableDataInfo;
 import com.taozi.common.enums.BusinessType;
 import com.taozi.common.utils.poi.ExcelUtil;
-import com.taozi.quartz.domain.SysJobLog;
+import com.taozi.quartz.entity.SysJobLog;
 import com.taozi.quartz.service.ISysJobLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

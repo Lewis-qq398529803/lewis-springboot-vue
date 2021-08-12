@@ -1,6 +1,6 @@
 package com.taozi.app.system.service;
 
-import com.taozi.app.system.domain.SysUserRole;
+import com.taozi.app.system.entity.SysUserRole;
 import com.taozi.common.core.domain.entity.SysRole;
 
 import java.util.List;

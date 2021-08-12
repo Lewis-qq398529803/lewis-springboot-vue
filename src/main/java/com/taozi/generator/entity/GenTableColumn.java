@@ -1,4 +1,4 @@
-package com.taozi.generator.domain;
+package com.taozi.generator.entity;
 
 import com.taozi.common.core.domain.BaseEntity;
 import com.taozi.common.utils.StringUtils;

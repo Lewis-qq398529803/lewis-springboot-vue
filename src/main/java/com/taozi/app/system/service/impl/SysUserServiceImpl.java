@@ -1,8 +1,8 @@
 package com.taozi.app.system.service.impl;
 
-import com.taozi.app.system.domain.SysPost;
-import com.taozi.app.system.domain.SysUserPost;
-import com.taozi.app.system.domain.SysUserRole;
+import com.taozi.app.system.entity.SysPost;
+import com.taozi.app.system.entity.SysUserPost;
+import com.taozi.app.system.entity.SysUserRole;
 import com.taozi.app.system.mapper.*;
 import com.taozi.common.annotation.DataScope;
 import com.taozi.common.constant.UserConstants;

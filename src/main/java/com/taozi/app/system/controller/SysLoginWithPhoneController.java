@@ -10,7 +10,7 @@ import com.taozi.common.utils.DateUtils;
 import com.taozi.common.utils.StringUtils;
 import com.taozi.common.utils.alibaba.AliSendSmsUtils;
 import com.taozi.framework.web.service.TokenService;
-import com.taozi.app.system.domain.TokenAndSysUserInfo;
+import com.taozi.app.system.entity.TokenAndSysUserInfo;
 import com.taozi.app.system.service.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

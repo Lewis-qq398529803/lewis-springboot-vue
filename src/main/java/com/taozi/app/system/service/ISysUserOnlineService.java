@@ -1,6 +1,6 @@
 package com.taozi.app.system.service;
 
-import com.taozi.app.system.domain.SysUserOnline;
+import com.taozi.app.system.entity.SysUserOnline;
 import com.taozi.common.core.domain.model.LoginUser;
 
 /**

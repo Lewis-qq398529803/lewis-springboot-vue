@@ -15,7 +15,7 @@ import com.taozi.common.utils.StringUtils;
 import com.taozi.common.utils.poi.ExcelUtil;
 import com.taozi.framework.web.service.SysPermissionService;
 import com.taozi.framework.web.service.TokenService;
-import com.taozi.app.system.domain.SysUserRole;
+import com.taozi.app.system.entity.SysUserRole;
 import com.taozi.app.system.service.ISysRoleService;
 import com.taozi.app.system.service.ISysUserService;
 import io.swagger.annotations.Api;

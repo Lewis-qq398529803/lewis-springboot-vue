@@ -1,4 +1,4 @@
-package com.taozi.quartz.domain;
+package com.taozi.quartz.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.taozi.common.annotation.Excel;

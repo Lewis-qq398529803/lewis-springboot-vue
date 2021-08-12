@@ -1,6 +1,6 @@
 package com.taozi.quartz.service.impl;
 
-import com.taozi.quartz.domain.SysJobLog;
+import com.taozi.quartz.entity.SysJobLog;
 import com.taozi.quartz.mapper.SysJobLogMapper;
 import com.taozi.quartz.service.ISysJobLogService;
 import org.springframework.beans.factory.annotation.Autowired;

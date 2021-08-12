@@ -1,7 +1,7 @@
 package com.taozi.framework.aspectj;
 
 import com.alibaba.fastjson.JSON;
-import com.taozi.app.system.domain.SysOperLog;
+import com.taozi.app.system.entity.SysOperLog;
 import com.taozi.common.annotation.Log;
 import com.taozi.common.core.domain.model.LoginUser;
 import com.taozi.common.enums.BusinessStatus;
