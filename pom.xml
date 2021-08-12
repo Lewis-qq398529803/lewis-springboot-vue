@@ -14,11 +14,6 @@
 
     <modules>
         <module>taozi-admin</module>
-        <module>taozi-framework</module>
-        <module>taozi-system</module>
-        <module>taozi-quartz</module>
-        <module>taozi-generator</module>
-        <module>taozi-common</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -329,34 +324,6 @@
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-core</artifactId>
                 <version>${aliyun-java-sdk-core.version}</version>
-            </dependency>
-
-            <!-- 定时任务-->
-            <dependency>
-                <groupId>com.taozi</groupId>
-                <artifactId>taozi-quartz</artifactId>
-                <version>${taozi.version}</version>
-            </dependency>
-
-            <!-- 核心模块-->
-            <dependency>
-                <groupId>com.taozi</groupId>
-                <artifactId>taozi-framework</artifactId>
-                <version>${taozi.version}</version>
-            </dependency>
-
-            <!-- 系统模块-->
-            <dependency>
-                <groupId>com.taozi</groupId>
-                <artifactId>taozi-system</artifactId>
-                <version>${taozi.version}</version>
-            </dependency>
-
-            <!-- 通用工具-->
-            <dependency>
-                <groupId>com.taozi</groupId>
-                <artifactId>taozi-common</artifactId>
-                <version>${taozi.version}</version>
             </dependency>
 
             <!--xmlUtils需要的依赖包-->
