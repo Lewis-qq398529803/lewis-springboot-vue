@@ -18,11 +18,11 @@
     <dependencies>
 
         <!-- 钉钉语音sdk相关 -->
-        <dependency>
-            <groupId>com.taobao.api</groupId>
-            <artifactId>taobao-sdk</artifactId>
+<!--        <dependency>-->
+<!--            <groupId>com.taobao.api</groupId>-->
+<!--            <artifactId>taobao-sdk</artifactId>-->
 <!--            <version>20210806</version>-->
-        </dependency>
+<!--        </dependency>-->
 
         <!-- 讯飞语音转文字相关 -->
         <dependency>

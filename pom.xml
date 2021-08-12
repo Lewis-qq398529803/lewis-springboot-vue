@@ -19,7 +19,6 @@
         <module>taozi-quartz</module>
         <module>taozi-generator</module>
         <module>taozi-common</module>
-        <module>taozi-websocket</module>
         <module>taozi-generator-mybatisplus</module>
     </modules>
     <packaging>pom</packaging>
@@ -365,13 +364,6 @@
             <dependency>
                 <groupId>com.taozi</groupId>
                 <artifactId>taozi-common</artifactId>
-                <version>${taozi.version}</version>
-            </dependency>
-
-            <!-- websocket-->
-            <dependency>
-                <groupId>com.taozi</groupId>
-                <artifactId>taozi-websocket</artifactId>
                 <version>${taozi.version}</version>
             </dependency>
 
