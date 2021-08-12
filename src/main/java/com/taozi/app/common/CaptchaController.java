@@ -27,6 +27,7 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 public class CaptchaController {
+
     @Resource(name = "captchaProducer")
     private Producer captchaProducer;
 

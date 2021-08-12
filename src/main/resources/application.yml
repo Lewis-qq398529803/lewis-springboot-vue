@@ -80,7 +80,7 @@ spring:
         max-wait: -1ms
   # websocket配置
   http:
-    encoding:UTF-8
+    encoding: UTF-8
   freemarker:
     request-context-attribute: request
     # prefix: /templates/
