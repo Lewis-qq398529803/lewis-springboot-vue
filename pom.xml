@@ -19,7 +19,6 @@
         <module>taozi-quartz</module>
         <module>taozi-generator</module>
         <module>taozi-common</module>
-        <module>taozi-generator-mybatisplus</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -336,13 +335,6 @@
             <dependency>
                 <groupId>com.taozi</groupId>
                 <artifactId>taozi-quartz</artifactId>
-                <version>${taozi.version}</version>
-            </dependency>
-
-            <!-- 代码生成-->
-            <dependency>
-                <groupId>com.taozi</groupId>
-                <artifactId>taozi-generator</artifactId>
                 <version>${taozi.version}</version>
             </dependency>
 
