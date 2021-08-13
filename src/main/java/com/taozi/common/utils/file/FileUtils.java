@@ -1,7 +1,12 @@
 package com.taozi.common.utils.file;
 
+import com.taozi.common.config.TaoZiConfig;
+import org.apache.commons.io.IOUtils;
+import com.taozi.common.utils.DateUtils;
 import com.taozi.common.utils.StringUtils;
+import com.taozi.common.utils.uuid.IdUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import java.io.FileOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +20,7 @@ import java.nio.charset.StandardCharsets;
  * @author taozi
  */
 public class FileUtils extends org.apache.commons.io.FileUtils {
+
     public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";
 
     /**
@@ -40,21 +46,77 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
         } catch (IOException e) {
             throw e;
         } finally {
-            if (os != null) {
-                try {
-                    os.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
-            if (fis != null) {
-                try {
-                    fis.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
+            IOUtils.close(os);
+            IOUtils.close(fis);
         }
+    }
+
+    /**
+     * 写数据到文件中
+     *
+     * @param data 数据
+     * @return 目标文件
+     * @throws IOException IO异常
+     */
+    public static String writeImportBytes(byte[] data) throws IOException
+    {
+        return writeBytes(data, TaoZiConfig.getImportPath());
+    }
+
+    /**
+     * 写数据到文件中
+     *
+     * @param data 数据
+     * @param uploadDir 目标文件
+     * @return 目标文件
+     * @throws IOException IO异常
+     */
+    public static String writeBytes(byte[] data, String uploadDir) throws IOException
+    {
+        FileOutputStream fos = null;
+        String pathName = "";
+        try
+        {
+            String extension = getFileExtendName(data);
+            pathName = DateUtils.datePath() + "/" + IdUtils.fastUuid() + "." + extension;
+            File file = FileUploadUtils.getAbsoluteFile(uploadDir, pathName);
+            fos = new FileOutputStream(file);
+            fos.write(data);
+        }
+        finally
+        {
+            IOUtils.close(fos);
+        }
+        return FileUploadUtils.getPathFileName(uploadDir, pathName);
+    }
+
+    /**
+     * 获取图像后缀
+     *
+     * @param photoByte 图像数据
+     * @return 后缀名
+     */
+    public static String getFileExtendName(byte[] photoByte)
+    {
+        String strFileExtendName = "jpg";
+        if ((photoByte[0] == 71) && (photoByte[1] == 73) && (photoByte[2] == 70) && (photoByte[3] == 56)
+                && ((photoByte[4] == 55) || (photoByte[4] == 57)) && (photoByte[5] == 97))
+        {
+            strFileExtendName = "gif";
+        }
+        else if ((photoByte[6] == 74) && (photoByte[7] == 70) && (photoByte[8] == 73) && (photoByte[9] == 70))
+        {
+            strFileExtendName = "jpg";
+        }
+        else if ((photoByte[0] == 66) && (photoByte[1] == 77))
+        {
+            strFileExtendName = "bmp";
+        }
+        else if ((photoByte[1] == 80) && (photoByte[2] == 78) && (photoByte[3] == 71))
+        {
+            strFileExtendName = "png";
+        }
+        return strFileExtendName;
     }
 
     /**

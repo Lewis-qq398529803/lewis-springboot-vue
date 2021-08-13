@@ -6,6 +6,7 @@ package com.taozi.common.utils.uuid;
  * @author taozi
  */
 public class IdUtils {
+
     /**
      * 获取随机UUID
      *
