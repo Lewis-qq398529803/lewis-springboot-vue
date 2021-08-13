@@ -156,14 +156,12 @@
             <artifactId>poi</artifactId>
             <version>4.1.2</version>
         </dependency>
-
         <!-- excel工具 -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.2</version>
         </dependency>
-
         <dependency>
             <groupId>org.jxls</groupId>
             <artifactId>jxls</artifactId>
@@ -175,49 +173,43 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <dependency>
             <groupId>org.jxls</groupId>
             <artifactId>jxls-poi</artifactId>
             <version>1.2.0</version>
         </dependency>
-
         <dependency>
             <groupId>fr.opensagres.xdocreport</groupId>
             <artifactId>fr.opensagres.xdocreport.core</artifactId>
             <version>${xdocreport.version}</version>
         </dependency>
-
         <dependency>
             <groupId>fr.opensagres.xdocreport</groupId>
             <artifactId>fr.opensagres.xdocreport.document</artifactId>
             <version>${xdocreport.version}</version>
         </dependency>
-
         <dependency>
             <groupId>fr.opensagres.xdocreport</groupId>
             <artifactId>fr.opensagres.xdocreport.template</artifactId>
             <version>${xdocreport.version}</version>
         </dependency>
-
         <dependency>
             <groupId>fr.opensagres.xdocreport</groupId>
             <artifactId>fr.opensagres.xdocreport.document.docx</artifactId>
             <version>${xdocreport.version}</version>
         </dependency>
-
         <dependency>
             <groupId>fr.opensagres.xdocreport</groupId>
             <artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
             <version>${xdocreport.version}</version>
         </dependency>
-
         <!-- freemarker模板 -->
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <version>2.3.30</version>
         </dependency>
+        <!-- word相关 end -->
 
         <!-- mp3音频依赖 -->
         <dependency>
@@ -324,7 +316,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <!--防止进入swagger页面报类型转换错误，排除2.9.2中的引用，手动增加1.5.21版本-->
         <dependency>
             <groupId>io.swagger</groupId>
@@ -336,14 +327,12 @@
             <artifactId>swagger-models</artifactId>
             <version>1.5.21</version>
         </dependency>
-
         <!-- swagger2-UI-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
-
         <!-- swagger2-bootstrap-ui-->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>

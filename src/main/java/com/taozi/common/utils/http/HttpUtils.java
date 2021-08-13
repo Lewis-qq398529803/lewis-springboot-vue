@@ -1,8 +1,5 @@
 package com.taozi.common.utils.http;
 
-import com.taozi.common.constant.Constants;
-import com.taozi.common.utils.log.BaseLog;
-
 import javax.net.ssl.*;
 import java.io.*;
 import java.net.ConnectException;
@@ -19,6 +16,11 @@ import java.security.cert.X509Certificate;
 public class HttpUtils {
 
     /**
+     * UTF-8 字符集
+     */
+    private static final String UTF8 = "UTF-8";
+
+    /**
      * 向指定 URL 发送GET方法的请求
      *
      * @param url   发送请求的 URL
@@ -26,7 +28,7 @@ public class HttpUtils {
      * @return 所代表远程资源的响应结果
      */
     public static String sendGet(String url, String param) {
-        return sendGet(url, param, Constants.UTF8);
+        return sendGet(url, param, UTF8);
     }
 
     /**
@@ -42,7 +44,7 @@ public class HttpUtils {
         BufferedReader in = null;
         try {
             String urlNameString = url + "?" + param;
-            BaseLog.info("sendGet - {}" , urlNameString);
+            System.out.println("sendGet - " + urlNameString);
             URL realUrl = new URL(urlNameString);
             URLConnection connection = realUrl.openConnection();
             connection.setRequestProperty("accept" , "*/*");
@@ -54,22 +56,22 @@ public class HttpUtils {
             while ((line = in.readLine()) != null) {
                 result.append(line);
             }
-            BaseLog.info("recv - {}" , result);
+            System.out.println("result - " + result);
         } catch (ConnectException e) {
-            BaseLog.error("调用HttpUtils.sendGet ConnectException, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpUtils.sendGet ConnectException, url=" + url + ",param=" + param + e);
         } catch (SocketTimeoutException e) {
-            BaseLog.error("调用HttpUtils.sendGet SocketTimeoutException, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpUtils.sendGet SocketTimeoutException, url=" + url + ",param=" + param + e);
         } catch (IOException e) {
-            BaseLog.error("调用HttpUtils.sendGet IOException, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpUtils.sendGet IOException, url=" + url + ",param=" + param + e);
         } catch (Exception e) {
-            BaseLog.error("调用HttpsUtil.sendGet Exception, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpsUtil.sendGet Exception, url=" + url + ",param=" + param + e);
         } finally {
             try {
                 if (in != null) {
                     in.close();
                 }
             } catch (Exception ex) {
-                BaseLog.error("调用in.close Exception, url=" + url + ",param=" + param, ex);
+                System.out.println("调用in.close Exception, url=" + url + ",param=" + param + ex);
             }
         }
         return result.toString();
@@ -88,7 +90,7 @@ public class HttpUtils {
         StringBuilder result = new StringBuilder();
         try {
             String urlNameString = url;
-            BaseLog.info("sendPost - {}" , urlNameString);
+            System.out.println("sendPost - " + urlNameString);
             URL realUrl = new URL(urlNameString);
             URLConnection conn = realUrl.openConnection();
             conn.setRequestProperty("accept" , "*/*");
@@ -101,20 +103,20 @@ public class HttpUtils {
             out = new PrintWriter(conn.getOutputStream());
             out.print(param);
             out.flush();
-            in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+            in = new BufferedReader(new InputStreamReader(conn.getInputStream(), UTF8));
             String line;
             while ((line = in.readLine()) != null) {
                 result.append(line);
             }
-            BaseLog.info("recv - {}" , result);
+            System.out.println("result - " + result);
         } catch (ConnectException e) {
-            BaseLog.error("调用HttpUtils.sendPost ConnectException, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpUtils.sendPost ConnectException, url=" + url + ",param=" + param + e);
         } catch (SocketTimeoutException e) {
-            BaseLog.error("调用HttpUtils.sendPost SocketTimeoutException, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpUtils.sendPost SocketTimeoutException, url=" + url + ",param=" + param + e);
         } catch (IOException e) {
-            BaseLog.error("调用HttpUtils.sendPost IOException, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpUtils.sendPost IOException, url=" + url + ",param=" + param + e);
         } catch (Exception e) {
-            BaseLog.error("调用HttpsUtil.sendPost Exception, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpsUtil.sendPost Exception, url=" + url + ",param=" + param + e);
         } finally {
             try {
                 if (out != null) {
@@ -124,7 +126,7 @@ public class HttpUtils {
                     in.close();
                 }
             } catch (IOException ex) {
-                BaseLog.error("调用in.close Exception, url=" + url + ",param=" + param, ex);
+                System.out.println("调用in.close Exception, url=" + url + ",param=" + param + ex);
             }
         }
         return result.toString();
@@ -134,7 +136,7 @@ public class HttpUtils {
         StringBuilder result = new StringBuilder();
         String urlNameString = url + "?" + param;
         try {
-            BaseLog.info("sendSSLPost - {}" , urlNameString);
+            System.out.println("sendSSLPost - " + urlNameString);
             SSLContext sc = SSLContext.getInstance("SSL");
             sc.init(null, new TrustManager[]{new TrustAnyTrustManager()}, new java.security.SecureRandom());
             URL console = new URL(urlNameString);
@@ -158,17 +160,17 @@ public class HttpUtils {
                     result.append(new String(ret.getBytes("ISO-8859-1"), "utf-8"));
                 }
             }
-            BaseLog.info("recv - {}" , result);
+            System.out.println("result - " + result);
             conn.disconnect();
             br.close();
         } catch (ConnectException e) {
-            BaseLog.error("调用HttpUtils.sendSSLPost ConnectException, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpUtils.sendSSLPost ConnectException, url=" + url + ",param=" + param + e);
         } catch (SocketTimeoutException e) {
-            BaseLog.error("调用HttpUtils.sendSSLPost SocketTimeoutException, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpUtils.sendSSLPost SocketTimeoutException, url=" + url + ",param=" + param + e);
         } catch (IOException e) {
-            BaseLog.error("调用HttpUtils.sendSSLPost IOException, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpUtils.sendSSLPost IOException, url=" + url + ",param=" + param + e);
         } catch (Exception e) {
-            BaseLog.error("调用HttpsUtil.sendSSLPost Exception, url=" + url + ",param=" + param, e);
+            System.out.println("调用HttpsUtil.sendSSLPost Exception, url=" + url + ",param=" + param + e);
         }
         return result.toString();
     }
