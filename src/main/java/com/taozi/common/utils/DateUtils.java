@@ -3,6 +3,7 @@ package com.taozi.common.utils;
 import java.lang.management.ManagementFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -124,8 +125,46 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 		}
 	}
 
+	public static void main(String[] args) throws ParseException {
+		String date1 = "2021-8-1 00:00:00";
+		String date2 = "2021-8-13";
+		String date3 = "2021-8-14 00:00:00";
+		System.out.println(parseDate(date1));
+		System.out.println(parseDate(date2));
+		System.out.println(parseDate(date3));
+
+		boolean in = isIn(parseDate(date1), parseDate(date2), parseDate(date3));
+		System.out.println(in);
+	}
+
+	/**
+	 * 判断当前时间是否在[startTime, endTime]区间，注意时间格式要一致
+	 *
+	 * @param nowTime 当前时间
+	 * @param startTime 开始时间
+	 * @param endTime 结束时间
+	 * @return boolean
+	 */
+	public static boolean isIn(Date nowTime, Date startTime, Date endTime) {
+		if (nowTime.getTime() == startTime.getTime() || nowTime.getTime() == endTime.getTime()) {
+			return true;
+		}
+
+		Calendar date = Calendar.getInstance();
+		date.setTime(nowTime);
+
+		Calendar begin = Calendar.getInstance();
+		begin.setTime(startTime);
+
+		Calendar end = Calendar.getInstance();
+		end.setTime(endTime);
+
+		return date.after(begin) && date.before(end);
+	}
+
 	/**
 	 * 获取服务器启动时间
+	 * @return Date
 	 */
 	public static Date getServerStartDate() {
 		long time = ManagementFactory.getRuntimeMXBean().getStartTime();
@@ -134,6 +173,9 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 	/**
 	 * 计算两个时间差
+	 * @param endDate
+	 * @param nowDate
+	 * @return day + "天" + hour + "小时" + min + "分钟"
 	 */
 	public static String getDatePoor(Date endDate, Date nowDate) {
 		long nd = 1000 * 24 * 60 * 60;
