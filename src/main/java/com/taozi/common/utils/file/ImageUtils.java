@@ -159,10 +159,11 @@ public class ImageUtils {
     /**
      * base64图片存入本地磁盘
      *
-     * @param base64Img base64字符串
+     * @param base64 base64字符串
+     * @param savePath 预备保存到的位置
      * @return 本地图片绝对全路径
      */
-    public static String saveBase64ImgToLocal(String base64Img) {
+    public static String base642Local(String base64, String savePath) {
         //项目根路径
         String projectPath = System.getProperty("user.dir");
         //拼接基础path
@@ -174,15 +175,15 @@ public class ImageUtils {
         String imgReadPath = "";
         // 只允许jpg
         String header = "data:image/jpeg;base64,";
-        if (base64Img.length() < header.length()) {
+        if (base64.length() < header.length()) {
             return "";
         }
         // 去掉头部
-        base64Img = base64Img.substring(header.length());
+        base64 = base64.substring(header.length());
         try {
             // 写入磁盘
             BASE64Decoder decoder = new BASE64Decoder();
-            byte[] decodedBytes = decoder.decodeBuffer(base64Img);
+            byte[] decodedBytes = decoder.decodeBuffer(base64);
             for (int i = 0; i < decodedBytes.length; ++i) {
                 // 调整异常数据
                 if (decodedBytes[i] < 0) {

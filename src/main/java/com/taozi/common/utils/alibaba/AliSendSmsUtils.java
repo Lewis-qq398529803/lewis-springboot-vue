@@ -10,24 +10,40 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.taozi.common.config.AliSendSmsConfig;
 import com.taozi.common.utils.StringUtils;
-import com.taozi.common.utils.log.BaseLog;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 阿里云短信验证码工具类
  *
  * @author taozi - 2021年6月15日, 015 - 17:00:07
  */
+@Slf4j
 public class AliSendSmsUtils {
 
-    private static final String ACCESS_KEY_ID = "ACCESS_KEY_ID";//id
+    /**
+     * id
+     */
+    private static final String ACCESS_KEY_ID = "ACCESS_KEY_ID";
 
-    private static final String ACCESS_KEY_SECRET = "ACCESS_KEY_SECRET";//密钥
+    /**
+     * 密钥
+     */
+    private static final String ACCESS_KEY_SECRET = "ACCESS_KEY_SECRET";
 
-    private static final String SIGN_NAME = "SIGN_NAME";//签名名称 - 服务器设定好的名称
+    /**
+     * 签名名称 - 服务器设定好的名称
+     */
+    private static final String SIGN_NAME = "SIGN_NAME";
 
-    private static final String VERSION = "2017-05-25";//版本
+    /**
+     * 版本
+     */
+    private static final String VERSION = "2017-05-25";
 
-    private static final String DOMAIN = "dysmsapi.aliyuncs.com";//访问链接
+    /**
+     * 访问链接
+     */
+    private static final String DOMAIN = "dysmsapi.aliyuncs.com";
 
     /**
      * 不同的内容发送给不同的手机号，最多十个手机号码
@@ -83,7 +99,7 @@ public class AliSendSmsUtils {
             String data = response.getData();
             JSONObject jsonObject = JSONObject.parseObject(data);
             String code = jsonObject.getString("Code");
-            BaseLog.info(data);
+            log.info(data);
             return StringUtils.equals(code, "OK");
         } catch (ClientException e) {
             e.printStackTrace();

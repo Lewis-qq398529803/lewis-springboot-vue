@@ -10,6 +10,8 @@
 //import io.swagger.annotations.ApiOperation;
 //import org.springframework.web.bind.annotation.*;
 //
+//import java.util.UUID;
+//
 ///**
 // * 钉钉鉴权接口
 // *
@@ -23,20 +25,18 @@
 //	 * 一键获取签名
 //	 *
 //	 * @return String sign
-//	 * @throws ApiException
 //	 */
-//	@ApiOperation("一键获取签名")
+//	@ApiOperation("鉴权（一键式）：获取签名")
 //	@GetMapping("/directlySign")
-//	public BaseResult directlySign() throws Exception {
+//	public BaseResult directlySign() {
 //		String accessToken = getAccessToken();
 //		String ticket = getTicket(accessToken);
 //		SignVO data = new SignVO();
 //		data.setJsTicket(ticket);
-//		data.setTimeStamp(DateUtils.current());
-//		data.setNonceStr("nonceStr");
-//		data.setUrl("http://172.16.7.217:8989/");
+//		data.setTimeStamp(DateUtil.current());
+//		data.setNonceStr(UUID.randomUUID().toString().replace("-", ""));
+//		data.setUrl("http://172.16.7.217:8080/#/textdd");
 //		SignResultVO sign = getSign(data);
-//		System.out.println(sign.toString());
 //		return BaseResult.ok().setData(sign);
 //	}
 //
@@ -44,11 +44,10 @@
 //	 * 获取access_token
 //	 *
 //	 * @return String access_token
-//	 * @throws ApiException
 //	 */
-//	@ApiOperation("获取access_token")
+//	@ApiOperation("鉴权（分步）1：获取access_token")
 //	@GetMapping("/getAccessToken")
-//	public String getAccessToken() throws ApiException {
+//	public String getAccessToken() {
 //		return DingUtils.getAccessToken();
 //	}
 //
@@ -57,11 +56,10 @@
 //	 *
 //	 * @param accessToken
 //	 * @return String ticket
-//	 * @throws ApiException
 //	 */
-//	@ApiOperation("获取ticket")
+//	@ApiOperation("鉴权（分步）2：获取ticket")
 //	@GetMapping("/getTicket")
-//	public String getTicket(String accessToken) throws ApiException {
+//	public String getTicket(String accessToken) {
 //		return DingUtils.getTicket(accessToken);
 //	}
 //
@@ -70,12 +68,11 @@
 //	 *
 //	 * @param data
 //	 * @return sign
-//	 * @throws Exception
 //	 */
-//	@ApiOperation("获取签名")
+//	@ApiOperation("鉴权（分布）3：获取签名")
 //	@PostMapping(value = "/getSign", produces = "text/html;charset=UTF-8")
 //	@ResponseBody
-//	public SignResultVO getSign(@RequestBody SignVO data) throws Exception {
+//	public SignResultVO getSign(@RequestBody SignVO data) {
 //		return DingUtils.getSign(data);
 //	}
 //}

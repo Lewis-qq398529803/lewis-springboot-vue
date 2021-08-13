@@ -1,6 +1,6 @@
 package com.taozi.common.utils.cookie;
 
-import com.taozi.common.utils.log.BaseLog;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +21,7 @@ import java.net.URLEncoder;
  *
  * @author taozi
  */
+@Slf4j
 public final class CookieUtils {
 
     /**
@@ -205,7 +206,7 @@ public final class CookieUtils {
             // 设置域名的cookie
             if (null != request) {
                 String domainName = getDomainName(request);
-                BaseLog.info("========== domainName: {} ==========" + domainName);
+                log.info("========== domainName: {} ==========" + domainName);
                 String localhost = "localhost";
                 if (!localhost.equals(domainName)) {
                     cookie.setDomain(domainName);
@@ -243,7 +244,7 @@ public final class CookieUtils {
             // 设置域名的cookie
             if (null != request) {
                 String domainName = getDomainName(request);
-                BaseLog.info("========== domainName: {} ==========" + domainName);
+                log.info("========== domainName: {} ==========" + domainName);
                 String localhost = "localhost";
                 if (!localhost.equals(domainName)) {
                     cookie.setDomain(domainName);
