@@ -59,6 +59,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 	/**
 	 * 获取 yyyy-MM-dd HH:mm:ss
+	 *
 	 * @return yyyy-MM-dd HH:mm:ss
 	 */
 	public static String getTime() {
@@ -67,6 +68,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 	/**
 	 * 获取 yyyyMMddHHmmss
+	 *
 	 * @return yyyyMMddHHmmss
 	 */
 	public static String dateTimeNow() {
@@ -95,6 +97,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 	/**
 	 * 日期路径 即年/月/日 如2018/08/08
+	 *
+	 * @return yyyy/MM/dd
 	 */
 	public static String datePath() {
 		Date now = new Date();
@@ -103,6 +107,8 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 	/**
 	 * 日期路径 即年月日 如20180808
+	 *
+	 * @return yyyyMMdd
 	 */
 	public static String dateTime() {
 		Date now = new Date();
@@ -111,6 +117,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 	/**
 	 * 日期型字符串转化为日期格式
+	 *
 	 * @param str
 	 * @return Date
 	 */
@@ -125,24 +132,12 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 		}
 	}
 
-	public static void main(String[] args) throws ParseException {
-		String date1 = "2021-8-1 00:00:00";
-		String date2 = "2021-8-13";
-		String date3 = "2021-8-14 00:00:00";
-		System.out.println(parseDate(date1));
-		System.out.println(parseDate(date2));
-		System.out.println(parseDate(date3));
-
-		boolean in = isIn(parseDate(date1), parseDate(date2), parseDate(date3));
-		System.out.println(in);
-	}
-
 	/**
 	 * 判断当前时间是否在[startTime, endTime]区间，注意时间格式要一致
 	 *
-	 * @param nowTime 当前时间
+	 * @param nowTime   当前时间
 	 * @param startTime 开始时间
-	 * @param endTime 结束时间
+	 * @param endTime   结束时间
 	 * @return boolean
 	 */
 	public static boolean isIn(Date nowTime, Date startTime, Date endTime) {
@@ -164,6 +159,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 	/**
 	 * 获取服务器启动时间
+	 *
 	 * @return Date
 	 */
 	public static Date getServerStartDate() {
@@ -173,6 +169,7 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 	/**
 	 * 计算两个时间差
+	 *
 	 * @param endDate
 	 * @param nowDate
 	 * @return day + "天" + hour + "小时" + min + "分钟"
