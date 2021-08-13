@@ -1,10 +1,8 @@
 package com.taozi.common.utils.file;
 
 import com.taozi.common.config.TaoZiConfig;
-import com.taozi.common.constant.Constants;
 import com.taozi.common.utils.DateUtils;
 import com.taozi.common.utils.StringUtils;
-import com.taozi.common.utils.log.BaseLog;
 import com.taozi.common.utils.uuid.UUID;
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.poi.util.IOUtils;
@@ -24,6 +22,16 @@ import java.util.Arrays;
  */
 public class ImageUtils {
 
+    /**
+     * 资源映射路径 前缀
+     */
+    public static final String RESOURCE_PREFIX = "/profile";
+
+    /**
+     * 根据图片路径获取byte数组
+     * @param imagePath
+     * @return byte[]
+     */
     public static byte[] getImage(String imagePath) {
         InputStream is = getFile(imagePath);
         if (is == null) {
@@ -32,13 +40,18 @@ public class ImageUtils {
         try {
             return IOUtils.toByteArray(is);
         } catch (Exception e) {
-            BaseLog.error("图片加载异常 {}" + e);
+            e.printStackTrace();
             return null;
         } finally {
             IOUtils.closeQuietly(is);
         }
     }
 
+    /**
+     * 根据图片路径获取输入流
+     * @param imagePath
+     * @return InputStream
+     */
     public static InputStream getFile(String imagePath) {
         try {
             byte[] result = readFile(imagePath);
@@ -48,7 +61,7 @@ public class ImageUtils {
             result = Arrays.copyOf(result, result.length);
             return new ByteArrayInputStream(result);
         } catch (Exception e) {
-            BaseLog.error("获取图片异常 {}" + e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -75,12 +88,12 @@ public class ImageUtils {
             } else {
                 // 本机地址
                 String localPath = TaoZiConfig.getProfile();
-                String downloadPath = localPath + StringUtils.substringAfter(url, Constants.RESOURCE_PREFIX);
+                String downloadPath = localPath + StringUtils.substringAfter(url, RESOURCE_PREFIX);
                 in = new FileInputStream(downloadPath);
             }
             return IOUtils.toByteArray(in);
         } catch (Exception e) {
-            BaseLog.error("获取文件路径异常 {}" + e);
+            e.printStackTrace();
             return null;
         } finally {
             IOUtils.closeQuietly(baos);
@@ -112,9 +125,9 @@ public class ImageUtils {
                         .toOutputStream(outputStream);
                 imageBytes = outputStream.toByteArray();
             }
-            BaseLog.info("【图片压缩】 | 图片原大小 == " + srcSize / 1024 + "kb | 压缩后大小 == " + imageBytes.length / 1024 + "kb");
+            System.out.println("【图片压缩】 | 图片原大小 == " + srcSize / 1024 + "kb | 压缩后大小 == " + imageBytes.length / 1024 + "kb");
         } catch (Exception e) {
-            BaseLog.error("【图片压缩】msg == 图片压缩失败!" + e);
+            e.printStackTrace();
         }
         return imageBytes;
     }
@@ -150,11 +163,8 @@ public class ImageUtils {
      * @return 本地图片绝对全路径
      */
     public static String saveBase64ImgToLocal(String base64Img) {
-
         //项目根路径
         String projectPath = System.getProperty("user.dir");
-        //     projectPath = projectPath+"\\src\\main\\resources\\static" ;
-        System.out.println("projectPath-------->" + projectPath);
         //拼接基础path
         String basePath = "/images/face/";
         //图片名
@@ -162,15 +172,13 @@ public class ImageUtils {
         //本地真实路径
         String localImgReadPath = "";
         String imgReadPath = "";
-
         // 只允许jpg
         String header = "data:image/jpeg;base64,";
         if (base64Img.length() < header.length()) {
             return "";
         }
-
         // 去掉头部
-        // base64Img = base64Img.substring(header.length());
+        base64Img = base64Img.substring(header.length());
         try {
             // 写入磁盘
             BASE64Decoder decoder = new BASE64Decoder();
@@ -185,7 +193,7 @@ public class ImageUtils {
             int ran2 = (int) (Math.random() * (max - min) + min);
             imgName = System.currentTimeMillis() + ran2 + "";
             localImgReadPath = projectPath + basePath + imgName + ".jpg";
-            System.out.println("localImgReadPath--->" + localImgReadPath);
+            System.out.println("localImgReadPath : " + localImgReadPath);
             File testImgReadPathIsExists = new File(projectPath + basePath);
             //文件路径不存在则创建
             if (!testImgReadPathIsExists.exists()) {
@@ -261,7 +269,7 @@ public class ImageUtils {
     public static long getFileSize(String filePath) {
         File file = new File(filePath);
         if (!file.exists() || !file.isFile()) {
-            BaseLog.error(filePath + ": 文件不存在");
+            System.out.println(filePath + ": 文件不存在");
             return -1;
         }
         return file.length();
@@ -287,7 +295,6 @@ public class ImageUtils {
         }
         // 对字节数组Base64编码
         BASE64Encoder encoder = new BASE64Encoder();
-
         // 返回Base64编码过的字节数组字符串
         return encoder.encode(data);
     }
@@ -296,7 +303,7 @@ public class ImageUtils {
      * base64字符串转化成图片
      * @param imgStr
      * @param imgFilePath
-     * @return
+     * @return boolean
      * @throws Exception
      */
     public static boolean generateImage(String imgStr, String imgFilePath) throws Exception {
@@ -315,7 +322,6 @@ public class ImageUtils {
             }
         }
         // 生成jpeg图片
-        // String imgFilePath = "c://temp_kjbl_001_ab_010.jpg";//新生成的图片
         OutputStream out = new FileOutputStream(imgFilePath);
         out.write(b);
         out.flush();
@@ -330,8 +336,7 @@ public class ImageUtils {
      * @param localPath
      * @return 拼接url
      */
-    public static String multipartfileToLocal(MultipartFile file, String localPath) {
-        int flag = 0;
+    public static String multipartFile2Local(MultipartFile file, String localPath) {
         //获取上传文件名,包含后缀
         String originalFilename = file.getOriginalFilename();
         //获取后缀
@@ -347,7 +352,7 @@ public class ImageUtils {
         }
         //生成保存文件
         File uploadFile = new File(localPath + "/" + DateUtils.getDate() + "/" + dFileName);
-        BaseLog.info("完整上传路径为： " + uploadFile);
+        System.out.println("完整上传路径为： " + uploadFile);
         //将上传文件保存到路径
         try {
             file.transferTo(uploadFile);
@@ -357,27 +362,17 @@ public class ImageUtils {
         return DateUtils.getDate() + "/" + dFileName;
     }
 
-    public static void main(String[] args) throws IOException {
-        /*byte[] bytes = FileUtils.readFileToByteArray(new File("D:\\pic\\1.jpg"));
-        long l = System.currentTimeMillis();
-        bytes = PicUtils.compressPicForScale(bytes, 300, "x");// 图片小于300kb
-        logger.info(System.currentTimeMillis() - l + "");
-        FileUtils.writeByteArrayToFile(new File("D:\\pic\\dd1.jpg"), bytes);*/
-        String base64Str = "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 /9k=";
-        try {
-            System.out.println(ImageUtils.generateImage(base64Str.replaceAll(" " , "\r\n"), "d://aa.jpg"));
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    public String base64ImgToImg(String base64Img) {
+    /**
+     * base64 转图片
+     * @param base64
+     * @return String
+     */
+    public String base642Img(String base64) {
 
         String basePath = "";
         String path = "";
         String uploadUrlPath = "";
-        String image = base64Img;
+        String image = base64;
         String imgReadPath = "";
 
         // 只允许jpg
