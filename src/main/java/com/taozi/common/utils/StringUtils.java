@@ -1,5 +1,7 @@
 package com.taozi.common.utils;
 
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -7,8 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.taozi.common.constant.Constants;
-import com.taozi.common.core.text.StrFormatter;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.util.AntPathMatcher;
 
 /**
@@ -27,6 +28,34 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	 * 下划线
 	 */
 	private static final char SEPARATOR = '_';
+
+	/**
+	 * http请求
+	 */
+	private static final String HTTP = "http://";
+
+	/**
+	 * https请求
+	 */
+	private static final String HTTPS = "https://";
+
+	private static final String EMPTY_JSON = "{}";
+
+	private static final char C_BACKSLASH = '\\';
+
+	private static final char C_DELIM_START = '{';
+
+	private static final char C_DELIM_END = '}';
+
+	/**
+	 * UTF-8
+	 */
+	private static final String UTF_8 = "UTF-8";
+
+	/**
+	 * UTF-8
+	 */
+	private static final Charset CHARSET_UTF_8 = Charset.forName(UTF_8);
 
 	/**
 	 * 查找指定字符串是否包含指定字符串列表中的任意一个字符串同时串忽略大小写
@@ -88,7 +117,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	 * @return 结果
 	 */
 	public static boolean isHttp(String link) {
-		return StringUtils.startsWithAny(link, Constants.HTTP, Constants.HTTPS);
+		return StringUtils.startsWithAny(link, HTTP, HTTPS);
 	}
 
 	/**
@@ -299,7 +328,87 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		if (isEmpty(params) || isEmpty(template)) {
 			return template;
 		}
-		return StrFormatter.format(template, params);
+		final int strPatternLength = template.length();
+
+		// 初始化定义好的长度以获得更好的性能
+		StringBuilder sbuf = new StringBuilder(strPatternLength + 50);
+
+		int handledPosition = 0;
+		// 占位符所在位置
+		int delimIndex;
+		for (int argIndex = 0; argIndex < params.length; argIndex++) {
+			delimIndex = template.indexOf(EMPTY_JSON, handledPosition);
+			if (delimIndex == -1) {
+				if (handledPosition == 0) {
+					return template;
+				} else {
+					// 字符串模板剩余部分不再包含占位符，加入剩余部分后返回结果
+					sbuf.append(template, handledPosition, strPatternLength);
+					return sbuf.toString();
+				}
+			} else {
+				if (delimIndex > 0 && template.charAt(delimIndex - 1) == C_BACKSLASH) {
+					if (delimIndex > 1 && template.charAt(delimIndex - 2) == C_BACKSLASH) {
+						// 转义符之前还有一个转义符，占位符依旧有效
+						sbuf.append(template, handledPosition, delimIndex - 1);
+						sbuf.append(utf8Str(params[argIndex]));
+						handledPosition = delimIndex + 2;
+					} else {
+						// 占位符被转义
+						argIndex--;
+						sbuf.append(template, handledPosition, delimIndex - 1);
+						sbuf.append(C_DELIM_START);
+						handledPosition = delimIndex + 1;
+					}
+				} else {
+					// 正常占位符
+					sbuf.append(template, handledPosition, delimIndex);
+					sbuf.append(utf8Str(params[argIndex]));
+					handledPosition = delimIndex + 2;
+				}
+			}
+		}
+		// 加入最后一个占位符后所有的字符
+		sbuf.append(template, handledPosition, template.length());
+
+		return sbuf.toString();
+	}
+
+	/**
+	 * 将对象转为字符串<br>
+	 * 1、Byte数组和ByteBuffer会被转换为对应字符串的数组 2、对象数组会调用Arrays.toString方法
+	 *
+	 * @param obj 对象
+	 * @return 字符串
+	 */
+	public static String utf8Str(Object obj) {
+		return str(obj, CHARSET_UTF_8);
+	}
+
+	/**
+	 * 将对象转为字符串<br>
+	 * 1、Byte数组和ByteBuffer会被转换为对应字符串的数组 2、对象数组会调用Arrays.toString方法
+	 *
+	 * @param obj     对象
+	 * @param charset 字符集
+	 * @return 字符串
+	 */
+	public static String str(Object obj, Charset charset) {
+		if (null == obj) {
+			return null;
+		}
+
+		if (obj instanceof String) {
+			return (String) obj;
+		} else if (obj instanceof byte[]) {
+			return str((byte[]) obj, charset);
+		} else if (obj instanceof Byte[]) {
+			byte[] bytes = ArrayUtils.toPrimitive((Byte[]) obj);
+			return str(bytes, charset);
+		} else if (obj instanceof ByteBuffer) {
+			return str((ByteBuffer) obj, charset);
+		}
+		return obj.toString();
 	}
 
 	/**
