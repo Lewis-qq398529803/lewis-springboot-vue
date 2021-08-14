@@ -9,7 +9,6 @@ import com.taozi.common.utils.ServletUtils;
 import com.taozi.common.utils.StringUtils;
 import com.taozi.common.utils.ip.AddressUtils;
 import com.taozi.common.utils.ip.IpUtils;
-import com.taozi.common.utils.log.LogUtils;
 import com.taozi.common.utils.spring.SpringUtils;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.slf4j.Logger;
@@ -44,11 +43,11 @@ public class AsyncFactory {
 			public void run() {
 				String address = AddressUtils.getRealAddressByIp(ip);
 				StringBuilder s = new StringBuilder();
-				s.append(LogUtils.getBlock(ip));
+				s.append(getBlock(ip));
 				s.append(address);
-				s.append(LogUtils.getBlock(username));
-				s.append(LogUtils.getBlock(status));
-				s.append(LogUtils.getBlock(message));
+				s.append(getBlock(username));
+				s.append(getBlock(status));
+				s.append(getBlock(message));
 				// 打印信息到日志
 				sys_user_logger.info(s.toString(), args);
 				// 获取客户端操作系统
@@ -90,5 +89,12 @@ public class AsyncFactory {
 				SpringUtils.getBean(ISysOperLogService.class).insertOperlog(operLog);
 			}
 		};
+	}
+
+	public static String getBlock(Object msg) {
+		if (msg == null) {
+			msg = "";
+		}
+		return "[" + msg.toString() + "]";
 	}
 }
