@@ -9,6 +9,14 @@ import lombok.Data;
  */
 @Data
 public class ExportWordVO {
-	public Long templatePathNum;//摸板编号
-	public String outPutPath;//输出路径
+
+	/**
+	 * 摸板编号
+	 */
+	public Long templatePathNum;
+
+	/**
+	 * 输出路径
+	 */
+	public String outPutPath;
 }

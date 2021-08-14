@@ -300,7 +300,7 @@
             <version>5.8.0</version>
         </dependency>
 
-        <!-- swagger2-->
+        <!-- swagger2 start -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -339,6 +339,7 @@
             <artifactId>swagger-bootstrap-ui</artifactId>
             <version>1.9.6</version>
         </dependency>
+        <!-- swagger2 end -->
 
         <!--io常用工具类 -->
         <dependency>
@@ -405,13 +406,6 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-
-        <!--阿里云sdk-->
-        <dependency>
-            <groupId>com.aliyun</groupId>
-            <artifactId>aliyun-java-sdk-core</artifactId>
-            <version>4.1.0</version>
         </dependency>
 
         <!--xmlUtils需要的依赖包-->
