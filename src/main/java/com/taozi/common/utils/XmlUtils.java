@@ -15,20 +15,22 @@ import java.util.*;
 /**
  * xml工具类
  *
- * @author cyt
+ * @author taozi
  */
 public class XmlUtils {
 
-    private static String xmlHeaderCustom = "";//xml自定义封装头
+    /**
+     * xml自定义封装头
+     */
+    private static String xmlHeaderCustom = "";
 
     /**
      * map转xml
      *
      * @param map
      * @return String
-     * @throws Exception
      */
-    public static String map2xml(Map map) throws Exception {
+    public static String map2xml(Map map) {
         if (map == null) {
             return null;
         }
@@ -47,19 +49,18 @@ public class XmlUtils {
     /**
      * 给map转xml设置xml头
      *
-     * @param needToJoin --需要拼接的字符串
+     * @param needToJoin 需要拼接的字符串
      * @return String
      */
     public static String setXmlHeader(String needToJoin) {
         StringBuffer sb = new StringBuffer("<?xml version=\"1.0\"?>");
         if (!"".equals(xmlHeaderCustom)) {
-            sb.append("<" + xmlHeaderCustom + ">");
+            sb.append("<").append(xmlHeaderCustom).append(">");
         }
         sb.append(needToJoin);
         if (!"".equals(xmlHeaderCustom)) {
-            sb.append("</" + xmlHeaderCustom + ">");
+            sb.append("</").append(xmlHeaderCustom).append(">");
         }
-//		sb.append("</xml>");
         return sb.substring(0);
     }
 
@@ -68,38 +69,41 @@ public class XmlUtils {
      *
      * @param xml
      * @return Map<String, String>
-     * @throws JDOMException
-     * @throws IOException
      */
-    public static Map<String, String> xml2map(String xml) throws JDOMException, IOException {
+    public static Map<String, String> xml2map(String xml) {
         // 先将返回的字符集转换为utf-8
         xml = xml.replaceFirst("encoding=\".*\"" , "encoding=\"UTF-8\"");
         if (null == xml || "".equals(xml)) {
             return null;
         }
         Map<String, String> map = new HashMap<>(10);
-        InputStream in = new ByteArrayInputStream(xml.getBytes("UTF-8"));
-        SAXBuilder builder = new SAXBuilder();
-        Document doc = builder.build(in);
-        Element root = doc.getRootElement();
-        List list = root.getChildren();
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            Element e = (Element) it.next();
-            // 将节点名赋值给k给后面的map当key
-            String k = e.getName();
-            String v = "";
-            // 获取e的子节点信息
-            List children = e.getChildren();
-            if (children.isEmpty()) {
-                v = e.getTextNormalize();
-            } else {
-                v = XmlUtils.getChildrenText(children);
+        InputStream in = null;
+        try {
+            in = new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8));
+            SAXBuilder builder = new SAXBuilder();
+            Document doc = builder.build(in);
+            Element root = doc.getRootElement();
+            List list = root.getChildren();
+            Iterator it = list.iterator();
+            while (it.hasNext()) {
+                Element e = (Element) it.next();
+                // 将节点名赋值给k给后面的map当key
+                String k = e.getName();
+                String v = "";
+                // 获取e的子节点信息
+                List children = e.getChildren();
+                if (children.isEmpty()) {
+                    v = e.getTextNormalize();
+                } else {
+                    v = XmlUtils.getChildrenText(children);
+                }
+                map.put(k, v);
             }
-            map.put(k, v);
+            // キャンセル流
+            in.close();
+        } catch (IOException | JDOMException e) {
+            e.printStackTrace();
         }
-        // キャンセル流
-        in.close();
         return map;
 
     }

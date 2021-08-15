@@ -39,8 +39,7 @@ public class DictUtils {
 	public static List<SysDictData> getDictCache(String key) {
 		Object cacheObj = SpringUtils.getBean(RedisCache.class).getCacheObject(getCacheKey(key));
 		if (StringUtils.isNotNull(cacheObj)) {
-			List<SysDictData> dictDatas = StringUtils.cast(cacheObj);
-			return dictDatas;
+			return StringUtils.cast(cacheObj);
 		}
 		return null;
 	}
@@ -83,7 +82,7 @@ public class DictUtils {
 			for (SysDictData dict : datas) {
 				for (String value : dictValue.split(separator)) {
 					if (value.equals(dict.getDictValue())) {
-						propertyString.append(dict.getDictLabel() + separator);
+						propertyString.append(dict.getDictLabel()).append(separator);
 						break;
 					}
 				}
@@ -114,7 +113,7 @@ public class DictUtils {
 			for (SysDictData dict : datas) {
 				for (String label : dictLabel.split(separator)) {
 					if (label.equals(dict.getDictLabel())) {
-						propertyString.append(dict.getDictValue() + separator);
+						propertyString.append(dict.getDictValue()).append(separator);
 						break;
 					}
 				}

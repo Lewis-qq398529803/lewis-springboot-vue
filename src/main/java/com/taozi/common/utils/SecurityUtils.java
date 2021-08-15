@@ -16,7 +16,9 @@ public class SecurityUtils {
 
 	/**
 	 * 获取用户账户
-	 **/
+	 *
+	 * @return String
+	 */
 	public static String getUsername() {
 		try {
 			return getLoginUser().getUsername();
@@ -27,7 +29,9 @@ public class SecurityUtils {
 
 	/**
 	 * 获取用户
-	 **/
+	 *
+	 * @return LoginUser
+	 */
 	public static LoginUser getLoginUser() {
 		try {
 			return (LoginUser) getAuthentication().getPrincipal();
@@ -38,6 +42,8 @@ public class SecurityUtils {
 
 	/**
 	 * 获取Authentication
+	 *
+	 * @return Authentication
 	 */
 	public static Authentication getAuthentication() {
 		return SecurityContextHolder.getContext().getAuthentication();
