@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 03/08/2021 10:59:05
+ Date: 16/08/2021 16:37:20
 */
 
 SET NAMES utf8mb4;
@@ -43,11 +43,12 @@ CREATE TABLE `gen_table`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`table_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gen_table
 -- ----------------------------
+INSERT INTO `gen_table` VALUES (1, 'sys_dept', '部门表', NULL, NULL, 'Dept', 'crud', 'com.taozi.system', 'system', 'dept', '部门', 'taozi', '0', '/', NULL, 'admin', '2021-08-12 13:30:13', '', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for gen_table_column
@@ -77,11 +78,25 @@ CREATE TABLE `gen_table_column`  (
   `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`column_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 98 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '代码生成业务表字段' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gen_table_column
 -- ----------------------------
+INSERT INTO `gen_table_column` VALUES (1, '1', 'dept_id', '部门id', 'bigint(20)', 'Long', 'deptId', '1', '1', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 1, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (2, '1', 'parent_id', '父部门id', 'bigint(20)', 'Long', 'parentId', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 2, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (3, '1', 'ancestors', '祖级列表', 'varchar(50)', 'String', 'ancestors', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 3, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (4, '1', 'dept_name', '部门名称', 'varchar(30)', 'String', 'deptName', '0', '0', NULL, '1', '1', '1', '1', 'LIKE', 'input', '', 4, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (5, '1', 'order_num', '显示顺序', 'int(4)', 'Integer', 'orderNum', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 5, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (6, '1', 'leader', '负责人', 'varchar(20)', 'String', 'leader', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 6, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (7, '1', 'phone', '联系电话', 'varchar(11)', 'String', 'phone', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 7, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (8, '1', 'email', '邮箱', 'varchar(50)', 'String', 'email', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', '', 8, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (9, '1', 'status', '部门状态（0正常 1停用）', 'char(1)', 'String', 'status', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', '', 9, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (10, '1', 'del_flag', '删除标志（0代表存在 2代表删除）', 'char(1)', 'String', 'delFlag', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 10, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (11, '1', 'create_by', '创建者', 'varchar(64)', 'String', 'createBy', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', '', 11, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (12, '1', 'create_time', '创建时间', 'datetime', 'Date', 'createTime', '0', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'datetime', '', 12, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (13, '1', 'update_by', '更新者', 'varchar(64)', 'String', 'updateBy', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'input', '', 13, 'admin', '2021-08-12 13:30:13', '', NULL);
+INSERT INTO `gen_table_column` VALUES (14, '1', 'update_time', '更新时间', 'datetime', 'Date', 'updateTime', '0', '0', NULL, '1', '1', NULL, NULL, 'EQ', 'datetime', '', 14, 'admin', '2021-08-12 13:30:13', '', NULL);
 
 -- ----------------------------
 -- Table structure for qrtz_blob_triggers
@@ -180,7 +195,7 @@ CREATE TABLE `qrtz_job_details`  (
 -- ----------------------------
 -- Records of qrtz_job_details
 -- ----------------------------
-INSERT INTO `qrtz_job_details` VALUES ('TaoZiScheduler', 'TASK_CLASS_NAME5', 'SYSTEM', NULL, 'com.taozi.quartz.util.QuartzDisallowConcurrentExecution', '0', '1', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000F5441534B5F50524F504552544945537372001E636F6D2E74616F7A692E71756172747A2E646F6D61696E2E5379734A6F6200000000000000010200084C000A636F6E63757272656E747400124C6A6176612F6C616E672F537472696E673B4C000E63726F6E45787072657373696F6E71007E00094C000C696E766F6B6554617267657471007E00094C00086A6F6247726F757071007E00094C00056A6F6249647400104C6A6176612F6C616E672F4C6F6E673B4C00076A6F624E616D6571007E00094C000D6D697366697265506F6C69637971007E00094C000673746174757371007E000978720027636F6D2E74616F7A692E636F6D6D6F6E2E636F72652E646F6D61696E2E42617365456E7469747900000000000000010200074C0008637265617465427971007E00094C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C0006706172616D7371007E00034C000672656D61726B71007E00094C000B73656172636856616C756571007E00094C0008757064617465427971007E00094C000A75706461746554696D6571007E000C787074000561646D696E7372000E6A6176612E7574696C2E44617465686A81014B597419030000787077080000017AF635D91078707400007070707400013174000D30203020302F32202A202A203F74001557785461736B2E676574416363657373546F6B656E74000653595354454D7372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078700000000000000005740039E5BEAEE4BFA1E6AF8F32E5B08FE697B6E88EB7E58F96E4B880E6ACA16163636573735F746F6B656EEFBC8CE5B9B6E5AD98E585A5526564697374000131740001317800);
+INSERT INTO `qrtz_job_details` VALUES ('TaoZiScheduler', 'TASK_CLASS_NAME5', 'SYSTEM', NULL, 'com.taozi.quartz.util.QuartzDisallowConcurrentExecution', '0', '1', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000F5441534B5F50524F504552544945537372001E636F6D2E74616F7A692E71756172747A2E656E746974792E5379734A6F6200000000000000010200084C000A636F6E63757272656E747400124C6A6176612F6C616E672F537472696E673B4C000E63726F6E45787072657373696F6E71007E00094C000C696E766F6B6554617267657471007E00094C00086A6F6247726F757071007E00094C00056A6F6249647400104C6A6176612F6C616E672F4C6F6E673B4C00076A6F624E616D6571007E00094C000D6D697366697265506F6C69637971007E00094C000673746174757371007E000978720027636F6D2E74616F7A692E636F6D6D6F6E2E636F72652E646F6D61696E2E42617365456E7469747900000000000000010200074C0008637265617465427971007E00094C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C0006706172616D7371007E00034C000672656D61726B71007E00094C000B73656172636856616C756571007E00094C0008757064617465427971007E00094C000A75706461746554696D6571007E000C787074000561646D696E7372000E6A6176612E7574696C2E44617465686A81014B597419030000787077080000017AF635D91078707400007070707400013174000D30203020302F32202A202A203F74001557785461736B2E676574416363657373546F6B656E74000653595354454D7372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078700000000000000005740039E5BEAEE4BFA1E6AF8F32E5B08FE697B6E88EB7E58F96E4B880E6ACA16163636573735F746F6B656EEFBC8CE5B9B6E5AD98E585A5526564697374000131740001317800);
 
 -- ----------------------------
 -- Table structure for qrtz_locks
@@ -227,7 +242,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('TaoZiScheduler', 'TAOZI-SHENZHOU1627957088755', 1627959536705, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('TaoZiScheduler', 'TAOZI-SHENZHOU1629100825681', 1629100829010, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -304,7 +319,7 @@ CREATE TABLE `qrtz_triggers`  (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('TaoZiScheduler', 'TASK_CLASS_NAME5', 'SYSTEM', 'TASK_CLASS_NAME5', 'SYSTEM', NULL, 1627963200000, -1, 5, 'PAUSED', 'CRON', 1627957088000, 0, NULL, -1, '');
+INSERT INTO `qrtz_triggers` VALUES ('TaoZiScheduler', 'TASK_CLASS_NAME5', 'SYSTEM', 'TASK_CLASS_NAME5', 'SYSTEM', NULL, 1629108000000, -1, 5, 'PAUSED', 'CRON', 1629100825000, 0, NULL, -1, '');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -495,7 +510,7 @@ CREATE TABLE `sys_job_log`  (
   `exception_info` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '异常信息',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`job_log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_job_log
@@ -516,7 +531,7 @@ CREATE TABLE `sys_logininfor`  (
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 124 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 136 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -545,6 +560,18 @@ INSERT INTO `sys_logininfor` VALUES (120, 'admin', '127.0.0.1', '内网IP', 'Chr
 INSERT INTO `sys_logininfor` VALUES (121, '123', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '1', '用户不存在/密码错误', '2021-08-02 15:47:03');
 INSERT INTO `sys_logininfor` VALUES (122, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-02 16:42:10');
 INSERT INTO `sys_logininfor` VALUES (123, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-03 09:48:40');
+INSERT INTO `sys_logininfor` VALUES (124, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-03 11:07:58');
+INSERT INTO `sys_logininfor` VALUES (125, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-03 13:42:45');
+INSERT INTO `sys_logininfor` VALUES (126, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-03 14:26:02');
+INSERT INTO `sys_logininfor` VALUES (127, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-03 14:26:05');
+INSERT INTO `sys_logininfor` VALUES (128, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-06 13:42:25');
+INSERT INTO `sys_logininfor` VALUES (129, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-12 12:52:23');
+INSERT INTO `sys_logininfor` VALUES (130, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-12 13:28:49');
+INSERT INTO `sys_logininfor` VALUES (131, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-16 09:56:37');
+INSERT INTO `sys_logininfor` VALUES (132, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-16 10:50:06');
+INSERT INTO `sys_logininfor` VALUES (133, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '退出成功', '2021-08-16 10:55:42');
+INSERT INTO `sys_logininfor` VALUES (134, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-16 10:55:44');
+INSERT INTO `sys_logininfor` VALUES (135, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-16 12:59:59');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -704,11 +731,38 @@ CREATE TABLE `sys_oper_log`  (
   `error_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 163 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 190 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_oper_log
 -- ----------------------------
+INSERT INTO `sys_oper_log` VALUES (163, '代码生成', 6, 'com.taozi.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', NULL, '/tool/gen/importTable', '127.0.0.1', '内网IP', 'sys_config', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-03 11:08:25');
+INSERT INTO `sys_oper_log` VALUES (164, '代码生成', 3, 'com.taozi.generator.controller.GenController.remove()', 'DELETE', 1, 'admin', NULL, '/tool/gen/12', '127.0.0.1', '内网IP', '{tableIds=12}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-03 13:42:51');
+INSERT INTO `sys_oper_log` VALUES (165, '代码生成', 6, 'com.taozi.generator.controller.GenController.importTableSave()', 'POST', 1, 'admin', NULL, '/tool/gen/importTable', '127.0.0.1', '内网IP', 'sys_dept', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-12 13:30:13');
+INSERT INTO `sys_oper_log` VALUES (166, '代码生成', 8, 'com.taozi.generator.controller.GenController.batchGenCode()', 'GET', 1, 'admin', NULL, '/tool/gen/batchGenCode', '127.0.0.1', '内网IP', '{}', 'null', 0, NULL, '2021-08-12 13:30:24');
+INSERT INTO `sys_oper_log` VALUES (167, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', 'null', 1, 'java.io.FileNotFoundException: C:\\Users\\TAOZI\\AppData\\Local\\Temp\\tomcat.2515737259673613067.5200\\work\\Tomcat\\localhost\\ROOT\\D:Workspace\\taozi\\uploadPath\\avatar\\2021\\08\\16\\f8390e31-4b5a-4051-94c8-86e98db940ed.jpeg (文件名、目录名或卷标语法不正确。)', '2021-08-16 10:50:16');
+INSERT INTO `sys_oper_log` VALUES (168, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-16 10:53:25');
+INSERT INTO `sys_oper_log` VALUES (169, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-16 10:55:42');
+INSERT INTO `sys_oper_log` VALUES (170, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-16 10:56:33');
+INSERT INTO `sys_oper_log` VALUES (171, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-16 10:57:57');
+INSERT INTO `sys_oper_log` VALUES (172, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-16 11:06:04');
+INSERT INTO `sys_oper_log` VALUES (173, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-16 11:10:44');
+INSERT INTO `sys_oper_log` VALUES (174, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-16 11:10:59');
+INSERT INTO `sys_oper_log` VALUES (175, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-16 13:16:31');
+INSERT INTO `sys_oper_log` VALUES (176, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-16 13:16:31');
+INSERT INTO `sys_oper_log` VALUES (177, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', 'null', 1, 'java.io.FileNotFoundException: C:\\Users\\TAOZI\\AppData\\Local\\Temp\\tomcat.5482036003444954422.5200\\work\\Tomcat\\localhost\\ROOT\\D:Workspace\\taozi\\uploadPath\\2021\\08\\16\\33a4c368-57d5-44a4-901d-b2f949f2d9f7.jpeg (文件名、目录名或卷标语法不正确。)', '2021-08-16 13:19:28');
+INSERT INTO `sys_oper_log` VALUES (178, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', 'null', 1, 'java.io.FileNotFoundException: C:\\Users\\TAOZI\\AppData\\Local\\Temp\\tomcat.5482036003444954422.5200\\work\\Tomcat\\localhost\\ROOT\\D:Workspace\\taozi\\uploadPath\\2021\\08\\16\\66ba1912-7958-4801-b8cb-82cbb74998c1.jpeg (文件名、目录名或卷标语法不正确。)', '2021-08-16 13:22:15');
+INSERT INTO `sys_oper_log` VALUES (179, '用户头像', 2, 'com.taozi.app.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/system/user/profile/avatar', '127.0.0.1', '内网IP', '', '{\"msg\":\"操作成功\",\"imgUrl\":\"/profile//2021/08/16/687c3fa6-0c81-4e99-9f2e-435331591cc5.jpeg\",\"code\":200}', 0, NULL, '2021-08-16 13:22:37');
+INSERT INTO `sys_oper_log` VALUES (180, '个人信息', 2, 'com.taozi.app.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/system/user/profile', '127.0.0.1', '内网IP', '{\"roles\":[{\"flag\":false,\"roleId\":1,\"admin\":true,\"dataScope\":\"1\",\"params\":{},\"roleSort\":\"1\",\"deptCheckStrictly\":false,\"menuCheckStrictly\":false,\"roleKey\":\"admin\",\"roleName\":\"超级管理员\",\"status\":\"0\"}],\"phonenumber\":\"15888888888\",\"admin\":true,\"loginDate\":1629089999761,\"remark\":\"管理员\",\"delFlag\":\"0\",\"loginIp\":\"127.0.0.1\",\"email\":\"398529803@qq.com\",\"nickName\":\"桃子\",\"sex\":\"0\",\"deptId\":103,\"dept\":{\"deptName\":\"研发部门\",\"leader\":\"桃子\",\"deptId\":103,\"orderNum\":\"1\",\"params\":{},\"parentId\":101,\"children\":[],\"status\":\"0\"},\"params\":{},\"userName\":\"admin\",\"userId\":1,\"createBy\":\"admin\",\"createTime\":1624257458000,\"userType\":\"00\",\"status\":\"0\"}', '{\"msg\":\"修改用户\'admin\'失败，邮箱账号已存在\",\"code\":500}', 0, NULL, '2021-08-16 13:26:20');
+INSERT INTO `sys_oper_log` VALUES (181, '个人信息', 2, 'com.taozi.app.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/system/user/profile', '127.0.0.1', '内网IP', '{\"roles\":[{\"flag\":false,\"roleId\":1,\"admin\":true,\"dataScope\":\"1\",\"params\":{},\"roleSort\":\"1\",\"deptCheckStrictly\":false,\"menuCheckStrictly\":false,\"roleKey\":\"admin\",\"roleName\":\"超级管理员\",\"status\":\"0\"}],\"phonenumber\":\"15888888888\",\"admin\":true,\"loginDate\":1629089999761,\"remark\":\"管理员\",\"delFlag\":\"0\",\"loginIp\":\"127.0.0.1\",\"email\":\"398529803@qq.com\",\"nickName\":\"桃子\",\"sex\":\"0\",\"deptId\":103,\"dept\":{\"deptName\":\"研发部门\",\"leader\":\"桃子\",\"deptId\":103,\"orderNum\":\"1\",\"params\":{},\"parentId\":101,\"children\":[],\"status\":\"0\"},\"params\":{},\"userName\":\"admin\",\"userId\":1,\"createBy\":\"admin\",\"createTime\":1624257458000,\"userType\":\"00\",\"status\":\"0\"}', '{\"msg\":\"修改用户\'admin\'失败，邮箱账号已存在\",\"code\":500}', 0, NULL, '2021-08-16 13:26:21');
+INSERT INTO `sys_oper_log` VALUES (182, '个人信息', 2, 'com.taozi.app.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/system/user/profile', '127.0.0.1', '内网IP', '{\"roles\":[{\"flag\":false,\"roleId\":1,\"admin\":true,\"dataScope\":\"1\",\"params\":{},\"roleSort\":\"1\",\"deptCheckStrictly\":false,\"menuCheckStrictly\":false,\"roleKey\":\"admin\",\"roleName\":\"超级管理员\",\"status\":\"0\"}],\"phonenumber\":\"15888888888\",\"admin\":true,\"loginDate\":1629089999761,\"remark\":\"管理员\",\"delFlag\":\"0\",\"loginIp\":\"127.0.0.1\",\"email\":\"398529803@qq.com\",\"nickName\":\"桃子\",\"sex\":\"0\",\"deptId\":103,\"dept\":{\"deptName\":\"研发部门\",\"leader\":\"桃子\",\"deptId\":103,\"orderNum\":\"1\",\"params\":{},\"parentId\":101,\"children\":[],\"status\":\"0\"},\"params\":{},\"userName\":\"admin\",\"userId\":1,\"createBy\":\"admin\",\"createTime\":1624257458000,\"userType\":\"00\",\"status\":\"0\"}', '{\"msg\":\"修改用户\'admin\'失败，邮箱账号已存在\",\"code\":500}', 0, NULL, '2021-08-16 13:26:22');
+INSERT INTO `sys_oper_log` VALUES (183, '个人信息', 2, 'com.taozi.app.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/system/user/profile', '127.0.0.1', '内网IP', '{\"roles\":[{\"flag\":false,\"roleId\":1,\"admin\":true,\"dataScope\":\"1\",\"params\":{},\"roleSort\":\"1\",\"deptCheckStrictly\":false,\"menuCheckStrictly\":false,\"roleKey\":\"admin\",\"roleName\":\"超级管理员\",\"status\":\"0\"}],\"phonenumber\":\"15888888888\",\"admin\":true,\"loginDate\":1629089999761,\"remark\":\"管理员\",\"delFlag\":\"0\",\"loginIp\":\"127.0.0.1\",\"email\":\"398529803@qq.com\",\"nickName\":\"桃子\",\"sex\":\"0\",\"deptId\":103,\"dept\":{\"deptName\":\"研发部门\",\"leader\":\"桃子\",\"deptId\":103,\"orderNum\":\"1\",\"params\":{},\"parentId\":101,\"children\":[],\"status\":\"0\"},\"params\":{},\"userName\":\"admin\",\"userId\":1,\"createBy\":\"admin\",\"createTime\":1624257458000,\"userType\":\"00\",\"status\":\"0\"}', '{\"msg\":\"修改用户\'admin\'失败，邮箱账号已存在\",\"code\":500}', 0, NULL, '2021-08-16 13:26:22');
+INSERT INTO `sys_oper_log` VALUES (184, '个人信息', 2, 'com.taozi.app.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/system/user/profile', '127.0.0.1', '内网IP', '{\"roles\":[{\"flag\":false,\"roleId\":1,\"admin\":true,\"dataScope\":\"1\",\"params\":{},\"roleSort\":\"1\",\"deptCheckStrictly\":false,\"menuCheckStrictly\":false,\"roleKey\":\"admin\",\"roleName\":\"超级管理员\",\"status\":\"0\"}],\"phonenumber\":\"15888888888\",\"admin\":true,\"loginDate\":1629089999761,\"remark\":\"管理员\",\"delFlag\":\"0\",\"loginIp\":\"127.0.0.1\",\"email\":\"398529803@qq.com\",\"nickName\":\"桃子\",\"sex\":\"0\",\"deptId\":103,\"dept\":{\"deptName\":\"研发部门\",\"leader\":\"桃子\",\"deptId\":103,\"orderNum\":\"1\",\"params\":{},\"parentId\":101,\"children\":[],\"status\":\"0\"},\"params\":{},\"userName\":\"admin\",\"userId\":1,\"createBy\":\"admin\",\"createTime\":1624257458000,\"userType\":\"00\",\"status\":\"0\"}', '{\"msg\":\"修改用户\'admin\'失败，邮箱账号已存在\",\"code\":500}', 0, NULL, '2021-08-16 13:26:23');
+INSERT INTO `sys_oper_log` VALUES (185, '个人信息', 2, 'com.taozi.app.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/system/user/profile', '127.0.0.1', '内网IP', '{\"roles\":[{\"flag\":false,\"roleId\":1,\"admin\":true,\"dataScope\":\"1\",\"params\":{},\"roleSort\":\"1\",\"deptCheckStrictly\":false,\"menuCheckStrictly\":false,\"roleKey\":\"admin\",\"roleName\":\"超级管理员\",\"status\":\"0\"}],\"phonenumber\":\"15888888888\",\"admin\":true,\"loginDate\":1629089999761,\"remark\":\"管理员\",\"delFlag\":\"0\",\"loginIp\":\"127.0.0.1\",\"email\":\"398529803@qq.com\",\"nickName\":\"桃子\",\"sex\":\"0\",\"deptId\":103,\"dept\":{\"deptName\":\"研发部门\",\"leader\":\"桃子\",\"deptId\":103,\"orderNum\":\"1\",\"params\":{},\"parentId\":101,\"children\":[],\"status\":\"0\"},\"params\":{},\"userName\":\"admin\",\"userId\":1,\"createBy\":\"admin\",\"createTime\":1624257458000,\"userType\":\"00\",\"status\":\"0\"}', '{\"msg\":\"修改用户\'admin\'失败，邮箱账号已存在\",\"code\":500}', 0, NULL, '2021-08-16 13:26:23');
+INSERT INTO `sys_oper_log` VALUES (186, '个人信息', 2, 'com.taozi.app.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/system/user/profile', '127.0.0.1', '内网IP', '{\"roles\":[{\"flag\":false,\"roleId\":1,\"admin\":true,\"dataScope\":\"1\",\"params\":{},\"roleSort\":\"1\",\"deptCheckStrictly\":false,\"menuCheckStrictly\":false,\"roleKey\":\"admin\",\"roleName\":\"超级管理员\",\"status\":\"0\"}],\"phonenumber\":\"15888888888\",\"admin\":true,\"loginDate\":1629089999761,\"remark\":\"管理员\",\"delFlag\":\"0\",\"loginIp\":\"127.0.0.1\",\"email\":\"398529803@qq.com\",\"nickName\":\"桃子\",\"sex\":\"0\",\"deptId\":103,\"dept\":{\"deptName\":\"研发部门\",\"leader\":\"桃子\",\"deptId\":103,\"orderNum\":\"1\",\"params\":{},\"parentId\":101,\"children\":[],\"status\":\"0\"},\"params\":{},\"userName\":\"admin\",\"userId\":1,\"createBy\":\"admin\",\"createTime\":1624257458000,\"userType\":\"00\",\"status\":\"0\"}', '{\"msg\":\"修改用户\'admin\'失败，邮箱账号已存在\",\"code\":500}', 0, NULL, '2021-08-16 13:26:23');
+INSERT INTO `sys_oper_log` VALUES (187, '个人信息', 2, 'com.taozi.app.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/system/user/profile', '127.0.0.1', '内网IP', '{\"roles\":[{\"flag\":false,\"roleId\":1,\"admin\":true,\"dataScope\":\"1\",\"params\":{},\"roleSort\":\"1\",\"deptCheckStrictly\":false,\"menuCheckStrictly\":false,\"roleKey\":\"admin\",\"roleName\":\"超级管理员\",\"status\":\"0\"}],\"phonenumber\":\"15888888888\",\"admin\":true,\"loginDate\":1629089999761,\"remark\":\"管理员\",\"delFlag\":\"0\",\"loginIp\":\"127.0.0.1\",\"email\":\"398529803@qq.com\",\"nickName\":\"桃子\",\"sex\":\"0\",\"deptId\":103,\"dept\":{\"deptName\":\"研发部门\",\"leader\":\"桃子\",\"deptId\":103,\"orderNum\":\"1\",\"params\":{},\"parentId\":101,\"children\":[],\"status\":\"0\"},\"params\":{},\"userName\":\"admin\",\"userId\":1,\"createBy\":\"admin\",\"createTime\":1624257458000,\"userType\":\"00\",\"status\":\"0\"}', '{\"msg\":\"修改用户\'admin\'失败，邮箱账号已存在\",\"code\":500}', 0, NULL, '2021-08-16 13:26:23');
+INSERT INTO `sys_oper_log` VALUES (188, '个人信息', 2, 'com.taozi.app.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/system/user/profile', '127.0.0.1', '内网IP', '{\"roles\":[{\"flag\":false,\"roleId\":1,\"admin\":true,\"dataScope\":\"1\",\"params\":{},\"roleSort\":\"1\",\"deptCheckStrictly\":false,\"menuCheckStrictly\":false,\"roleKey\":\"admin\",\"roleName\":\"超级管理员\",\"status\":\"0\"}],\"phonenumber\":\"15888888888\",\"admin\":true,\"loginDate\":1629089999761,\"remark\":\"管理员\",\"delFlag\":\"0\",\"loginIp\":\"127.0.0.1\",\"email\":\"398529803@qq.com\",\"nickName\":\"桃子\",\"sex\":\"0\",\"deptId\":103,\"dept\":{\"deptName\":\"研发部门\",\"leader\":\"桃子\",\"deptId\":103,\"orderNum\":\"1\",\"params\":{},\"parentId\":101,\"children\":[],\"status\":\"0\"},\"params\":{},\"userName\":\"admin\",\"userId\":1,\"createBy\":\"admin\",\"createTime\":1624257458000,\"userType\":\"00\",\"status\":\"0\"}', '{\"msg\":\"修改用户\'admin\'失败，邮箱账号已存在\",\"code\":500}', 0, NULL, '2021-08-16 13:26:23');
+INSERT INTO `sys_oper_log` VALUES (189, '个人信息', 2, 'com.taozi.app.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/system/user/profile', '127.0.0.1', '内网IP', '{\"roles\":[{\"flag\":false,\"roleId\":1,\"admin\":true,\"dataScope\":\"1\",\"params\":{},\"roleSort\":\"1\",\"deptCheckStrictly\":false,\"menuCheckStrictly\":false,\"roleKey\":\"admin\",\"roleName\":\"超级管理员\",\"status\":\"0\"}],\"phonenumber\":\"15888888888\",\"admin\":true,\"loginDate\":1629089999761,\"remark\":\"管理员\",\"delFlag\":\"0\",\"loginIp\":\"127.0.0.1\",\"email\":\"398529803@163.com\",\"nickName\":\"桃子\",\"sex\":\"0\",\"deptId\":103,\"dept\":{\"deptName\":\"研发部门\",\"leader\":\"桃子\",\"deptId\":103,\"orderNum\":\"1\",\"params\":{},\"parentId\":101,\"children\":[],\"status\":\"0\"},\"params\":{},\"userName\":\"admin\",\"userId\":1,\"createBy\":\"admin\",\"createTime\":1624257458000,\"userType\":\"00\",\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2021-08-16 13:26:31');
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -907,7 +961,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '桃子', '00', 'ry@163.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-08-03 09:48:40', 'admin', '2021-06-21 14:37:38', '', '2021-08-03 09:48:40', '管理员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '桃子', '00', '398529803@163.com', '15888888888', '0', '/profile//2021/08/16/687c3fa6-0c81-4e99-9f2e-435331591cc5.jpeg', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-08-16 13:00:00', 'admin', '2021-06-21 14:37:38', '', '2021-08-16 13:26:31', '管理员');
 INSERT INTO `sys_user` VALUES (2, 105, 'ry', '桃子', '00', '398529803@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-06-21 14:37:38', 'admin', '2021-06-21 14:37:38', 'admin', '2021-07-30 16:00:00', '测试员');
 
 -- ----------------------------

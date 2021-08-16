@@ -31,10 +31,19 @@
 1. 多模块 --> 单模块
 2. mybatis --> mybatisplus
 3. 新增了swagger的bootstrap-ui包，开启swagger的bootstrap-ui的接口
-4. 自定义一个全局链式返回对象CommonResult
-5. 阿里云短信验证码功能块引入，手机验证码、多用户类型登录实现
+4. 自定义一个全局链式返回对象BaseResult
 6. 新增多个工具类
 7. 加入swagger配置类，实现参数隐藏、显示
+
+## 启动
+
+### linux
+
+```bash
+nohup java -jar taozi-vue.jar --spring.profiles.active=prod  > taozi-vue.log 2>&1 &
+```
+
+
 
 ## 联系
 

@@ -9,7 +9,7 @@ taozi:
   # 实例演示开关
   demoEnabled: true
   # 文件路径 示例（ Windows配置D:/taozi/uploadPath，Linux配置 /home/taozi/uploadPath）
-  profile: D:/Workspace/taozi/uploadPath
+  profile: /www/projects/taozi/uploadPath
   # 获取ip地址开关
   addressEnabled: false
   # 验证码类型 math 数组计算 char 字符验证
@@ -44,8 +44,8 @@ spring:
     # 国际化资源文件路径
     basename: i18n/messages
   profiles:
-    active: dev
-    include: druid
+    active: prod
+    include: druid-prod
   # 文件上传
   servlet:
     multipart:
