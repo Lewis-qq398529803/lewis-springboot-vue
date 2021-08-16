@@ -65,12 +65,11 @@ public class CommonController {
      * 通用上传请求
      *
      * @param file
-     * @return
-     * @throws Exception
+     * @return AjaxResult
      */
     @PostMapping("/common/upload")
     @ApiOperation("通用上传请求")
-    public AjaxResult uploadFile(MultipartFile file) throws Exception {
+    public AjaxResult uploadFile(MultipartFile file) {
         try {
             // 上传文件路径
             String filePath = TaoZiConfig.getUploadPath();

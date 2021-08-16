@@ -218,18 +218,22 @@ public class ImageUtils {
      *
      * @param path 文件路径
      * @return base64字符串
-     * @throws Exception
      */
-    public static String encodeBase64File(String path) throws Exception {
+    public static String encodeBase64File(String path) {
         File file = new File(path);
         //文件不存在
         if (!file.exists()) {
             return null;
         }
-        FileInputStream inputFile = new FileInputStream(file);
+        FileInputStream inputFile = null;
         byte[] buffer = new byte[(int) file.length()];
-        inputFile.read(buffer);
-        inputFile.close();
+        try {
+            inputFile = new FileInputStream(file);
+            inputFile.read(buffer);
+            inputFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return Base64Utils.encode(StringUtils.byteToString(buffer));
     }
 
@@ -238,13 +242,17 @@ public class ImageUtils {
      *
      * @param base64Code 待解码的base64字符串
      * @param targetPath 输出路径
-     * @throws Exception
      */
-    public static void decodeBase64File(String base64Code, String targetPath) throws Exception {
+    public static void decodeBase64File(String base64Code, String targetPath) {
         byte[] buffer = Base64Utils.decode(base64Code).getBytes();
-        FileOutputStream out = new FileOutputStream(targetPath);
-        out.write(buffer);
-        out.close();
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(targetPath);
+            out.write(buffer);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
