@@ -105,7 +105,7 @@ export default {
   props: {
     // 角色编号
     roleId: {
-      type: String,
+      type: [Number, String]
     },
   },
   data() {

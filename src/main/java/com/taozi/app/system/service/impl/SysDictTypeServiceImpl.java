@@ -23,6 +23,7 @@ import java.util.List;
  */
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService {
+
     @Autowired
     private SysDictTypeMapper dictTypeMapper;
 

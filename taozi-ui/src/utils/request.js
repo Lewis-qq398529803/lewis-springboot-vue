@@ -75,7 +75,7 @@ service.interceptors.response.use(res => {
       Notification.error({
         title: msg
       })
-      return Promise.reject()
+      return Promise.reject('令牌验证失败')
     } else {
       return res.data
     }
