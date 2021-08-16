@@ -15,6 +15,7 @@ import com.taozi.common.utils.file.FileTypeUtils;
 import com.taozi.common.utils.file.FileUtils;
 import com.taozi.common.utils.file.ImageUtils;
 import com.taozi.common.utils.reflect.ReflectUtils;
+import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.ooxml.POIXMLDocumentPart;
 import org.apache.poi.ss.usermodel.*;
@@ -143,7 +144,13 @@ public class ExcelUtil<T> {
 		if (sheet == null) {
 			throw new IOException("文件sheet不存在");
 		}
-		Map<String, PictureData> pictures = getSheetPictrues((XSSFSheet) sheet, (XSSFWorkbook) wb);
+		boolean isXSSFWorkbook = !(wb instanceof HSSFWorkbook);
+		Map<String, PictureData> pictures;
+		if (isXSSFWorkbook) {
+			pictures = getSheetPictrues07((XSSFSheet) sheet, (XSSFWorkbook) wb);
+		} else {
+			pictures = getSheetPictrues03((HSSFSheet) sheet, (HSSFWorkbook) wb);
+		}
 		// 获取最后一个非空行的行下标，比如总行数为n，则返回的为n-1
 		int rows = sheet.getLastRowNum();
 
@@ -234,10 +241,7 @@ public class ExcelUtil<T> {
 							val = reverseByExp(Convert.toStr(val), attr.readConverterExp(), attr.separator());
 						} else if (StringUtils.isNotEmpty(attr.dictType())) {
 							val = reverseDictByExp(Convert.toStr(val), attr.dictType(), attr.separator());
-						} else if (ColumnType.IMAGE == attr.cellType()) {
-							if (StringUtils.isNull(pictures)) {
-								val = "";
-							}
+						} else if (ColumnType.IMAGE == attr.cellType() && StringUtils.isNotEmpty(pictures)) {
 							PictureData image = pictures.get(row.getRowNum() + "_" + entry.getKey());
 							if (image == null) {
 								val = "";
@@ -953,13 +957,40 @@ public class ExcelUtil<T> {
 	}
 
 	/**
-	 * 获取Excel图片
+	 * 获取Excel2003图片
 	 *
 	 * @param sheet    当前sheet对象
 	 * @param workbook 工作簿对象
 	 * @return Map key:图片单元格索引（1_1）String，value:图片流PictureData
 	 */
-	public static Map<String, PictureData> getSheetPictrues(XSSFSheet sheet, XSSFWorkbook workbook) {
+	public static Map<String, PictureData> getSheetPictrues03(HSSFSheet sheet, HSSFWorkbook workbook) {
+		Map<String, PictureData> sheetIndexPicMap = new HashMap<String, PictureData>();
+		List<HSSFPictureData> pictures = workbook.getAllPictures();
+		if (!pictures.isEmpty()) {
+			for (HSSFShape shape : sheet.getDrawingPatriarch().getChildren()) {
+				HSSFClientAnchor anchor = (HSSFClientAnchor) shape.getAnchor();
+				if (shape instanceof HSSFPicture) {
+					HSSFPicture pic = (HSSFPicture) shape;
+					int pictureIndex = pic.getPictureIndex() - 1;
+					HSSFPictureData picData = pictures.get(pictureIndex);
+					String picIndex = String.valueOf(anchor.getRow1()) + "_" + String.valueOf(anchor.getCol1());
+					sheetIndexPicMap.put(picIndex, picData);
+				}
+			}
+			return sheetIndexPicMap;
+		} else {
+			return sheetIndexPicMap;
+		}
+	}
+
+	/**
+	 * 获取Excel2007图片
+	 *
+	 * @param sheet 当前sheet对象
+	 * @param workbook 工作簿对象
+	 * @return Map key:图片单元格索引（1_1）String，value:图片流PictureData
+	 */
+	public static Map<String, PictureData> getSheetPictrues07(XSSFSheet sheet, XSSFWorkbook workbook) {
 		Map<String, PictureData> sheetIndexPicMap = new HashMap<String, PictureData>();
 		for (POIXMLDocumentPart dr : sheet.getRelations()) {
 			if (dr instanceof XSSFDrawing) {
