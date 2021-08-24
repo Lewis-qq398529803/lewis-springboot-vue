@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 16/08/2021 16:37:20
+ Date: 23/08/2021 10:06:20
 */
 
 SET NAMES utf8mb4;
@@ -242,7 +242,7 @@ CREATE TABLE `qrtz_scheduler_state`  (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('TaoZiScheduler', 'TAOZI-SHENZHOU1629100825681', 1629100829010, 15000);
+INSERT INTO `qrtz_scheduler_state` VALUES ('TaoZiScheduler', 'TAOZI-SHENZHOU1629446974296', 1629446993637, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -319,7 +319,7 @@ CREATE TABLE `qrtz_triggers`  (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('TaoZiScheduler', 'TASK_CLASS_NAME5', 'SYSTEM', 'TASK_CLASS_NAME5', 'SYSTEM', NULL, 1629108000000, -1, 5, 'PAUSED', 'CRON', 1629100825000, 0, NULL, -1, '');
+INSERT INTO `qrtz_triggers` VALUES ('TaoZiScheduler', 'TASK_CLASS_NAME5', 'SYSTEM', 'TASK_CLASS_NAME5', 'SYSTEM', NULL, 1629453600000, -1, 5, 'PAUSED', 'CRON', 1629446974000, 0, NULL, -1, '');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -531,7 +531,7 @@ CREATE TABLE `sys_logininfor`  (
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 136 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 139 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -572,6 +572,9 @@ INSERT INTO `sys_logininfor` VALUES (132, 'admin', '127.0.0.1', '内网IP', 'Chr
 INSERT INTO `sys_logininfor` VALUES (133, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '退出成功', '2021-08-16 10:55:42');
 INSERT INTO `sys_logininfor` VALUES (134, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-16 10:55:44');
 INSERT INTO `sys_logininfor` VALUES (135, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-16 12:59:59');
+INSERT INTO `sys_logininfor` VALUES (136, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-17 09:20:49');
+INSERT INTO `sys_logininfor` VALUES (137, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-17 09:20:50');
+INSERT INTO `sys_logininfor` VALUES (138, 'admin', '127.0.0.1', '内网IP', 'Chrome 9', 'Windows 10', '0', '登录成功', '2021-08-18 09:38:45');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -961,7 +964,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '桃子', '00', '398529803@163.com', '15888888888', '0', '/profile//2021/08/16/687c3fa6-0c81-4e99-9f2e-435331591cc5.jpeg', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-08-16 13:00:00', 'admin', '2021-06-21 14:37:38', '', '2021-08-16 13:26:31', '管理员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '桃子', '00', '398529803@163.com', '15888888888', '0', '/profile//2021/08/16/687c3fa6-0c81-4e99-9f2e-435331591cc5.jpeg', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-08-18 09:38:46', 'admin', '2021-06-21 14:37:38', '', '2021-08-18 09:38:45', '管理员');
 INSERT INTO `sys_user` VALUES (2, 105, 'ry', '桃子', '00', '398529803@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-06-21 14:37:38', 'admin', '2021-06-21 14:37:38', 'admin', '2021-07-30 16:00:00', '测试员');
 
 -- ----------------------------
