@@ -1,6 +1,5 @@
 package com.taozi.common.utils.http;
 
-import com.taozi.common.utils.http.entity.RequestPropertyEntity;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
@@ -14,6 +13,7 @@ import java.nio.charset.StandardCharsets;
  */
 @Slf4j
 public class HttpUtils {
+
 	/**
 	 * UTF-8 字符集
 	 */
@@ -101,26 +101,35 @@ public class HttpUtils {
 	 * @return 所代表远程资源的响应结果
 	 */
 	public static String doPost(String url, String param) {
-		RequestPropertyEntity requestPropertyEntity = new RequestPropertyEntity();
-		requestPropertyEntity.setAccept("*/*");
-		requestPropertyEntity.setConnection("Keep-Alive");
-		requestPropertyEntity.setUserAgent("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-		requestPropertyEntity.setAcceptCharset(UTF8);
-		requestPropertyEntity.setContentType(APPLICATION_JSON);
-		return doPost(url, param, requestPropertyEntity);
+		return doPost(url, param, APPLICATION_JSON);
 	}
 
 	/**
 	 * 向指定 URL 发送POST方法的请求
 	 *
-	 * @param httpUrl               发送请求的 URL
-	 * @param param                 请求参数，
-	 *                              1.json请求参数应该是：{key: value}
-	 *                              2.form请求参数应该是："name=value&name=value&...."
-	 * @param requestPropertyEntity 请求头
+	 * @param httpUrl     发送请求的 URL
+	 * @param param       请求参数，
+	 *                    1.json请求参数应该是：{key: value}
+	 *                    2.form请求参数应该是："name=value&name=value&...."
+	 * @param contentType 请求数据格式
 	 * @return 所代表远程资源的响应结果
 	 */
-	public static String doPost(String httpUrl, String param, RequestPropertyEntity requestPropertyEntity) {
+	public static String doPost(String httpUrl, String param, String contentType) {
+		return doPost(httpUrl, param, contentType, null);
+	}
+
+	/**
+	 * 向指定 URL 发送POST方法的请求
+	 *
+	 * @param httpUrl     发送请求的 URL
+	 * @param param       请求参数，
+	 *                    1.json请求参数应该是：{key: value}
+	 *                    2.form请求参数应该是："name=value&name=value&...."
+	 * @param contentType 	请求数据格式
+	 * @param authorization 鉴权信息
+	 * @return 所代表远程资源的响应结果
+	 */
+	public static String doPost(String httpUrl, String param, String contentType, String authorization) {
 		HttpURLConnection connection = null;
 		InputStream is = null;
 		OutputStream os = null;
@@ -129,7 +138,7 @@ public class HttpUtils {
 		try {
 			String realUrl = httpUrl;
 			// form表单数据情况
-			if (APPLICATION_X_WWW_FORM_URLENCODED.equals(requestPropertyEntity.getContentType())) {
+			if (APPLICATION_X_WWW_FORM_URLENCODED.equals(contentType)) {
 				realUrl += ("?" + param);
 			}
 			log.info("doPost - {}", realUrl);
@@ -142,14 +151,17 @@ public class HttpUtils {
 			connection.setConnectTimeout(15000);
 			// 设置读取主机服务器返回数据超时时间：60000毫秒
 			connection.setReadTimeout(60000);
-			connection.setRequestProperty("accept", requestPropertyEntity.getAccept());
-			connection.setRequestProperty("connection", requestPropertyEntity.getConnection());
-			connection.setRequestProperty("user-agent", requestPropertyEntity.getUserAgent());
-			connection.setRequestProperty("Accept-Charset", requestPropertyEntity.getAcceptCharset());
+			connection.setRequestProperty("accept", "*/*");
+			connection.setRequestProperty("connection", "Keep-Alive");
+			connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+			connection.setRequestProperty("Accept-Charset", UTF8);
 			// 设置传入参数的格式
-			connection.setRequestProperty("Content-Type", requestPropertyEntity.getContentType());
-			// 设置鉴权信息：Authorization: Bearer da3efcbf-0845-4fe3-8aba-ee040be542c0
-			connection.setRequestProperty("Authorization", requestPropertyEntity.getAuthorization());
+			connection.setRequestProperty("Content-Type", contentType);
+			// 鉴权不为空的情况
+			if (!"".equals(authorization) && null != authorization) {
+				// 设置鉴权信息：Authorization: Bearer da3efcbf-0845-4fe3-8aba-ee040be542c0
+				connection.setRequestProperty("Authorization", authorization);
+			}
 			// 默认值为：false，当向远程服务器传送数据/写数据时，需要设置为true
 			connection.setDoOutput(true);
 			// 默认值为：true，当前向远程服务读取数据时，设置为true，该参数可有可无
@@ -157,18 +169,15 @@ public class HttpUtils {
 			// 通过连接对象获取一个输出流
 			os = connection.getOutputStream();
 			// json 情况
-			if (APPLICATION_JSON.equals(requestPropertyEntity.getContentType())) {
+			if (APPLICATION_JSON.equals(contentType)) {
 				// 通过输出流对象将参数写出去/传输出去,它是通过字节数组写出的
 				os.write(param.getBytes());
 			}
-
 			// 通过连接对象获取一个输入流，向远程读取
 			if (connection.getResponseCode() == 200) {
-
 				is = connection.getInputStream();
 				// 对输入流对象进行包装:charset根据工作项目组的要求来设置
 				br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-
 				StringBuffer sbf = new StringBuffer();
 				String temp = null;
 				// 循环遍历一行一行读取数据
