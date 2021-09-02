@@ -6,6 +6,7 @@ import com.taozi.common.utils.DateUtils;
 import com.taozi.common.utils.StringUtils;
 import com.taozi.common.utils.uuid.IdUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileOutputStream;
 
@@ -25,13 +26,33 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
 	public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";
 
 	/**
+	 * multipartFile 转 File
+	 *
+	 * @param file
+	 * @return
+	 */
+	public static File multipartFile2File(MultipartFile file) {
+		// 获取文件名
+		String fileName = file.getOriginalFilename();
+		// 获取文件后缀
+		String suffix = fileName.substring(fileName.lastIndexOf("."));
+		File realFile = null;
+		try {
+			realFile = File.createTempFile(System.currentTimeMillis() + "", suffix);
+			file.transferTo(realFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return realFile;
+	}
+
+	/**
 	 * 输出指定文件的byte数组
 	 *
 	 * @param filePath 文件路径
 	 * @param os       输出流
-	 * @throws IOException
 	 */
-	public static void writeBytes(String filePath, OutputStream os) throws IOException {
+	public static void writeBytes(String filePath, OutputStream os) {
 		FileInputStream fis = null;
 		try {
 			File file = new File(filePath);
@@ -44,11 +65,10 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
 			while ((length = fis.read(b)) > 0) {
 				os.write(b, 0, length);
 			}
-		} catch (IOException e) {
-			throw e;
-		} finally {
 			IOUtils.close(os);
 			IOUtils.close(fis);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -59,7 +79,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
 	 * @return 目标文件
 	 * @throws IOException IO异常
 	 */
-	public static String writeImportBytes(byte[] data) throws IOException {
+	public static String writeImportBytes(byte[] data) {
 		return writeBytes(data, TaoZiConfig.getImportPath());
 	}
 
@@ -69,21 +89,23 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
 	 * @param data      数据
 	 * @param uploadDir 目标文件
 	 * @return 目标文件
-	 * @throws IOException IO异常
 	 */
-	public static String writeBytes(byte[] data, String uploadDir) throws IOException {
+	public static String writeBytes(byte[] data, String uploadDir) {
 		FileOutputStream fos = null;
 		String pathName = "";
+		String pathFileName = "";
 		try {
 			String extension = getFileExtendName(data);
 			pathName = DateUtils.datePath() + "/" + IdUtils.fastUuid() + "." + extension;
 			File file = FileUploadUtils.getAbsoluteFile(uploadDir, pathName);
 			fos = new FileOutputStream(file);
 			fos.write(data);
-		} finally {
 			IOUtils.close(fos);
+			pathFileName = FileUploadUtils.getPathFileName(uploadDir, pathName);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return FileUploadUtils.getPathFileName(uploadDir, pathName);
+		return pathFileName;
 	}
 
 	/**
@@ -94,8 +116,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
 	 */
 	public static String getFileExtendName(byte[] photoByte) {
 		String strFileExtendName = "jpg";
-		if ((photoByte[0] == 71) && (photoByte[1] == 73) && (photoByte[2] == 70) && (photoByte[3] == 56)
-				&& ((photoByte[4] == 55) || (photoByte[4] == 57)) && (photoByte[5] == 97)) {
+		if ((photoByte[0] == 71) && (photoByte[1] == 73) && (photoByte[2] == 70) && (photoByte[3] == 56) && ((photoByte[4] == 55) || (photoByte[4] == 57)) && (photoByte[5] == 97)) {
 			strFileExtendName = "gif";
 		} else if ((photoByte[6] == 74) && (photoByte[7] == 70) && (photoByte[8] == 73) && (photoByte[9] == 70)) {
 			strFileExtendName = "jpg";
