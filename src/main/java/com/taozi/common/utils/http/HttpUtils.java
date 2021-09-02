@@ -1,10 +1,42 @@
 package com.taozi.common.utils.http;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.config.Registry;
+import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.socket.ConnectionSocketFactory;
+import org.apache.http.conn.socket.PlainConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.ssl.SSLContexts;
+import org.apache.http.util.EntityUtils;
 
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
 import java.io.*;
 import java.net.*;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.*;
 
 /**
  * 通用http发送方法
@@ -202,12 +234,6 @@ public class HttpUtils {
 		return respContent;
 	}
 
-
-
-	private HttpUtil() {
-		throw new IllegalAccessError("工具类不能实例化");
-	}
-
 	private static PoolingHttpClientConnectionManager connectionManager = null;
 
 	private static RequestConfig requestConfig = RequestConfig.custom()
@@ -348,6 +374,16 @@ public class HttpUtils {
 		}
 
 		return httpPost;
+	}
+
+	/**
+	 * 发送 post请求（带文件）
+	 *
+	 * @param httpUrl 地址
+	 * @param file    附件,名称和File对应
+	 */
+	public static String sendHttpPost(String httpUrl, File file) {
+		return sendHttpPost(httpUrl, file, null);
 	}
 
 	/**
@@ -757,9 +793,9 @@ public class HttpUtils {
 		JSONObject jsonObject = null;
 		boolean isHttp = requestUrl.toLowerCase().contains("https");
 		if (isHttp) {
-			jsonObject = HttpUtil.httpsRequest(requestUrl, requestMethod, outputStr);
+			jsonObject = HttpUtils.httpsRequest(requestUrl, requestMethod, outputStr);
 		} else {
-			jsonObject = HttpUtil.httpRequest(requestUrl, requestMethod, outputStr);
+			jsonObject = HttpUtils.httpRequest(requestUrl, requestMethod, outputStr);
 		}
 		return jsonObject;
 	}
