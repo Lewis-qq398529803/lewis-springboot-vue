@@ -11,18 +11,18 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.taozi</groupId>
-    <artifactId>taozi-vue</artifactId>
+    <groupId>com.lewis</groupId>
+    <artifactId>lewis-springboot-vue</artifactId>
     <version>1.0.0</version>
 
-    <name>taozi-vue</name>
-    <url>http://www.taozi.vip</url>
-    <description>桃子后台管理系统</description>
+    <name>lewis-springboot-vue</name>
+    <url>http://www.lewis.vip</url>
+    <description>Lewis后台管理系统</description>
 
     <packaging>jar</packaging>
 
     <properties>
-        <taozi.version>1.0.0</taozi.version>
+        <lewis.version>1.0.0</lewis.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
