@@ -1,7 +1,7 @@
-# 桃子后台管理系统框架
+# Lewis后台管理系统框架
 
 ## 简介
-桃子自定义若依框架-分离版（Vue），作为后台管理系统的框架。
+自定义若依框架-分离版（Vue），作为后台管理系统的框架。作为个人的魔改版，主要都是对我自身的使用进行的优化，若需要原版，请移步gitee搜ruoyi-vue。
 
 演示地址：[http://115.159.99.186/](http://115.159.99.186/)
 
@@ -42,18 +42,16 @@
 ### linux
 
 ```bash
-nohup java -jar taozi-vue.jar --spring.profiles.active=prod  > taozi-vue.log 2>&1 &
+nohup java -jar Lewis-springboot-vue.jar --spring.profiles.active=prod  > Lewis-springboot-vue.log 2>&1 &
 ```
 
 
 
-## 联系
+# 联系
 
 若有任何疑问，可以——
 
 加我QQ：[398529803](https://qm.qq.com/cgi-bin/qm/qr?k=nh1Na88Ead5K7jSWzgXa2XH1lja_IRNB&noverify=0)
-
-和我的QQ群：[820080257](https://jq.qq.com/?_wv=1027&k=9hiRLyoh)
 
 **一起冲鸭！！**
 
