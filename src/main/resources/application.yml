@@ -61,7 +61,7 @@ spring:
   # redis 配置
   redis:
     # 地址
-    host: localhost
+    host: lewis-redis
     # 端口，默认为6379
     port: 6379
     # 数据库索引
@@ -108,7 +108,7 @@ token:
 # MyBatis配置
 mybatis-plus:
   # 搜索指定包别名
-  type-aliases-package: com.taozi.**.entity
+  type-aliases-package: com.lewis.**.entity
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
   mapper-locations: classpath*:mapper/**/*Mapper.xml
   # 加载全局的配置文件
