@@ -28,7 +28,7 @@
 17. 在线构建器：拖动表单元素生成相应的HTML代码。
 18. 连接池监视：监视当前系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
 
-### 桃子魔改：
+### Lewis魔改：
 
 1. 多模块 --> 单模块
 2. mybatis --> mybatisplus
@@ -39,10 +39,19 @@
 
 ## 启动
 
-### linux
+### 后端
+
+#### linux（后台运行并且指定配置文件）
 
 ```bash
 nohup java -jar Lewis-springboot-vue.jar --spring.profiles.active=prod  > Lewis-springboot-vue.log 2>&1 &
+```
+
+#### 前端
+
+```bash
+npm install
+npm run dev
 ```
 
 
