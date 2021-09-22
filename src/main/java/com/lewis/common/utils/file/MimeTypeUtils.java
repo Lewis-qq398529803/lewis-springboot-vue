@@ -3,7 +3,7 @@ package com.lewis.common.utils.file;
 /**
  * 媒体类型工具类
  *
- * @author taozi
+ * @author Lewis
  */
 public class MimeTypeUtils {
     public static final String IMAGE_PNG = "image/png";

@@ -6,7 +6,7 @@ import com.lewis.common.core.domain.model.LoginUser;
 /**
  * 在线用户 服务层
  *
- * @author taozi
+ * @author Lewis
  */
 public interface ISysUserOnlineService {
     /**

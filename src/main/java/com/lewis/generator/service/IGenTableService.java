@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 业务 服务层
  *
- * @author taozi
+ * @author Lewis
  */
 public interface IGenTableService {
     /**

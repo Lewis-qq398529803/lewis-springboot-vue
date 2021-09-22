@@ -10,7 +10,7 @@ import '@/assets/styles/ruoyi.scss' // taozi css
 import App from './App'
 import store from './store'
 import router from './router'
-import permission from './directive/permission'
+import permission from './directive'
 
 import './assets/icons' // icon
 import './permission' // permission control

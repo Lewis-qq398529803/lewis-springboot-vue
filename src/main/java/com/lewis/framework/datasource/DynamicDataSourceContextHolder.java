@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 数据源切换处理
  *
- * @author taozi
+ * @author Lewis
  */
 public class DynamicDataSourceContextHolder {
     public static final Logger log = LoggerFactory.getLogger(DynamicDataSourceContextHolder.class);

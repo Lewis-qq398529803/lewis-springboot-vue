@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 注册验证
  *
- * @author taozi
+ * @author Lewis
  */
 @Api(tags = "注册验证")
 @RestController

@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * 自定义权限实现，ss取自SpringSecurity首字母
  *
- * @author taozi
+ * @author Lewis
  */
 @Service("ss")
 public class PermissionService {

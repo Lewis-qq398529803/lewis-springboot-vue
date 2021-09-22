@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Tree基类
  *
- * @author taozi
+ * @author Lewis
  */
 public class TreeEntity extends BaseEntity {
     private static final long serialVersionUID = 1L;

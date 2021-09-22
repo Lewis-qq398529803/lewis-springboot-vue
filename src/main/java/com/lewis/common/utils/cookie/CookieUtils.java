@@ -19,7 +19,7 @@ import java.net.URLEncoder;
  * 得到cookie的域名
  * 判断是否是一个IP
  *
- * @author taozi
+ * @author Lewis
  */
 @Slf4j
 public final class CookieUtils {

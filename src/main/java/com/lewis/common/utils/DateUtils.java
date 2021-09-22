@@ -1,17 +1,17 @@
 package com.lewis.common.utils;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+
 import java.lang.management.ManagementFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.apache.commons.lang3.time.DateFormatUtils;
-
 /**
  * 时间工具类
  *
- * @author taozi
+ * @author Lewis
  */
 public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
@@ -29,6 +29,79 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 			"yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM",
 			"yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM",
 			"yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
+
+	/**
+	 * 查询当年年份
+	 * @return 字符串
+	 */
+	public static String getYear() {
+		Calendar cal = Calendar.getInstance();
+		return cal.get(Calendar.YEAR) + "";
+	}
+
+	/**
+	 * 查询当月月份
+	 * @return 字符串
+	 */
+	public static String getMonth() {
+		Calendar cal = Calendar.getInstance();
+		return cal.get(Calendar.MONTH) + 1 + "";
+	}
+
+	/**
+	 * 查询当前几号
+	 * @return 当字符串
+	 */
+	public static String getDay() {
+		Calendar cal = Calendar.getInstance();
+		return cal.get(Calendar.DATE) + "";
+	}
+
+
+
+	/**
+	 * 查询现在属于一周第几天（周日属于第一天）
+	 * @return 字符串
+	 */
+	public static String getDayOfWeek() {
+		Calendar cal = Calendar.getInstance();
+		return cal.get(Calendar.DAY_OF_WEEK) + "";
+	}
+
+	/**
+	 * 查询现在属于一月第几天
+	 * @return 字符串
+	 */
+	public static String getDayOfMonth() {
+		Calendar cal = Calendar.getInstance();
+		return cal.get(Calendar.DAY_OF_MONTH) + "";
+	}
+
+	/**
+	 * 查询现在属于一年第几天
+	 * @return 字符串
+	 */
+	public static String getDayOfYear() {
+		Calendar cal = Calendar.getInstance();
+		return cal.get(Calendar.DAY_OF_YEAR) + "";
+	}
+
+	public static void main(String[] args) {
+		Calendar cal = Calendar.getInstance();
+		int day = cal.get(Calendar.DATE);
+		int month = cal.get(Calendar.MONTH) + 1;
+		int year = cal.get(Calendar.YEAR);
+		int dow = cal.get(Calendar.DAY_OF_WEEK);
+		int dom = cal.get(Calendar.DAY_OF_MONTH);
+		int doy = cal.get(Calendar.DAY_OF_YEAR);
+		System.out.println("Current Date: " + cal.getTime());
+		System.out.println("Day: " + day);
+		System.out.println("Month: " + month);
+		System.out.println("Year: " + year);
+		System.out.println("Day of Week: " + dow);
+		System.out.println("Day of Month: " + dom);
+		System.out.println("Day of Year: " + doy);
+	}
 
 	/**
 	 * 获取当前时间戳

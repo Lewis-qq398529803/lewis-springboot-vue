@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Entity基类
  *
- * @author taozi
+ * @author Lewis
  */
 public class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -3,7 +3,7 @@ package com.lewis.common.utils.uuid;
 /**
  * ID生成器工具类
  *
- * @author taozi
+ * @author Lewis
  */
 public class IdUtils {
 

@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * Base64工具类 - 所需jar包：commons-codec.jar
  *
- * @author taozi - 2021年4月1日, 001 - 9:31:17
+ * @author Lewis - 2021年4月1日, 001 - 9:31:17
  */
 public class Base64Utils {
     /**

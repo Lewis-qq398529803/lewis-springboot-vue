@@ -11,7 +11,7 @@ import com.lewis.common.utils.spring.SpringUtils;
 /**
  * 字典工具类
  *
- * @author taozi
+ * @author Lewis
  */
 public class DictUtils {
 

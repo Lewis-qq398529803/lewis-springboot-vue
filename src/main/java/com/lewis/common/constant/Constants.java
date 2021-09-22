@@ -3,7 +3,7 @@ package com.lewis.common.constant;
 /**
  * 通用常量信息
  *
- * @author taozi
+ * @author Lewis
  */
 public class Constants {
 

@@ -5,7 +5,7 @@ import com.lewis.common.utils.math.Arith;
 /**
  * 內存相关信息
  *
- * @author taozi
+ * @author Lewis
  */
 public class Mem {
     /**

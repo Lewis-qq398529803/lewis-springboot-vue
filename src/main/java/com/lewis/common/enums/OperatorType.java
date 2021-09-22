@@ -3,7 +3,7 @@ package com.lewis.common.enums;
 /**
  * 操作人类别
  *
- * @author taozi
+ * @author Lewis
  */
 public enum OperatorType {
     /**

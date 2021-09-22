@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * 字典 业务层处理
  *
- * @author taozi
+ * @author Lewis
  */
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService {

@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * MP3转PCM
  *
- * @author TAOZI
+ * @author Lewis
  */
 public class TestAudioUtils {
     //测试播放音频

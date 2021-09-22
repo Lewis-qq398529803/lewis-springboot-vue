@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * 删除session中的Attribute
  * 获取上下文path
  *
- * @author taozi
+ * @author Lewis
  */
 public class SessionUtils {
 

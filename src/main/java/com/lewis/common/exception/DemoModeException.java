@@ -3,7 +3,7 @@ package com.lewis.common.exception;
 /**
  * 演示模式异常
  * 
- * @author taozi
+ * @author Lewis
  */
 public class DemoModeException extends RuntimeException
 {

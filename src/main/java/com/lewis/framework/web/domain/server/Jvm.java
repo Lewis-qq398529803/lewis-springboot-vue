@@ -8,7 +8,7 @@ import java.lang.management.ManagementFactory;
 /**
  * JVM相关信息
  *
- * @author taozi
+ * @author Lewis
  */
 public class Jvm {
     /**

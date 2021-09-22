@@ -3,7 +3,7 @@ package com.lewis.common.core.domain.model;
 /**
  * 用户登录对象
  *
- * @author taozi
+ * @author Lewis
  */
 public class LoginBody {
     /**

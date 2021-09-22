@@ -14,7 +14,7 @@ import com.lewis.common.utils.StringUtils;
 /**
  * Repeatable 过滤器
  * 
- * @author taozi
+ * @author Lewis
  */
 public class RepeatableFilter implements Filter
 {

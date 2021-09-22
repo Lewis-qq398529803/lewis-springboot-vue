@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 /**
  * 用户验证处理
  *
- * @author taozi
+ * @author Lewis
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

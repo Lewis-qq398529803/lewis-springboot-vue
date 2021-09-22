@@ -14,7 +14,7 @@ import com.lewis.common.utils.http.HttpHelper;
 /**
  * 构建可重复读取inputStream的request
  * 
- * @author taozi
+ * @author Lewis
  */
 public class RepeatedlyRequestWrapper extends HttpServletRequestWrapper
 {

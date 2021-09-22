@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * MP3转PCM
  *
- * @author TAOZI
+ * @author Lewis
  */
 public class AudioUtils {
     private static AudioUtils audioUtils = null;

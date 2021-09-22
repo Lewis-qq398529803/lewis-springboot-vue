@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * token验证处理
  *
- * @author taozi
+ * @author Lewis
  */
 @Component
 public class TokenService {

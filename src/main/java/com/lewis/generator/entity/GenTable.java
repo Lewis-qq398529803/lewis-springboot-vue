@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 业务表 gen_table
  *
- * @author taozi
+ * @author Lewis
  */
 public class GenTable extends BaseEntity {
     private static final long serialVersionUID = 1L;

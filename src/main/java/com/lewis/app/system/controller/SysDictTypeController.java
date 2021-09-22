@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * 数据字典信息
  *
- * @author taozi
+ * @author Lewis
  */
 @Api(tags = "数据字典信息")
 @RestController

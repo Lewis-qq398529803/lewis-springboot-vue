@@ -3,7 +3,7 @@ package com.lewis.framework.web.domain.server;
 /**
  * 系统文件相关信息
  *
- * @author taozi
+ * @author Lewis
  */
 public class SysFile {
     /**

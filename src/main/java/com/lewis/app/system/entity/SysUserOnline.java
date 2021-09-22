@@ -3,7 +3,7 @@ package com.lewis.app.system.entity;
 /**
  * 当前在线会话
  *
- * @author taozi
+ * @author Lewis
  */
 public class SysUserOnline {
     /**

@@ -3,7 +3,7 @@ package com.lewis.common.enums;
 /**
  * 业务操作类型
  *
- * @author taozi
+ * @author Lewis
  */
 public enum BusinessType {
     /**

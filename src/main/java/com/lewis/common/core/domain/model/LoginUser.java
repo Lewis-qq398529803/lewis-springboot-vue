@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * 登录用户身份权限
  *
- * @author taozi
+ * @author Lewis
  */
 public class LoginUser implements UserDetails {
     private static final long serialVersionUID = 1L;

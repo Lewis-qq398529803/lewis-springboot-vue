@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  * 示例：在入参前加入@SwaggerApiHide({"userName"}) == 隐藏userName这个参数
  * 在入参前加入@SwaggerApiHide({"*"}) == 隐藏所有
  *
- * @author TAOZI
+ * @author Lewis
  */
 @Component
 @Order

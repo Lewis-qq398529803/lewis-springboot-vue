@@ -3,7 +3,7 @@ package com.lewis.common.exception;
 /**
  * 自定义异常
  * 
- * @author taozi
+ * @author Lewis
  */
 public class CustomException extends RuntimeException
 {

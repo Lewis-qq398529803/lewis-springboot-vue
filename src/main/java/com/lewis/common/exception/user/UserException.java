@@ -5,7 +5,7 @@ import com.lewis.common.exception.BaseException;
 /**
  * 用户信息异常类
  * 
- * @author taozi
+ * @author Lewis
  */
 public class UserException extends BaseException
 {

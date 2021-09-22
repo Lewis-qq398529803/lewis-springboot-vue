@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * 公告 信息操作处理
  *
- * @author taozi
+ * @author Lewis
  */
 @Api(tags = "公告 信息操作处理")
 @RestController

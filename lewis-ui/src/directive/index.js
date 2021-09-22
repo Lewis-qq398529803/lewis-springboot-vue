@@ -1,5 +1,5 @@
-import hasRole from './hasRole'
-import hasPermi from './hasPermi'
+import hasRole from './permission/hasRole'
+import hasPermi from './permission/hasPermi'
 
 const install = function(Vue) {
   Vue.directive('hasRole', hasRole)

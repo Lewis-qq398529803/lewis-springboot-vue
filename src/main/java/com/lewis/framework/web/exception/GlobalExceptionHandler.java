@@ -20,7 +20,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 /**
  * 全局异常处理器
  *
- * @author taozi
+ * @author Lewis
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {

@@ -3,7 +3,7 @@ package com.lewis.common.constant;
 /**
  * 返回状态码
  *
- * @author taozi
+ * @author Lewis
  */
 public class HttpStatus {
 	/**

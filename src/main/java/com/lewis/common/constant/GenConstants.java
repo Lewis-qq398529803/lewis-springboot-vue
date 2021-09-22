@@ -3,7 +3,7 @@ package com.lewis.common.constant;
 /**
  * 代码生成通用常量
  * 
- * @author taozi
+ * @author Lewis
  */
 public class GenConstants
 {

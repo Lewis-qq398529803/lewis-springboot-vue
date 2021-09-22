@@ -6,7 +6,7 @@ import com.lewis.common.utils.StringUtils;
 /**
  * 基础异常
  * 
- * @author taozi
+ * @author Lewis
  */
 public class BaseException extends RuntimeException
 {

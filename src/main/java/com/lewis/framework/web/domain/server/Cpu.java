@@ -5,7 +5,7 @@ import com.lewis.common.utils.math.Arith;
 /**
  * CPU相关信息
  *
- * @author taozi
+ * @author Lewis
  */
 public class Cpu {
     /**

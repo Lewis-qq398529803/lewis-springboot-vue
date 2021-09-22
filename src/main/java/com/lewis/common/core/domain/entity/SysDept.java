@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 部门表 sys_dept
  *
- * @author taozi
+ * @author Lewis
  */
 public class SysDept extends BaseEntity {
     private static final long serialVersionUID = 1L;

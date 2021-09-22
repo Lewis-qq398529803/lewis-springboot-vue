@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 /**
  * 代码生成业务字段表 gen_table_column
  *
- * @author taozi
+ * @author Lewis
  */
 public class GenTableColumn extends BaseEntity {
 

@@ -5,7 +5,7 @@ import com.lewis.common.utils.StringUtils;
 /**
  * 字符串格式化
  *
- * @author taozi
+ * @author Lewis
  */
 public class StrFormatter {
     public static final String EMPTY_JSON = "{}";

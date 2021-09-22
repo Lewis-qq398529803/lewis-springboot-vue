@@ -5,7 +5,7 @@ import com.lewis.common.exception.BaseException;
 /**
  * 文件信息异常类
  * 
- * @author taozi
+ * @author Lewis
  */
 public class FileException extends BaseException
 {

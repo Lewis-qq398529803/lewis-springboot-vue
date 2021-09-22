@@ -3,7 +3,7 @@ package com.lewis.common.exception;
 /**
  * 工具类异常
  * 
- * @author taozi
+ * @author Lewis
  */
 public class UtilException extends RuntimeException
 {

@@ -3,7 +3,7 @@ package com.lewis.common.enums;
 /**
  * 用户状态
  *
- * @author taozi
+ * @author Lewis
  */
 public enum UserStatus {
 

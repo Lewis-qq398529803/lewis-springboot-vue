@@ -9,7 +9,7 @@ import lombok.Data;
 /**
  * 自定义链式响应结构
  *
- * @author taozi - 2020/11/28 - 17:31
+ * @author Lewis - 2020/11/28 - 17:31
  */
 @Data
 @ApiModel("通用响应对象")

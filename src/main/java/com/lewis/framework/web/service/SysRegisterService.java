@@ -20,7 +20,7 @@ import org.springframework.util.StringUtils;
 /**
  * 注册校验方法
  *
- * @author taozi
+ * @author Lewis
  */
 @Component
 public class SysRegisterService {
