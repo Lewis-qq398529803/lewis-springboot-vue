@@ -8,7 +8,7 @@ import com.lewis.common.core.domain.entity.SysDept;
 import com.lewis.common.enums.BusinessType;
 import com.lewis.common.utils.SecurityUtils;
 import com.lewis.common.utils.StringUtils;
-import com.lewis.service.ISysDeptService;
+import com.lewis.service.system.ISysDeptService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.ArrayUtils;

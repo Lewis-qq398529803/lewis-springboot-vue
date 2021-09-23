@@ -1,7 +1,7 @@
 package com.lewis.web.monitor;
 
 import com.lewis.common.core.domain.AjaxResult;
-import com.lewis.framework.web.domain.Server;
+import com.lewis.domain.framework.Server;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

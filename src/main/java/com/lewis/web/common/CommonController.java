@@ -6,7 +6,7 @@ import com.lewis.common.core.domain.AjaxResult;
 import com.lewis.common.utils.StringUtils;
 import com.lewis.common.utils.file.FileUploadUtils;
 import com.lewis.common.utils.file.FileUtils;
-import com.lewis.framework.config.ServerConfig;
+import com.lewis.common.config.framework.ServerConfig;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

@@ -7,10 +7,10 @@ import com.lewis.common.core.domain.entity.SysUser;
 import com.lewis.common.core.domain.model.LoginBody;
 import com.lewis.common.core.domain.model.LoginUser;
 import com.lewis.common.utils.ServletUtils;
-import com.lewis.framework.web.service.SysLoginService;
-import com.lewis.framework.web.service.SysPermissionService;
-import com.lewis.framework.web.service.TokenService;
-import com.lewis.service.ISysMenuService;
+import com.lewis.service.framework.ISysLoginService;
+import com.lewis.service.framework.ISysPermissionService;
+import com.lewis.service.framework.ITokenService;
+import com.lewis.service.system.ISysMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +32,16 @@ import java.util.Set;
 public class SysLoginController {
 
     @Autowired
-    private SysLoginService loginService;
+    private ISysLoginService loginService;
 
     @Autowired
     private ISysMenuService menuService;
 
     @Autowired
-    private SysPermissionService permissionService;
+    private ISysPermissionService permissionService;
 
     @Autowired
-    private TokenService tokenService;
+    private ITokenService tokenService;
 
     @ApiOperation(value = "登录方法", notes = "登录方法")
     @PostMapping("/login")

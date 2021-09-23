@@ -6,7 +6,7 @@ import com.lewis.common.core.domain.AjaxResult;
 import com.lewis.common.core.redis.RedisCache;
 import com.lewis.common.utils.sign.Base64;
 import com.lewis.common.utils.uuid.IdUtils;
-import com.lewis.service.ISysConfigService;
+import com.lewis.service.system.ISysConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.FastByteArrayOutputStream;

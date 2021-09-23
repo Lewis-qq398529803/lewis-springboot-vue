@@ -10,8 +10,8 @@ import com.lewis.common.enums.BusinessType;
 import com.lewis.common.utils.SecurityUtils;
 import com.lewis.common.utils.ServletUtils;
 import com.lewis.common.utils.StringUtils;
-import com.lewis.framework.web.service.TokenService;
-import com.lewis.service.ISysMenuService;
+import com.lewis.service.framework.ITokenService;
+import com.lewis.service.system.ISysMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class SysMenuController extends BaseController {
     private ISysMenuService menuService;
 
     @Autowired
-    private TokenService tokenService;
+    private ITokenService tokenService;
 
     @ApiOperation(value = "获取菜单列表", notes = "获取菜单列表")
     @PreAuthorize("@ss.hasPermi('system:menu:list')")

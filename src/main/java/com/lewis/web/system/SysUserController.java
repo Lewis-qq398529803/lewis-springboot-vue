@@ -13,10 +13,10 @@ import com.lewis.common.utils.SecurityUtils;
 import com.lewis.common.utils.ServletUtils;
 import com.lewis.common.utils.StringUtils;
 import com.lewis.common.utils.poi.ExcelUtil;
-import com.lewis.framework.web.service.TokenService;
-import com.lewis.service.ISysPostService;
-import com.lewis.service.ISysRoleService;
-import com.lewis.service.ISysUserService;
+import com.lewis.service.framework.ITokenService;
+import com.lewis.service.system.ISysPostService;
+import com.lewis.service.system.ISysRoleService;
+import com.lewis.service.system.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class SysUserController extends BaseController {
     private ISysPostService postService;
 
     @Autowired
-    private TokenService tokenService;
+    private ITokenService tokenService;
 
     @ApiOperation(value = "获取用户列表", notes = "获取用户列表")
     @PreAuthorize("@ss.hasPermi('system:user:list')")

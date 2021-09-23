@@ -13,11 +13,11 @@ import com.lewis.common.utils.SecurityUtils;
 import com.lewis.common.utils.ServletUtils;
 import com.lewis.common.utils.StringUtils;
 import com.lewis.common.utils.poi.ExcelUtil;
-import com.lewis.framework.web.service.SysPermissionService;
-import com.lewis.framework.web.service.TokenService;
-import com.lewis.entity.SysUserRole;
-import com.lewis.service.ISysRoleService;
-import com.lewis.service.ISysUserService;
+import com.lewis.service.framework.ISysPermissionService;
+import com.lewis.service.framework.ITokenService;
+import com.lewis.entity.system.SysUserRole;
+import com.lewis.service.system.ISysRoleService;
+import com.lewis.service.system.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +41,10 @@ public class SysRoleController extends BaseController {
 	private ISysRoleService roleService;
 
 	@Autowired
-	private TokenService tokenService;
+	private ITokenService tokenService;
 
 	@Autowired
-	private SysPermissionService permissionService;
+	private ISysPermissionService permissionService;
 
 	@Autowired
 	private ISysUserService userService;

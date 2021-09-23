@@ -12,8 +12,8 @@ import com.lewis.common.utils.SecurityUtils;
 import com.lewis.common.utils.ServletUtils;
 import com.lewis.common.utils.StringUtils;
 import com.lewis.common.utils.file.FileUploadUtils;
-import com.lewis.framework.web.service.TokenService;
-import com.lewis.service.ISysUserService;
+import com.lewis.service.framework.ITokenService;
+import com.lewis.service.system.ISysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class SysProfileController extends BaseController {
     private ISysUserService userService;
 
     @Autowired
-    private TokenService tokenService;
+    private ITokenService tokenService;
 
     @ApiOperation(value = "个人信息", notes = "个人信息")
     @GetMapping

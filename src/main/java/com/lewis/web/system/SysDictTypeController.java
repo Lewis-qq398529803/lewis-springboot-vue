@@ -9,7 +9,7 @@ import com.lewis.common.core.page.TableDataInfo;
 import com.lewis.common.enums.BusinessType;
 import com.lewis.common.utils.SecurityUtils;
 import com.lewis.common.utils.poi.ExcelUtil;
-import com.lewis.service.ISysDictTypeService;
+import com.lewis.service.system.ISysDictTypeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,8 +4,8 @@ import com.lewis.common.core.controller.BaseController;
 import com.lewis.common.core.domain.AjaxResult;
 import com.lewis.common.core.domain.model.RegisterBody;
 import com.lewis.common.utils.StringUtils;
-import com.lewis.framework.web.service.SysRegisterService;
-import com.lewis.service.ISysConfigService;
+import com.lewis.service.framework.ISysRegisterService;
+import com.lewis.service.system.ISysConfigService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysRegisterController extends BaseController {
 
 	@Autowired
-	private SysRegisterService registerService;
+	private ISysRegisterService registerService;
 
 	@Autowired
 	private ISysConfigService configService;
