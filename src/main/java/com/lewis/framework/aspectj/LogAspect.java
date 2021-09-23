@@ -1,7 +1,7 @@
 package com.lewis.framework.aspectj;
 
 import com.alibaba.fastjson.JSON;
-import com.lewis.app.system.entity.SysOperLog;
+import com.lewis.entity.SysOperLog;
 import com.lewis.common.annotation.Log;
 import com.lewis.common.core.domain.model.LoginUser;
 import com.lewis.common.enums.BusinessStatus;

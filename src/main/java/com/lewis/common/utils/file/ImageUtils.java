@@ -1,6 +1,6 @@
 package com.lewis.common.utils.file;
 
-import com.lewis.common.config.TaoZiConfig;
+import com.lewis.common.config.LewisConfig;
 import com.lewis.common.utils.DateUtils;
 import com.lewis.common.utils.StringUtils;
 import com.lewis.common.utils.uuid.UUID;
@@ -87,7 +87,7 @@ public class ImageUtils {
                 in = urlConnection.getInputStream();
             } else {
                 // 本机地址
-                String localPath = TaoZiConfig.getProfile();
+                String localPath = LewisConfig.getProfile();
                 String downloadPath = localPath + StringUtils.substringAfter(url, RESOURCE_PREFIX);
                 in = new FileInputStream(downloadPath);
             }

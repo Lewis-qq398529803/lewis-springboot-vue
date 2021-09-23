@@ -1,6 +1,6 @@
 package com.lewis.common.utils.file;
 
-import com.lewis.common.config.TaoZiConfig;
+import com.lewis.common.config.LewisConfig;
 import com.lewis.common.constant.Constants;
 import com.lewis.common.exception.file.FileNameLengthLimitExceededException;
 import com.lewis.common.exception.file.FileSizeLimitExceededException;
@@ -34,7 +34,7 @@ public class FileUploadUtils {
 	/**
 	 * 默认上传的地址
 	 */
-	private static String defaultBaseDir = TaoZiConfig.getProfile();
+	private static String defaultBaseDir = LewisConfig.getProfile();
 
 	public static String getDefaultBaseDir() {
 		return defaultBaseDir;
@@ -127,7 +127,7 @@ public class FileUploadUtils {
 	}
 
 	public static final String getPathFileName(String uploadDir, String fileName) throws IOException {
-		int dirLastIndex = TaoZiConfig.getProfile().length() + 1;
+		int dirLastIndex = LewisConfig.getProfile().length() + 1;
 		String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
 		String pathFileName = Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
 		return pathFileName;

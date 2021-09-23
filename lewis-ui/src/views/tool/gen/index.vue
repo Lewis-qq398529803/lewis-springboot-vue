@@ -161,7 +161,7 @@
       @pagination="getList"
     />
     <!-- 预览界面 -->
-    <el-dialog :title="preview.title" :visible.sync="preview.open" width="80%" top="5vh" append-to-body>
+    <el-dialog :title="preview.title" :visible.sync="preview.open" width="80%" top="5vh" append-to-body class="scrollbar">
       <el-tabs v-model="preview.activeName">
         <el-tab-pane
           v-for="(value, key) in preview.data"
@@ -238,7 +238,8 @@ export default {
     const time = this.$route.query.t;
     if (time != null && time != this.uniqueId) {
       this.uniqueId = time;
-      this.resetQuery();
+      this.queryParams.pageNum = Number(this.$route.query.pageNum);
+      this.getList();
     }
   },
   methods: {
@@ -269,7 +270,7 @@ export default {
           this.msgSuccess("成功生成到自定义路径：" + row.genPath);
         });
       } else {
-        downLoadZip("/tool/gen/batchGenCode?tables=" + tableNames, "taozi");
+        downLoadZip("/tool/gen/batchGenCode?tables=" + tableNames, "ruoyi");
       }
     },
     /** 同步数据库操作 */
@@ -283,7 +284,7 @@ export default {
           return synchDb(tableName);
       }).then(() => {
           this.msgSuccess("同步成功");
-      })
+      }).catch(() => {});
     },
     /** 打开导入表弹窗 */
     openImportTable() {
@@ -300,6 +301,7 @@ export default {
       previewTable(row.tableId).then(response => {
         this.preview.data = response.data;
         this.preview.open = true;
+        this.preview.activeName = "domain.java";
       });
     },
     /** 高亮显示 */
@@ -319,7 +321,7 @@ export default {
     /** 修改按钮操作 */
     handleEditTable(row) {
       const tableId = row.tableId || this.ids[0];
-      this.$router.push("/tool/gen-edit/index/" + tableId);
+      this.$router.push({ path: '/tool/gen-edit/index', query: { tableId: tableId, pageNum: this.queryParams.pageNum } });
     },
     /** 删除按钮操作 */
     handleDelete(row) {
@@ -333,7 +335,7 @@ export default {
       }).then(() => {
           this.getList();
           this.msgSuccess("删除成功");
-      })
+      }).catch(() => {});
     }
   }
 };

@@ -1,7 +1,7 @@
 package com.lewis.common.utils.ip;
 
 import com.alibaba.fastjson.JSONObject;
-import com.lewis.common.config.TaoZiConfig;
+import com.lewis.common.config.LewisConfig;
 import com.lewis.common.constant.Constants;
 import com.lewis.common.utils.StringUtils;
 import com.lewis.common.utils.http.HttpUtils;
@@ -26,7 +26,7 @@ public class AddressUtils {
         if (IpUtils.internalIp(ip)) {
             return "内网IP";
         }
-        if (TaoZiConfig.isAddressEnabled()) {
+        if (LewisConfig.isAddressEnabled()) {
             try {
                 String rspStr = HttpUtils.sendGet(IP_URL, "ip=" + ip + "&json=true" , Constants.GBK);
                 if (StringUtils.isEmpty(rspStr)) {

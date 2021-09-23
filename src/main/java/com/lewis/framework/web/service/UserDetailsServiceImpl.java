@@ -1,6 +1,6 @@
 package com.lewis.framework.web.service;
 
-import com.lewis.app.system.service.ISysUserService;
+import com.lewis.service.ISysUserService;
 import com.lewis.common.core.domain.entity.SysUser;
 import com.lewis.common.core.domain.model.LoginUser;
 import com.lewis.common.enums.UserStatus;

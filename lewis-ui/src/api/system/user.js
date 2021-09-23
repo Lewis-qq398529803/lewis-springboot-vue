@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-import {praseStrEmpty} from "@/utils/ruoyi";
+import { praseStrEmpty } from "@/utils/ruoyi";
 
 // 查询用户列表
 export function listUser(query) {
@@ -123,5 +123,22 @@ export function importTemplate() {
   return request({
     url: '/system/user/importTemplate',
     method: 'get'
+  })
+}
+
+// 查询授权角色
+export function getAuthRole(userId) {
+  return request({
+    url: '/system/user/authRole/' + userId,
+    method: 'get'
+  })
+}
+
+// 保存授权角色
+export function updateAuthRole(data) {
+  return request({
+    url: '/system/user/authRole',
+    method: 'put',
+    params: data
   })
 }

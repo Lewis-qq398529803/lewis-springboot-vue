@@ -1,9 +1,9 @@
 package com.lewis.framework.manager.factory;
 
-import com.lewis.app.system.entity.SysLogininfor;
-import com.lewis.app.system.entity.SysOperLog;
-import com.lewis.app.system.service.ISysLogininforService;
-import com.lewis.app.system.service.ISysOperLogService;
+import com.lewis.entity.SysLogininfor;
+import com.lewis.entity.SysOperLog;
+import com.lewis.service.ISysLogininforService;
+import com.lewis.service.ISysOperLogService;
 import com.lewis.common.constant.Constants;
 import com.lewis.common.utils.ServletUtils;
 import com.lewis.common.utils.StringUtils;

@@ -1,7 +1,7 @@
 package com.lewis.framework.web.service;
 
-import com.lewis.app.system.service.ISysMenuService;
-import com.lewis.app.system.service.ISysRoleService;
+import com.lewis.service.ISysMenuService;
+import com.lewis.service.ISysRoleService;
 import com.lewis.common.core.domain.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

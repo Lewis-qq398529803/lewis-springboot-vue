@@ -1,6 +1,6 @@
 package com.lewis.common.utils.file;
 
-import com.lewis.common.config.TaoZiConfig;
+import com.lewis.common.config.LewisConfig;
 import org.apache.commons.io.IOUtils;
 import com.lewis.common.utils.DateUtils;
 import com.lewis.common.utils.StringUtils;
@@ -80,7 +80,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
 	 * @throws IOException IO异常
 	 */
 	public static String writeImportBytes(byte[] data) {
-		return writeBytes(data, TaoZiConfig.getImportPath());
+		return writeBytes(data, LewisConfig.getImportPath());
 	}
 
 	/**

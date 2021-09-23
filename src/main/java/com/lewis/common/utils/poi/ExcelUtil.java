@@ -4,7 +4,7 @@ import com.lewis.common.annotation.Excel;
 import com.lewis.common.annotation.Excel.ColumnType;
 import com.lewis.common.annotation.Excel.Type;
 import com.lewis.common.annotation.Excels;
-import com.lewis.common.config.TaoZiConfig;
+import com.lewis.common.config.LewisConfig;
 import com.lewis.common.core.domain.AjaxResult;
 import com.lewis.common.core.text.Convert;
 import com.lewis.common.exception.CustomException;
@@ -773,7 +773,7 @@ public class ExcelUtil<T> {
 	 * @param filename 文件名称
 	 */
 	public String getAbsoluteFile(String filename) {
-		String downloadPath = TaoZiConfig.getDownloadPath() + filename;
+		String downloadPath = LewisConfig.getDownloadPath() + filename;
 		File desc = new File(downloadPath);
 		if (!desc.getParentFile().exists()) {
 			desc.getParentFile().mkdirs();

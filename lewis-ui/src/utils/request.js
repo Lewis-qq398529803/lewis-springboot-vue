@@ -1,7 +1,7 @@
 import axios from 'axios'
-import {Message, MessageBox, Notification} from 'element-ui'
+import { Notification, MessageBox, Message } from 'element-ui'
 import store from '@/store'
-import {getToken} from '@/utils/auth'
+import { getToken } from '@/utils/auth'
 import errorCode from '@/utils/errorCode'
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
@@ -25,12 +25,14 @@ service.interceptors.request.use(config => {
     for (const propName of Object.keys(config.params)) {
       const value = config.params[propName];
       var part = encodeURIComponent(propName) + "=";
-      if (value !== null && typeof (value) !== "undefined") {
+      if (value !== null && typeof(value) !== "undefined") {
         if (typeof value === 'object') {
           for (const key of Object.keys(value)) {
-            let params = propName + '[' + key + ']';
-            var subPart = encodeURIComponent(params) + "=";
-            url += subPart + encodeURIComponent(value[key]) + "&";
+            if (value[key] !== null && typeof (value[key]) !== 'undefined') {
+              let params = propName + '[' + key + ']';
+              let subPart = encodeURIComponent(params) + '=';
+              url += subPart + encodeURIComponent(value[key]) + '&';
+            }
           }
         } else {
           url += part + encodeURIComponent(value) + "&";
@@ -43,8 +45,8 @@ service.interceptors.request.use(config => {
   }
   return config
 }, error => {
-  console.log(error)
-  Promise.reject(error)
+    console.log(error)
+    Promise.reject(error)
 })
 
 // 响应拦截器
@@ -64,7 +66,7 @@ service.interceptors.response.use(res => {
           location.href = '/index';
         })
       }).catch(() => {});
-      return Promise.reject('error')
+      return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
     } else if (code === 500) {
       Message({
         message: msg,
@@ -75,19 +77,21 @@ service.interceptors.response.use(res => {
       Notification.error({
         title: msg
       })
-      return Promise.reject('令牌验证失败')
+      return Promise.reject('error')
     } else {
       return res.data
     }
   },
   error => {
     console.log('err' + error)
-    let {message} = error;
+    let { message } = error;
     if (message == "Network Error") {
       message = "后端接口连接异常";
-    } else if (message.includes("timeout")) {
+    }
+    else if (message.includes("timeout")) {
       message = "系统接口请求超时";
-    } else if (message.includes("Request failed with status code")) {
+    }
+    else if (message.includes("Request failed with status code")) {
       message = "系统接口" + message.substr(message.length - 3) + "异常";
     }
     Message({

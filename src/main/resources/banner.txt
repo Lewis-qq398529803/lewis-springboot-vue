@@ -1,4 +1,4 @@
-Application Version: ${taozi.version}
+Application Version: ${lewis.version}
 Spring Boot Version: ${spring-boot.version}
                    .::::.
                  .::::::::.

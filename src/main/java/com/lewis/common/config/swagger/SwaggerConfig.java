@@ -1,6 +1,6 @@
 package com.lewis.common.config.swagger;
 
-import com.lewis.common.config.TaoZiConfig;
+import com.lewis.common.config.LewisConfig;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +31,7 @@ public class SwaggerConfig {
 	 * 系统基础配置
 	 */
 	@Autowired
-	private TaoZiConfig taoZiConfig;
+	private LewisConfig taoZiConfig;
 
 	/**
 	 * 是否开启swagger
