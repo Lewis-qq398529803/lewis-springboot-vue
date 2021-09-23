@@ -1,5 +1,5 @@
 {
-  "name": "ruoyi",
+  "name": "lewis",
   "version": "3.7.0",
   "description": "Lewis管理系统",
   "author": "Lewis",
@@ -33,7 +33,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/y_project/RuoYi-Vue.git"
+    "url": "https://gitee.com/y_project/lewis-Vue.git"
   },
   "dependencies": {
     "@riophae/vue-treeselect": "0.4.0",
