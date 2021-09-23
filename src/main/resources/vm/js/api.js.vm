@@ -1,4 +1,4 @@
-import request from '@/com.taozi.utils/request'
+import request from '@/utils/request'
 
 // 查询${functionName}列表
 export function list${BusinessName}(query) {

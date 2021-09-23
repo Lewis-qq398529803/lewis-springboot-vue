@@ -10,13 +10,13 @@ import java.util.TimeZone;
 
 /**
  * 程序注解配置
+ * EnableAspectJAutoProxy：表示通过aop框架暴露该代理对象,AopContext能够访问
+ * MapperScan：指定要扫描的Mapper类的包的路径
  *
  * @author Lewis
  */
 @Configuration
-// 表示通过aop框架暴露该代理对象,AopContext能够访问
 @EnableAspectJAutoProxy(exposeProxy = true)
-// 指定要扫描的Mapper类的包的路径
 @MapperScan("com.lewis.**.mapper")
 public class ApplicationConfig {
     /**

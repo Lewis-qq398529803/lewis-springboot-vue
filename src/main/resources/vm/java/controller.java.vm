@@ -18,7 +18,7 @@ import com.lewis.common.core.domain.AjaxResult;
 import com.lewis.common.enums.BusinessType;
 import ${packageName}.domain.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
-import com.lewis.common.com.taozi.utils.poi.ExcelUtil;
+import com.lewis.common.utils.poi.ExcelUtil;
 #if($table.crud || $table.sub)
 import com.lewis.common.core.page.TableDataInfo;
 #elseif($table.tree)
