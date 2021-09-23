@@ -1,4 +1,4 @@
-package com.lewis.web;
+package com.lewis.web.system;
 
 import com.lewis.common.constant.Constants;
 import com.lewis.common.core.domain.AjaxResult;

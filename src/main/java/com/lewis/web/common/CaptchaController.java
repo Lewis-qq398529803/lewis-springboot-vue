@@ -1,4 +1,4 @@
-package com.lewis.web;
+package com.lewis.web.common;
 
 import com.google.code.kaptcha.Producer;
 import com.lewis.common.constant.Constants;

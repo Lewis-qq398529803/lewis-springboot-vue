@@ -1,4 +1,4 @@
-package com.lewis.web;
+package com.lewis.web.common;
 
 import com.lewis.common.config.LewisConfig;
 import com.lewis.common.constant.Constants;

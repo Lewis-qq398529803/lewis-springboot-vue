@@ -1,4 +1,4 @@
-package com.lewis.web;
+package com.lewis.web.monitor;
 
 import com.lewis.common.core.domain.AjaxResult;
 import com.lewis.framework.web.domain.Server;
