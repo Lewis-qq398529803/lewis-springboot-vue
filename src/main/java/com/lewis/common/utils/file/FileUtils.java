@@ -6,6 +6,8 @@ import com.lewis.common.utils.DateUtils;
 import com.lewis.common.utils.StringUtils;
 import com.lewis.common.utils.uuid.IdUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.http.entity.ContentType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileOutputStream;
@@ -24,6 +26,33 @@ import java.nio.charset.StandardCharsets;
 public class FileUtils extends org.apache.commons.io.FileUtils {
 
 	public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";
+
+	/**
+	 * 通过文件路径获取File对象
+	 * @param fileUrl
+	 * @return File
+	 */
+	public static File getFileFromFileUrl(String fileUrl) {
+		return new File(fileUrl);
+	}
+
+	/**
+	 * 通过文件路径获取MultipartFile对象
+	 * @param fileUrl
+	 * @return MultipartFile
+	 */
+	public static MultipartFile getMultipartFileFromUrl(String fileUrl) {
+		File file = getFileFromFileUrl(fileUrl);
+		FileInputStream inputStream = null;
+		try {
+			inputStream = new FileInputStream(file);
+			return new MockMultipartFile(file.getName(), file.getName(),
+					ContentType.APPLICATION_OCTET_STREAM.toString(), inputStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	/**
 	 * multipartFile 转 File
