@@ -32,7 +32,6 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import java.io.*;
 import java.net.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +41,7 @@ import java.util.concurrent.*;
 /**
  * 通用http发送方法
  *
- * @author Lewis
+ * @author taozi
  */
 @Slf4j
 public class HttpUtils {
@@ -143,6 +142,7 @@ public class HttpUtils {
 		try {
 			String urlNameString = url;
 			log.info("sendPost - {}", urlNameString);
+			log.info("formParam - {}", param);
 			URL realUrl = new URL(urlNameString);
 			URLConnection conn = realUrl.openConnection();
 			conn.setRequestProperty("accept", "*/*");
@@ -233,54 +233,6 @@ public class HttpUtils {
 
 		}
 		return respContent;
-	}
-
-	/**
-	 * post请求发送xml
-	 * @param urlStr
-	 * @param xmlStr 格式应该是xml的字符串，
-	 * 例：
-	 *      StringBuilder sb = new StringBuilder();
-	 * 		sb.append("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:sap-com:document:sap:rfc:functions\">");
-	 * 		sb.append("    <soapenv:Header/>");
-	 * 		sb.append("    <soapenv:Body>");
-	 * 		sb.append("    		<urn:ZZQDWJK001>");
-	 * 		sb.append("    			<ET_DATA>");
-	 * 		sb.append("    			</ET_DATA>");
-	 * 		sb.append("       		<I_RPMAX>1</I_RPMAX>");
-	 * 		sb.append("       		<I_RYEAR>2020</I_RYEAR>");
-	 * 		sb.append("    		</urn:ZZQDWJK001>");
-	 * 		sb.append("    </soapenv:Body>");
-	 * 		sb.append("</soapenv:Envelope>");
-	 * @return String
-	 */
-	public static String sendPostWithXml(String urlStr, String xmlStr) {
-		StringBuilder sb = new StringBuilder();
-		try {
-			URL url = new URL(urlStr);
-			URLConnection con = url.openConnection();
-			con.setDoOutput(true);
-			con.setRequestProperty("Cache-Control", "no-cache");
-			con.setRequestProperty("accept", "*/*");
-			con.setRequestProperty("connection", "Keep-Alive");
-			con.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-			con.setRequestProperty("Accept-Charset", "utf-8");
-			con.setRequestProperty("Content-Type", "text/xml");
-
-			OutputStreamWriter out = new OutputStreamWriter(con.getOutputStream());
-			log.info("urlStr - {}", urlStr);
-			log.info("xmlInfo - {}", xmlStr);
-			out.write(new String(xmlStr.getBytes(StandardCharsets.UTF_8)));
-			out.flush();
-			out.close();
-			BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			for (String line = br.readLine(); line != null; line = br.readLine()) {
-				sb.append(line);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return sb.toString();
 	}
 
 	private static PoolingHttpClientConnectionManager connectionManager = null;
