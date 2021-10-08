@@ -1,8 +1,9 @@
 package com.lewis.common.config.framework;
 
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.boot.autoconfigure.SpringBootVFS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,10 +27,12 @@ import java.util.List;
 
 /**
  * Mybatis支持*匹配扫描包
+ * MapperScan：指定要扫描的Mapper类的包的路径
  *
  * @author Lewis
  */
 @Configuration
+@MapperScan("com.lewis.mapper")
 public class MyBatisPlusConfig {
 
     static final String DEFAULT_RESOURCE_PATTERN = "**/*.class";
@@ -100,7 +103,7 @@ public class MyBatisPlusConfig {
         typeAliasesPackage = setTypeAliasesPackage(typeAliasesPackage);
         VFS.addImplClass(SpringBootVFS.class);
 
-        final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        final MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setTypeAliasesPackage(typeAliasesPackage);
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mapperLocations));
