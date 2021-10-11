@@ -21,7 +21,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/monitor/logininfor")
-public class SysLogininforController extends BaseController {
+public class SysLoginInForController extends BaseController {
+
     @Autowired
     private ISysLogininforService logininforService;
 
