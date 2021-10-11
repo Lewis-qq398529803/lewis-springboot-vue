@@ -1,5 +1,5 @@
 # 项目相关配置
-taozi:
+lewis:
   # 名称
   name: lewis
   # 版本
@@ -34,7 +34,7 @@ server:
 # 日志配置
 logging:
   level:
-    com.taozi: info
+    com.lewis: info
     org.springframework: warn
 
 # Spring配置

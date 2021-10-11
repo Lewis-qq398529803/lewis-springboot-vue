@@ -41,7 +41,7 @@ import java.util.concurrent.*;
 /**
  * 通用http发送方法
  *
- * @author taozi
+ * @author lewis
  */
 @Slf4j
 public class HttpUtils {
