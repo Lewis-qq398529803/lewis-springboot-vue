@@ -1,6 +1,5 @@
 package com.lewis.common.core.domain.model;
 
-import com.lewis.common.utils.CodeUtils;
 import com.lewis.common.utils.StringUtils;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -34,43 +33,38 @@ public class BaseResult {
 	/**
 	 * 基础成功方法
 	 *
-	 * @return CommonResult
+	 * @return BaseResult
 	 */
 	public static BaseResult ok() {
-		return new BaseResult(true).setCode(200000);
+		return new BaseResult(true).setCode(200).setMsg("ok");
 	}
 
 	/**
 	 * 基础错误方法
 	 *
-	 * @return CommonResult
+	 * @return BaseResult
 	 */
 	public static BaseResult error() {
-		return new BaseResult(false).setCode(500000);
+		return new BaseResult(false).setCode(500).setMsg("error");
 	}
 
 	/**
 	 * 基础失败方法
 	 *
-	 * @return CommonResult
+	 * @return BaseResult
 	 */
 	public static BaseResult fail() {
-		return new BaseResult(false);
+		return new BaseResult(false).setCode(0).setMsg("fail");
 	}
 
 	/**
 	 * 设置code同时设置提示信息
 	 *
 	 * @param code 状态码
-	 * @return CommonResult
+	 * @return BaseResult
 	 */
 	public BaseResult setCode(Integer code) {
 		this.code = code;
-		if (StringUtils.isNotNull(this.msg)) {
-			this.msg += CodeUtils.getMessage(code, null);
-		} else {
-			this.msg = CodeUtils.getMessage(code, null);
-		}
 		return this;
 	}
 
@@ -83,7 +77,7 @@ public class BaseResult {
 	 * 设置msg尾部新增参数
 	 *
 	 * @param params 尾部新增参数
-	 * @return CommonResult
+	 * @return BaseResult
 	 */
 	public BaseResult addMsgParams(String params) {
 		if (StringUtils.isNotNull(this.msg)) {
