@@ -83,7 +83,7 @@ spring:
         allow:
         url-pattern: /druid/*
         # 控制台管理用户名和密码
-        login-username: taozi
+        login-username: lewis
         login-password: 123456
       filter:
         stat:
@@ -193,7 +193,7 @@ swagger:
   # 是否开启swagger
   enabled: true
   # 请求前缀
-  pathMapping: /dev-api
+  pathMapping: /
 
 # 防止XSS攻击
 xss:

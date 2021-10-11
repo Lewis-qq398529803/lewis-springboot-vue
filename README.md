@@ -50,7 +50,7 @@
 #### linux（后台运行并且指定配置文件）
 
 ```bash
-nohup java -jar Lewis-springboot-vue.jar --spring.profiles.active=prod  > Lewis-springboot-vue.log 2>&1 &
+nohup java -jar lewis-springboot-vue.jar --spring.profiles.active=prod  > lewis-springboot-vue.log 2>&1 &
 ```
 
 #### 前端
