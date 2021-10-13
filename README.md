@@ -38,8 +38,9 @@
 
 1. 多模块 --> 单模块
 2. mybatis --> mybatisplus
-3. 新增了swagger的bootstrap-ui包，开启swagger的bootstrap-ui的接口
-4. 自定义一个全局链式返回对象BaseResult
+3. 自动生成代码模块，加入mybatisplus元素，使其拥有mybatisplus的条件构造器等所有方法
+4. 新增了swagger的bootstrap-ui包，开启swagger的bootstrap-ui的接口
+5. 自定义一个全局链式返回对象BaseResult
 6. 新增多个工具类
 7. 加入swagger配置类，实现参数隐藏、显示
 
@@ -60,7 +61,9 @@ npm install
 npm run dev
 ```
 
+# 支持
 
+感谢 jetbrains 公司提供的 IDEA 开源支持：[https://www.jetbrains.com/all/?_ga=2.66126894.1201218590.1634089382-575836656.1633926128](https://www.jetbrains.com/all/?_ga=2.66126894.1201218590.1634089382-575836656.1633926128)
 
 # 联系
 
