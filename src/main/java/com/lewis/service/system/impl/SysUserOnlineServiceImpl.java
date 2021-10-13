@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysUserOnlineServiceImpl implements ISysUserOnlineService {
+
     /**
      * 通过登录地址查询信息
      *

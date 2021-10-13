@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -24,10 +25,10 @@ import java.util.List;
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService {
 
-    @Autowired
+    @Resource
     private SysDictTypeMapper dictTypeMapper;
 
-    @Autowired
+    @Resource
     private SysDictDataMapper dictDataMapper;
 
     /**

@@ -13,12 +13,14 @@ import com.lewis.common.utils.StringUtils;
 import com.lewis.mapper.system.*;
 import com.lewis.service.system.ISysConfigService;
 import com.lewis.service.system.ISysUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,24 +29,23 @@ import java.util.List;
  *
  * @author Lewis
  */
+@Slf4j
 @Service
 public class SysUserServiceImpl implements ISysUserService {
 
-	private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
-
-	@Autowired
+	@Resource
 	private SysUserMapper userMapper;
 
-	@Autowired
+	@Resource
 	private SysRoleMapper roleMapper;
 
-	@Autowired
+	@Resource
 	private SysPostMapper postMapper;
 
-	@Autowired
+	@Resource
 	private SysUserRoleMapper userRoleMapper;
 
-	@Autowired
+	@Resource
 	private SysUserPostMapper userPostMapper;
 
 	@Autowired

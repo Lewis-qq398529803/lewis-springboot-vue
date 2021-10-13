@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -28,16 +29,16 @@ import java.util.*;
 @Service
 public class SysRoleServiceImpl implements ISysRoleService {
 
-	@Autowired
+	@Resource
 	private SysRoleMapper roleMapper;
 
-	@Autowired
+	@Resource
 	private SysRoleMenuMapper roleMenuMapper;
 
-	@Autowired
+	@Resource
 	private SysUserRoleMapper userRoleMapper;
 
-	@Autowired
+	@Resource
 	private SysRoleDeptMapper roleDeptMapper;
 
 	/**

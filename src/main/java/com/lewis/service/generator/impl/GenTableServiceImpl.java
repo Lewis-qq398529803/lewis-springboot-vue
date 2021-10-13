@@ -17,6 +17,7 @@ import com.lewis.common.utils.generator.GenUtils;
 import com.lewis.common.utils.generator.VelocityInitializer;
 import com.lewis.common.utils.generator.VelocityUtils;
 import com.lewis.service.generator.IGenTableService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -44,9 +45,9 @@ import java.util.zip.ZipOutputStream;
  *
  * @author Lewis
  */
+@Slf4j
 @Service
 public class GenTableServiceImpl implements IGenTableService {
-    private static final Logger log = LoggerFactory.getLogger(GenTableServiceImpl.class);
 
     @Resource
     private GenTableMapper genTableMapper;

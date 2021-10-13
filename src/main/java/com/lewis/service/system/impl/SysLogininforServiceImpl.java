@@ -1,11 +1,11 @@
 package com.lewis.service.system.impl;
 
 import com.lewis.entity.system.SysLogininfor;
-import com.lewis.mapper.system.SysLogininforMapper;
+import com.lewis.mapper.system.SysLoginInForMapper;
 import com.lewis.service.system.ISysLogininforService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,8 +16,8 @@ import java.util.List;
 @Service
 public class SysLogininforServiceImpl implements ISysLogininforService {
 
-    @Autowired
-    private SysLogininforMapper logininforMapper;
+    @Resource
+    private SysLoginInForMapper logininforMapper;
 
     /**
      * 新增系统登录日志
