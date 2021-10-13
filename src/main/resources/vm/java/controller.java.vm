@@ -2,6 +2,9 @@ package ${packageName}.controller;
 
 import java.util.List;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +33,7 @@ import com.lewis.common.core.page.TableDataInfo;
  * @author ${author}
  * @date ${datetime}
  */
+@Slf4j
 @Api(tags = "${functionName}")
 @RestController
 @RequestMapping("/${moduleName}/${businessName}")
