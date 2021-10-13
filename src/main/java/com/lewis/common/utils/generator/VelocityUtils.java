@@ -124,7 +124,7 @@ public class VelocityUtils {
      */
     public static List<String> getTemplateList(String tplCategory) {
         List<String> templates = new ArrayList<String>();
-        templates.add("vm/java/domain.java.vm");
+        templates.add("vm/java/entity.java.vm");
         templates.add("vm/java/mapper.java.vm");
         templates.add("vm/java/service.java.vm");
         templates.add("vm/java/serviceImpl.java.vm");
@@ -138,7 +138,7 @@ public class VelocityUtils {
             templates.add("vm/vue/index-tree.vue.vm");
         } else if (GenConstants.TPL_SUB.equals(tplCategory)) {
             templates.add("vm/vue/index.vue.vm");
-            templates.add("vm/java/sub-domain.java.vm");
+            templates.add("vm/java/sub-entity.java.vm");
         }
         return templates;
     }
@@ -162,10 +162,10 @@ public class VelocityUtils {
         String mybatisPath = MYBATIS_PATH + "/" + moduleName;
         String vuePath = "vue";
 
-        if (template.contains("domain.java.vm")) {
+        if (template.contains("entity.java.vm")) {
             fileName = StringUtils.format("{}/domain/{}.java" , javaPath, className);
         }
-        if (template.contains("sub-domain.java.vm") && StringUtils.equals(GenConstants.TPL_SUB, genTable.getTplCategory())) {
+        if (template.contains("sub-entity.java.vm") && StringUtils.equals(GenConstants.TPL_SUB, genTable.getTplCategory())) {
             fileName = StringUtils.format("{}/entity/{}.java" , javaPath, genTable.getSubTable().getClassName());
         } else if (template.contains("mapper.java.vm")) {
             fileName = StringUtils.format("{}/mapper/{}Mapper.java" , javaPath, className);
