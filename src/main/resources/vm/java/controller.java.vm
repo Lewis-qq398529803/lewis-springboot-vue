@@ -16,7 +16,7 @@ import com.lewis.common.annotation.Log;
 import com.lewis.common.core.controller.BaseController;
 import com.lewis.common.core.domain.AjaxResult;
 import com.lewis.common.enums.BusinessType;
-import ${packageName}.domain.${ClassName};
+import ${packageName}.entity.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
 import com.lewis.common.utils.poi.ExcelUtil;
 #if($table.crud || $table.sub)
@@ -30,86 +30,68 @@ import com.lewis.common.core.page.TableDataInfo;
  * @author ${author}
  * @date ${datetime}
  */
+@Api(tags = "${functionName}")
 @RestController
 @RequestMapping("/${moduleName}/${businessName}")
-public class ${ClassName}Controller extends BaseController
-{
+public class ${ClassName}Controller extends BaseController {
+
 	@Autowired
 	private I${ClassName}Service ${className}Service;
 
-/**
- * 查询${functionName}列表
- */
-@PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')")
-@GetMapping("/list")
-	#if($table.crud || $table.sub)
-	public TableDataInfo list(${ClassName} ${className})
-	{
+	@ApiOperation(value = "查询${functionName}列表", notes = "")
+	@PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')")
+	@GetMapping("/list")
+#if($table.crud || $table.sub)
+	public TableDataInfo list(${ClassName} ${className}) {
 		startPage();
 		List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
 		return getDataTable(list);
 	}
-	#elseif($table.tree)
-		public AjaxResult list(${ClassName} ${className})
-		{
-			List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-			return AjaxResult.success(list);
-		}
-	#end
+#elseif($table.tree)
+	public AjaxResult list(${ClassName} ${className}) {
+		List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
+		return AjaxResult.success(list);
+	}
+#end
 
-	/**
-	 * 导出${functionName}列表
-	 */
+	@ApiOperation(value = "导出${functionName}列表", notes = "")
 	@PreAuthorize("@ss.hasPermi('${permissionPrefix}:export')")
 	@Log(title = "${functionName}", businessType = BusinessType.EXPORT)
 	@GetMapping("/export")
-	public AjaxResult export(${ClassName} ${className})
-	{
+	public AjaxResult export(${ClassName} ${className}) {
 		List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
 		ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}.class);
 		return util.exportExcel(list, "${functionName}数据");
 	}
 
-	/**
-	 * 获取${functionName}详细信息
-	 */
+	@ApiOperation(value = "获取${functionName}详细信息", notes = "")
 	@PreAuthorize("@ss.hasPermi('${permissionPrefix}:query')")
 	@GetMapping(value = "/{${pkColumn.javaField}}")
-	public AjaxResult getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
-	{
+	public AjaxResult getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}) {
 		return AjaxResult.success(${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField}));
 	}
 
-	/**
-	 * 新增${functionName}
-	 */
+	@ApiOperation(value = "新增${functionName}", notes = "")
 	@PreAuthorize("@ss.hasPermi('${permissionPrefix}:add')")
 	@Log(title = "${functionName}", businessType = BusinessType.INSERT)
 	@PostMapping
-	public AjaxResult add(@RequestBody ${ClassName} ${className})
-	{
+	public AjaxResult add(@RequestBody ${ClassName} ${className}) {
 		return toAjax(${className}Service.insert${ClassName}(${className}));
 	}
 
-	/**
-	 * 修改${functionName}
-	 */
+	@ApiOperation(value = "修改${functionName}", notes = "")
 	@PreAuthorize("@ss.hasPermi('${permissionPrefix}:edit')")
 	@Log(title = "${functionName}", businessType = BusinessType.UPDATE)
 	@PutMapping
-	public AjaxResult edit(@RequestBody ${ClassName} ${className})
-	{
+	public AjaxResult edit(@RequestBody ${ClassName} ${className}) {
 		return toAjax(${className}Service.update${ClassName}(${className}));
 	}
 
-	/**
-	 * 删除${functionName}
-	 */
+	@ApiOperation(value = "删除${functionName}", notes = "")
 	@PreAuthorize("@ss.hasPermi('${permissionPrefix}:remove')")
 	@Log(title = "${functionName}", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{${pkColumn.javaField}s}")
-	public AjaxResult remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s)
-	{
+	public AjaxResult remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s) {
 		return toAjax(${className}Service.delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaField}s));
 	}
 }
