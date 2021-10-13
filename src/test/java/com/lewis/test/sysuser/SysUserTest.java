@@ -1,8 +1,8 @@
 package com.lewis.test.sysuser;
 
-import com.lewis.common.core.controller.BaseController;
-import com.lewis.common.core.domain.AjaxResult;
-import com.lewis.common.utils.StringUtils;
+import com.lewis.core.base.controller.BaseController;
+import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.utils.StringUtils;
 import com.lewis.test.sysuser.entity.UserEntity;
 import org.springframework.web.bind.annotation.*;
 

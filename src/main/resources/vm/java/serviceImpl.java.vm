@@ -1,19 +1,17 @@
 package ${packageName}.service.impl;
 
 import java.util.List;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-#foreach ($column in $columns)
+	#foreach ($column in $columns)
 #if($column.javaField == 'createTime' || $column.javaField == 'updateTime')
-import com.lewis.common.utils.DateUtils;
+import com.lewis.core.utils.DateUtils;
 #break
 #end
 #end
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 #if($table.sub)
 import java.util.ArrayList;
 
-import com.lewis.common.utils.StringUtils;
+import com.lewis.core.utils.StringUtils;
 import org.springframework.transaction.annotation.Transactional;
 import ${packageName}.entity.${subClassName};
 #end
