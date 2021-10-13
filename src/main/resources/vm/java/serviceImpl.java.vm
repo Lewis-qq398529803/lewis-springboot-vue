@@ -30,7 +30,7 @@ import ${packageName}.service.I${ClassName}Service;
 @Service
 public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${ClassName}> implements I${ClassName}Service {
 
-	@Autowired
+	@Resource
 	private ${ClassName}Mapper ${className}Mapper;
 
 	/**
