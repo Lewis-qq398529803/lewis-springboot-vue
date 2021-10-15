@@ -3,7 +3,7 @@ package com.lewis.mvc.system.controller;
 import com.lewis.core.annotation.Log;
 import com.lewis.core.constant.UserConstants;
 import com.lewis.core.base.controller.BaseController;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.domain.entity.SysRole;
 import com.lewis.core.base.domain.entity.SysUser;
 import com.lewis.core.base.domain.model.LoginUser;
@@ -62,7 +62,7 @@ public class SysRoleController extends BaseController {
 	@Log(title = "角色管理", businessType = BusinessType.EXPORT)
 	@PreAuthorize("@ss.hasPermi('system:role:export')")
 	@GetMapping("/export")
-	public AjaxResult export(SysRole role) {
+	public BaseResult export(SysRole role) {
 		List<SysRole> list = roleService.selectRoleList(role);
 		ExcelUtil<SysRole> util = new ExcelUtil<SysRole>(SysRole.class);
 		return util.exportExcel(list, "角色数据");
@@ -71,19 +71,19 @@ public class SysRoleController extends BaseController {
 	@ApiOperation(value = "根据角色编号获取详细信息", notes = "根据角色编号获取详细信息")
 	@PreAuthorize("@ss.hasPermi('system:role:query')")
 	@GetMapping(value = "/{roleId}")
-	public AjaxResult getInfo(@PathVariable Long roleId) {
-		return AjaxResult.success(roleService.selectRoleById(roleId));
+	public BaseResult getInfo(@PathVariable Long roleId) {
+		return BaseResult.ok(roleService.selectRoleById(roleId));
 	}
 
 	@ApiOperation(value = "新增角色", notes = "新增角色")
 	@PreAuthorize("@ss.hasPermi('system:role:add')")
 	@Log(title = "角色管理", businessType = BusinessType.INSERT)
 	@PostMapping
-	public AjaxResult add(@Validated @RequestBody SysRole role) {
+	public BaseResult add(@Validated @RequestBody SysRole role) {
 		if (UserConstants.NOT_UNIQUE.equals(roleService.checkRoleNameUnique(role))) {
-			return AjaxResult.error("新增角色'" + role.getRoleName() + "'失败，角色名称已存在");
+			return BaseResult.fail("新增角色'" + role.getRoleName() + "'失败，角色名称已存在");
 		} else if (UserConstants.NOT_UNIQUE.equals(roleService.checkRoleKeyUnique(role))) {
-			return AjaxResult.error("新增角色'" + role.getRoleName() + "'失败，角色权限已存在");
+			return BaseResult.fail("新增角色'" + role.getRoleName() + "'失败，角色权限已存在");
 		}
 		role.setCreateBy(SecurityUtils.getUsername());
 		return toAjax(roleService.insertRole(role));
@@ -94,12 +94,12 @@ public class SysRoleController extends BaseController {
 	@PreAuthorize("@ss.hasPermi('system:role:edit')")
 	@Log(title = "角色管理", businessType = BusinessType.UPDATE)
 	@PutMapping
-	public AjaxResult edit(@Validated @RequestBody SysRole role) {
+	public BaseResult edit(@Validated @RequestBody SysRole role) {
 		roleService.checkRoleAllowed(role);
 		if (UserConstants.NOT_UNIQUE.equals(roleService.checkRoleNameUnique(role))) {
-			return AjaxResult.error("修改角色'" + role.getRoleName() + "'失败，角色名称已存在");
+			return BaseResult.fail("修改角色'" + role.getRoleName() + "'失败，角色名称已存在");
 		} else if (UserConstants.NOT_UNIQUE.equals(roleService.checkRoleKeyUnique(role))) {
-			return AjaxResult.error("修改角色'" + role.getRoleName() + "'失败，角色权限已存在");
+			return BaseResult.fail("修改角色'" + role.getRoleName() + "'失败，角色权限已存在");
 		}
 		role.setUpdateBy(SecurityUtils.getUsername());
 
@@ -111,16 +111,16 @@ public class SysRoleController extends BaseController {
 				loginUser.setUser(userService.selectUserByUserName(loginUser.getUser().getUserName()));
 				tokenService.setLoginUser(loginUser);
 			}
-			return AjaxResult.success();
+			return BaseResult.ok();
 		}
-		return AjaxResult.error("修改角色'" + role.getRoleName() + "'失败，请联系管理员");
+		return BaseResult.fail("修改角色'" + role.getRoleName() + "'失败，请联系管理员");
 	}
 
 	@ApiOperation(value = "修改保存数据权限", notes = "修改保存数据权限")
 	@PreAuthorize("@ss.hasPermi('system:role:edit')")
 	@Log(title = "角色管理", businessType = BusinessType.UPDATE)
 	@PutMapping("/dataScope")
-	public AjaxResult dataScope(@RequestBody SysRole role) {
+	public BaseResult dataScope(@RequestBody SysRole role) {
 		roleService.checkRoleAllowed(role);
 		return toAjax(roleService.authDataScope(role));
 	}
@@ -129,7 +129,7 @@ public class SysRoleController extends BaseController {
 	@PreAuthorize("@ss.hasPermi('system:role:edit')")
 	@Log(title = "角色管理", businessType = BusinessType.UPDATE)
 	@PutMapping("/changeStatus")
-	public AjaxResult changeStatus(@RequestBody SysRole role) {
+	public BaseResult changeStatus(@RequestBody SysRole role) {
 		roleService.checkRoleAllowed(role);
 		role.setUpdateBy(SecurityUtils.getUsername());
 		return toAjax(roleService.updateRoleStatus(role));
@@ -139,15 +139,15 @@ public class SysRoleController extends BaseController {
 	@PreAuthorize("@ss.hasPermi('system:role:remove')")
 	@Log(title = "角色管理", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{roleIds}")
-	public AjaxResult remove(@PathVariable Long[] roleIds) {
+	public BaseResult remove(@PathVariable Long[] roleIds) {
 		return toAjax(roleService.deleteRoleByIds(roleIds));
 	}
 
 	@ApiOperation(value = "获取角色选择框列表", notes = "获取角色选择框列表")
 	@PreAuthorize("@ss.hasPermi('system:role:query')")
 	@GetMapping("/optionselect")
-	public AjaxResult optionselect() {
-		return AjaxResult.success(roleService.selectRoleAll());
+	public BaseResult optionselect() {
+		return BaseResult.ok(roleService.selectRoleAll());
 	}
 
 	@ApiOperation(value = "查询已分配用户角色列表", notes = "查询已分配用户角色列表")
@@ -172,21 +172,21 @@ public class SysRoleController extends BaseController {
 	@PreAuthorize("@ss.hasPermi('system:role:edit')")
 	@Log(title = "角色管理", businessType = BusinessType.GRANT)
 	@PutMapping("/authUser/cancel")
-	public AjaxResult cancelAuthUser(@RequestBody SysUserRole userRole) {
+	public BaseResult cancelAuthUser(@RequestBody SysUserRole userRole) {
 		return toAjax(roleService.deleteAuthUser(userRole));
 	}
 
 	@ApiOperation(value = "批量取消授权用户", notes = "批量取消授权用户")
 	@Log(title = "角色管理", businessType = BusinessType.GRANT)
 	@PutMapping("/authUser/cancelAll")
-	public AjaxResult cancelAuthUserAll(Long roleId, Long[] userIds) {
+	public BaseResult cancelAuthUserAll(Long roleId, Long[] userIds) {
 		return toAjax(roleService.deleteAuthUsers(roleId, userIds));
 	}
 
 	@ApiOperation(value = "批量选择用户授权", notes = "批量选择用户授权")
 	@Log(title = "角色管理", businessType = BusinessType.GRANT)
 	@PutMapping("/authUser/selectAll")
-	public AjaxResult selectAuthUserAll(Long roleId, Long[] userIds) {
+	public BaseResult selectAuthUserAll(Long roleId, Long[] userIds) {
 		return toAjax(roleService.insertAuthUsers(roleId, userIds));
 	}
 

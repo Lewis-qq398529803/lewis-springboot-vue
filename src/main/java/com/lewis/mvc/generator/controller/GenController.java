@@ -2,7 +2,7 @@ package com.lewis.mvc.generator.controller;
 
 import com.lewis.core.annotation.Log;
 import com.lewis.core.base.controller.BaseController;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.base.text.Convert;
 import com.lewis.core.enums.BusinessType;
@@ -53,7 +53,7 @@ public class GenController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('tool:gen:query')")
     @GetMapping(value = "/{talbleId}")
-    public AjaxResult getInfo(@PathVariable Long talbleId) {
+    public BaseResult getInfo(@PathVariable Long talbleId) {
         GenTable table = genTableService.selectGenTableById(talbleId);
         List<GenTable> tables = genTableService.selectGenTableAll();
         List<GenTableColumn> list = genTableColumnService.selectGenTableColumnListByTableId(talbleId);
@@ -61,7 +61,7 @@ public class GenController extends BaseController {
         map.put("info" , table);
         map.put("rows" , list);
         map.put("tables" , tables);
-        return AjaxResult.success(map);
+        return BaseResult.ok(map);
     }
 
     /**
@@ -94,12 +94,12 @@ public class GenController extends BaseController {
     @PreAuthorize("@ss.hasPermi('tool:gen:import')")
     @Log(title = "代码生成" , businessType = BusinessType.IMPORT)
     @PostMapping("/importTable")
-    public AjaxResult importTableSave(String tables) {
+    public BaseResult importTableSave(String tables) {
         String[] tableNames = Convert.toStrArray(tables);
         // 查询表信息
         List<GenTable> tableList = genTableService.selectDbTableListByNames(tableNames);
         genTableService.importGenTable(tableList);
-        return AjaxResult.success();
+        return BaseResult.ok();
     }
 
     /**
@@ -108,10 +108,10 @@ public class GenController extends BaseController {
     @PreAuthorize("@ss.hasPermi('tool:gen:edit')")
     @Log(title = "代码生成" , businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult editSave(@Validated @RequestBody GenTable genTable) {
+    public BaseResult editSave(@Validated @RequestBody GenTable genTable) {
         genTableService.validateEdit(genTable);
         genTableService.updateGenTable(genTable);
-        return AjaxResult.success();
+        return BaseResult.ok();
     }
 
     /**
@@ -120,9 +120,9 @@ public class GenController extends BaseController {
     @PreAuthorize("@ss.hasPermi('tool:gen:remove')")
     @Log(title = "代码生成" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{tableIds}")
-    public AjaxResult remove(@PathVariable Long[] tableIds) {
+    public BaseResult remove(@PathVariable Long[] tableIds) {
         genTableService.deleteGenTableByIds(tableIds);
-        return AjaxResult.success();
+        return BaseResult.ok();
     }
 
     /**
@@ -130,9 +130,9 @@ public class GenController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('tool:gen:preview')")
     @GetMapping("/preview/{tableId}")
-    public AjaxResult preview(@PathVariable("tableId") Long tableId) throws IOException {
+    public BaseResult preview(@PathVariable("tableId") Long tableId) throws IOException {
         Map<String, String> dataMap = genTableService.previewCode(tableId);
-        return AjaxResult.success(dataMap);
+        return BaseResult.ok(dataMap);
     }
 
     /**
@@ -152,9 +152,9 @@ public class GenController extends BaseController {
     @PreAuthorize("@ss.hasPermi('tool:gen:code')")
     @Log(title = "代码生成" , businessType = BusinessType.GENCODE)
     @GetMapping("/genCode/{tableName}")
-    public AjaxResult genCode(@PathVariable("tableName") String tableName) {
+    public BaseResult genCode(@PathVariable("tableName") String tableName) {
         genTableService.generatorCode(tableName);
-        return AjaxResult.success();
+        return BaseResult.ok();
     }
 
     /**
@@ -163,9 +163,9 @@ public class GenController extends BaseController {
     @PreAuthorize("@ss.hasPermi('tool:gen:edit')")
     @Log(title = "代码生成" , businessType = BusinessType.UPDATE)
     @GetMapping("/synchDb/{tableName}")
-    public AjaxResult synchDb(@PathVariable("tableName") String tableName) {
+    public BaseResult synchDb(@PathVariable("tableName") String tableName) {
         genTableService.synchDb(tableName);
-        return AjaxResult.success();
+        return BaseResult.ok();
     }
 
     /**

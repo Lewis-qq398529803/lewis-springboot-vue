@@ -36,13 +36,45 @@
 
 ### Lewis魔改：
 
-1. 多模块 --> 单模块
+1. 多模块 --> 单模块（项目结构巨型变化，请斟酌使用）
 2. mybatis --> mybatisplus
 3. 自动生成代码模块，加入mybatisplus元素，使其拥有mybatisplus的条件构造器等所有方法
 4. 新增了swagger的bootstrap-ui包，开启swagger的bootstrap-ui的接口
 5. 自定义一个全局链式返回对象BaseResult
 6. 新增多个工具类
 7. 加入swagger配置类，实现参数隐藏、显示
+
+## 项目结构
+
+lewis-springboot-vue 项目目录
+
+​	lewis-ui	前端项目
+
+​	sql	数据库文件
+
+​	src	后端目录
+
+​		com
+
+​			lewis
+
+​				config	配置文件
+
+​				core	通用文件
+
+​				mvc	controller、service、mapper、entity以模块名进行分割
+
+​	resource	资源目录
+
+​		i18n	国际化文件
+
+​		mapper	mapper.xml文件
+
+​		META-INF	配置文件
+
+​		mybatis	mybatis配置文件
+
+​		vm	自动化模板文件
 
 ## 启动
 

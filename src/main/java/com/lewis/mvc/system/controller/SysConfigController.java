@@ -4,7 +4,7 @@ import com.lewis.core.annotation.Log;
 import com.lewis.core.annotation.RepeatSubmit;
 import com.lewis.core.constant.UserConstants;
 import com.lewis.core.base.controller.BaseController;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.enums.BusinessType;
 import com.lewis.core.utils.SecurityUtils;
@@ -46,7 +46,7 @@ public class SysConfigController extends BaseController {
     @Log(title = "参数管理" , businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:config:export')")
     @GetMapping("/export")
-    public AjaxResult export(SysConfig config) {
+    public BaseResult export(SysConfig config) {
         List<SysConfig> list = configService.selectConfigList(config);
         ExcelUtil<SysConfig> util = new ExcelUtil<SysConfig>(SysConfig.class);
         return util.exportExcel(list, "参数数据");
@@ -55,14 +55,14 @@ public class SysConfigController extends BaseController {
     @ApiOperation(value = "根据参数编号获取详细信息", notes = "根据参数编号获取详细信息")
     @PreAuthorize("@ss.hasPermi('system:config:query')")
     @GetMapping(value = "/{configId}")
-    public AjaxResult getInfo(@PathVariable Long configId) {
-        return AjaxResult.success(configService.selectConfigById(configId));
+    public BaseResult getInfo(@PathVariable Long configId) {
+        return BaseResult.ok(configService.selectConfigById(configId));
     }
 
     @ApiOperation(value = "根据参数键名查询参数值", notes = "根据参数键名查询参数值")
     @GetMapping(value = "/configKey/{configKey}")
-    public AjaxResult getConfigKey(@PathVariable String configKey) {
-        return AjaxResult.success(configService.selectConfigByKey(configKey));
+    public BaseResult getConfigKey(@PathVariable String configKey) {
+        return BaseResult.ok(configService.selectConfigByKey(configKey));
     }
 
     @ApiOperation(value = "新增参数配置", notes = "新增参数配置")
@@ -70,9 +70,9 @@ public class SysConfigController extends BaseController {
     @Log(title = "参数管理" , businessType = BusinessType.INSERT)
     @PostMapping
     @RepeatSubmit
-    public AjaxResult add(@Validated @RequestBody SysConfig config) {
+    public BaseResult add(@Validated @RequestBody SysConfig config) {
         if (UserConstants.NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
-            return AjaxResult.error("新增参数'" + config.getConfigName() + "'失败，参数键名已存在");
+            return BaseResult.fail("新增参数'" + config.getConfigName() + "'失败，参数键名已存在");
         }
         config.setCreateBy(SecurityUtils.getUsername());
         return toAjax(configService.insertConfig(config));
@@ -82,9 +82,9 @@ public class SysConfigController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:config:edit')")
     @Log(title = "参数管理" , businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@Validated @RequestBody SysConfig config) {
+    public BaseResult edit(@Validated @RequestBody SysConfig config) {
         if (UserConstants.NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
-            return AjaxResult.error("修改参数'" + config.getConfigName() + "'失败，参数键名已存在");
+            return BaseResult.fail("修改参数'" + config.getConfigName() + "'失败，参数键名已存在");
         }
         config.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(configService.updateConfig(config));
@@ -94,7 +94,7 @@ public class SysConfigController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
     @Log(title = "参数管理" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{configIds}")
-    public AjaxResult remove(@PathVariable Long[] configIds) {
+    public BaseResult remove(@PathVariable Long[] configIds) {
         configService.deleteConfigByIds(configIds);
         return success();
     }
@@ -103,8 +103,8 @@ public class SysConfigController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:config:remove')")
     @Log(title = "参数管理" , businessType = BusinessType.CLEAN)
     @DeleteMapping("/refreshCache")
-    public AjaxResult refreshCache() {
+    public BaseResult refreshCache() {
         configService.resetConfigCache();
-        return AjaxResult.success();
+        return BaseResult.ok();
     }
 }

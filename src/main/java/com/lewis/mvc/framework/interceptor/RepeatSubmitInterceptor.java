@@ -2,7 +2,7 @@ package com.lewis.mvc.framework.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lewis.core.annotation.RepeatSubmit;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.utils.ServletUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -28,8 +28,8 @@ public abstract class RepeatSubmitInterceptor extends HandlerInterceptorAdapter 
             RepeatSubmit annotation = method.getAnnotation(RepeatSubmit.class);
             if (annotation != null) {
                 if (this.isRepeatSubmit(request)) {
-                    AjaxResult ajaxResult = AjaxResult.error("不允许重复提交，请稍后再试");
-                    ServletUtils.renderString(response, JSONObject.toJSONString(ajaxResult));
+                    BaseResult baseResult = BaseResult.fail("不允许重复提交，请稍后再试");
+                    ServletUtils.renderString(response, JSONObject.toJSONString(baseResult));
                     return false;
                 }
             }

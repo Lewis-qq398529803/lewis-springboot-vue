@@ -2,7 +2,8 @@ package com.lewis.mvc.common;
 
 import com.lewis.config.LewisConfig;
 import com.lewis.core.constant.Constants;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
+import com.lewis.core.utils.MapUtils;
 import com.lewis.core.utils.StringUtils;
 import com.lewis.core.utils.file.FileUploadUtils;
 import com.lewis.core.utils.file.FileUtils;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 /**
  * 通用请求处理
@@ -63,23 +65,24 @@ public class CommonController {
      * 通用上传请求
      *
      * @param file
-     * @return AjaxResult
+     * @return BaseResult
      */
     @PostMapping("/common/upload")
     @ApiOperation("通用上传请求")
-    public AjaxResult uploadFile(MultipartFile file) {
+    public Object uploadFile(MultipartFile file) {
         try {
             // 上传文件路径
             String filePath = LewisConfig.getUploadPath();
             // 上传并返回新文件名称
             String fileName = FileUploadUtils.upload(filePath, file);
             String url = serverConfig.getUrl() + fileName;
-            AjaxResult ajax = AjaxResult.success();
+            BaseResult ok = BaseResult.ok();
+            Map ajax = MapUtils.objectToMapByReflect(ok);
             ajax.put("fileName" , fileName);
             ajax.put("url" , url);
             return ajax;
         } catch (Exception e) {
-            return AjaxResult.error(e.getMessage());
+            return BaseResult.fail(e.getMessage());
         }
     }
 

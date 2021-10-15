@@ -3,7 +3,7 @@ package com.lewis.core.security.handle;
 import com.alibaba.fastjson.JSON;
 import com.lewis.core.constant.Constants;
 import com.lewis.core.constant.HttpStatus;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.domain.model.LoginUser;
 import com.lewis.core.utils.ServletUtils;
 import com.lewis.core.utils.StringUtils;
@@ -46,6 +46,6 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler {
             // 记录用户退出日志
             AsyncManager.me().execute(AsyncFactory.recordLogininfor(userName, Constants.LOGOUT, "退出成功"));
         }
-        ServletUtils.renderString(response, JSON.toJSONString(AjaxResult.error(HttpStatus.SUCCESS, "退出成功")));
+        ServletUtils.renderString(response, JSON.toJSONString(BaseResult.fail(HttpStatus.SUCCESS, "退出成功")));
     }
 }

@@ -2,7 +2,7 @@ package com.lewis.mvc.system.controller;
 
 import com.lewis.core.annotation.Log;
 import com.lewis.core.base.controller.BaseController;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.enums.BusinessType;
 import com.lewis.core.utils.poi.ExcelUtil;
@@ -37,7 +37,7 @@ public class SysLoginInForController extends BaseController {
     @Log(title = "登录日志" , businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:export')")
     @GetMapping("/export")
-    public AjaxResult export(SysLogininfor logininfor) {
+    public BaseResult export(SysLogininfor logininfor) {
         List<SysLogininfor> list = logininforService.selectLogininforList(logininfor);
         ExcelUtil<SysLogininfor> util = new ExcelUtil<SysLogininfor>(SysLogininfor.class);
         return util.exportExcel(list, "登录日志");
@@ -46,15 +46,15 @@ public class SysLoginInForController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:remove')")
     @Log(title = "登录日志" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{infoIds}")
-    public AjaxResult remove(@PathVariable Long[] infoIds) {
+    public BaseResult remove(@PathVariable Long[] infoIds) {
         return toAjax(logininforService.deleteLogininforByIds(infoIds));
     }
 
     @PreAuthorize("@ss.hasPermi('monitor:logininfor:remove')")
     @Log(title = "登录日志" , businessType = BusinessType.CLEAN)
     @DeleteMapping("/clean")
-    public AjaxResult clean() {
+    public BaseResult clean() {
         logininforService.cleanLogininfor();
-        return AjaxResult.success();
+        return BaseResult.ok();
     }
 }

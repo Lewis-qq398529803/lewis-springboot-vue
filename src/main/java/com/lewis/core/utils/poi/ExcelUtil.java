@@ -5,7 +5,7 @@ import com.lewis.core.annotation.Excel.ColumnType;
 import com.lewis.core.annotation.Excel.Type;
 import com.lewis.core.annotation.Excels;
 import com.lewis.config.LewisConfig;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.text.Convert;
 import com.lewis.core.exception.CustomException;
 import com.lewis.core.utils.DateUtils;
@@ -265,7 +265,7 @@ public class ExcelUtil<T> {
 	 * @param sheetName 工作表的名称
 	 * @return 结果
 	 */
-	public AjaxResult exportExcel(List<T> list, String sheetName) {
+	public BaseResult exportExcel(List<T> list, String sheetName) {
 		this.init(list, sheetName, Type.EXPORT);
 		return exportExcel();
 	}
@@ -292,7 +292,7 @@ public class ExcelUtil<T> {
 	 * @param sheetName 工作表的名称
 	 * @return 结果
 	 */
-	public AjaxResult importTemplateExcel(String sheetName) {
+	public BaseResult importTemplateExcel(String sheetName) {
 		this.init(null, sheetName, Type.IMPORT);
 		return exportExcel();
 	}
@@ -332,14 +332,14 @@ public class ExcelUtil<T> {
 	 *
 	 * @return 结果
 	 */
-	public AjaxResult exportExcel() {
+	public BaseResult exportExcel() {
 		OutputStream out = null;
 		try {
 			writeSheet();
 			String filename = encodingFilename(sheetName);
 			out = new FileOutputStream(getAbsoluteFile(filename));
 			wb.write(out);
-			return AjaxResult.success(filename);
+			return BaseResult.ok(filename);
 		} catch (Exception e) {
 			log.error("导出Excel异常{}", e.getMessage());
 			throw new CustomException("导出Excel失败，请联系网站管理员！");

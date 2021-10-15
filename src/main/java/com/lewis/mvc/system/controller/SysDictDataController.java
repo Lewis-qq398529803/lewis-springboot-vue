@@ -2,7 +2,7 @@ package com.lewis.mvc.system.controller;
 
 import com.lewis.core.annotation.Log;
 import com.lewis.core.base.controller.BaseController;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.domain.entity.SysDictData;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.enums.BusinessType;
@@ -50,7 +50,7 @@ public class SysDictDataController extends BaseController {
     @Log(title = "字典数据" , businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:dict:export')")
     @GetMapping("/export")
-    public AjaxResult export(SysDictData dictData) {
+    public BaseResult export(SysDictData dictData) {
         List<SysDictData> list = dictDataService.selectDictDataList(dictData);
         ExcelUtil<SysDictData> util = new ExcelUtil<SysDictData>(SysDictData.class);
         return util.exportExcel(list, "字典数据");
@@ -59,25 +59,25 @@ public class SysDictDataController extends BaseController {
     @ApiOperation(value = "查询字典数据详细", notes = "查询字典数据详细")
     @PreAuthorize("@ss.hasPermi('system:dict:query')")
     @GetMapping(value = "/{dictCode}")
-    public AjaxResult getInfo(@PathVariable Long dictCode) {
-        return AjaxResult.success(dictDataService.selectDictDataById(dictCode));
+    public BaseResult getInfo(@PathVariable Long dictCode) {
+        return BaseResult.ok(dictDataService.selectDictDataById(dictCode));
     }
 
     @ApiOperation(value = "根据字典类型查询字典数据信息", notes = "根据字典类型查询字典数据信息")
     @GetMapping(value = "/type/{dictType}")
-    public AjaxResult dictType(@PathVariable String dictType) {
+    public BaseResult dictType(@PathVariable String dictType) {
         List<SysDictData> data = dictTypeService.selectDictDataByType(dictType);
         if (StringUtils.isNull(data)) {
             data = new ArrayList<SysDictData>();
         }
-        return AjaxResult.success(data);
+        return BaseResult.ok(data);
     }
 
     @ApiOperation(value = "新增字典类型", notes = "新增字典类型")
     @PreAuthorize("@ss.hasPermi('system:dict:add')")
     @Log(title = "字典数据" , businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@Validated @RequestBody SysDictData dict) {
+    public BaseResult add(@Validated @RequestBody SysDictData dict) {
         dict.setCreateBy(SecurityUtils.getUsername());
         return toAjax(dictDataService.insertDictData(dict));
     }
@@ -86,7 +86,7 @@ public class SysDictDataController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:dict:edit')")
     @Log(title = "字典数据" , businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@Validated @RequestBody SysDictData dict) {
+    public BaseResult edit(@Validated @RequestBody SysDictData dict) {
         dict.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(dictDataService.updateDictData(dict));
     }
@@ -95,7 +95,7 @@ public class SysDictDataController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:dict:remove')")
     @Log(title = "字典类型" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{dictCodes}")
-    public AjaxResult remove(@PathVariable Long[] dictCodes) {
+    public BaseResult remove(@PathVariable Long[] dictCodes) {
         dictDataService.deleteDictDataByIds(dictCodes);
         return success();
     }

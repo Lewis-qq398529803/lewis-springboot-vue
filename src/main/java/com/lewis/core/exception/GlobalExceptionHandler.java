@@ -1,7 +1,7 @@
 package com.lewis.core.exception;
 
 import com.lewis.core.constant.HttpStatus;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,59 +27,59 @@ public class GlobalExceptionHandler {
      * 基础异常
      */
     @ExceptionHandler(BaseException.class)
-    public AjaxResult baseException(BaseException e) {
-        return AjaxResult.error(e.getMessage());
+    public BaseResult baseException(BaseException e) {
+        return BaseResult.fail(e.getMessage());
     }
 
     /**
      * 业务异常
      */
     @ExceptionHandler(CustomException.class)
-    public AjaxResult businessException(CustomException e) {
+    public BaseResult businessException(CustomException e) {
         if (StringUtils.isNull(e.getCode())) {
-            return AjaxResult.error(e.getMessage());
+            return BaseResult.fail(e.getMessage());
         }
-        return AjaxResult.error(e.getCode(), e.getMessage());
+        return BaseResult.fail(e.getCode(), e.getMessage());
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
-    public AjaxResult handlerNoFoundException(Exception e) {
+    public BaseResult handlerNoFoundException(Exception e) {
         log.error(e.getMessage(), e);
-        return AjaxResult.error(HttpStatus.NOT_FOUND, "路径不存在，请检查路径是否正确");
+        return BaseResult.fail(HttpStatus.NOT_FOUND, "路径不存在，请检查路径是否正确");
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public AjaxResult handleAuthorizationException(AccessDeniedException e) {
+    public BaseResult handleAuthorizationException(AccessDeniedException e) {
         log.error(e.getMessage());
-        return AjaxResult.error(HttpStatus.FORBIDDEN, "没有权限，请联系管理员授权");
+        return BaseResult.fail(HttpStatus.FORBIDDEN, "没有权限，请联系管理员授权");
     }
 
     @ExceptionHandler(AccountExpiredException.class)
-    public AjaxResult handleAccountExpiredException(AccountExpiredException e) {
+    public BaseResult handleAccountExpiredException(AccountExpiredException e) {
         log.error(e.getMessage(), e);
-        return AjaxResult.error(e.getMessage());
+        return BaseResult.fail(e.getMessage());
     }
 
     @ExceptionHandler(UsernameNotFoundException.class)
-    public AjaxResult handleUsernameNotFoundException(UsernameNotFoundException e) {
+    public BaseResult handleUsernameNotFoundException(UsernameNotFoundException e) {
         log.error(e.getMessage(), e);
-        return AjaxResult.error(e.getMessage());
+        return BaseResult.fail(e.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
-    public AjaxResult handleException(Exception e) {
+    public BaseResult handleException(Exception e) {
         log.error(e.getMessage(), e);
-        return AjaxResult.error(e.getMessage());
+        return BaseResult.fail(e.getMessage());
     }
 
     /**
      * 自定义验证异常
      */
     @ExceptionHandler(BindException.class)
-    public AjaxResult validatedBindException(BindException e) {
+    public BaseResult validatedBindException(BindException e) {
         log.error(e.getMessage(), e);
         String message = e.getAllErrors().get(0).getDefaultMessage();
-        return AjaxResult.error(message);
+        return BaseResult.fail(message);
     }
 
     /**
@@ -89,14 +89,14 @@ public class GlobalExceptionHandler {
     public Object validExceptionHandler(MethodArgumentNotValidException e) {
         log.error(e.getMessage(), e);
         String message = e.getBindingResult().getFieldError().getDefaultMessage();
-        return AjaxResult.error(message);
+        return BaseResult.fail(message);
     }
 
     /**
      * 演示模式异常
      */
     @ExceptionHandler(DemoModeException.class)
-    public AjaxResult demoModeException(DemoModeException e) {
-        return AjaxResult.error("演示模式，不允许操作");
+    public BaseResult demoModeException(DemoModeException e) {
+        return BaseResult.fail("演示模式，不允许操作");
     }
 }

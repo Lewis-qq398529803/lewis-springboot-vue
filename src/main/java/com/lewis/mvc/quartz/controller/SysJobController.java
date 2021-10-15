@@ -3,7 +3,7 @@ package com.lewis.mvc.quartz.controller;
 import com.lewis.core.annotation.Log;
 import com.lewis.core.constant.Constants;
 import com.lewis.core.base.controller.BaseController;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.enums.BusinessType;
 import com.lewis.core.exception.job.TaskException;
@@ -49,7 +49,7 @@ public class SysJobController extends BaseController {
 	@PreAuthorize("@ss.hasPermi('monitor:job:export')")
 	@Log(title = "定时任务", businessType = BusinessType.EXPORT)
 	@GetMapping("/export")
-	public AjaxResult export(SysJob sysJob) {
+	public BaseResult export(SysJob sysJob) {
 		List<SysJob> list = jobService.selectJobList(sysJob);
 		ExcelUtil<SysJob> util = new ExcelUtil<SysJob>(SysJob.class);
 		return util.exportExcel(list, "定时任务");
@@ -60,8 +60,8 @@ public class SysJobController extends BaseController {
 	 */
 	@PreAuthorize("@ss.hasPermi('monitor:job:query')")
 	@GetMapping(value = "/{jobId}")
-	public AjaxResult getInfo(@PathVariable("jobId") Long jobId) {
-		return AjaxResult.success(jobService.selectJobById(jobId));
+	public BaseResult getInfo(@PathVariable("jobId") Long jobId) {
+		return BaseResult.ok(jobService.selectJobById(jobId));
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class SysJobController extends BaseController {
 	@PreAuthorize("@ss.hasPermi('monitor:job:add')")
 	@Log(title = "定时任务", businessType = BusinessType.INSERT)
 	@PostMapping
-	public AjaxResult add(@RequestBody SysJob job) throws SchedulerException, TaskException {
+	public BaseResult add(@RequestBody SysJob job) throws SchedulerException, TaskException {
 		if (!CronUtils.isValid(job.getCronExpression())) {
 			return error("新增任务'" + job.getJobName() + "'失败，Cron表达式不正确");
 		} else if (StringUtils.containsIgnoreCase(job.getInvokeTarget(), Constants.LOOKUP_RMI)) {
@@ -88,7 +88,7 @@ public class SysJobController extends BaseController {
 	@PreAuthorize("@ss.hasPermi('monitor:job:edit')")
 	@Log(title = "定时任务", businessType = BusinessType.UPDATE)
 	@PutMapping
-	public AjaxResult edit(@RequestBody SysJob job) throws SchedulerException, TaskException {
+	public BaseResult edit(@RequestBody SysJob job) throws SchedulerException, TaskException {
 		if (!CronUtils.isValid(job.getCronExpression())) {
 			return error("修改任务'" + job.getJobName() + "'失败，Cron表达式不正确");
 		} else if (StringUtils.containsIgnoreCase(job.getInvokeTarget(), Constants.LOOKUP_RMI)) {
@@ -106,7 +106,7 @@ public class SysJobController extends BaseController {
 	@PreAuthorize("@ss.hasPermi('monitor:job:changeStatus')")
 	@Log(title = "定时任务", businessType = BusinessType.UPDATE)
 	@PutMapping("/changeStatus")
-	public AjaxResult changeStatus(@RequestBody SysJob job) throws SchedulerException {
+	public BaseResult changeStatus(@RequestBody SysJob job) throws SchedulerException {
 		SysJob newJob = jobService.selectJobById(job.getJobId());
 		newJob.setStatus(job.getStatus());
 		return toAjax(jobService.changeStatus(newJob));
@@ -118,9 +118,9 @@ public class SysJobController extends BaseController {
 	@PreAuthorize("@ss.hasPermi('monitor:job:changeStatus')")
 	@Log(title = "定时任务", businessType = BusinessType.UPDATE)
 	@PutMapping("/run")
-	public AjaxResult run(@RequestBody SysJob job) throws SchedulerException {
+	public BaseResult run(@RequestBody SysJob job) throws SchedulerException {
 		jobService.run(job);
-		return AjaxResult.success();
+		return BaseResult.ok();
 	}
 
 	/**
@@ -129,8 +129,8 @@ public class SysJobController extends BaseController {
 	@PreAuthorize("@ss.hasPermi('monitor:job:remove')")
 	@Log(title = "定时任务", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{jobIds}")
-	public AjaxResult remove(@PathVariable Long[] jobIds) throws SchedulerException, TaskException {
+	public BaseResult remove(@PathVariable Long[] jobIds) throws SchedulerException, TaskException {
 		jobService.deleteJobByIds(jobIds);
-		return AjaxResult.success();
+		return BaseResult.ok();
 	}
 }

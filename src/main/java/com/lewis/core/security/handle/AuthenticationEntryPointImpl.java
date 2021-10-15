@@ -2,7 +2,7 @@ package com.lewis.core.security.handle;
 
 import com.alibaba.fastjson.JSON;
 import com.lewis.core.constant.HttpStatus;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.utils.ServletUtils;
 import com.lewis.core.utils.StringUtils;
 import org.springframework.security.core.AuthenticationException;
@@ -28,6 +28,6 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint, S
             throws IOException {
         int code = HttpStatus.UNAUTHORIZED;
         String msg = StringUtils.format("请求访问：{}，认证失败，无法访问系统资源" , request.getRequestURI());
-        ServletUtils.renderString(response, JSON.toJSONString(AjaxResult.error(code, msg)));
+        ServletUtils.renderString(response, JSON.toJSONString(BaseResult.fail(code, msg)));
     }
 }

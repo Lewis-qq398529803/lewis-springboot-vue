@@ -3,7 +3,7 @@ package com.lewis.mvc.system.controller;
 import com.lewis.core.annotation.Log;
 import com.lewis.core.constant.Constants;
 import com.lewis.core.base.controller.BaseController;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.domain.model.LoginUser;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.base.redis.RedisCache;
@@ -68,8 +68,8 @@ public class SysUserOnlineController extends BaseController {
     @PreAuthorize("@ss.hasPermi('monitor:online:forceLogout')")
     @Log(title = "在线用户" , businessType = BusinessType.FORCE)
     @DeleteMapping("/{tokenId}")
-    public AjaxResult forceLogout(@PathVariable String tokenId) {
+    public BaseResult forceLogout(@PathVariable String tokenId) {
         redisCache.deleteObject(Constants.LOGIN_TOKEN_KEY + tokenId);
-        return AjaxResult.success();
+        return BaseResult.ok();
     }
 }

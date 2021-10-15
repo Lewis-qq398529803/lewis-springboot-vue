@@ -2,7 +2,7 @@ package com.lewis.mvc.system.controller;
 
 import com.lewis.core.annotation.Log;
 import com.lewis.core.base.controller.BaseController;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.enums.BusinessType;
 import com.lewis.core.utils.poi.ExcelUtil;
@@ -36,7 +36,7 @@ public class SysOperlogController extends BaseController {
     @Log(title = "操作日志" , businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('monitor:operlog:export')")
     @GetMapping("/export")
-    public AjaxResult export(SysOperLog operLog) {
+    public BaseResult export(SysOperLog operLog) {
         List<SysOperLog> list = operLogService.selectOperLogList(operLog);
         ExcelUtil<SysOperLog> util = new ExcelUtil<SysOperLog>(SysOperLog.class);
         return util.exportExcel(list, "操作日志");
@@ -45,15 +45,15 @@ public class SysOperlogController extends BaseController {
     @Log(title = "操作日志" , businessType = BusinessType.DELETE)
     @PreAuthorize("@ss.hasPermi('monitor:operlog:remove')")
     @DeleteMapping("/{operIds}")
-    public AjaxResult remove(@PathVariable Long[] operIds) {
+    public BaseResult remove(@PathVariable Long[] operIds) {
         return toAjax(operLogService.deleteOperLogByIds(operIds));
     }
 
     @Log(title = "操作日志" , businessType = BusinessType.CLEAN)
     @PreAuthorize("@ss.hasPermi('monitor:operlog:remove')")
     @DeleteMapping("/clean")
-    public AjaxResult clean() {
+    public BaseResult clean() {
         operLogService.cleanOperLog();
-        return AjaxResult.success();
+        return BaseResult.ok();
     }
 }

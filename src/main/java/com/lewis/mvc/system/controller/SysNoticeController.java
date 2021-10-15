@@ -2,7 +2,7 @@ package com.lewis.mvc.system.controller;
 
 import com.lewis.core.annotation.Log;
 import com.lewis.core.base.controller.BaseController;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.enums.BusinessType;
 import com.lewis.core.utils.SecurityUtils;
@@ -42,15 +42,15 @@ public class SysNoticeController extends BaseController {
     @ApiOperation(value = "根据通知公告编号获取详细信息", notes = "根据通知公告编号获取详细信息")
     @PreAuthorize("@ss.hasPermi('system:notice:query')")
     @GetMapping(value = "/{noticeId}")
-    public AjaxResult getInfo(@PathVariable Long noticeId) {
-        return AjaxResult.success(noticeService.selectNoticeById(noticeId));
+    public BaseResult getInfo(@PathVariable Long noticeId) {
+        return BaseResult.ok(noticeService.selectNoticeById(noticeId));
     }
 
     @ApiOperation(value = "新增通知公告", notes = "新增通知公告")
     @PreAuthorize("@ss.hasPermi('system:notice:add')")
     @Log(title = "通知公告" , businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@Validated @RequestBody SysNotice notice) {
+    public BaseResult add(@Validated @RequestBody SysNotice notice) {
         notice.setCreateBy(SecurityUtils.getUsername());
         return toAjax(noticeService.insertNotice(notice));
     }
@@ -59,7 +59,7 @@ public class SysNoticeController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:notice:edit')")
     @Log(title = "通知公告" , businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@Validated @RequestBody SysNotice notice) {
+    public BaseResult edit(@Validated @RequestBody SysNotice notice) {
         notice.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(noticeService.updateNotice(notice));
     }
@@ -68,7 +68,7 @@ public class SysNoticeController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:notice:remove')")
     @Log(title = "通知公告" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{noticeIds}")
-    public AjaxResult remove(@PathVariable Long[] noticeIds) {
+    public BaseResult remove(@PathVariable Long[] noticeIds) {
         return toAjax(noticeService.deleteNoticeByIds(noticeIds));
     }
 }

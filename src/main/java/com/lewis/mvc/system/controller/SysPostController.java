@@ -3,7 +3,7 @@ package com.lewis.mvc.system.controller;
 import com.lewis.core.annotation.Log;
 import com.lewis.core.constant.UserConstants;
 import com.lewis.core.base.controller.BaseController;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.enums.BusinessType;
 import com.lewis.core.utils.SecurityUtils;
@@ -45,7 +45,7 @@ public class SysPostController extends BaseController {
     @Log(title = "岗位管理" , businessType = BusinessType.EXPORT)
     @PreAuthorize("@ss.hasPermi('system:post:export')")
     @GetMapping("/export")
-    public AjaxResult export(SysPost post) {
+    public BaseResult export(SysPost post) {
         List<SysPost> list = postService.selectPostList(post);
         ExcelUtil<SysPost> util = new ExcelUtil<SysPost>(SysPost.class);
         return util.exportExcel(list, "岗位数据");
@@ -54,19 +54,19 @@ public class SysPostController extends BaseController {
     @ApiOperation(value = "根据岗位编号获取详细信息", notes = "根据岗位编号获取详细信息")
     @PreAuthorize("@ss.hasPermi('system:post:query')")
     @GetMapping(value = "/{postId}")
-    public AjaxResult getInfo(@PathVariable Long postId) {
-        return AjaxResult.success(postService.selectPostById(postId));
+    public BaseResult getInfo(@PathVariable Long postId) {
+        return BaseResult.ok(postService.selectPostById(postId));
     }
 
     @ApiOperation(value = "新增岗位", notes = "新增岗位")
     @PreAuthorize("@ss.hasPermi('system:post:add')")
     @Log(title = "岗位管理" , businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@Validated @RequestBody SysPost post) {
+    public BaseResult add(@Validated @RequestBody SysPost post) {
         if (UserConstants.NOT_UNIQUE.equals(postService.checkPostNameUnique(post))) {
-            return AjaxResult.error("新增岗位'" + post.getPostName() + "'失败，岗位名称已存在");
+            return BaseResult.fail("新增岗位'" + post.getPostName() + "'失败，岗位名称已存在");
         } else if (UserConstants.NOT_UNIQUE.equals(postService.checkPostCodeUnique(post))) {
-            return AjaxResult.error("新增岗位'" + post.getPostName() + "'失败，岗位编码已存在");
+            return BaseResult.fail("新增岗位'" + post.getPostName() + "'失败，岗位编码已存在");
         }
         post.setCreateBy(SecurityUtils.getUsername());
         return toAjax(postService.insertPost(post));
@@ -76,11 +76,11 @@ public class SysPostController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:post:edit')")
     @Log(title = "岗位管理" , businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@Validated @RequestBody SysPost post) {
+    public BaseResult edit(@Validated @RequestBody SysPost post) {
         if (UserConstants.NOT_UNIQUE.equals(postService.checkPostNameUnique(post))) {
-            return AjaxResult.error("修改岗位'" + post.getPostName() + "'失败，岗位名称已存在");
+            return BaseResult.fail("修改岗位'" + post.getPostName() + "'失败，岗位名称已存在");
         } else if (UserConstants.NOT_UNIQUE.equals(postService.checkPostCodeUnique(post))) {
-            return AjaxResult.error("修改岗位'" + post.getPostName() + "'失败，岗位编码已存在");
+            return BaseResult.fail("修改岗位'" + post.getPostName() + "'失败，岗位编码已存在");
         }
         post.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(postService.updatePost(post));
@@ -90,14 +90,14 @@ public class SysPostController extends BaseController {
     @PreAuthorize("@ss.hasPermi('system:post:remove')")
     @Log(title = "岗位管理" , businessType = BusinessType.DELETE)
     @DeleteMapping("/{postIds}")
-    public AjaxResult remove(@PathVariable Long[] postIds) {
+    public BaseResult remove(@PathVariable Long[] postIds) {
         return toAjax(postService.deletePostByIds(postIds));
     }
 
     @ApiOperation(value = "获取岗位选择框列表", notes = "获取岗位选择框列表")
     @GetMapping("/optionselect")
-    public AjaxResult optionselect() {
+    public BaseResult optionselect() {
         List<SysPost> posts = postService.selectPostAll();
-        return AjaxResult.success(posts);
+        return BaseResult.ok(posts);
     }
 }

@@ -2,8 +2,9 @@ package com.lewis.mvc.common;
 
 import com.google.code.kaptcha.Producer;
 import com.lewis.core.constant.Constants;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.redis.RedisCache;
+import com.lewis.core.utils.MapUtils;
 import com.lewis.core.utils.sign.Base64;
 import com.lewis.core.utils.uuid.IdUtils;
 import com.lewis.mvc.system.service.ISysConfigService;
@@ -18,6 +19,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -48,8 +50,9 @@ public class CaptchaController {
      * 生成验证码
      */
     @GetMapping("/captchaImage")
-    public AjaxResult getCode(HttpServletResponse response) throws IOException {
-        AjaxResult ajax = AjaxResult.success();
+    public Object getCode(HttpServletResponse response) throws IOException {
+        BaseResult ok = BaseResult.ok();
+        Map<String, Object> ajax = MapUtils.objectToMapByReflect(ok);
         boolean captchaOnOff = configService.selectCaptchaOnOff();
         ajax.put("captchaOnOff" , captchaOnOff);
         if (!captchaOnOff) {
@@ -80,7 +83,7 @@ public class CaptchaController {
         try {
             ImageIO.write(image, "jpg" , os);
         } catch (IOException e) {
-            return AjaxResult.error(e.getMessage());
+            return BaseResult.fail(e.getMessage());
         }
 
         ajax.put("uuid" , uuid);

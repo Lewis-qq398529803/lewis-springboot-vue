@@ -3,7 +3,7 @@ package com.lewis.core.base.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lewis.core.constant.HttpStatus;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.page.PageDomain;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.base.page.TableSupport;
@@ -85,8 +85,8 @@ public class BaseController {
      * @param rows 影响行数
      * @return 操作结果
      */
-    protected AjaxResult toAjax(int rows) {
-        return rows > 0 ? AjaxResult.success() : AjaxResult.error();
+    protected BaseResult toAjax(int rows) {
+        return rows > 0 ? BaseResult.ok() : BaseResult.fail();
     }
 
     /**
@@ -95,36 +95,36 @@ public class BaseController {
      * @param result 结果
      * @return 操作结果
      */
-    protected AjaxResult toAjax(boolean result) {
+    protected BaseResult toAjax(boolean result) {
         return result ? success() : error();
     }
 
     /**
      * 返回成功
      */
-    public AjaxResult success() {
-        return AjaxResult.success();
+    public BaseResult success() {
+        return BaseResult.ok();
     }
 
     /**
      * 返回失败消息
      */
-    public AjaxResult error() {
-        return AjaxResult.error();
+    public BaseResult error() {
+        return BaseResult.fail();
     }
 
     /**
      * 返回成功消息
      */
-    public AjaxResult success(String message) {
-        return AjaxResult.success(message);
+    public BaseResult success(String message) {
+        return BaseResult.ok(message);
     }
 
     /**
      * 返回失败消息
      */
-    public AjaxResult error(String message) {
-        return AjaxResult.error(message);
+    public BaseResult error(String message) {
+        return BaseResult.fail(message);
     }
 
     /**

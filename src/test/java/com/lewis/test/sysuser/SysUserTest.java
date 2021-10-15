@@ -1,7 +1,7 @@
 package com.lewis.test.sysuser;
 
 import com.lewis.core.base.controller.BaseController;
-import com.lewis.core.base.domain.AjaxResult;
+import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.utils.StringUtils;
 import com.lewis.test.sysuser.entity.UserEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,9 +33,9 @@ public class SysUserTest extends BaseController {
      * @return
      */
     @GetMapping("/list")
-    public AjaxResult userList() {
+    public BaseResult userList() {
         List<UserEntity> userList = new ArrayList<UserEntity>(users.values());
-        return AjaxResult.success(userList);
+        return BaseResult.ok(userList);
     }
 
     /**
@@ -45,11 +45,11 @@ public class SysUserTest extends BaseController {
      * @return
      */
     @GetMapping("/{userId}")
-    public AjaxResult getUser(@PathVariable Integer userId) {
+    public BaseResult getUser(@PathVariable Integer userId) {
         if (!users.isEmpty() && users.containsKey(userId)) {
-            return AjaxResult.success(users.get(userId));
+            return BaseResult.ok(users.get(userId));
         } else {
-            return AjaxResult.error("用户不存在");
+            return BaseResult.fail("用户不存在");
         }
     }
 
@@ -60,11 +60,11 @@ public class SysUserTest extends BaseController {
      * @return
      */
     @PostMapping("/save")
-    public AjaxResult save(UserEntity user) {
+    public BaseResult save(UserEntity user) {
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId())) {
-            return AjaxResult.error("用户ID不能为空");
+            return BaseResult.fail("用户ID不能为空");
         }
-        return AjaxResult.success(users.put(user.getUserId(), user));
+        return BaseResult.ok(users.put(user.getUserId(), user));
     }
 
     /**
@@ -74,15 +74,15 @@ public class SysUserTest extends BaseController {
      * @return
      */
     @PutMapping("/update")
-    public AjaxResult update(UserEntity user) {
+    public BaseResult update(UserEntity user) {
         if (StringUtils.isNull(user) || StringUtils.isNull(user.getUserId())) {
-            return AjaxResult.error("用户ID不能为空");
+            return BaseResult.fail("用户ID不能为空");
         }
         if (users.isEmpty() || !users.containsKey(user.getUserId())) {
-            return AjaxResult.error("用户不存在");
+            return BaseResult.fail("用户不存在");
         }
         users.remove(user.getUserId());
-        return AjaxResult.success(users.put(user.getUserId(), user));
+        return BaseResult.ok(users.put(user.getUserId(), user));
     }
 
     /**
@@ -92,12 +92,12 @@ public class SysUserTest extends BaseController {
      * @return
      */
     @DeleteMapping("/{userId}")
-    public AjaxResult delete(@PathVariable Integer userId) {
+    public BaseResult delete(@PathVariable Integer userId) {
         if (!users.isEmpty() && users.containsKey(userId)) {
             users.remove(userId);
-            return AjaxResult.success();
+            return BaseResult.ok();
         } else {
-            return AjaxResult.error("用户不存在");
+            return BaseResult.fail("用户不存在");
         }
     }
 }
