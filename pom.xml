@@ -33,11 +33,6 @@
     <!-- 依赖声明 -->
     <dependencies>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-        </dependency>
-
         <!--http工具 -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

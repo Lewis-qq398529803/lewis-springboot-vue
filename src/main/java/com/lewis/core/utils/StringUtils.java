@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.util.AntPathMatcher;
 
@@ -56,6 +57,27 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	 * UTF-8
 	 */
 	private static final Charset CHARSET_UTF_8 = Charset.forName(UTF_8);
+
+	/**
+	 * 判断是否为json字符串
+	 *
+	 * @param content	文本
+	 * @return			结果
+	 */
+	public static boolean isJSONString(String content) {
+		if (StringUtils.isEmpty(content)) {
+			return false;
+		}
+		if (!content.startsWith("{") || !content.endsWith("}")) {
+			return false;
+		}
+		try {
+			JSONObject.parse(content);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 	/**
 	 * 查找指定字符串是否包含指定字符串列表中的任意一个字符串同时串忽略大小写
