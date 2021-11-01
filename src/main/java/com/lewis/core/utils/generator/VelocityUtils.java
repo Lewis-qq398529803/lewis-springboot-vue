@@ -163,7 +163,7 @@ public class VelocityUtils {
         String vuePath = "vue";
 
         if (template.contains("entity.java.vm")) {
-            fileName = StringUtils.format("{}/domain/{}.java" , javaPath, className);
+            fileName = StringUtils.format("{}/entity/{}.java" , javaPath, className);
         }
         if (template.contains("sub-entity.java.vm") && StringUtils.equals(GenConstants.TPL_SUB, genTable.getTplCategory())) {
             fileName = StringUtils.format("{}/entity/{}.java" , javaPath, genTable.getSubTable().getClassName());

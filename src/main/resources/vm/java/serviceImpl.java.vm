@@ -1,7 +1,7 @@
 package ${packageName}.service.impl;
 
 import java.util.List;
-	#foreach ($column in $columns)
+#foreach ($column in $columns)
 #if($column.javaField == 'createTime' || $column.javaField == 'updateTime')
 import com.lewis.core.utils.DateUtils;
 #break

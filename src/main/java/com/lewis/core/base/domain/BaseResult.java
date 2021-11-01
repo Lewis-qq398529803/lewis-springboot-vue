@@ -59,7 +59,7 @@ public class BaseResult {
      * @return BaseResult
      */
     public static BaseResult ok() {
-        return BaseResult.ok(null);
+        return BaseResult.ok("操作成功");
     }
 
     /**

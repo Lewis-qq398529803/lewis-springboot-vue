@@ -22,17 +22,11 @@ import com.lewis.core.annotation.Excel;
  * @author ${author}
  * @date ${datetime}
  */
-#if($table.crud || $table.sub)
-    #set($Entity="BaseEntity")
-#elseif($table.tree)
-    #set($Entity="TreeEntity")
-#end
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("${tableName}")
 @ApiModel(value="${ClassName}对象", description="${functionName}")
-public class ${ClassName} extends ${Entity}{
+public class ${ClassName} {
 
     private static final long serialVersionUID = 1L;
 
