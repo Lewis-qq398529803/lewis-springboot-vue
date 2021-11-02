@@ -96,7 +96,7 @@ public class SysUserController extends BaseController {
     @GetMapping(value = {"/" , "/{userId}"})
     public Object getInfo(@PathVariable(value = "userId" , required = false) Long userId) {
         BaseResult ok = BaseResult.ok();
-        Map<String, Object> ajax = MapUtils.objectToMapByReflect(ok);
+        Map<String, Object> ajax = MapUtils.object2MapByReflect(ok);
         List<SysRole> roles = roleService.selectRoleAll();
         ajax.put("roles" , SysUser.isAdmin(userId) ? roles : roles.stream().filter(r -> !r.isAdmin()).collect(Collectors.toList()));
         ajax.put("posts" , postService.selectPostAll());

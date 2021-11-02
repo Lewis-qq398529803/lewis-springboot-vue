@@ -78,7 +78,7 @@ public class SysDeptController extends BaseController {
     public Object roleDeptTreeselect(@PathVariable("roleId") Long roleId) {
         List<SysDept> depts = deptService.selectDeptList(new SysDept());
         BaseResult ok = BaseResult.ok();
-        Map<String, Object> ajax = MapUtils.objectToMapByReflect(ok);
+        Map<String, Object> ajax = MapUtils.object2MapByReflect(ok);
         ajax.put("checkedKeys" , deptService.selectDeptListByRoleId(roleId));
         ajax.put("depts" , deptService.buildDeptTreeSelect(depts));
         return ajax;

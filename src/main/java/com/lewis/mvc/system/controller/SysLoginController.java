@@ -49,7 +49,7 @@ public class SysLoginController {
     @PostMapping("/login")
     public Object login(@RequestBody LoginBody loginBody) {
         BaseResult ok = BaseResult.ok();
-        Map<String, Object> ajax = MapUtils.objectToMapByReflect(ok);
+        Map<String, Object> ajax = MapUtils.object2MapByReflect(ok);
         // 生成令牌
         String token = loginService.login(loginBody.getUsername(), loginBody.getPassword(), loginBody.getCode(),
                 loginBody.getUuid());
@@ -67,7 +67,7 @@ public class SysLoginController {
         // 权限集合
         Set<String> permissions = permissionService.getMenuPermission(user);
         BaseResult ok = BaseResult.ok();
-        Map<String, Object> ajax = MapUtils.objectToMapByReflect(ok);
+        Map<String, Object> ajax = MapUtils.object2MapByReflect(ok);
         ajax.put("user" , user);
         ajax.put("roles" , roles);
         ajax.put("permissions" , permissions);

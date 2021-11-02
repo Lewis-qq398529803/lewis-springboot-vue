@@ -52,7 +52,7 @@ public class CaptchaController {
     @GetMapping("/captchaImage")
     public Object getCode(HttpServletResponse response) throws IOException {
         BaseResult ok = BaseResult.ok();
-        Map<String, Object> ajax = MapUtils.objectToMapByReflect(ok);
+        Map<String, Object> ajax = MapUtils.object2MapByReflect(ok);
         boolean captchaOnOff = configService.selectCaptchaOnOff();
         ajax.put("captchaOnOff" , captchaOnOff);
         if (!captchaOnOff) {

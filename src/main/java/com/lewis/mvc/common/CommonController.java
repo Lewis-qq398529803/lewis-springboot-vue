@@ -77,7 +77,7 @@ public class CommonController {
             String fileName = FileUploadUtils.upload(filePath, file);
             String url = serverConfig.getUrl() + fileName;
             BaseResult ok = BaseResult.ok();
-            Map ajax = MapUtils.objectToMapByReflect(ok);
+            Map ajax = MapUtils.object2MapByReflect(ok);
             ajax.put("fileName" , fileName);
             ajax.put("url" , url);
             return ajax;

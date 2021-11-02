@@ -46,7 +46,7 @@ public class SysProfileController extends BaseController {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
         SysUser user = loginUser.getUser();
         BaseResult ok = BaseResult.ok(user);
-        Map<String, Object> ajax = MapUtils.objectToMapByReflect(ok);
+        Map<String, Object> ajax = MapUtils.object2MapByReflect(ok);
         ajax.put("roleGroup" , userService.selectUserRoleGroup(loginUser.getUsername()));
         ajax.put("postGroup" , userService.selectUserPostGroup(loginUser.getUsername()));
         return ajax;
@@ -111,7 +111,7 @@ public class SysProfileController extends BaseController {
             String avatar = FileUploadUtils.upload(LewisConfig.getAvatarPath(), file);
             if (userService.updateUserAvatar(loginUser.getUsername(), avatar)) {
                 BaseResult ok = BaseResult.ok();
-        Map<String, Object> ajax = MapUtils.objectToMapByReflect(ok);
+        Map<String, Object> ajax = MapUtils.object2MapByReflect(ok);
                 ajax.put("imgUrl" , avatar);
                 // 更新缓存用户头像
                 loginUser.getUser().setAvatar(avatar);

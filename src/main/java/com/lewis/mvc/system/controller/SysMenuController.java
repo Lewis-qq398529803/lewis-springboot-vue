@@ -71,7 +71,7 @@ public class SysMenuController extends BaseController {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
         List<SysMenu> menus = menuService.selectMenuList(loginUser.getUser().getUserId());
         BaseResult ok = BaseResult.ok();
-        Map ajax = MapUtils.objectToMapByReflect(ok);
+        Map ajax = MapUtils.object2MapByReflect(ok);
         ajax.put("checkedKeys" , menuService.selectMenuListByRoleId(roleId));
         ajax.put("menus" , menuService.buildMenuTreeSelect(menus));
         return ajax;

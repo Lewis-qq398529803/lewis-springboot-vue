@@ -1,5 +1,6 @@
 package com.lewis.core.utils;
 
+import com.alibaba.fastjson.JSON;
 import com.lewis.core.base.domain.BaseResult;
 
 import java.beans.BeanInfo;
@@ -22,18 +23,27 @@ public class MapUtils {
 
 	public static void main(String[] args) {
 		BaseResult ok = BaseResult.ok();
-		Map<?, ?> map = objectToMapByBeanUtils(ok);
+		Map<?, ?> map = object2MapByBeanUtils(ok);
 		System.out.println("map1 -> " + map);
-		Map<String, Object> stringObjectMap = objectToMapByIntroSpector(ok);
+		Map<String, Object> stringObjectMap = object2MapByIntroSpector(ok);
 		System.out.println("map2 -> " + stringObjectMap);
-		Map<String, Object> stringObjectMap1 = objectToMapByReflect(ok);
+		Map<String, Object> stringObjectMap1 = object2MapByReflect(ok);
 		System.out.println("map3 -> " + stringObjectMap1);
+	}
+
+	/**
+	 * 实体类转map
+	 * @param object
+	 * @return
+	 */
+	public static Map object2Map(Object object) {
+		return JSON.parseObject(JSON.toJSONString(object), Map.class);
 	}
 
 	/**
 	 * 使用org.apache.commons.beanutils进行转换
 	 */
-	public static Object mapToObjectByBeanUtils(Map<String, Object> map, Class<?> beanClass) throws Exception {
+	public static Object map2ObjectByBeanUtils(Map<String, Object> map, Class<?> beanClass) throws Exception {
 		if (map == null) {
 			return null;
 		}
@@ -42,7 +52,7 @@ public class MapUtils {
 		return obj;
 	}
 
-	public static Map<?, ?> objectToMapByBeanUtils(Object obj) {
+	public static Map<?, ?> object2MapByBeanUtils(Object obj) {
 		if(obj == null) {
 			return null;
 		}
@@ -52,7 +62,7 @@ public class MapUtils {
 	/**
 	 * 使用Introspector进行转换
 	 */
-	public static Object mapToObjectByIntroSpector(Map<String, Object> map, Class<?> beanClass) throws Exception {
+	public static Object map2ObjectByIntroSpector(Map<String, Object> map, Class<?> beanClass) throws Exception {
 		if (map == null) {
 			return null;
 		}
@@ -68,7 +78,7 @@ public class MapUtils {
 		return obj;
 	}
 
-	public static Map<String, Object> objectToMapByIntroSpector(Object obj) {
+	public static Map<String, Object> object2MapByIntroSpector(Object obj) {
 		if(obj == null) {
 			return null;
 		}
@@ -95,7 +105,7 @@ public class MapUtils {
 	/**
 	 * 使用reflect进行转换
 	 */
-	public static Object mapToObjectByReflect(Map<String, Object> map, Class<?> beanClass) throws Exception {
+	public static Object map2ObjectByReflect(Map<String, Object> map, Class<?> beanClass) throws Exception {
 		if (map == null) {
 			return null;
 		}
@@ -112,7 +122,7 @@ public class MapUtils {
 		return obj;
 	}
 
-	public static Map<String, Object> objectToMapByReflect(Object obj) {
+	public static Map<String, Object> object2MapByReflect(Object obj) {
 		if(obj == null){
 			return null;
 		}
