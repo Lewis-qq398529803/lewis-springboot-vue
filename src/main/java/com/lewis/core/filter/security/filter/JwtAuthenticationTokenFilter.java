@@ -1,4 +1,4 @@
-package com.lewis.core.security.filter;
+package com.lewis.core.filter.security.filter;
 
 import com.lewis.core.base.domain.model.LoginUser;
 import com.lewis.core.utils.SecurityUtils;

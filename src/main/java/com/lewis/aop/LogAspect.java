@@ -1,4 +1,4 @@
-package com.lewis.mvc.framework.aspectj;
+package com.lewis.aop;
 
 import com.alibaba.fastjson.JSON;
 import com.lewis.mvc.system.entity.SysOperLog;
@@ -9,7 +9,7 @@ import com.lewis.core.enums.HttpMethod;
 import com.lewis.core.utils.ServletUtils;
 import com.lewis.core.utils.StringUtils;
 import com.lewis.core.utils.ip.IpUtils;
-import com.lewis.core.utils.spring.SpringUtils;
+import com.lewis.core.utils.SpringUtils;
 import com.lewis.mvc.framework.manager.AsyncManager;
 import com.lewis.mvc.framework.manager.factory.AsyncFactory;
 import com.lewis.mvc.framework.service.ITokenService;

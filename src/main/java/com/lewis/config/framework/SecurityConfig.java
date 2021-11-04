@@ -1,8 +1,8 @@
 package com.lewis.config.framework;
 
-import com.lewis.core.security.filter.JwtAuthenticationTokenFilter;
-import com.lewis.core.security.handle.AuthenticationEntryPointImpl;
-import com.lewis.core.security.handle.LogoutSuccessHandlerImpl;
+import com.lewis.core.filter.security.filter.JwtAuthenticationTokenFilter;
+import com.lewis.core.filter.security.handle.AuthenticationEntryPointImpl;
+import com.lewis.core.filter.security.handle.LogoutSuccessHandlerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;

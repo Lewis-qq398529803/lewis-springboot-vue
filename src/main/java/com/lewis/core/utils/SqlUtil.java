@@ -1,4 +1,4 @@
-package com.lewis.core.utils.sql;
+package com.lewis.core.utils;
 
 import com.lewis.core.exception.BaseException;
 import com.lewis.core.utils.StringUtils;

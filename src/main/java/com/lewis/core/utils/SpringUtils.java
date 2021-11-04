@@ -1,6 +1,5 @@
-package com.lewis.core.utils.spring;
+package com.lewis.core.utils;
 
-import com.lewis.core.utils.StringUtils;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

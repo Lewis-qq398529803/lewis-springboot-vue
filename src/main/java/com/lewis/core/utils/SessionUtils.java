@@ -1,4 +1,4 @@
-package com.lewis.core.utils.session;
+package com.lewis.core.utils;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

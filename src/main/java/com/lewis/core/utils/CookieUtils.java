@@ -1,4 +1,4 @@
-package com.lewis.core.utils.cookie;
+package com.lewis.core.utils;
 
 import lombok.extern.slf4j.Slf4j;
 

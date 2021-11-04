@@ -8,7 +8,7 @@ import com.lewis.core.constant.UserConstants;
 import com.lewis.core.base.domain.entity.SysRole;
 import com.lewis.core.exception.CustomException;
 import com.lewis.core.utils.StringUtils;
-import com.lewis.core.utils.spring.SpringUtils;
+import com.lewis.core.utils.SpringUtils;
 import com.lewis.mvc.system.mapper.SysRoleDeptMapper;
 import com.lewis.mvc.system.mapper.SysRoleMapper;
 import com.lewis.mvc.system.mapper.SysRoleMenuMapper;

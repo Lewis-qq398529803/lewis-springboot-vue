@@ -2,7 +2,6 @@ package com.lewis.core.utils;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
-import com.lewis.core.utils.spring.SpringUtils;
 
 /**
  * 获取i18n资源文件

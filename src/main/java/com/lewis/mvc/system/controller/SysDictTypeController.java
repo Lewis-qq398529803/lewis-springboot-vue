@@ -8,7 +8,7 @@ import com.lewis.core.base.domain.entity.SysDictType;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.enums.BusinessType;
 import com.lewis.core.utils.SecurityUtils;
-import com.lewis.core.utils.poi.ExcelUtil;
+import com.lewis.core.utils.ExcelUtil;
 import com.lewis.mvc.system.service.ISysDictTypeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

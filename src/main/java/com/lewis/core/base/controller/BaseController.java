@@ -9,7 +9,7 @@ import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.base.page.TableSupport;
 import com.lewis.core.utils.DateUtils;
 import com.lewis.core.utils.StringUtils;
-import com.lewis.core.utils.sql.SqlUtil;
+import com.lewis.core.utils.SqlUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.WebDataBinder;

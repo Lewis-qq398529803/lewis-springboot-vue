@@ -1,4 +1,4 @@
-package com.lewis.mvc.framework.aspectj;
+package com.lewis.aop;
 
 import com.lewis.core.annotation.DataScope;
 import com.lewis.core.base.domain.BaseEntity;
@@ -7,7 +7,7 @@ import com.lewis.core.base.domain.entity.SysUser;
 import com.lewis.core.base.domain.model.LoginUser;
 import com.lewis.core.utils.ServletUtils;
 import com.lewis.core.utils.StringUtils;
-import com.lewis.core.utils.spring.SpringUtils;
+import com.lewis.core.utils.SpringUtils;
 import com.lewis.mvc.framework.service.ITokenService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;

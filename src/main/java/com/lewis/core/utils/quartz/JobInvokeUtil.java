@@ -1,7 +1,7 @@
 package com.lewis.core.utils.quartz;
 
 import com.lewis.core.utils.StringUtils;
-import com.lewis.core.utils.spring.SpringUtils;
+import com.lewis.core.utils.SpringUtils;
 import com.lewis.mvc.quartz.entity.SysJob;
 
 import java.lang.reflect.InvocationTargetException;

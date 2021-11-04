@@ -21,7 +21,7 @@ import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.enums.BusinessType;
 import ${packageName}.entity.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
-import com.lewis.core.utils.poi.ExcelUtil;
+import com.lewis.core.utils.ExcelUtil;
 #if($table.crud || $table.sub)
 import com.lewis.core.base.page.TableDataInfo;
 #elseif($table.tree)

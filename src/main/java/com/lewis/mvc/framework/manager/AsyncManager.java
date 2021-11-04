@@ -1,7 +1,7 @@
 package com.lewis.mvc.framework.manager;
 
 import com.lewis.core.utils.Threads;
-import com.lewis.core.utils.spring.SpringUtils;
+import com.lewis.core.utils.SpringUtils;
 
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;

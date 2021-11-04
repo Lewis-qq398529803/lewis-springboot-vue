@@ -6,7 +6,6 @@ import java.util.List;
 import com.lewis.core.constant.Constants;
 import com.lewis.core.base.domain.entity.SysDictData;
 import com.lewis.core.base.redis.RedisCache;
-import com.lewis.core.utils.spring.SpringUtils;
 
 /**
  * 字典工具类

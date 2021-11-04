@@ -9,7 +9,7 @@ import com.lewis.core.utils.ServletUtils;
 import com.lewis.core.utils.StringUtils;
 import com.lewis.core.utils.ip.AddressUtils;
 import com.lewis.core.utils.ip.IpUtils;
-import com.lewis.core.utils.spring.SpringUtils;
+import com.lewis.core.utils.SpringUtils;
 import eu.bitwalker.useragentutils.UserAgent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
