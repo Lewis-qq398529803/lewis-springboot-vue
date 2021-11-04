@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface Excel {
+
 	/**
 	 * 导出时在excel中排序
 	 */
