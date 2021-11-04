@@ -2,42 +2,37 @@ package com.lewis.core.exception;
 
 /**
  * 自定义异常
- * 
+ *
  * @author Lewis
  */
-public class CustomException extends RuntimeException
-{
-    private static final long serialVersionUID = 1L;
+public class CustomException extends RuntimeException {
 
-    private Integer code;
+	private static final long serialVersionUID = 1L;
 
-    private String message;
+	private Integer code;
 
-    public CustomException(String message)
-    {
-        this.message = message;
-    }
+	private String message;
 
-    public CustomException(String message, Integer code)
-    {
-        this.message = message;
-        this.code = code;
-    }
+	public CustomException(String message) {
+		this.message = message;
+	}
 
-    public CustomException(String message, Throwable e)
-    {
-        super(message, e);
-        this.message = message;
-    }
+	public CustomException(String message, Integer code) {
+		this.message = message;
+		this.code = code;
+	}
 
-    @Override
-    public String getMessage()
-    {
-        return message;
-    }
+	public CustomException(String message, Throwable e) {
+		super(message, e);
+		this.message = message;
+	}
 
-    public Integer getCode()
-    {
-        return code;
-    }
+	@Override
+	public String getMessage() {
+		return message;
+	}
+
+	public Integer getCode() {
+		return code;
+	}
 }

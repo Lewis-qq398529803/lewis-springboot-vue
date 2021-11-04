@@ -1,18 +1,19 @@
 package com.lewis.aop;
 
 import com.alibaba.fastjson.JSON;
-import com.lewis.mvc.system.entity.SysOperLog;
 import com.lewis.core.annotation.Log;
 import com.lewis.core.base.domain.model.LoginUser;
 import com.lewis.core.enums.BusinessStatus;
 import com.lewis.core.enums.HttpMethod;
 import com.lewis.core.utils.ServletUtils;
+import com.lewis.core.utils.SpringUtils;
 import com.lewis.core.utils.StringUtils;
 import com.lewis.core.utils.ip.IpUtils;
-import com.lewis.core.utils.SpringUtils;
 import com.lewis.mvc.framework.manager.AsyncManager;
 import com.lewis.mvc.framework.manager.factory.AsyncFactory;
 import com.lewis.mvc.framework.service.ITokenService;
+import com.lewis.mvc.system.entity.SysOperLog;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -20,8 +21,6 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,17 +38,16 @@ import java.util.Map;
  *
  * @author Lewis
  */
+@Slf4j
 @Aspect
 @Component
 public class LogAspect {
-	private static final Logger log = LoggerFactory.getLogger(LogAspect.class);
 
 	/**
 	 * 配置织入点
 	 */
 	@Pointcut("@annotation(com.lewis.core.annotation.Log)")
-	public void logPointCut() {
-	}
+	public void logPointCut() {}
 
 	/**
 	 * 处理完请求后执行
@@ -84,33 +82,33 @@ public class LogAspect {
 			LoginUser loginUser = SpringUtils.getBean(ITokenService.class).getLoginUser(ServletUtils.getRequest());
 
 			// *========数据库日志=========*//
-			SysOperLog operLog = new SysOperLog();
-			operLog.setStatus(BusinessStatus.SUCCESS.ordinal());
+			SysOperLog sysOperLog = new SysOperLog();
+			sysOperLog.setStatus(BusinessStatus.SUCCESS.ordinal());
 			// 请求的地址
 			String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
-			operLog.setOperIp(ip);
+			sysOperLog.setOperIp(ip);
 			// 返回参数
-			operLog.setJsonResult(JSON.toJSONString(jsonResult));
+			sysOperLog.setJsonResult(JSON.toJSONString(jsonResult));
 
-			operLog.setOperUrl(ServletUtils.getRequest().getRequestURI());
+			sysOperLog.setOperUrl(ServletUtils.getRequest().getRequestURI());
 			if (loginUser != null) {
-				operLog.setOperName(loginUser.getUsername());
+				sysOperLog.setOperName(loginUser.getUsername());
 			}
 
 			if (e != null) {
-				operLog.setStatus(BusinessStatus.FAIL.ordinal());
-				operLog.setErrorMsg(StringUtils.substring(e.getMessage(), 0, 2000));
+				sysOperLog.setStatus(BusinessStatus.FAIL.ordinal());
+				sysOperLog.setErrorMsg(StringUtils.substring(e.getMessage(), 0, 2000));
 			}
 			// 设置方法名称
 			String className = joinPoint.getTarget().getClass().getName();
 			String methodName = joinPoint.getSignature().getName();
-			operLog.setMethod(className + "." + methodName + "()");
+			sysOperLog.setMethod(className + "." + methodName + "()");
 			// 设置请求方式
-			operLog.setRequestMethod(ServletUtils.getRequest().getMethod());
+			sysOperLog.setRequestMethod(ServletUtils.getRequest().getMethod());
 			// 处理设置注解上的参数
-			getControllerMethodDescription(joinPoint, controllerLog, operLog);
+			getControllerMethodDescription(joinPoint, controllerLog, sysOperLog);
 			// 保存数据库
-			AsyncManager.me().execute(AsyncFactory.recordOper(operLog));
+			AsyncManager.me().execute(AsyncFactory.recordOper(sysOperLog));
 		} catch (Exception exp) {
 			// 记录本地异常日志
 			log.error("==前置通知异常==");

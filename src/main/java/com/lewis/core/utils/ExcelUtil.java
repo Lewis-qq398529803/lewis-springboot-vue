@@ -1,26 +1,25 @@
 package com.lewis.core.utils;
 
+import com.lewis.config.LewisConfig;
 import com.lewis.core.annotation.Excel;
 import com.lewis.core.annotation.Excel.ColumnType;
 import com.lewis.core.annotation.Excel.Type;
 import com.lewis.core.annotation.Excels;
-import com.lewis.config.LewisConfig;
 import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.text.Convert;
 import com.lewis.core.exception.CustomException;
 import com.lewis.core.utils.file.FileTypeUtils;
 import com.lewis.core.utils.file.FileUtils;
 import com.lewis.core.utils.file.ImageUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.util.IOUtils;
 import org.apache.poi.ooxml.POIXMLDocumentPart;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddressList;
+import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.*;
 import org.openxmlformats.schemas.drawingml.x2006.spreadsheetDrawing.CTMarker;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -35,9 +34,8 @@ import java.util.stream.Collectors;
  *
  * @author Lewis
  */
+@Slf4j
 public class ExcelUtil<T> {
-
-	private static final Logger log = LoggerFactory.getLogger(ExcelUtil.class);
 
 	/**
 	 * Excel sheet最大行数，默认65536

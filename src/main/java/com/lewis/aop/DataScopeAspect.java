@@ -27,6 +27,7 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class DataScopeAspect {
+
     /**
      * 全部数据权限
      */

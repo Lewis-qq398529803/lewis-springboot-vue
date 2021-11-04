@@ -1,15 +1,14 @@
 package com.lewis.aop;
 
 import com.lewis.core.annotation.DataSource;
-import com.lewis.core.utils.StringUtils;
 import com.lewis.core.datasource.DynamicDataSourceContextHolder;
+import com.lewis.core.utils.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -21,17 +20,14 @@ import java.util.Objects;
  *
  * @author Lewis
  */
+@Slf4j
 @Aspect
 @Order(1)
 @Component
 public class DataSourceAspect {
-    protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Pointcut("@annotation(com.lewis.core.annotation.DataSource)"
-            + "|| @within(com.lewis.core.annotation.DataSource)")
-    public void dsPointCut() {
-
-    }
+    @Pointcut("@annotation(com.lewis.core.annotation.DataSource) || @within(com.lewis.core.annotation.DataSource)")
+    public void dsPointCut() {}
 
     @Around("dsPointCut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {

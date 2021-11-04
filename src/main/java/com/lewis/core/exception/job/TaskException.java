@@ -6,6 +6,7 @@ package com.lewis.core.exception.job;
  * @author Lewis
  */
 public class TaskException extends Exception {
+
 	private static final long serialVersionUID = 1L;
 
 	private Code code;

@@ -1,18 +1,17 @@
 package com.lewis.mvc.framework.manager.factory;
 
+import com.lewis.core.constant.Constants;
+import com.lewis.core.utils.ServletUtils;
+import com.lewis.core.utils.SpringUtils;
+import com.lewis.core.utils.StringUtils;
+import com.lewis.core.utils.ip.AddressUtils;
+import com.lewis.core.utils.ip.IpUtils;
 import com.lewis.mvc.system.entity.SysLogininfor;
 import com.lewis.mvc.system.entity.SysOperLog;
 import com.lewis.mvc.system.service.ISysLogininforService;
 import com.lewis.mvc.system.service.ISysOperLogService;
-import com.lewis.core.constant.Constants;
-import com.lewis.core.utils.ServletUtils;
-import com.lewis.core.utils.StringUtils;
-import com.lewis.core.utils.ip.AddressUtils;
-import com.lewis.core.utils.ip.IpUtils;
-import com.lewis.core.utils.SpringUtils;
 import eu.bitwalker.useragentutils.UserAgent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.TimerTask;
 
@@ -21,9 +20,8 @@ import java.util.TimerTask;
  *
  * @author Lewis
  */
+@Slf4j
 public class AsyncFactory {
-
-	private static final Logger sys_user_logger = LoggerFactory.getLogger("sys-user");
 
 	/**
 	 * 记录登录信息
@@ -49,7 +47,7 @@ public class AsyncFactory {
 				s.append(getBlock(status));
 				s.append(getBlock(message));
 				// 打印信息到日志
-				sys_user_logger.info(s.toString(), args);
+				log.info(s.toString(), args);
 				// 获取客户端操作系统
 				String os = userAgent.getOperatingSystem().getName();
 				// 获取客户端浏览器

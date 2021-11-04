@@ -2,16 +2,15 @@ package com.lewis.core.base.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.lewis.core.constant.HttpStatus;
 import com.lewis.core.base.domain.BaseResult;
 import com.lewis.core.base.page.PageDomain;
 import com.lewis.core.base.page.TableDataInfo;
 import com.lewis.core.base.page.TableSupport;
+import com.lewis.core.constant.HttpStatus;
 import com.lewis.core.utils.DateUtils;
-import com.lewis.core.utils.StringUtils;
 import com.lewis.core.utils.SqlUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.lewis.core.utils.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
@@ -24,9 +23,8 @@ import java.util.List;
  *
  * @author Lewis
  */
+@Slf4j
 public class BaseController {
-
-    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型

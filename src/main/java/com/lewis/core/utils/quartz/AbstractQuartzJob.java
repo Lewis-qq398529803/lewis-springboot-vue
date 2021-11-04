@@ -2,18 +2,17 @@ package com.lewis.core.utils.quartz;
 
 import com.lewis.core.constant.Constants;
 import com.lewis.core.constant.ScheduleConstants;
-import com.lewis.core.utils.ExceptionUtil;
-import com.lewis.core.utils.StringUtils;
 import com.lewis.core.utils.BeanUtils;
+import com.lewis.core.utils.ExceptionUtil;
 import com.lewis.core.utils.SpringUtils;
+import com.lewis.core.utils.StringUtils;
 import com.lewis.mvc.quartz.entity.SysJob;
 import com.lewis.mvc.quartz.entity.SysJobLog;
 import com.lewis.mvc.quartz.service.ISysJobLogService;
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -22,8 +21,8 @@ import java.util.Date;
  *
  * @author Lewis
  */
+@Slf4j
 public abstract class AbstractQuartzJob implements Job {
-    private static final Logger log = LoggerFactory.getLogger(AbstractQuartzJob.class);
 
     /**
      * 线程本地变量
